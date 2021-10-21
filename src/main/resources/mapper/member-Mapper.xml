@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 모든 SQL문을 mapper태그 안에 작성 -->
+<mapper namespace="memberMapper">
+	<resultMap type="com.kh.myjob.member.vo.MemberVO" id="member">
+		<id 	column="MEMBER_CODE" 				property="memberCode"/>
+		<result column="MEMBER_ID" 					property="memberId"/>
+		<result column="MEMBER_NAME" 				property="memberName"/>
+		<result column="MEMBER_PW" 					property="memberPw"/>
+		<result column="MEMBER_TEL" 				property="memberTel"/>
+		<result column="MEMBER_ADDR" 				property="memberAddr"/>
+		<result column="MEMBER_EMAIL" 				property="memberEmail"/>
+		<result column="MEMBER_IS_ADMIN" 			property="memberIsAdmin"/>
+		<result column="MEMBER_GENDER" 				property="memberGender"/>
+		<result column="MEMBER_JOIN_DATE" 			property="memberJoinDate"/>
+	</resultMap>
+		
+		
+		<insert id="join">
+			INSERT INTO MEMBER (
+			MEMBER_CODE
+			  , MEMBER_ID
+			  , MEMBER_NAME
+			  , MEMBER_PW
+			  , MEMBER_TEL
+			  , MEMBER_ADDR
+			  , MEMBER_EMAIL
+			  , MEMBER_GENDER
+			) VALUES (
+			  #{memberCode}
+			  , #{memberId}
+			  , #{memberName}
+			  , #{memberPw}
+			  , #{memberTel}
+			  , #{memberAddr}
+			  , #{memberEmail}
+			  , #{memberGender}
+			)
+		</insert>
+		
+		
+		<select id="selectNextMemberCode" resultType="String">
+			SELECT 'MEMBER_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MEMBER_CODE, 8, 3))), 0) + 1, 3, '0') FROM MEMBER
+		</select>
+		
+		
+		<select id="login" resultMap="member">
+			SELECT MEMBER_CODE
+			  , MEMBER_ID
+			  , MEMBER_NAME
+			  , MEMBER_IS_ADMIN
+			FROM MEMBER
+			WHERE MEMBER_ID = #{memberId}
+			AND MEMBER_PW = #{memberPw}
+		</select>
+		
+		
+		<select id="selectSimpleMemberList" resultMap="member">
+			SELECT MEMBER_CODE
+			  , MEMBER_ID
+			  , MEMBER_NAME
+			FROM MEMBER
+			WHERE MEMBER_IS_ADMIN = 'N'
+			ORDER BY MEMBER_CODE ASC			
+		</select>
+		
+		<select id="selectDetailMember" resultMap="member">
+			SELECT MEMBER_CODE
+			  , MEMBER_ID
+			  , MEMBER_NAME
+			  , MEMBER_PW
+			  , MEMBER_TEL
+			  , MEMBER_ADDR
+			  , MEMBER_EMAIL
+			  , MEMBER_IS_ADMIN
+			  , MEMBER_GENDER
+			  , TO_CHAR(MEMBER_JOIN_DATE, 'YYYY/MM/DD') AS MEMBER_JOIN_DATE
+			FROM MEMBER
+			WHERE MEMBER_CODE = #{memberCode}
+		</select>
+		
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
