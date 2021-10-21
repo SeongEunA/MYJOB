@@ -19,10 +19,7 @@ public class ReviewController {
 	@Resource(name = "reviewService")
 	private ReviewService reviewService;
 	
-	@GetMapping("/sampleJsp")
-	public String goSampleJsp() {
-		return  "sample/sample";
-	}
+	
 	
 	@GetMapping("/selectReviewList")
 	public String SelectReviewList() {
