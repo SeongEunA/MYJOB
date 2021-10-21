@@ -11,6 +11,7 @@
 		<mapper resource="/mapper/course-Mapper.xml"/>
 		<mapper resource="/mapper/admin-Mapper.xml"/>
 		<mapper resource="/mapper/member-Mapper.xml"/>
+		<mapper resource="/mapper/review-Mapper.xml"/>
 	</mappers>
 </configuration>
 

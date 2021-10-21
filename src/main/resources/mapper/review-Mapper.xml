@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 모든 SQL문을 mapper태그 안에 작성 -->
+<mapper namespace="reviewMapper">
+	<resultMap type="com.kh.myjob.review.vo.ReviewVO" id="reviewBoard">
+		<id column="REVIEW_BOARD_CODE"  				property="reviewBoardCode"/>
+		<result column="REVIEW_BOARD_TITLE" 			property="reviewBoardTitle"/>
+		<result column="REVIEW_BOARD_CONTENT" 			property="reviewBoardContent"/>
+		<result column="REVIEW_BOARD_WRITER"	 		property="reviewBoardWriter"/>
+		<result column="REVIEW_BOARD_RECOMMEND_CNT" 	property="reviewBoardRecommendCnt"/>
+		<result column="REVIEW_BOARD_READ_CNT" 		    property="reviewBoardReadCnt"/>
+	</resultMap>
+	
+	<resultMap type="com.kh.myjob.review.vo.ReviewImgVO" id="reviewImgBoard">
+		<id column="REVIEW_IMG_CODE"  				property="reviewImgCode"/>
+		<result column="REVIEW_IMG_ORIGIN_NAME" 	property="reviewImgOriginName"/>
+		<result column="REVIEW_IMG_ATTACHED_NAME" 	property="reviewImgAttachedName"/>
+		<result column="REVIEW_BOARD_CODE"	 		property="reviewBoardCode"/>
+		<result column="IS_MAIN" 					property="isMain"/>
+	</resultMap>
+	
+	<insert id="insertReview">
+		INSERT INTO REVIEW_BOARD(
+			REVIEW_BOARD_CODE
+			, REVIEW_BOARD_TITLE
+			, REVIEW_BOARD_CONTENT
+			, REVIEW_BOARD_WRITER
+		) VALUES(
+			(SELECT 'REVIEW_'|| LPAD((NVL(MAX(TO_NUMBER(SUBSTR(REVIEW_BOARD_CODE,8,3))), 0) + 1), 3 ,'0') FROM REVIEW_BOARD)
+			, #{reviewBoardTitle}
+			, #{reviewBoardContent}
+			, #{reviewBoardWriter}
+		)
+	</insert>
+	<update id="updateReadCnt">
+		UPDATE REVIEW_BOARD
+		SET REVIEW_BOARD_RECOMMEND_CNT = REVIEW_BOARD_RECOMMEND_CNT + 1
+	    WHERE REVIEW_BOARD_CODE = ${reviewBoardCode}
+	</update>
+	
+	
+	
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
