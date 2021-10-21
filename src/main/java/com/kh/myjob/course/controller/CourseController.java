@@ -1,6 +1,5 @@
 package com.kh.myjob.course.controller;
 
-import java.io.BufferedReader;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -22,18 +21,7 @@ import com.kh.myjob.course.service.CourseService;
 
 @Controller
 @RequestMapping("/course")
-
-
-
-
-
 public class CourseController {
-
-	 
-	
-		
-	  
-	
 	
 	@Resource(name = "courseService")
 	private CourseService courseService;
@@ -60,9 +48,6 @@ public class CourseController {
 
 	@PostMapping("/courseSearch")
 	public String resultCourseSearch() {
-		
-		
-		
 		
 		
 		return "";
