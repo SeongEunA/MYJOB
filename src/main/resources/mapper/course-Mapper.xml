@@ -2,10 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 모든 SQL문을 mapper태그 안에 작성 -->
 <mapper namespace="courseMapper">
+	<!-- Category Table -->
+	<resultMap type="com.kh.myjob.course.vo.CategoryVO" id="category">
+		<id column="CATE_CODE" 		property="cateCode"/>
+		<result column="CATE_NAME" 	property="cateName"/>
+	</resultMap>
+	<!-- Location_Code Table -->
+	<resultMap type="com.kh.myjob.course.vo.LocationVO" id="location">
+		<result column="HIGH_LOCATION_NAME" 	property="highLocationName"/>
+		<result column="LOW_LOCATION_NAME" 		property="lowLocationName"/>
+		<result column="LOCATION_TEMP_CODE" 	property="locationTempCode"/>
+		<result column="LOCATION_LAND_CODE" 	property="locationLandCode"/>
+	</resultMap>
+	<!-- Place Table -->
+	<resultMap type="com.kh.myjob.course.vo.PlaceVO" id="place">
+		<id column="PLACE_CODE" 			property="placeCode"/>
+		<result column="CATE_CODE" 			property="cateCode"/>
+		<result column="PLACE_NAME" 		property="placeName"/>
+		<result column="PLACE_ADDR" 		property="placeAddr"/>
+		<result column="PLACE_TEL"			property="placeTel"/>
+		<result column="STAY_ROOM_NUM"		property="stayRoomNum"/>
+		<result column="PLACE_PLAY_LAND"	property="placePlayLand"/>
+		<result column="PLACE_IS_PARK"		property="placeIsPark"/>
+		<result column="PLACE_URL"			property="placeUrl"/>
+		<result column="SATY_AROUND_PLACE"	property="stayAroundPlace"/>
+		<result column="X"					property="x"/>
+		<result column="Y"					property="y"/>
+		<result column="VIEW_INTRO"			property="viewIntro"/>
+	</resultMap>
 
-
-
-
+	<!-- 상위 지역이름 리스트조회 -->
+	<select id="selectHighLocationList" resultMap="location">
+		SELECT HIGH_LOCATION_NAME
+		FROM LOCATION_CODE
+		GROUP BY HIGH_LOCATION_NAME, LOCATION_ORDER
+		ORDER BY LOCATION_ORDER
+	</select>
+	
+	<!--  -->
 
 
 

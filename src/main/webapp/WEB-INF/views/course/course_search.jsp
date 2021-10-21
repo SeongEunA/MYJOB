@@ -47,29 +47,24 @@
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 </style>
-
 <script type="text/javascript"src="/resources/course/js/course_search.js">
-	
 </script>
 </head>
 <body>
 <form action="/course/courseSearch" method="post">
 	<div class="row">
 		<div class="col-2">
-	
-			<select class="form-select" aria-label="Default select example">
+			<select class="form-select" aria-label="Default select example" id="highLocation">
 				<option selected>지역</option>
-				<option value="seoul">서울</option>
-				<!-- 지역 카테고리 리스트?? -->
-				<option value="incheon">인천</option>
-				<option value="daejeon">대전</option>
+				<c:forEach items="${highLocationList }" var="highLocationInfo">
+					<option value="${highLocationInfo.highLocationName }">${highLocationInfo.highLocationName }</option>
+				</c:forEach>
 			</select>
 		</div>
 		<div class="col-2">
-			<input type="date" class="calendar-layout">
-		</div>
-		<div class="col-2">
-			<input type="date" class="calendar-layout">
+			<select class="form-select" aria-label="Default select example" id="lowLocation">
+				<option selected>하위지역</option>
+			</select>
 		</div>
 		<div class="col-2">
 			<select>
@@ -80,9 +75,7 @@
 		</div>
 		<div class="col-2">
 			<input type="submit" value="검색">
-	
 		</div>
-
 		<div class="col-6">
 			<table border="1">
 				<c:forEach items="${weatherShortList}" var="weatherShort"
@@ -91,8 +84,6 @@
 						<td style="border: 1px solid black;">${cnt.count}</td>
 						<td>${weatherShort.skyStatus }</td>
 					</tr>
-
-
 				</c:forEach>
 				<c:forEach items="${weatherLongList}" var="weatherLong"
 					varStatus="cnt">
@@ -100,8 +91,6 @@
 						<td style="border: 1px solid black;">${cnt.count}</td>
 						<td>${weatherLong.minTemp }</td>
 					</tr>
-
-
 				</c:forEach>
 				<c:forEach items="${weatherLongSkyStatusList}"
 					var="weatherLongSkyStatus" varStatus="cnt">
@@ -109,20 +98,9 @@
 						<td style="border: 1px solid black;">${cnt.count}</td>
 						<td>${weatherLongSkyStatus.skyStatusAm }</td>
 					</tr>
-
-
 				</c:forEach>
-
-
-
 			</table>
-
-
-
 		</div>
-
-
-
 	</div>
 </form>
 		<div class="map_wrap" style="width:1200px; height:1000px;">
@@ -142,9 +120,7 @@
         <div id="pagination"></div>
     </div>
 </div>
-	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d45ea450bf493fb0fea992bed62c07e&libraries=services"></script>
-	
 	<script type="text/javascript">
 	// 마커를 담을 배열입니다
 	var markers = [];
@@ -363,6 +339,5 @@
 	    }
 	}
 	</script>
-	
 </body>
 </html>

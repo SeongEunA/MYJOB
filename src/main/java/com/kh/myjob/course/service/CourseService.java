@@ -1,8 +1,12 @@
 package com.kh.myjob.course.service;
 
-public interface CourseService {
+import java.util.List;
 
-	
+import com.kh.myjob.course.vo.LocationVO;
+
+public interface CourseService {
+	//상위 지역명 리스트
+	List<LocationVO> selectHighLocationList();
 	
 	
 	
