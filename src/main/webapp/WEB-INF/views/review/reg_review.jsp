@@ -63,7 +63,7 @@
 <body>
 	<div class="contentDiv">
 		<form action="/review/regReview" method="post">
-		<input type="hidden" name="reviewBoardWriter" value="${sessionScope.mem }">
+		<input type="hidden" name="reviewBoardWriter" value="">
 		<div class="headerDiv">
 			코스선택 
 			<select>
