@@ -38,4 +38,12 @@ public class MemberServiceImpl implements MemberService{
 		return sqlsession.selectOne("memberMapper.selectDetailMember", memberCode);
 	}
 
+	@Override
+	public boolean isJoined(String memberId) {
+		//기가입 : true, 미가입 : false
+		String result = sqlsession.selectOne("memberMapper.isJoined", memberId);
+		return result == null ? false : true;
+		
+	}
+
 }

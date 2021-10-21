@@ -15,6 +15,11 @@
 		<result column="MEMBER_JOIN_DATE" 			property="memberJoinDate"/>
 	</resultMap>
 		
+		<select id="isJoined" resultType="String">
+			SELECT MEMBER_ID
+			FROM MEMBER
+			WHERE MEMBER_ID = #{memberId}
+		</select>
 		
 		<insert id="join">
 			INSERT INTO MEMBER (

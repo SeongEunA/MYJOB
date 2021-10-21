@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/member/js/join.js?ver=70"></script>
+<script type="text/javascript" src="/resources/member/js/join.js?ver=102"></script>
 <style type="text/css">
 .btn-primary {
     background-color: #EAEAEA;
@@ -41,7 +41,7 @@
 				</div>
 				<div class="col-3 d-grid" id="checkIdDiv">
 					<label for="idCheck" class="form-label">&nbsp;</label>
-					<button type="button" class="btn btn-primary" id="idCheckbtn" onclick="idCheckbtn();">중복확인</button>
+					<button type="button" class="btn btn-primary" id="idCheckbtn" onclick="idCheck();">중복확인</button>
 				</div>
 				<div class="col-12">
 					<label for="name" class="form-label">NAME</label>
@@ -106,7 +106,7 @@
 					</div>
 				</div>
 				<div class="col-12 d-grid">
-					<input type="submit" id="joinBtn" class="btn btn-primary" value="J o i n" disabled>
+					<input type="button" id="joinBtn" class="btn btn-primary" value="J o i n" disabled>
 				</div>
 			</form>
 		</div>

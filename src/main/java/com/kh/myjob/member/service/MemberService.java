@@ -5,6 +5,9 @@ import java.util.List;
 import com.kh.myjob.member.vo.MemberVO;
 
 public interface MemberService {
+	//ID중복확인
+	boolean isJoined(String memberId);
+	
 	//회원가입
 	void join(MemberVO memberVO);
 	
@@ -19,6 +22,7 @@ public interface MemberService {
 	
 	//회원목록 상세조회
 	MemberVO selectDetailMember(String memberCode);
+	
 	
 	
 	

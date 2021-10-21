@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.myjob.member.service.MemberService;
 import com.kh.myjob.member.vo.MemberVO;
@@ -21,6 +22,14 @@ public class MemberController {
 	@GetMapping("/join")
 	public String goJoin() {
 		return "member/join";
+	}
+	
+	//ID 중복 체크
+	@ResponseBody
+	@PostMapping("/idCheck")
+	public boolean idCheck(String memberId) {
+		//기가입 : true, 미가입 : false
+		return memberService.isJoined(memberId);
 	}
 	
 	//회원가입
@@ -72,6 +81,7 @@ public class MemberController {
 	public String goMyPage() {
 		return "member/my_page";
 	}
+	
 }
 
 
