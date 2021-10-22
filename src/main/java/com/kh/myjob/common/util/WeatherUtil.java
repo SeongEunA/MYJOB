@@ -11,6 +11,7 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.springframework.web.bind.annotation.RequestParam;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -32,8 +33,9 @@ public class WeatherUtil {
 		    return nValue.getNodeValue();
 		}
 	//중기예보 기상 상태(맑음,흐림...)메소드
-		public static List<WeatherLongSkyStatusVO> weatherLongSkyStatus(String time) {
+		public static List<WeatherLongSkyStatusVO> weatherLongSkyStatus(String time, String locationLandCode) {
 			List<WeatherLongSkyStatusVO> weatherList = new ArrayList<>();
+			
 			try {
 				
 				 StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst"); /*URL*/
@@ -41,7 +43,7 @@ public class WeatherUtil {
 			     urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
 			     urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수*/
 			     urlBuilder.append("&" + URLEncoder.encode("dataType","UTF-8") + "=" + URLEncoder.encode("XML", "UTF-8")); /*요청자료형식(XML/JSON)Default: XML*/
-			     urlBuilder.append("&" + URLEncoder.encode("regId","UTF-8") + "=" + URLEncoder.encode("11B00000", "UTF-8")); /*11B10101 서울, 11B20201 인천 등 (별첨 파일 참조)*/
+			     urlBuilder.append("&" + URLEncoder.encode("regId","UTF-8") + "=" + URLEncoder.encode(locationLandCode, "UTF-8")); /*11B10101 서울, 11B20201 인천 등 (별첨 파일 참조)*/
 			     urlBuilder.append("&" + URLEncoder.encode("tmFc","UTF-8") + "=" + URLEncoder.encode(time, "UTF-8")); /*-일 2회(06:00,18:00)회 생성 되며 발표시각을 입력- YYYYMMDD0600(1800) 최근 24시간 자료만 제공*/
 			     URL url = new URL(urlBuilder.toString());
 			     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -121,7 +123,7 @@ public class WeatherUtil {
 		}
 		
 	//중기예보기온 메소드
-		public static List<WeatherLongTempVO> weatherLong(String time) {
+		public static List<WeatherLongTempVO> weatherLong(String time, String locationTempCode) {
 			List<WeatherLongTempVO> weatherList = new ArrayList<>();
 			try {
 				StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/MidFcstInfoService/getMidTa"); /*URL*/
@@ -129,7 +131,7 @@ public class WeatherUtil {
 			    urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
 			    urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수*/
 			    urlBuilder.append("&" + URLEncoder.encode("dataType","UTF-8") + "=" + URLEncoder.encode("XML", "UTF-8")); /*요청자료형식(XML/JSON)Default: XML*/
-			    urlBuilder.append("&" + URLEncoder.encode("regId","UTF-8") + "=" + URLEncoder.encode("11B20201", "UTF-8")); /*11B10101 서울, 11B20201 인천 등 (별첨 파일 참조)*/
+			    urlBuilder.append("&" + URLEncoder.encode("regId","UTF-8") + "=" + URLEncoder.encode(locationTempCode, "UTF-8")); /*11B10101 서울, 11B20201 인천 등 (별첨 파일 참조)*/
 			    urlBuilder.append("&" + URLEncoder.encode("tmFc","UTF-8") + "=" + URLEncoder.encode(time, "UTF-8")); /*-일 2회(06:00,18:00)회 생성 되며 발표시각을 입력- YYYYMMDD0600(1800) 최근 24시간 자료만 제공*/
 			    URL url = new URL(urlBuilder.toString());
 			    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -192,7 +194,7 @@ public class WeatherUtil {
 		}
 		
 	//단기예보 메소드
-	public static List<WeatherShortVO> weatherShort(String time) {
+	public static List<WeatherShortVO> weatherShort(String time, String locationTempCode) {
 		List<WeatherShortVO> weatherList = new ArrayList<>();
 		try {
 			 StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstMsgService/getLandFcst"); /*URL*/
@@ -200,7 +202,7 @@ public class WeatherUtil {
 		     urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
 		     urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수*/
 		     urlBuilder.append("&" + URLEncoder.encode("dataType","UTF-8") + "=" + URLEncoder.encode("XML", "UTF-8")); /*요청자료형식(XML/JSON)Default: XML*/
-		     urlBuilder.append("&" + URLEncoder.encode("regId","UTF-8") + "=" + URLEncoder.encode("11B10101", "UTF-8")); /*11B10101 서울, 11B20201 인천 등 (별첨 파일 참조)*/
+		     urlBuilder.append("&" + URLEncoder.encode("regId","UTF-8") + "=" + URLEncoder.encode(locationTempCode, "UTF-8")); /*11B10101 서울, 11B20201 인천 등 (별첨 파일 참조)*/
 		     urlBuilder.append("&" + URLEncoder.encode("tmFc","UTF-8") + "=" + URLEncoder.encode(time, "UTF-8")); /*-일 2회(06:00,18:00)회 생성 되며 발표시각을 입력- YYYYMMDD0600(1800) 최근 24시간 자료만 제공*/
 		     URL url = new URL(urlBuilder.toString());
 		     HttpURLConnection conn = (HttpURLConnection) url.openConnection();

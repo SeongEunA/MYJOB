@@ -51,31 +51,35 @@
 </script>
 </head>
 <body>
-<form action="/course/courseSearch" method="post">
+<!-- 검색 영역 -->
+	<form action="/course/courseSearch" method="post" >
 	<div class="row">
 		<div class="col-2">
-			<select class="form-select" aria-label="Default select example" id="highLocation">
+			<select class="form-select" aria-label="Default select example" id="highLocation" name="locationLandCode">
 				<option selected>지역</option>
 				<c:forEach items="${highLocationList }" var="highLocationInfo">
-					<option value="${highLocationInfo.highLocationName }">${highLocationInfo.highLocationName }</option>
+					<option value="${highLocationInfo.locationLandCode }">${highLocationInfo.highLocationName }</option>
 				</c:forEach>
 			</select>
 		</div>
 		<div class="col-2">
-			<select class="form-select" aria-label="Default select example" id="lowLocation">
+			<select class="form-select" aria-label="Default select example" id="lowLocation" name="locationTempCode">
 				<option selected>하위지역</option>
 			</select>
 		</div>
 		<div class="col-2">
-			<select>
-				<option>숙박</option>
-				<option>관광지</option>
-				<option>맛집</option>
+			<select class="form-select" aria-label="Default select example" id="cateCode">
+				<option value="CATE_001">숙박</option>
+				<option value="CATE_002">관광지</option>
 			</select>
 		</div>
 		<div class="col-2">
-			<input type="submit" value="검색">
+			<input type="submit" value="검색" onclick="clickSearch();">
 		</div>
+	</div>
+	</form>
+	
+<!-- 날씨영역 -->
 		<div class="col-6">
 			<table border="1">
 				<c:forEach items="${weatherShortList}" var="weatherShort"
@@ -101,25 +105,25 @@
 				</c:forEach>
 			</table>
 		</div>
+	
+<!-- 지도영역 -->
+	<div class="map_wrap" style="width:1200px; height:1000px;">
+	    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+	
+	    <div id="menu_wrap" class="bg_white">
+	        <div class="option">
+	            <div>
+	                <form onsubmit="searchPlaces(); return false;">
+	                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
+	                    <button type="submit">검색하기</button> 
+	                </form>
+	            </div>
+	        </div>
+	        <hr>
+	        <ul id="placesList"></ul>
+	        <div id="pagination"></div>
+	    </div>
 	</div>
-</form>
-		<div class="map_wrap" style="width:1200px; height:1000px;">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-
-    <div id="menu_wrap" class="bg_white">
-        <div class="option">
-            <div>
-                <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
-                    <button type="submit">검색하기</button> 
-                </form>
-            </div>
-        </div>
-        <hr>
-        <ul id="placesList"></ul>
-        <div id="pagination"></div>
-    </div>
-</div>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d45ea450bf493fb0fea992bed62c07e&libraries=services"></script>
 	<script type="text/javascript">
 	// 마커를 담을 배열입니다
@@ -339,5 +343,10 @@
 	    }
 	}
 	</script>
+<!-- 검색 장소 리스트 여역 -->
+<div class="row">
+	<div class="col" id="placeList">
+	</div>
+</div>
 </body>
 </html>

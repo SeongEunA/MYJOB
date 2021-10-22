@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.myjob.common.util.WeatherUtil;
@@ -31,7 +32,7 @@ public class CourseController {
 	private CourseService courseService;
 	
 	@GetMapping("/courseSearch")
-	public String goCourseSearch(Model model) {
+	public String goCourseSearch(Model model, @RequestParam(required = false, defaultValue = "11B00000") String locationLandCode, @RequestParam(required = false, defaultValue = "11B10101") String locationTempCode) {
 		
 		//현재 날짜
 		SimpleDateFormat format1 = new SimpleDateFormat ( "yyyyMMddHHmm");
@@ -57,12 +58,10 @@ public class CourseController {
 			date = sdf.format(cal.getTime());
 		}
 		
-		
-		
 		//날씨 데이터
-		List<WeatherShortVO> weatherShortList = WeatherUtil.weatherShort(date);
-		List<WeatherLongSkyStatusVO> weatherLongSkyStatusList = WeatherUtil.weatherLongSkyStatus(date);
-		List<WeatherLongTempVO> weatherLongList = WeatherUtil.weatherLong(date);
+		List<WeatherShortVO> weatherShortList = WeatherUtil.weatherShort(date, locationTempCode);
+		List<WeatherLongSkyStatusVO> weatherLongSkyStatusList = WeatherUtil.weatherLongSkyStatus(date, locationLandCode);
+		List<WeatherLongTempVO> weatherLongList = WeatherUtil.weatherLong(date, locationTempCode);
 		
 		model.addAttribute("weatherLongSkyStatusList", weatherLongSkyStatusList);
 		model.addAttribute("weatherShortList", weatherShortList);
@@ -78,10 +77,21 @@ public class CourseController {
 	@PostMapping("/lowLocationListAjax")
 	public List<LocationVO> lowLocationListAjax(LocationVO locationVO) {
 		
-		
 		return courseService.selectLowLocationList(locationVO);
 	}
-			
+	
+	@PostMapping("/courseSearch")
+	public String goCourseSearch(String locationLandCode, String locationTempCode) {
+		
+		return "redirect:/course/courseSearch";
+	}
+	
+	@GetMapping("/myCourseList")
+	public String goMyCourse() {
+	      
+	      
+	return "course/mycourse_list";
+	}
 	
 			
 			

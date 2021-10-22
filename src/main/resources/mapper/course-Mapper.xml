@@ -34,16 +34,18 @@
 	<!-- 상위 지역이름 리스트조회 -->
 	<select id="selectHighLocationList" resultMap="location">
 		SELECT HIGH_LOCATION_NAME
+			, LOCATION_LAND_CODE
 		FROM LOCATION_CODE
-		GROUP BY HIGH_LOCATION_NAME, LOCATION_ORDER
+		GROUP BY HIGH_LOCATION_NAME, LOCATION_ORDER, LOCATION_LAND_CODE
 		ORDER BY LOCATION_ORDER
 	</select>
 	
 	<!--하위 지역 이름 리스트 조회-->
 	<select id="selectLowLocationList" resultMap="location">
 		SELECT LOW_LOCATION_NAME
+			, LOCATION_TEMP_CODE
 		FROM LOCATION_CODE
-		WHERE HIGH_LOCATION_NAME = #{highLocationName}
+		WHERE LOCATION_LAND_CODE = #{locationLandCode}
 	</select>
 
 
