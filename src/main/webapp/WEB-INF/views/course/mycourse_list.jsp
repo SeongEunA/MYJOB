@@ -11,8 +11,8 @@
 border:1px solid black;
 width:1200px;
 height:600px;
-display:flex;
 margin:0 auto;
+
 }
 
 .courseLayout{
@@ -28,14 +28,18 @@ margin-top:30px;
 }
 
 .courseBox{
+
 border:1px solid red;
 width:100%;
 height:20%;
 display:flex;
 flex-direction:column;
+
 }
 .courseDisplay{
+
 visibility:hidden;
+
 }
 
 </style>
@@ -87,13 +91,13 @@ $.ajax({
 <div class="courseContainer">
    <div class="courseLayout">
       <div class="courseBox">
-         dㅇㅋ
+        as
       </div>
       <div class="courseBox">
-         dㅇ
+         11
       </div>
       <div class="courseBox">
-         dㅇ
+        22
       </div>
    </div>
    <div>
