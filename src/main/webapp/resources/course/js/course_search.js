@@ -9,8 +9,22 @@ $(document).ready(function(){
             type: 'post',
             data:{'highLocationName':highLocationName}, //필요한 데이터
             success: function(result) {
+               
                //ajax 실행 성공 후 실행할 코드 작성
-               alert('성공');
+               $('#lowLocation').empty(); //하위태그만 삭제
+               var str='';
+           
+               
+              $(result).each(function(index,element){
+              
+             	str += '<option>';
+             	str +=element.lowLocationName;
+             	str+='</option>';
+           
+              
+              });
+               
+               $('#lowLocation').prepend(str);
             },
             error: function(){
              //ajax 실행 실패 시 실행되는 구간

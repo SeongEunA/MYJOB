@@ -21,6 +21,7 @@ import com.kh.myjob.common.vo.WeatherLongSkyStatusVO;
 import com.kh.myjob.common.vo.WeatherLongTempVO;
 import com.kh.myjob.common.vo.WeatherShortVO;
 import com.kh.myjob.course.service.CourseService;
+import com.kh.myjob.course.vo.LocationVO;
 
 @Controller
 @RequestMapping("/course")
@@ -75,10 +76,10 @@ public class CourseController {
 	
 	@ResponseBody
 	@PostMapping("/lowLocationListAjax")
-	public void lowLocationList() {
+	public List<LocationVO> lowLocationListAjax(LocationVO locationVO) {
 		
 		
-		return ;
+		return courseService.selectLowLocationList(locationVO);
 	}
 			
 	

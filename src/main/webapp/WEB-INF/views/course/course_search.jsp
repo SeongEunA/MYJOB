@@ -47,7 +47,7 @@
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 </style>
-<script type="text/javascript"src="/resources/course/js/course_search.js">
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=2">
 </script>
 </head>
 <body>

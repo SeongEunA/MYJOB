@@ -18,6 +18,11 @@ public class CourseServiceImpl implements CourseService {
 	public List<LocationVO> selectHighLocationList() {
 		return sqlSession.selectList("courseMapper.selectHighLocationList");
 	}
+
+	@Override
+	public List<LocationVO> selectLowLocationList(LocationVO locationVO) {
+		return sqlSession.selectList("courseMapper.selectLowLocationList",locationVO);
+	}
 	
 	
 

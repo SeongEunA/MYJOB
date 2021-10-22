@@ -9,6 +9,8 @@ public interface CourseService {
 	List<LocationVO> selectHighLocationList();
 	
 	
+	//하위 지역명 리스트
+	List<LocationVO> selectLowLocationList(LocationVO locationVO);
 	
 	
 	
