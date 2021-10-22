@@ -1,9 +1,6 @@
 package com.kh.myjob.course.controller;
 
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -18,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.myjob.common.util.WeatherUtil;
+import com.kh.myjob.common.vo.TotalWeatherVO;
 import com.kh.myjob.common.vo.WeatherLongSkyStatusVO;
 import com.kh.myjob.common.vo.WeatherLongTempVO;
 import com.kh.myjob.common.vo.WeatherShortVO;
 import com.kh.myjob.course.service.CourseService;
 import com.kh.myjob.course.vo.LocationVO;
+import com.kh.myjob.course.vo.PlaceVO;
 
 @Controller
 @RequestMapping("/course")
@@ -31,32 +30,11 @@ public class CourseController {
 	@Resource(name = "courseService")
 	private CourseService courseService;
 	
+	//코스 검색페이지 이동(메뉴버튼 클릭)
 	@GetMapping("/courseSearch")
 	public String goCourseSearch(Model model, @RequestParam(required = false, defaultValue = "11B00000") String locationLandCode, @RequestParam(required = false, defaultValue = "11B10101") String locationTempCode) {
 		
-		//현재 날짜
-		SimpleDateFormat format1 = new SimpleDateFormat ( "yyyyMMddHHmm");
-		java.util.Date time = new java.util.Date();
-		String nowDate =format1.format(time);
-		
-		int nowHour = Integer.parseInt(nowDate.substring(8, 10));
-		String date = "";
-		
-		if(nowHour < 6) {
-			//하루전 날짜 구하기
-			Calendar cal = Calendar.getInstance();
-			String format = "yyyyMMdd1800";
-			SimpleDateFormat sdf = new SimpleDateFormat(format);
-			cal.add(cal.DATE, -1); //날짜를 하루 뺀다.
-			date = sdf.format(cal.getTime());
-		}
-		else {
-			//오늘 날짜 구하기
-			Calendar cal = Calendar.getInstance();
-			String format = "yyyyMMdd0600";
-			SimpleDateFormat sdf = new SimpleDateFormat(format);
-			date = sdf.format(cal.getTime());
-		}
+		String date = WeatherUtil.date();
 		
 		//날씨 데이터
 		List<WeatherShortVO> weatherShortList = WeatherUtil.weatherShort(date, locationTempCode);
@@ -73,6 +51,7 @@ public class CourseController {
 		return "course/course_search";
 	}
 	
+	//상위지역 선택시 하위지역 value 조회되는 ajax
 	@ResponseBody
 	@PostMapping("/lowLocationListAjax")
 	public List<LocationVO> lowLocationListAjax(LocationVO locationVO) {
@@ -80,10 +59,31 @@ public class CourseController {
 		return courseService.selectLowLocationList(locationVO);
 	}
 	
-	@PostMapping("/courseSearch")
-	public String goCourseSearch(String locationLandCode, String locationTempCode) {
+	//검색 버튼 클릭시 장소리스트 select ajax
+	@ResponseBody
+	@PostMapping("/searchPlaceAjax")
+	public List<PlaceVO> searchPlaceAjax(PlaceVO placeVO) {
 		
-		return "redirect:/course/courseSearch";
+		return courseService.selectPlaceList(placeVO);
+	}
+	
+	//검색 버튼 클릭시 지역에 맞는 날씨 조회 ajax
+	@ResponseBody
+	@PostMapping("/weatherLoadAjax")
+	public TotalWeatherVO weatherLoadAjax(String locationTempCode, String locationLandCode, TotalWeatherVO totalWeatherVO) {
+		
+		String date = WeatherUtil.date();
+		
+		//날씨 데이터
+		List<WeatherShortVO> weatherShortList = WeatherUtil.weatherShort(date, locationTempCode);
+		List<WeatherLongSkyStatusVO> weatherLongSkyStatusList = WeatherUtil.weatherLongSkyStatus(date, locationLandCode);
+		List<WeatherLongTempVO> weatherLongList = WeatherUtil.weatherLong(date, locationTempCode);
+		
+		totalWeatherVO.setWeatherShortList(weatherShortList);
+		totalWeatherVO.setWeatherLongSkyStatusList(weatherLongSkyStatusList);
+		totalWeatherVO.setWeatherLongList(weatherLongList);
+		
+		return totalWeatherVO;
 	}
 	
 	@GetMapping("/myCourseList")

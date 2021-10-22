@@ -5,7 +5,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -258,8 +260,34 @@ public class WeatherUtil {
 	 return weatherList;	
 	}
 		
-	
-	
+	//날씨 api 매개변수 date값
+	public static String date() {
+		//현재 날짜
+		SimpleDateFormat format1 = new SimpleDateFormat ( "yyyyMMddHHmm");
+		java.util.Date time = new java.util.Date();
+		String nowDate =format1.format(time);
+		
+		int nowHour = Integer.parseInt(nowDate.substring(8, 10));
+		String date = "";
+		
+		if(nowHour < 6) {
+			//하루전 날짜 구하기
+			Calendar cal = Calendar.getInstance();
+			String format = "yyyyMMdd1800";
+			SimpleDateFormat sdf = new SimpleDateFormat(format);
+			cal.add(cal.DATE, -1); //날짜를 하루 뺀다.
+			date = sdf.format(cal.getTime());
+		}
+		else {
+			//오늘 날짜 구하기
+			Calendar cal = Calendar.getInstance();
+			String format = "yyyyMMdd0600";
+			SimpleDateFormat sdf = new SimpleDateFormat(format);
+			date = sdf.format(cal.getTime());
+		}
+		
+		return date;
+	}
 	
 	
 }

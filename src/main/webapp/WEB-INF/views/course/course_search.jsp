@@ -7,9 +7,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="/resources/course/css/course_search.css">
-<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
-	rel="stylesheet">
-  <style>
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<style>
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;width:100%;height:500px;}
@@ -47,12 +46,10 @@
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 </style>
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=2">
-</script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=2"></script>
 </head>
 <body>
 <!-- 검색 영역 -->
-	<form action="/course/courseSearch" method="post" >
 	<div class="row">
 		<div class="col-2">
 			<select class="form-select" aria-label="Default select example" id="highLocation" name="locationLandCode">
@@ -74,30 +71,26 @@
 			</select>
 		</div>
 		<div class="col-2">
-			<input type="submit" value="검색" onclick="clickSearch();">
+			<input type="button" value="검색" onclick="clickSearch();">
 		</div>
 	</div>
-	</form>
 	
 <!-- 날씨영역 -->
-		<div class="col-6">
+		<div class="col-6" id="weather">
 			<table border="1">
-				<c:forEach items="${weatherShortList}" var="weatherShort"
-					varStatus="cnt">
+				<c:forEach items="${weatherShortList}" var="weatherShort" varStatus="cnt">
 					<tr style="border: 1px solid red;">
 						<td style="border: 1px solid black;">${cnt.count}</td>
 						<td>${weatherShort.skyStatus }</td>
 					</tr>
 				</c:forEach>
-				<c:forEach items="${weatherLongList}" var="weatherLong"
-					varStatus="cnt">
+				<c:forEach items="${weatherLongList}" var="weatherLong" varStatus="cnt">
 					<tr style="border: 1px solid red;">
 						<td style="border: 1px solid black;">${cnt.count}</td>
 						<td>${weatherLong.minTemp }</td>
 					</tr>
 				</c:forEach>
-				<c:forEach items="${weatherLongSkyStatusList}"
-					var="weatherLongSkyStatus" varStatus="cnt">
+				<c:forEach items="${weatherLongSkyStatusList}" var="weatherLongSkyStatus" varStatus="cnt">
 					<tr style="border: 1px solid red;">
 						<td style="border: 1px solid black;">${cnt.count}</td>
 						<td>${weatherLongSkyStatus.skyStatusAm }</td>

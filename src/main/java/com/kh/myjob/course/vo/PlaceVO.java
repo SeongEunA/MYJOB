@@ -1,7 +1,7 @@
 package com.kh.myjob.course.vo;
 
 public class PlaceVO {
-	   private String placeCode;
+	    private String placeCode;
 	    private String cateCode;
 	    private String placeName;
 	    private String placeAddr;
@@ -14,7 +14,15 @@ public class PlaceVO {
 	    private String x;
 	    private String y;
 	    private String viewIntro;
+	    private String locationName;
 	    
+	    
+		public String getLocationName() {
+			return locationName;
+		}
+		public void setLocationName(String locationName) {
+			this.locationName = locationName;
+		}
 		public String getPlaceCode() {
 			return placeCode;
 		}

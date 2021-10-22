@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.myjob.course.vo.LocationVO;
+import com.kh.myjob.course.vo.PlaceVO;
 
 @Service("courseService")
 public class CourseServiceImpl implements CourseService {
@@ -22,6 +23,11 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public List<LocationVO> selectLowLocationList(LocationVO locationVO) {
 		return sqlSession.selectList("courseMapper.selectLowLocationList",locationVO);
+	}
+
+	@Override
+	public List<PlaceVO> selectPlaceList(PlaceVO placeVO) {
+		return sqlSession.selectList("courseMapper.selectPlaceList", placeVO);
 	}
 	
 	
