@@ -33,6 +33,43 @@ $(document).ready(function(){
 		});
     });
 	
+	//장소 리스트에서 장소명 클릭시
+	$(document).on('click', '.placeName', function() { 
+		var placeAddr = $(this).next().attr('data-placeAddr');
+		
+//		var bigCity = placeAddr.substring(0,9);
+//		var smallCity = placeAddr.substring(0,8);
+		
+		$('#keyword').val(placeAddr + ' 주변 맛집');
+		
+		$('#keywordForm').submit();
+		
+		/*$.ajax({
+            url: '/course/lowLocationListAjax', //요청경로
+            type: 'post',
+            data:{'locationLandCode':locationLandCode}, //필요한 데이터
+            success: function(result) {
+               
+               //ajax 실행 성공 후 실행할 코드 작성
+               $('').empty(); //하위태그만 삭제
+              
+               var str='';
+                
+              $(result).each(function(index,element){
+                
+           
+              });
+                
+               
+               $('').prepend(str);
+            },
+            error: function(){
+             //ajax 실행 실패 시 실행되는 구간
+               alert('실패');
+            }
+		});*/
+    });
+	
        
 });	
 
@@ -54,6 +91,14 @@ $(document).ready(function(){
 			locationName = '광주광역시'
 		}
 		
+		if(locationName == '성남' && locationLandCode == '11B00000'){
+			locationName = '경기도 성남'
+		}
+		
+		if(locationName == '수원' && locationLandCode == '11B00000'){
+			locationName = '경기도 수원'
+		}
+		
 		//장소리스트 ajax 보내기
 		$.ajax({
             url: '/course/searchPlaceAjax', //요청경로
@@ -70,10 +115,15 @@ $(document).ready(function(){
               
             	str += '<div class="placeInfo">'
             		
-            	str += '<span>' + element.placeName + '</span>';
-            	str += '<div>' + element.placeAddr + '</div>';
-            	str += '<span>' + element.x + '</span>';
-            	str += '<span>' + element.y + '</span>';
+            	str += '	<div class="placeName">' + element.placeName + '</div>';
+            	str += '	<div class="placeAddr" data-placeAddr="' + element.placeAddr + '">주소 : ' + element.placeAddr + '</div>';
+            	
+            	if(element.placeTel != null){
+            		str += '	<div class="placeTel">연락처 : ' + element.placeTel + '</div>';
+            	}
+            	
+            	str += '	<input type="hidden" value="' + element.x + '" name="x" class="placeX">';
+            	str += '	<input type="hidden" value="' + element.y + '" name="y" class="placey">';
             	
             	str += '</div>'
               });

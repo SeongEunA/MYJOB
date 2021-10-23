@@ -45,8 +45,17 @@
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
+/* 장소목록 관련 style 적용 */
+.placeInfo{
+width: 900px;
+border: 1px solid gray;
+margin-top: 20px;
+}
+.placeName{
+cursor: pointer;
+}
 </style>
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=2"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=15"></script>
 </head>
 <body>
 <!-- 검색 영역 -->
@@ -100,14 +109,13 @@
 		</div>
 	
 <!-- 지도영역 -->
-	<div class="map_wrap" style="width:1200px; height:1000px;">
+	<div class="map_wrap" style="width:900px; height:500px;">
 	    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-	
 	    <div id="menu_wrap" class="bg_white">
 	        <div class="option">
 	            <div>
-	                <form onsubmit="searchPlaces(); return false;">
-	                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
+	                <form onsubmit="searchPlaces(); return false;" id="keywordForm">
+	                    키워드 : <input type="text" value="맛집" id="keyword" size="15"> 
 	                    <button type="submit">검색하기</button> 
 	                </form>
 	            </div>
@@ -336,7 +344,7 @@
 	    }
 	}
 	</script>
-<!-- 검색 장소 리스트 여역 -->
+<!-- 검색 장소 리스트 영역 -->
 <div class="row">
 	<div class="col" id="placeList">
 	</div>
