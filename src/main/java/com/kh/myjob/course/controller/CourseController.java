@@ -40,7 +40,10 @@ public class CourseController {
 		List<WeatherShortVO> weatherShortList = WeatherUtil.weatherShort(date, locationTempCode);
 		List<WeatherLongSkyStatusVO> weatherLongSkyStatusList = WeatherUtil.weatherLongSkyStatus(date, locationLandCode);
 		List<WeatherLongTempVO> weatherLongList = WeatherUtil.weatherLong(date, locationTempCode);
+		String[] arrDate = WeatherUtil.todayToTenDays();
 		
+		
+		model.addAttribute("arrDate",arrDate);
 		model.addAttribute("weatherLongSkyStatusList", weatherLongSkyStatusList);
 		model.addAttribute("weatherShortList", weatherShortList);
 		model.addAttribute("weatherLongList", weatherLongList);
@@ -70,7 +73,7 @@ public class CourseController {
 	//검색 버튼 클릭시 지역에 맞는 날씨 조회 ajax
 	@ResponseBody
 	@PostMapping("/weatherLoadAjax")
-	public TotalWeatherVO weatherLoadAjax(String locationTempCode, String locationLandCode, TotalWeatherVO totalWeatherVO) {
+	public String weatherLoadAjax(String locationTempCode, String locationLandCode, TotalWeatherVO totalWeatherVO,Model model) {
 		
 		String date = WeatherUtil.date();
 		
@@ -79,11 +82,19 @@ public class CourseController {
 		List<WeatherLongSkyStatusVO> weatherLongSkyStatusList = WeatherUtil.weatherLongSkyStatus(date, locationLandCode);
 		List<WeatherLongTempVO> weatherLongList = WeatherUtil.weatherLong(date, locationTempCode);
 		
+		String[] arrDate = WeatherUtil.todayToTenDays();
 		totalWeatherVO.setWeatherShortList(weatherShortList);
 		totalWeatherVO.setWeatherLongSkyStatusList(weatherLongSkyStatusList);
 		totalWeatherVO.setWeatherLongList(weatherLongList);
+		totalWeatherVO.setArrDate(arrDate);
 		
-		return totalWeatherVO;
+		
+		model.addAttribute("arrDate",arrDate);
+		model.addAttribute("weatherLongSkyStatusList", weatherLongSkyStatusList);
+		model.addAttribute("weatherShortList", weatherShortList);
+		model.addAttribute("weatherLongList", weatherLongList);
+	
+		return "template/wheather_side";
 	}
 	
 	@GetMapping("/myCourseList")

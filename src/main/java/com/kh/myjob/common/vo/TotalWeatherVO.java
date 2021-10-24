@@ -7,8 +7,16 @@ public class TotalWeatherVO {
 	private List<WeatherShortVO> weatherShortList;
 	private List<WeatherLongSkyStatusVO> weatherLongSkyStatusList;
 	private List<WeatherLongTempVO> weatherLongList;
+	private String[] arrDate;
 	
 	
+	
+	public String[] getArrDate() {
+		return arrDate;
+	}
+	public void setArrDate(String[] arrDate) {
+		this.arrDate = arrDate;
+	}
 	public List<WeatherShortVO> getWeatherShortList() {
 		return weatherShortList;
 	}

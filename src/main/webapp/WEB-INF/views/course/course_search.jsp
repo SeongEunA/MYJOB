@@ -55,7 +55,7 @@ margin-top: 20px;
 cursor: pointer;
 }
 </style>
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=15"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=1"></script>
 </head>
 <body>
 <!-- 검색 영역 -->
@@ -80,12 +80,15 @@ cursor: pointer;
 			</select>
 		</div>
 		<div class="col-2">
-			<input type="button" value="검색" onclick="clickSearch();">
+			<input type="button" value="검색" onclick="clickSearch();" id="clickSearch">
 		</div>
 	</div>
 	
 <!-- 날씨영역 -->
-		<div class="col-6" id="weather">
+	<div id="wheatherArea">
+	<%@ include file="../template/wheather_side.jsp"%>
+	</div>
+		<%-- <div class="col-6" id="weather">
 			<table border="1">
 				<c:forEach items="${weatherShortList}" var="weatherShort" varStatus="cnt">
 					<tr style="border: 1px solid red;">
@@ -106,7 +109,7 @@ cursor: pointer;
 					</tr>
 				</c:forEach>
 			</table>
-		</div>
+		</div> --%>
 	
 <!-- 지도영역 -->
 	<div class="map_wrap" style="width:900px; height:500px;">
@@ -247,25 +250,24 @@ cursor: pointer;
 	// 검색결과 항목을 Element로 반환하는 함수입니다
 	function getListItem(index, places) {
 
-	    var el = document.createElement('li'),
-	    itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
-	                '<div class="info">' +
-	                '   <h5>' + places.place_name + '</h5>';
+		var el = document.createElement('li'),
+	       itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
+	                   '<div class="info">' +
+	                   '   <h5 id="resName" name="resName">' + places.place_name + '</h5>';
 
-	    if (places.road_address_name) {
-	        itemStr += '    <span>' + places.road_address_name + '</span>' +
-	                    '   <span class="jibun gray">' +  places.address_name  + '</span>';
-	    } else {
-	        itemStr += '    <span>' +  places.address_name  + '</span>'; 
-	    }
-	                 
-	      itemStr += '  <span class="tel">' + places.phone  + '</span>' +
-	                '</div>';           
+	       if (places.road_address_name) {
+	           itemStr += '    <span name="resAddr">' + places.road_address_name + '</span>';
+	       } else {
+	           itemStr += '    <span name="resAddr">' +  places.address_name  + '</span>'; 
+	       }
+	                    
+	         itemStr += '  <span class="tel" name="resTel">' + places.phone  + '</span>' +
+	                   '</div>';           
 
-	    el.innerHTML = itemStr;
-	    el.className = 'item';
+	       el.innerHTML = itemStr;
+	       el.className = 'item';
 
-	    return el;
+	       return el;
 	}
 
 	// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
@@ -343,11 +345,38 @@ cursor: pointer;
 	        el.removeChild (el.lastChild);
 	    }
 	}
+	 //지도 내의 주소목록의 주소이름을 클릭했을때 호출되는 함수입니다.
+	 function saveAddress(road_address_name,place_name,phone){
+
+			 var el = document.createElement('li'),
+			    itemStr = 
+			                '<div class="info">' +
+			                '   <h5>' + place_name + '</h5>';
+
+			    if (places.road_address_name) {
+			        itemStr += '    <span>' + road_address_name + '</span>';
+			                    
+			    } 
+			                 
+			      itemStr += '  <span class="tel">' + phone  + '</span>' +
+			                '</div>';
+			 
+			 $('#resInfoDiv').append(itemStr);
+		
+		
+		 
+		 
+	 }
 	</script>
+
 <!-- 검색 장소 리스트 영역 -->
+<%@include file="../course/course_list.jsp" %>
 <div class="row">
-	<div class="col" id="placeList">
-	</div>
+   <div class="col-6" id="placeList">
+   </div>
+   <div class="col-6" id="resInfoDiv">
+   </div>
 </div>
+
 </body>
 </html>

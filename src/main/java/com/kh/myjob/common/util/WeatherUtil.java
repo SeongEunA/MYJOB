@@ -289,5 +289,25 @@ public class WeatherUtil {
 		return date;
 	}
 	
+	//10-24 은아
+	//오늘날짜 ~ 10일후 까지 구하는 함수
+	public static String[] todayToTenDays() {
+		String date = "";
+		String[] arrDate = new String[10];
+		
+		for(int i=0;i<=9;i++) {
+		Calendar cal = Calendar.getInstance();
+		String format = "MM/dd";
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
+		cal.add(cal.DATE, +i); //날짜를 하루 더함.
+		date = sdf.format(cal.getTime());
+		arrDate[i]=date;
+		}
+		
+		
+		
+		return arrDate;
+	}
+	
 	
 }

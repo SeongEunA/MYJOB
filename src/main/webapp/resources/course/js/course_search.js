@@ -37,38 +37,42 @@ $(document).ready(function(){
 	$(document).on('click', '.placeName', function() { 
 		var placeAddr = $(this).next().attr('data-placeAddr');
 		
-//		var bigCity = placeAddr.substring(0,9);
-//		var smallCity = placeAddr.substring(0,8);
-		
 		$('#keyword').val(placeAddr + ' 주변 맛집');
 		
 		$('#keywordForm').submit();
 		
-		/*$.ajax({
-            url: '/course/lowLocationListAjax', //요청경로
-            type: 'post',
-            data:{'locationLandCode':locationLandCode}, //필요한 데이터
-            success: function(result) {
-               
-               //ajax 실행 성공 후 실행할 코드 작성
-               $('').empty(); //하위태그만 삭제
-              
-               var str='';
-                
-              $(result).each(function(index,element){
-                
-           
-              });
-                
-               
-               $('').prepend(str);
-            },
-            error: function(){
-             //ajax 실행 실패 시 실행되는 구간
-               alert('실패');
-            }
-		});*/
+		
     });
+	
+	//지도에서 목록에 있는 장소명 클릭
+	   $(document).on('click', '#resName', function() { 
+	      var resName = $(this).text();
+	      var resAddr = $(this).next().text();
+	      var resTel = $(this).next().next().text();
+
+	      resStr = '';
+	      
+	      resStr = '<div class="resultInfo">' +
+	              '   <div name="resultResName" style="font-size:18px;">' + resName + '<input type="button" value="X" id="deleteResBtn"></div>';
+	      resStr += '   <div name="resultResAddr">' + resAddr + '</div>';
+	      resStr += '   <div class="resultTel" name="resultResTel">' + resTel + '</div>' +
+	                 '</div>';
+	      
+
+	      $('#resInfoDiv').append(resStr);
+	      
+	      
+	   });
+	   
+	   //선택한 식당 목록에서 삭제
+	   $(document).on('click', '#deleteResBtn', function(){
+	      $(this).parent().parent().empty();
+	   });
+	
+	
+	
+	
+	
 	
        
 });	
@@ -145,37 +149,12 @@ $(document).ready(function(){
             success: function(result) {
             	
                //ajax 실행 성공 후 실행할 코드 작성
-               $('#weather').empty(); //하위태그만 삭제
+            	alert('성공');
+               $('#weatherArea').empty(); //하위태그만 삭제
                
-               var str='';
-               
-                   str += '<table border="1">';
-              $(result.weatherShortList).each(function(index,element){
-            	  
-	  				str += '<tr style="border: 1px solid red;">';
-	  				str += '<td style="border: 1px solid black;">' + (index+1) + '</td>'
-	  				str += '<td>' + element.skyStatus + '</td>'
-	  				str += '</tr>'
-              });
-              
-              $(result.weatherLongList).each(function(index,element){
-            	  
-            	  str += '<tr style="border: 1px solid red;">';
-            	  str += '<td style="border: 1px solid black;">' + (index+1) + '</td>'
-            	  str += '<td>' + element.minTemp + '</td>'
-            	  str += '</tr>'
-              });
-              
-              $(result.weatherLongSkyStatusList).each(function(index,element){
-            	  
-            	  str += '<tr style="border: 1px solid red;">';
-            	  str += '<td style="border: 1px solid black;">' + (index+1) + '</td>'
-            	  str += '<td>' + element.skyStatusAm + '</td>'
-            	  str += '</tr>'
-              });
-              	  str += '</table>';
-               
-               $('#weather').prepend(str);
+              var str="<%@ include file=\"../template/wheather_side.jsp\"%>";
+               alert(str);
+               $('#weatherArea').prepend(str);
             },
             error: function(){
              //ajax 실행 실패 시 실행되는 구간
