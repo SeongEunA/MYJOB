@@ -43,23 +43,16 @@
 				<thead>
 					<tr>
 						<td>
-							총list.size건
+							총${reviewList.size()}건
 						</td>
 					</tr>	
 				</thead>
-				
-				<tr>
-					<td><a href="/review/detailReview"><img src="/resources/images/picture1.jpg"></a></td>
-					<td><a href="/review/detailReview">역사공부에 아름다운 자연풍광까지! 두마리 토끼</a></td>
-				</tr>
-				<tr>
-					<td><a href="/review/detailReview"><img src="/resources/images/picture2.jpg"></a></td>
-					<td><a href="/review/detailReview">울산 시티투어 테마형 코스</a></td>
-				</tr>
-				<tr>
-					<td><a href="review/detailReview"><img src="/resources/images/picture3.jpg"></a></td>
-					<td><a href="review/detailReview">울산 시티투어 순환형코스</a></td>
-				</tr>
+				<c:forEach items="${reviewList }" var="reviewVO">
+					<tr>
+						<td><a href="/review/detailReview?reviewBoardCode=${reviewVO.reviewBoardCode }"><img src="/resources/images/picture1.jpg"></a></td>
+						<td><a href="/review/detailReview?reviewBoardCode=${reviewVO.reviewBoardCode }"> ${reviewVO.reviewBoardTitle }</a></td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 	</div>

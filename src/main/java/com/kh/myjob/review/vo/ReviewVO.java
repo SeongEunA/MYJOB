@@ -1,5 +1,7 @@
 package com.kh.myjob.review.vo;
 
+import java.util.List;
+
 public class ReviewVO {
 
 	private String reviewBoardCode;
@@ -8,6 +10,17 @@ public class ReviewVO {
 	private String reviewBoardWriter;
 	private int reviewBoardRecommendCnt;
 	private int reviewBoardReadCnt;
+	private List<ReviewVO> reviewImgList;
+
+	
+	
+	public List<ReviewVO> getReviewImgList() {
+		return reviewImgList;
+	}
+
+	public void setReviewImgList(List<ReviewVO> reviewImgList) {
+		this.reviewImgList = reviewImgList;
+	}
 
 	public String getReviewBoardCode() {
 		return reviewBoardCode;

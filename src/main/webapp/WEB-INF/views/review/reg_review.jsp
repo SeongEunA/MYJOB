@@ -52,9 +52,6 @@
     font-size: 16px;
     color: #fff;
 }
-.reg_btn:hover{
-	background-color: #FFA200;
-}
 .attachedDiv{
 	height: 80px;
 }
@@ -63,7 +60,7 @@
 <body>
 	<div class="contentDiv">
 		<form action="/review/regReview" method="post">
-		<input type="hidden" name="reviewBoardWriter" value="">
+		<input type="hidden" name="reviewBoardWriter" value="${sessionScope.loginInfo.memberId }">
 		<div class="headerDiv">
 			코스선택 
 			<select>
@@ -78,8 +75,8 @@
 			<textarea name="reviewBoardContent" id="csdesc" maxlength="2000" class="comment_textarea" title="코스 소개" style="" placeholder="코스에 대한 간략한 설명을 기재할 수 있습니다.">
 			</textarea>
 		</div>
-		<form name="fname"> <div class="dropzone" id="fileDropzone"></div> <button id="btn-upload-file">서버전송</button> </form>
-
+<!-- 		<form name="fname"> <div class="dropzone" id="fileDropzone"></div> <button id="btn-upload-file">서버전송</button> </form>
+ -->
 		<div class="btn_center">
 			<input type="button" value="취소" class="reg_back_btn" onclick="location.href='/review/SelectReviewList'">
 			<input type="submit" value="등록" class="reg_btn" >

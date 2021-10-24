@@ -4,7 +4,7 @@ $(document).ready(function(){
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
         center: new kakao.maps.LatLng(35.534802, 129.309894), // 지도의 중심좌표
-        level: 10 // 지도의 확대 레벨
+        level: 8 // 지도의 확대 레벨
     };
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -28,7 +28,7 @@ var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니
 	];
 
 // 마커 이미지의 이미지 주소입니다
-var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png'; 
+var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png'; 
     
 for (var i = 0; i < positions.length; i++) {
     
@@ -70,6 +70,22 @@ for (var i = 0; i < positions.length; i++) {
 	polyline.setMap(map);  
 	
 		
+	//댓글처리
+	
+	//댓글리스트 조회
+	selectReviewReplyList();
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//이벤트 처리
 	//$(document).on('click', '#id', function() {
     //});
@@ -91,12 +107,83 @@ for (var i = 0; i < positions.length; i++) {
 	
 	
 });
-
+/*$("#replyForm").serialize()*/
 //함수 선언 영역
 (function($){
-	//aaa = function(){
-	//};
-   
+	
+	//댓글등록
+	regReply = function(){
+		$.ajax({
+	        url: '/review/regRely', //요청경로
+	        type: 'post',
+	        data:$("#replyForm").serialize(), //필요한 데이터
+	        success: function(result) {
+	        	if(result == 1){
+	        	 	alert('댓글이 등록되었습니다');
+	        		$('.replyContent').val('');
+				}
+	        	else{
+	        		alert('관리자에게 문의하세요');
+	        		
+	        	}
+	        	
+	      
+	        },
+	        error: function(){
+	        	alert('실패');
+	        }
+	  });
+		
+		
+	};
+	
+	//후기창에 댓글리스트 조회
+	selectReviewReplyList = function(){
+		$.ajax({
+	        url: '/review/selectReviewReplyList', //요청경로
+	        type: 'post',
+	        data:$("#replyForm").serialize(), //필요한 데이터
+	        success: function(result) {
+	        	var str = '';
+	        	$('#replyList').empty();
+	        	
+	        	if(result.length != 0){
+	        		for(var i = 0; i < result.length; i++){
+	        			str += "<div>";
+	        			str += "<div><table class='table'><h6><strong>"+result[i].reviewReplyWriter+"</strong></h6>";
+	        			str += result[i].reviewReplyContent + "<tr><td></td></tr>";
+	        			str += "</table></div>";
+	        			str += "</div>";
+		
+	        		}
+		        	
+		      
+	        	}
+	        	else{
+	        		str += "<div>";
+	        		str += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
+	        		str += "</table></div>";
+	        		str += "</div>";
+	        		
+	        	}
+	        	
+	        	$('#replyList').append(str);
+	        	
+	        },
+	        error: function(){
+	        	alert('실패');
+	        }
+	  });
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
 })(jQuery);
 
 
