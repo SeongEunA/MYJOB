@@ -48,7 +48,7 @@ $(document).ready(function(){
 		$('#insertPw').remove();
 		$('#useablePw').remove();
 		$('#retryInsertPw').remove();
-		$('#memberPw').val('');
+//		$('#memberPw').val('');
 		
 		//ID입력란 공백 유효성 검사 <-처음에 안먹음 이름 패스한 후 지우고 넘어가면 걸리게 됨 이상함
 		if(memberName == ''){
@@ -58,7 +58,7 @@ $(document).ready(function(){
 		}
 		//NAME입력값 양식에 맞지 않을 때
 		else if(!nameJ.test(memberName)){
-			$('#memberName').val('');
+//			$('#memberName').val('');
 			$('#memberName').after('<div id="retryInsertName" style="color: red; font-size: 12px; margin-top: 7px;">성을 포함한 2~7자리의 이름으로 다시 입력하세요.</div>');
 			$('#memberName').focus();
 		}
@@ -91,12 +91,12 @@ $(document).ready(function(){
 		$('#matchPw').remove();
 		$('#unuseableTels').remove();
 		$('#insertConfirmPw').remove();
-		$('#confirmPw').val('');
+//		$('#confirmPw').val('');
 		$('#insertTels').remove();
 		
 		//PW입력값 양식에 맞지 않을 때
 		if(!pwJ.test(memberPw)){
-			$('#memberPw').val('');
+//			$('#memberPw').val('');
 			$('#memberPw').after('<div id="retryInsertPw" style="color: red; font-size: 12px; margin-top: 7px;">영어 대소문자, 숫자로 구성된 4~12자리로 다시 입력하세요.</div>');	
 			$('#memberPw').focus();
 		}
@@ -104,7 +104,7 @@ $(document).ready(function(){
 		else{
 			//PW와 ID중복 체크 여부
 			if(memberPw == $('#memberId').val()){
-				$('#memberPw').val('');
+//				$('#memberPw').val('');
 				$('#memberPw').after('<div id="cantMatchPw" style="color: red; font-size: 12px; margin-top: 7px;">PW는 ID와 일치할 수 없습니다.</div>');	
 				$('#memberPw').focus();
 			}
@@ -129,9 +129,9 @@ $(document).ready(function(){
 		$('#cantMatchPw').remove();
 		$('#retryInsertPw').remove();
 		$('#insertConfirmPw').remove();
-		$('#memberTel1').val('010');
-		$('#memberTel2').val('');
-		$('#memberTel3').val('');
+//		$('#memberTel1').val('010');
+//		$('#memberTel2').val('');
+//		$('#memberTel3').val('');
 		$('#insertTels').remove();
 		$('#useableTels').remove();
 		$('#unuseableTels').remove();
@@ -143,7 +143,7 @@ $(document).ready(function(){
 			$('#memberTel1').focus();
 		}
 		else{
-			$('#confirmPw').val('');
+//			$('#confirmPw').val('');
 			$('#confirmPw').after('<div id="misMatchPw" style="color: red; font-size: 12px; margin-top: 7px;">비밀번호가 일치하지 않습니다.</div>');
 			$('#confirmPw').focus();
 		}
@@ -164,10 +164,10 @@ $(document).ready(function(){
 		$('#insertTels').remove();
 		$('#useableTels').remove();
 		$('#unuseableTels').remove();
-		$('#memberTel3').val('');
+//		$('#memberTel3').val('');
 		
 		if(memberTel2 == ''|| !tel2J.test(memberTel2)){
-			$('#memberTel2').val('');
+//			$('#memberTel2').val('');
 			$('#memberTelsDiv').after('<div id="unuseableTels" style="color: red; font-size: 12px; margin-top: 7px;">양식에 맞지 않습니다. 연락처를 다시 입력해주세요.</div>');
 			$('#memberTel2').focus();
 		}
@@ -194,7 +194,7 @@ $(document).ready(function(){
 		$('#unuseableTels').remove();
 		
 		if(!tel3J.test(membertel3)){
-			$('#memberTel3').val('');
+//			$('#memberTel3').val('');
 			$('#memberTelsDiv').after('<div id="unuseableTels" style="color: red; font-size: 12px; margin-top: 7px;">양식에 맞지 않습니다. 연락처를 다시 입력해주세요.</div>');
 			$('#memberTel3').focus();
 		}
@@ -252,30 +252,28 @@ $(document).ready(function(){
 		
 		//모든 div문구값 리셋.
 		$('#insertId').remove();
-		$('#retryInsertId').remove();
 		$('#joinedId').remove();
+		$('#retryInsertId').remove();
 		$('#useableId').remove();
 		$('#insertName').remove();
 		$('#retryInsertName').remove();
 		$('#useableName').remove();
 		$('#retryInsertPw').remove();
-		$('#memberPw').val('');
+//		$('#memberPw').val('');
 		$('#useableTels').remove();
 		$('#unuseableTels').remove();
-		$('#memberTel1').val('010');
-		$('#memberTel2').val('');
-		$('#memberTel3').val('');
+//		$('#memberTel1').val('010');
+//		$('#memberTel2').val('');
+//		$('#memberTel3').val('');
 		
 		//ID입력란 공백 유효성 검사
 		if(memberId == ''){
-			$('#memberName').val('');
 			$('#checkIdDiv').after('<div id="insertId" style="color: red; font-size: 12px; margin-top: 7px;">아이디를 입력하세요.</div>');
 			$('#memberId').focus();
 		}
 		
 		//ID입력값 사이의 공백 유효성 검사
 		else if(empJ.test(memberId)){
-			$('#memberId').val('');
 			$('#checkIdDiv').after('<div id="retryInsertId" style="color: red; font-size: 12px; margin-top: 7px;">아이디를 다시 입력하세요.</div>');
 			$('#memberId').focus();
 		}
@@ -285,7 +283,7 @@ $(document).ready(function(){
 		else if(memberId != '' || !empJ.test(memberId)){
 			//ID입력값이 ID입력양식에 어긋날 때
 			if(!idJ.test(memberId)){
-				$('#memberId').val('');
+//				$('#memberId').val('');
 				$('#checkIdDiv').after('<div id="retryInsertId" style="color: red; font-size: 12px; margin-top: 7px;">한글 또는 특수문자를 제외한 영어소문자, 숫자로만 구성된 4~12자리로 다시 입력하세요.</div>');
 				$('#memberId').focus();
 			}
@@ -303,7 +301,7 @@ $(document).ready(function(){
 		            	//기가입 : true, 미가입 : false
 		            	//아이디 중복 일 때.
 		            	if(result){
-		            		$('#memberName').val('');
+//		            		$('#memberName').val('');
 		            		$('#retryInsertName').remove();
 							$('#checkIdDiv').after('<div id="joinedId" style="color: red; font-size: 12px; margin-top: 7px;">아이디가 중복입니다.</div>');
 							$('#memberId').focus();
