@@ -61,7 +61,7 @@ for (var i = 0; i < positions.length; i++) {
 	var polyline = new kakao.maps.Polyline({
 	 path: linePath, // 선을 구성하는 좌표배열 입니다
 	 strokeWeight: 3, // 선의 두께 입니다
-	 strokeColor: '#FFAE00', // 선의 색깔입니다
+	 strokeColor: '#dc143c', // 선의 색깔입니다
 	 strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
 	 strokeStyle: 'solid' // 선의 스타일입니다
 	});
@@ -113,14 +113,23 @@ for (var i = 0; i < positions.length; i++) {
 	
 	//댓글등록
 	regReply = function(){
+		var reviewReplyWriter = $('#reviewReplyWriter').val();
+		var reviewReplyContent = $('#reviewReplyContent').val();
+		var reviewBoardCode = $('.hiddenBoardCode').val();
+		
 		$.ajax({
 	        url: '/review/regRely', //요청경로
 	        type: 'post',
-	        data:$("#replyForm").serialize(), //필요한 데이터
+	        data:{'reviewReplyWriter':reviewReplyWriter
+	        	, 'reviewReplyContent':reviewReplyContent
+	        	, 'reviewBoardCode': reviewBoardCode
+	        },
 	        success: function(result) {
 	        	if(result == 1){
 	        	 	alert('댓글이 등록되었습니다');
-	        		$('.replyContent').val('');
+	        	 	$('.replyContent').val('');
+	        	 	selectReviewReplyList();
+	        		
 				}
 	        	else{
 	        		alert('관리자에게 문의하세요');
@@ -139,10 +148,11 @@ for (var i = 0; i < positions.length; i++) {
 	
 	//후기창에 댓글리스트 조회
 	selectReviewReplyList = function(){
+		var reviewBoardCode = $('.hiddenBoardCode').val();
 		$.ajax({
 	        url: '/review/selectReviewReplyList', //요청경로
 	        type: 'post',
-	        data:$("#replyForm").serialize(), //필요한 데이터
+	        data:{'reviewBoardCode':reviewBoardCode}, //필요한 데이터
 	        success: function(result) {
 	        	var str = '';
 	        	$('#replyList').empty();

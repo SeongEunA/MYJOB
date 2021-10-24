@@ -36,14 +36,6 @@ public class ReviewController {
 	//리뷰등록화면으로 이동
 	@GetMapping("/regReview")
 	public String goRegReview() {
-		//비로그인상태면
-	//	if(비로그인상태) {
-	//		로그인창으로 이동후 로그인유도
-	//	}
-	//	else {
-	//		로그인상태에서는 정상적으로 후기작성페이지로 이동		
-	//		return "review/reg_review";
-	//	}
 		return "review/reg_review";
 	}
 	//리뷰등록
@@ -60,7 +52,7 @@ public class ReviewController {
 		return "review/review_detail";
 	}
 	
-	//리뷰에 댓글 등록
+	//리뷰에 댓글 등록 
 	@ResponseBody
 	@PostMapping("/regRely")
 	public int regReply(ReviewReplyVO reviewReplyVO) {

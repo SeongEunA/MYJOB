@@ -6,7 +6,7 @@
 <meta charset="utf-8"/>
 <title>Kakao 지도 시작하기</title>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=70d7b169893841eb187f9823a06d83f4"></script>
-<script type="text/javascript" src="/resources/review/js/review_detail.js?ver=4"></script>
+<script type="text/javascript" src="/resources/review/js/review_detail.js?ver=10"></script>
 <style type="text/css">
 .contentDiv{
 	width: 1100px;
@@ -23,16 +23,13 @@
 <body>
 	<div class="contentDiv">
 		<div id="map" style="width:900px;height:350px;"></div>
-		
 		<div>
 			${review.reviewBoardCode}
 			${review.reviewBoardWriter}
 			${review.reviewBoardContent}
 		</div>	
-	
 	</div>
-	
-	
+	<input type="hidden" class="hiddenBoardCode" value="${review.reviewBoardCode}">
 	<%@ include file="../review/review_reply.jsp" %>	
 </body>
 </html>
