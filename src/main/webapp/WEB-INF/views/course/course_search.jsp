@@ -55,7 +55,7 @@ margin-top: 20px;
 cursor: pointer;
 }
 </style>
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=1"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=2"></script>
 </head>
 <body>
 <!-- 검색 영역 -->
@@ -93,7 +93,16 @@ cursor: pointer;
 						<td style="border: 1px solid black;">${totalWeatherVO.date}</td>
 						<c:if test="${cnt.count < 4}">
 							<td>${totalWeatherVO.temp }</td>
-							<td>${totalWeatherVO.skyStatus }</td>
+							<td>
+								<div>
+									<div>
+										그림
+									</div>
+									<div>
+										${totalWeatherVO.skyStatus }
+									</div>
+								</div>
+							</td>
 						</c:if>
 						<c:if test="${cnt.count >= 4}">
 							<td>${totalWeatherVO.minTemp } / ${totalWeatherVO.maxTemp }</td>
