@@ -41,7 +41,6 @@ public class ReviewController {
 	//리뷰등록
 	@PostMapping("/regReview")
 	public String regReview(ReviewVO reviewVO, HttpSession session) {
-		reviewVO.setReviewBoardWriter(	((MemberVO)session.getAttribute("loginInfo")).getMemberId());
 		reviewService.insertReview(reviewVO);
 		return "redirect:/review/selectReviewList";
 	}

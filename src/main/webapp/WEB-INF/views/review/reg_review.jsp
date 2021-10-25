@@ -60,9 +60,7 @@
 <body>
 	<div class="contentDiv">
 		<form action="/review/regReview" method="post">
-		<c:if test="${se}">
 		<input type="hidden" name="reviewBoardWriter" value="${sessionScope.loginInfo.memberId }">
-		</c:if>
 		<div class="headerDiv">
 			코스선택 
 			<select>
