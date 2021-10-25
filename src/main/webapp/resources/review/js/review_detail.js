@@ -80,7 +80,7 @@ for (var i = 0; i < positions.length; i++) {
 	
 	
 	$(document).on('click', '.replyContent', function() {
-		var loginInfo = $('#reviewReplyWriter').val();
+		var loginInfo = $('.reviewReplyWriter').val();
 		if(loginInfo == ''){
 			 var result = confirm('로그인을 하시겠습니까?');
 			 if(result){
@@ -116,15 +116,15 @@ for (var i = 0; i < positions.length; i++) {
 	
 	//댓글등록
 	regReply = function(){
-		var reviewReplyWriter = $('#reviewReplyWriter').val();
+		var reviewReplyWriter = $('.reviewReplyWriter').val();
 		var reviewReplyContent = $('#reviewReplyContent').val();
 		var reviewBoardCode = $('.hiddenBoardCode').val();
 		
 		$.ajax({
 	        url: '/review/regRely', //요청경로
 	        type: 'post',
-	        data:{'reviewReplyWriter':reviewReplyWriter
-	        	, 'reviewReplyContent':reviewReplyContent
+	        data:{'reviewReplyWriter': reviewReplyWriter
+	        	,'reviewReplyContent':reviewReplyContent
 	        	, 'reviewBoardCode': reviewBoardCode
 	        },
 	        success: function(result) {

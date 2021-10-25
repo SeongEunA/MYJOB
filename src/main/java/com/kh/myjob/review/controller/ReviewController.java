@@ -55,7 +55,8 @@ public class ReviewController {
 	//리뷰에 댓글 등록 
 	@ResponseBody
 	@PostMapping("/regRely")
-	public int regReply(ReviewReplyVO reviewReplyVO) {
+	public int regReply(ReviewReplyVO reviewReplyVO, HttpSession session) {
+		reviewReplyVO.setReviewReplyWriter(((MemberVO)session.getAttribute("loginInfo")).getMemberName());
 		return reviewService.regReply(reviewReplyVO);
 	}
 	//후기게시판에 댓글목록 조회
