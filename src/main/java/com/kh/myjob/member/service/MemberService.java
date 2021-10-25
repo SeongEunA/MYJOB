@@ -9,7 +9,7 @@ public interface MemberService {
 	boolean isJoined(String memberId);
 	
 	//회원가입
-	void join(MemberVO memberVO);
+	boolean join(MemberVO memberVO);
 	
 	//다음에 들어갈 MEMBER_CODE 조회
 	String selectNextMemberCode();
@@ -25,6 +25,9 @@ public interface MemberService {
 	
 	//Email중복확인
 	boolean emailCheck(String memberEmail);
+	
+	//회원삭제
+	boolean deleteMember(String memberCode);
 	
 	
 	

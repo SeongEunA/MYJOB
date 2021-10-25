@@ -59,7 +59,6 @@
 			AND MEMBER_PW = #{memberPw}
 		</select>
 		
-		
 		<select id="selectSimpleMemberList" resultMap="member">
 			SELECT MEMBER_CODE
 			  , MEMBER_ID
@@ -89,6 +88,11 @@
 			FROM MEMBER
 			WHERE MEMBER_EMAIL = #{memberEmail}
 		</select>
+		
+		<delete id="deleteMember">
+			DELETE MEMBER
+			WHERE MEMBER_CODE = #{memberCode}
+		</delete>
 		
 
 </mapper>

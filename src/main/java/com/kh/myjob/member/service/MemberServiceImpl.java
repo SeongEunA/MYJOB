@@ -14,8 +14,10 @@ public class MemberServiceImpl implements MemberService{
 	private SqlSessionTemplate sqlsession;
 	
 	@Override
-	public void join(MemberVO memberVO) {
-		sqlsession.insert("memberMapper.join", memberVO);
+	public boolean join(MemberVO memberVO) {
+		int result = sqlsession.insert("memberMapper.join", memberVO);
+		//회원가입 성공 : true, 회원가입 실패 : false
+		return result == 1 ? true : false;
 	}
 
 	@Override
@@ -52,5 +54,14 @@ public class MemberServiceImpl implements MemberService{
 		String result = sqlsession.selectOne("memberMapper.emailCheck", memberEmail);
 		return result == null ? false : true;
 	}
+
+	@Override
+	public boolean deleteMember(String memberCode) {
+		//회원삭제 성공 : true, 회원삭제 실패 : false
+		int result = sqlsession.delete("memberMapper.deleteMember", memberCode);
+		return result == 1 ? true : false;
+	}
+	
+	
 
 }

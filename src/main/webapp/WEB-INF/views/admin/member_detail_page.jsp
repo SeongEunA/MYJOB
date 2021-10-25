@@ -17,6 +17,18 @@ table{
 	margin: 0 auto;
 	text-align: center;
 }
+tr{
+	border: 1px solid black;
+}
+td{
+	border: 1px solid black;
+	padding: 10px;
+	
+}
+.deleteMemberBtnDiv{
+	margin-top: 10px;
+	text-align: right;
+}
 </style>
 </head>
 <body>
@@ -54,6 +66,7 @@ table{
 					<td>${selectDetailMember.memberJoinDate }</td>
 				</tr>
 			</table>
+			<div class="deleteMemberBtnDiv"><input type="button" id="deleteMemberBtn" value="삭제" onclick="location.href='/admin/deleteMember?memberCode=${selectDetailMember.memberCode }';"></div>
 		</div>
 	</div>
 </body>

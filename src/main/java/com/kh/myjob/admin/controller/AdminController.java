@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.myjob.admin.service.AdminService;
 import com.kh.myjob.member.service.MemberService;
+import com.kh.myjob.member.vo.MemberVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -44,6 +45,13 @@ public class AdminController {
 	public String goNoticeBoard(Model model) {
 		model.addAttribute("selectNoticeBoardList", adminService.selectNoticeBoardList());
 		return "admin/notice_board";
+	}
+	
+	//회원 삭제
+	@GetMapping("/deleteMember")
+	public String deleteMember(String memberCode, Model model) {
+		model.addAttribute("deleteMemberResult", memberService.deleteMember(memberCode));
+		return "redirect:/admin/memberManage";
 	}
 }
 

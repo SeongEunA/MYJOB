@@ -48,8 +48,8 @@ td{
 				<tbody>
 					  <c:forEach items="${selectSimpleMemberList }" var="simpleMemberInfo">
 						    <tr>
-						      	<td>${simpleMemberInfo.memberCode }</td>
-						      	<td>${simpleMemberInfo.memberId }</td>
+						      	<td><a  style="color: black; text-decoration-line: none;" href="/admin/detailMember?memberCode=${simpleMemberInfo.memberCode }">${simpleMemberInfo.memberCode }</a></td>
+						      	<td><a  style="color: black; text-decoration-line: none;" href="/admin/detailMember?memberCode=${simpleMemberInfo.memberCode }">${simpleMemberInfo.memberId }</a></td>
 						      	<td><a  style="color: black; text-decoration-line: none;" href="/admin/detailMember?memberCode=${simpleMemberInfo.memberCode }">${simpleMemberInfo.memberName }</a></td>
 						    </tr>  
 					  </c:forEach>

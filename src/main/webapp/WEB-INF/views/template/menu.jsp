@@ -61,11 +61,10 @@ span{
 						<div class="navbar-nav">
 							<c:choose>
 								<c:when test="${empty sessionScope.loginInfo or sessionScope.loginInfo.memberIsAdmin eq 'N'}">
-									<a class="nav-link light" aria-current="page" href="#">Home</a>
+									<a class="nav-link light" aria-current="page" href="/common/main">Home</a>
 									<a class="nav-link light" aria-current="page" href="/course/courseSearch">코스검색</a>
 									<a class="nav-link light" aria-current="page" href="/course/myCourseList">내코스보기</a>
 									<a class="nav-link light" aria-current="page" href="/review/selectReviewList">코스후기</a>
-									<a class="nav-link light" aria-current="page" href="#">커뮤니티</a>
 									<a class="nav-link light" aria-current="page" href="/admin/noticeBoard">공지사항</a>
 								</c:when>
 								<c:otherwise>
