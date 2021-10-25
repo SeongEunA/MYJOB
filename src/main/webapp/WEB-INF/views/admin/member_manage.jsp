@@ -7,39 +7,55 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+.container{
+	width: 1000px;
+	background-color: #eaeaea;
+	margin-top: 30px;
+	padding: 30px;
+	
+}
 table{
-	font-size: 13px;
+	width: 940px;
+	margin: 0 auto;
+	text-align: center;
 }
-.memberName:hover {
-	cursor: pointer;
+tr{
+	border: 1px solid black;
 }
-
+td{
+	border: 1px solid black;
+	padding: 10px;
+	
+}
 </style>
 </head>
 <body>
-<div class="row justify-content-center">
-	<div class="col-8 text-center">
-		<table class="table table-striped table-hover">
-			<thead>
-			    <tr>
-					<th scope="col"><input type="checkbox"></th>
-					<th scope="col">MEMBER_CODE</th>
-				    <th scope="col">MEMBER_ID</th>
-				    <th scope="col">MEMBER_NAME</th>
-			    </tr>
-			</thead>
-		  	<tbody>
-				  <c:forEach items="${selectSimpleMemberList }" var="simpleMemberInfo">
-					    <tr>
-					    	<td scope="col"><input type="checkbox"></td>
-					      	<td class="align-middle">${simpleMemberInfo.memberCode }</td>
-					      	<td class="align-middle">${simpleMemberInfo.memberId }</td>
-					      	<td class="align-middle memberName"><a  style="color: black; text-decoration-line: none;" href="/admin/detailMember?memberCode=${simpleMemberInfo.memberCode }">${simpleMemberInfo.memberName }</a></td>
-					    </tr>  
-				  </c:forEach>
-		  	</tbody>
-		</table>
+	<div class="container">
+		<div>
+			<table>
+			<colgroup>
+				<col width="30%">
+				<col width="30%">
+				<col width="30%">
+			</colgroup>
+				<thead>
+					<tr>
+						<td>회원코드</td>
+						<td>회원아이디</td>
+						<td>회원이름</td>
+					</tr>
+				</thead>
+				<tbody>
+					  <c:forEach items="${selectSimpleMemberList }" var="simpleMemberInfo">
+						    <tr>
+						      	<td>${simpleMemberInfo.memberCode }</td>
+						      	<td>${simpleMemberInfo.memberId }</td>
+						      	<td><a  style="color: black; text-decoration-line: none;" href="/admin/detailMember?memberCode=${simpleMemberInfo.memberCode }">${simpleMemberInfo.memberName }</a></td>
+						    </tr>  
+					  </c:forEach>
+			  	</tbody>
+			</table>
+		</div>
 	</div>
-</div>
 </body>
 </html>

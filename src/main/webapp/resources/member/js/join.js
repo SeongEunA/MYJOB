@@ -21,6 +21,17 @@
 //};
 
 
+function openPostCode(){
+		new daum.Postcode({
+	        oncomplete: function(data) {
+	        	 // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('memberAddr1').value = data.address;
+                $('#memberAddr2').focus();
+	        }
+	    }).open();
+	}
+
+
 //화면 로딩 후 바로 실행 이벤트처리
 $(document).ready(function(){
 	//회원가입 화면으로 오면 ID입력란에 자동포커스
@@ -48,7 +59,6 @@ $(document).ready(function(){
 		$('#insertPw').remove();
 		$('#useablePw').remove();
 		$('#retryInsertPw').remove();
-//		$('#memberPw').val('');
 		
 		//ID입력란 공백 유효성 검사 <-처음에 안먹음 이름 패스한 후 지우고 넘어가면 걸리게 됨 이상함
 		if(memberName == ''){
@@ -58,7 +68,6 @@ $(document).ready(function(){
 		}
 		//NAME입력값 양식에 맞지 않을 때
 		else if(!nameJ.test(memberName)){
-//			$('#memberName').val('');
 			$('#memberName').after('<div id="retryInsertName" style="color: red; font-size: 12px; margin-top: 7px;">성을 포함한 2~7자리의 이름으로 다시 입력하세요.</div>');
 			$('#memberName').focus();
 		}
@@ -91,12 +100,10 @@ $(document).ready(function(){
 		$('#matchPw').remove();
 		$('#unuseableTels').remove();
 		$('#insertConfirmPw').remove();
-//		$('#confirmPw').val('');
 		$('#insertTels').remove();
 		
 		//PW입력값 양식에 맞지 않을 때
 		if(!pwJ.test(memberPw)){
-//			$('#memberPw').val('');
 			$('#memberPw').after('<div id="retryInsertPw" style="color: red; font-size: 12px; margin-top: 7px;">영어 대소문자, 숫자로 구성된 4~12자리로 다시 입력하세요.</div>');	
 			$('#memberPw').focus();
 		}
@@ -104,7 +111,6 @@ $(document).ready(function(){
 		else{
 			//PW와 ID중복 체크 여부
 			if(memberPw == $('#memberId').val()){
-//				$('#memberPw').val('');
 				$('#memberPw').after('<div id="cantMatchPw" style="color: red; font-size: 12px; margin-top: 7px;">PW는 ID와 일치할 수 없습니다.</div>');	
 				$('#memberPw').focus();
 			}
@@ -129,9 +135,6 @@ $(document).ready(function(){
 		$('#cantMatchPw').remove();
 		$('#retryInsertPw').remove();
 		$('#insertConfirmPw').remove();
-//		$('#memberTel1').val('010');
-//		$('#memberTel2').val('');
-//		$('#memberTel3').val('');
 		$('#insertTels').remove();
 		$('#useableTels').remove();
 		$('#unuseableTels').remove();
@@ -143,7 +146,6 @@ $(document).ready(function(){
 			$('#memberTel1').focus();
 		}
 		else{
-//			$('#confirmPw').val('');
 			$('#confirmPw').after('<div id="misMatchPw" style="color: red; font-size: 12px; margin-top: 7px;">비밀번호가 일치하지 않습니다.</div>');
 			$('#confirmPw').focus();
 		}
@@ -164,10 +166,8 @@ $(document).ready(function(){
 		$('#insertTels').remove();
 		$('#useableTels').remove();
 		$('#unuseableTels').remove();
-//		$('#memberTel3').val('');
 		
 		if(memberTel2 == ''|| !tel2J.test(memberTel2)){
-//			$('#memberTel2').val('');
 			$('#memberTelsDiv').after('<div id="unuseableTels" style="color: red; font-size: 12px; margin-top: 7px;">양식에 맞지 않습니다. 연락처를 다시 입력해주세요.</div>');
 			$('#memberTel2').focus();
 		}
@@ -194,28 +194,106 @@ $(document).ready(function(){
 		$('#unuseableTels').remove();
 		
 		if(!tel3J.test(membertel3)){
-//			$('#memberTel3').val('');
 			$('#memberTelsDiv').after('<div id="unuseableTels" style="color: red; font-size: 12px; margin-top: 7px;">양식에 맞지 않습니다. 연락처를 다시 입력해주세요.</div>');
 			$('#memberTel3').focus();
 		}
 		else{
 			$('#memberTelsDiv').after('<div id="useableTels" style="color: green; font-size: 12px; margin-top: 7px;">사용 가능한 연락처 입니다.</div>');
-			$('#memberEmail1').focus();
+			$('#memberAddr1').focus();
 		}
 		
 	});
 	
 	
-	//------------------이메일 관련 유효성검사----------------------//
-	//6. EMAIL의 select를 고른 후 다른 노드로 전환됬을 때 memberEmail1의 유효성검사 시작
-	$(document).on('change', '#memberEmail2', function() {
+	//------------------상세주소 관련 유효성검사----------------------//
+	//6. ADDRESS의 memberAddr2의 값을 입력 후 다른 노드로 전환됬을 때 memberAddr2의 유효성검사 시작
+	$(document).on('change', '#memberAddr2', function() {
 		//------------------------정규표현식-------------------------//
 
+		//상세주소 검사 정규표현식
+		var addrJ = /^[가-힣0-9\s]+$/; // 한글, 숫자, 공백으로만 입력가능.
+		//-----------------------------------------------------------//
+
+		
+		//membertel3 변수 생성
+		var memberAddr2 = $('#memberAddr2').val();
+		
+		//모든 div문구값 리셋.
+		$('#useableAddr').remove();
+		$('#unuseableAddr').remove();
+		
+		if(!addrJ.test(memberAddr2)){
+			$('#memberAddr2').after('<div id="unuseableAddr" style="color: red; font-size: 12px; margin-top: 7px;">양식에 맞지 않습니다. 주소를 다시 입력해주세요.</div>');
+			$('#memberAddr2').focus();
+		}
+		else{
+			$('#memberAddr2').after('<div id="useableAddr" style="color: green; font-size: 12px; margin-top: 7px;">사용 가능한 주소입니다.</div>');
+			$('#memberEmail1').focus();
+		}
+		
+		
+		
+		
+		
+		
+	});	
+	//------------------이메일 관련 유효성검사----------------------//
+	//7. EMAIL의 select를 고른 후 다른 노드로 전환됬을 때 memberEmail1의 유효성검사 시작
+	$(document).on('change', '#memberEmail1', function() {
+		//------------------------정규표현식-------------------------//
+		
 		//이메일 검사 정규표현식
 		var emailJ = /^[a-z0-9+]{4,12}$/; // 영어소문자 a~z 나 숫자 0~9로 시작하는 4~12자리로 생성.
 		//-----------------------------------------------------------//
-
-		alert('111');
+		
+		//memberEmail1 변수 생성
+		var memberEmail1 = $('#memberEmail1').val();
+		
+		//모든 div문구값 리셋.
+		$('#useableEmail').remove();
+		$('#unuseableEmail').remove();
+		
+		//양식에 맞지 않을 때
+		if(!emailJ.test(memberEmail1)){
+			$('#memberEmailDiv').after('<div id="unuseableEmail" style="color: red; font-size: 12px; margin-top: 7px;">양식에 맞지 않습니다. 이메일을 다시 입력해주세요.</div>');
+			$('#memberEmail1').focus();
+		}
+		
+		//양식에 맞을 때
+		else{
+			//이메일 중복체크
+			var memberEmail = $('#memberEmail1').val() + '@' + $('#memberEmail2').val();
+			$.ajax({
+	            url: '/member/emailCheck', //요청경로
+	            type: 'post',
+	            data:{'memberEmail':memberEmail}, //필요한 데이터
+	            success: function(result) {
+	            	//기가입 : true, 미가입 : false
+	            	//아이디 중복 일 때.
+	            	if(result){
+						$('#memberEmailDiv').after('<div id="unuseableEmail" style="color: red; font-size: 12px; margin-top: 7px;">중복된 이메일 입니다.</div>');
+						$('#memberEmail1').focus();
+					}
+					else{
+						$('#memberEmailDiv').after('<div id="unuseableEmail" style="color: green; font-size: 12px; margin-top: 7px;">사용 가능한 이메일입니다.</div>');
+						alert(111);
+						$('#joinBtn').removeClass('disabled');
+						$('#joinBtn').prop('disabled', false);
+					}
+	            	
+	            },
+	            error: function(){
+	             //ajax 실행 실패 시 실행되는 구간
+	               alert('실패');
+	            }
+	      	});
+			
+			
+			
+		}
+		$('#emailCheckDiv').after('<div id="useableEmail" style="color: green; font-size: 12px; margin-top: 7px;">사용 가능한 주소입니다.</div>');
+		
+		
 		
 		
 		
@@ -259,12 +337,8 @@ $(document).ready(function(){
 		$('#retryInsertName').remove();
 		$('#useableName').remove();
 		$('#retryInsertPw').remove();
-//		$('#memberPw').val('');
 		$('#useableTels').remove();
 		$('#unuseableTels').remove();
-//		$('#memberTel1').val('010');
-//		$('#memberTel2').val('');
-//		$('#memberTel3').val('');
 		
 		//ID입력란 공백 유효성 검사
 		if(memberId == ''){
@@ -283,7 +357,6 @@ $(document).ready(function(){
 		else if(memberId != '' || !empJ.test(memberId)){
 			//ID입력값이 ID입력양식에 어긋날 때
 			if(!idJ.test(memberId)){
-//				$('#memberId').val('');
 				$('#checkIdDiv').after('<div id="retryInsertId" style="color: red; font-size: 12px; margin-top: 7px;">한글 또는 특수문자를 제외한 영어소문자, 숫자로만 구성된 4~12자리로 다시 입력하세요.</div>');
 				$('#memberId').focus();
 			}
@@ -301,7 +374,6 @@ $(document).ready(function(){
 		            	//기가입 : true, 미가입 : false
 		            	//아이디 중복 일 때.
 		            	if(result){
-//		            		$('#memberName').val('');
 		            		$('#retryInsertName').remove();
 							$('#checkIdDiv').after('<div id="joinedId" style="color: red; font-size: 12px; margin-top: 7px;">아이디가 중복입니다.</div>');
 							$('#memberId').focus();

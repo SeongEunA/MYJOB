@@ -82,6 +82,14 @@ public class MemberController {
 		return "member/my_page";
 	}
 	
+	//EMAIL 중복 체크
+	@ResponseBody
+	@PostMapping("/emailCheck")
+	public boolean emailCheck(String memberEmail) {
+		//기가입 : true, 미가입 : false
+		return memberService.emailCheck(memberEmail);
+	}
+	
 }
 
 

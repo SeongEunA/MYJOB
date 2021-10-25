@@ -46,4 +46,11 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 
+	@Override
+	public boolean emailCheck(String memberEmail) {
+		//이메일 중복 : true, 이메일 미중복 : false
+		String result = sqlsession.selectOne("memberMapper.emailCheck", memberEmail);
+		return result == null ? false : true;
+	}
+
 }

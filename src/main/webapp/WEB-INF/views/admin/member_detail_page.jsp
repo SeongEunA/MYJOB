@@ -6,44 +6,54 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+.container{
+	width: 1000px;
+	background-color: #eaeaea;
+	margin-top: 30px;
+	padding: 30px;
+}
 table{
-	font-size: 11px;
+	width: 940px;
+	margin: 0 auto;
+	text-align: center;
 }
 </style>
 </head>
 <body>
-	<div class="row justify-content-center">
-		<div class="col-12 text-center">
-			<table class="table">
-			<thead>
-			    <tr>
-					<th scope="col">MEMBER_CODE</th>
-				    <th scope="col">MEMBER_ID</th>
-				    <th scope="col">MEMBER_NAME</th>
-				    <th scope="col">MEMBER_PW</th>
-				    <th scope="col">MEMBER_TEL</th>
-				    <th scope="col">MEMBER_ADDR</th>
-				    <th scope="col">MEMBER_EMAIL</th>
-				    <th scope="col">MEMBER_IS_ADMIN</th>
-				    <th scope="col">MEMBER_GENDER</th>
-				    <th scope="col">MEMBER_JOIN_DATE</th>
-			    </tr>
-			</thead>
-		  	<tbody>
-			    <tr>
-			      	<td class="align-middle">${selectDetailMember.memberCode }</td>
-			      	<td class="align-middle">${selectDetailMember.memberId }</td>
-			      	<td class="align-middle">${selectDetailMember.memberName }</td>
-			      	<td class="align-middle">${selectDetailMember.memberPw }</td>
-			      	<td class="align-middle">${selectDetailMember.memberTel }</td>
-			      	<td class="align-middle">${selectDetailMember.memberAddr }</td>
-			      	<td class="align-middle">${selectDetailMember.memberEmail }</td>
-			      	<td class="align-middle">${selectDetailMember.memberIsAdmin }</td>
-			      	<td class="align-middle">${selectDetailMember.memberGender }</td>
-			      	<td class="align-middle">${selectDetailMember.memberJoinDate }</td>
-			    </tr>  
-		  	</tbody>
-		</table>
+	<div class="container">
+		<div>
+			<table>
+				<tr>
+					<td>회원코드</td>
+					<td>${selectDetailMember.memberCode }</td>
+					<td>회원주소</td>
+					<td>${selectDetailMember.memberAddr }</td>
+				</tr>
+				<tr>
+					<td>회원아이디</td>
+					<td>${selectDetailMember.memberId }</td>
+					<td>회원이메일</td>
+					<td>${selectDetailMember.memberEmail }</td>
+				</tr>
+				<tr>
+					<td>회원이름</td>
+					<td>${selectDetailMember.memberName }</td>
+					<td>관리자여부</td>
+					<td>${selectDetailMember.memberIsAdmin }</td>
+				</tr>
+				<tr>
+					<td>회원비밀번호</td>
+					<td>${selectDetailMember.memberPw }</td>
+					<td>성별</td>
+					<td>${selectDetailMember.memberGender }</td>
+				</tr>
+				<tr>
+					<td>회원연락처</td>
+					<td>${selectDetailMember.memberTel }</td>
+					<td>가입일</td>
+					<td>${selectDetailMember.memberJoinDate }</td>
+				</tr>
+			</table>
 		</div>
 	</div>
 </body>

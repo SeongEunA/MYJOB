@@ -84,6 +84,12 @@
 			WHERE MEMBER_CODE = #{memberCode}
 		</select>
 		
+		<select id="emailCheck" resultType="String">
+			SELECT MEMBER_EMAIL
+			FROM MEMBER
+			WHERE MEMBER_EMAIL = #{memberEmail}
+		</select>
+		
 
 </mapper>
 

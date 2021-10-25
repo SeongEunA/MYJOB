@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/member/js/join.js?ver=329"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="/resources/member/js/join.js?ver=352"></script>
 <style type="text/css">
 .containerDiv{
 	width: 700px;
@@ -141,13 +142,13 @@
 						<input type="text" id=memberAddr1 name="memberAddres" readonly placeholder="도로명/지번 주소">
 					</div>
 					<div class="searchAddrDiv">
-						<button type="submit" id="memberAddrBtn">주소검색</button>
+						<button type="button" onclick="openPostCode();" id="memberAddrBtn">주소검색</button>
 					</div>
 					<div class="memberAddr2Div">
-						<input type="text" id="memberAddr2" name="memberAddres" readonly placeholder="상세 주소">
+						<input type="text" id="memberAddr2" name="memberAddres" placeholder="상세 주소">
 					</div>
 				</div>
-				<div class="memberEmailDiv">
+				<div class="memberEmailDiv" id="memberEmailDiv">
 					<div class="memberEmail1Div">
 						<div>EMAIL</div>
 						<input type="text" id="memberEmail1" name="memberEmails">
@@ -174,7 +175,7 @@
 					</div>
 				</div>
 				<div>
-					<input type="button" id="joinBtn" value="J o i n" disabled>
+					<input type="submit" id="joinBtn" value="J o i n" disabled>
 				</div>
 			</form>
 		</div>
