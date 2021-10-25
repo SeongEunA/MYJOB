@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.myjob.common.util.WeatherUtil;
 import com.kh.myjob.common.vo.TotalWeatherVO;
-import com.kh.myjob.common.vo.WeatherLongSkyStatusVO;
-import com.kh.myjob.common.vo.WeatherLongTempVO;
-import com.kh.myjob.common.vo.WeatherShortVO;
 import com.kh.myjob.course.service.CourseService;
 import com.kh.myjob.course.vo.LocationVO;
 import com.kh.myjob.course.vo.PlaceVO;
@@ -36,17 +33,8 @@ public class CourseController {
 		
 		String date = WeatherUtil.date();
 		
-		//날씨 데이터
-		List<WeatherShortVO> weatherShortList = WeatherUtil.weatherShort(date, locationTempCode);
-		List<WeatherLongSkyStatusVO> weatherLongSkyStatusList = WeatherUtil.weatherLongSkyStatus(date, locationLandCode);
-		List<WeatherLongTempVO> weatherLongList = WeatherUtil.weatherLong(date, locationTempCode);
-		String[] arrDate = WeatherUtil.todayToTenDays();
-		
-		
-		model.addAttribute("arrDate",arrDate);
-		model.addAttribute("weatherLongSkyStatusList", weatherLongSkyStatusList);
-		model.addAttribute("weatherShortList", weatherShortList);
-		model.addAttribute("weatherLongList", weatherLongList);
+		//날씨정보
+		model.addAttribute("weatherList", WeatherUtil.weatherList(date, locationLandCode, locationTempCode));
 		
 		//상위 지역 리스트
 		model.addAttribute("highLocationList", courseService.selectHighLocationList());
@@ -73,28 +61,13 @@ public class CourseController {
 	//검색 버튼 클릭시 지역에 맞는 날씨 조회 ajax
 	@ResponseBody
 	@PostMapping("/weatherLoadAjax")
-	public String weatherLoadAjax(String locationTempCode, String locationLandCode, TotalWeatherVO totalWeatherVO,Model model) {
+	public List<TotalWeatherVO> weatherLoadAjax(String locationTempCode, String locationLandCode) {
 		
 		String date = WeatherUtil.date();
 		
-		//날씨 데이터
-		List<WeatherShortVO> weatherShortList = WeatherUtil.weatherShort(date, locationTempCode);
-		List<WeatherLongSkyStatusVO> weatherLongSkyStatusList = WeatherUtil.weatherLongSkyStatus(date, locationLandCode);
-		List<WeatherLongTempVO> weatherLongList = WeatherUtil.weatherLong(date, locationTempCode);
-		
-		String[] arrDate = WeatherUtil.todayToTenDays();
-		totalWeatherVO.setWeatherShortList(weatherShortList);
-		totalWeatherVO.setWeatherLongSkyStatusList(weatherLongSkyStatusList);
-		totalWeatherVO.setWeatherLongList(weatherLongList);
-		totalWeatherVO.setArrDate(arrDate);
-		
-		
-		model.addAttribute("arrDate",arrDate);
-		model.addAttribute("weatherLongSkyStatusList", weatherLongSkyStatusList);
-		model.addAttribute("weatherShortList", weatherShortList);
-		model.addAttribute("weatherLongList", weatherLongList);
+		//날씨 데이터 리턴
 	
-		return "template/wheather_side";
+		return WeatherUtil.weatherList(date, locationLandCode, locationTempCode);
 	}
 	
 	@GetMapping("/myCourseList")

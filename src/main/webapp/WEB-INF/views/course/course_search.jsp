@@ -86,17 +86,33 @@ cursor: pointer;
 	
 <!-- 날씨영역 -->
 	<div id="wheatherArea">
-	<%@ include file="../template/wheather_side.jsp"%>
-	</div>
-		<%-- <div class="col-6" id="weather">
+		<div class="col-6" id="weather">
 			<table border="1">
-				<c:forEach items="${weatherShortList}" var="weatherShort" varStatus="cnt">
+				<c:forEach items="${weatherList}" var="totalWeatherVO" varStatus="cnt">
 					<tr style="border: 1px solid red;">
-						<td style="border: 1px solid black;">${cnt.count}</td>
-						<td>${weatherShort.skyStatus }</td>
+						<td style="border: 1px solid black;">${totalWeatherVO.date}</td>
+						<c:if test="${cnt.count < 4}">
+							<td>${totalWeatherVO.temp }</td>
+							<td>${totalWeatherVO.skyStatus }</td>
+						</c:if>
+						<c:if test="${cnt.count >= 4}">
+							<td>${totalWeatherVO.minTemp } / ${totalWeatherVO.maxTemp }</td>
+							<td>
+								<div>
+									<div>
+										그림/그림
+									</div>
+									<div>
+										${totalWeatherVO.skyStatusAm } / ${totalWeatherVO.skyStatusPm }
+									</div>
+								</div>
+							</td>
+						</c:if>
 					</tr>
 				</c:forEach>
-				<c:forEach items="${weatherLongList}" var="weatherLong" varStatus="cnt">
+				
+				
+				<%-- <c:forEach items="${weatherLongList}" var="weatherLong" varStatus="cnt">
 					<tr style="border: 1px solid red;">
 						<td style="border: 1px solid black;">${cnt.count}</td>
 						<td>${weatherLong.minTemp }</td>
@@ -107,9 +123,10 @@ cursor: pointer;
 						<td style="border: 1px solid black;">${cnt.count}</td>
 						<td>${weatherLongSkyStatus.skyStatusAm }</td>
 					</tr>
-				</c:forEach>
+				</c:forEach> --%>
 			</table>
-		</div> --%>
+		</div>
+	</div>
 	
 <!-- 지도영역 -->
 	<div class="map_wrap" style="width:900px; height:500px;">

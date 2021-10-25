@@ -103,6 +103,17 @@ $(document).ready(function(){
 			locationName = '경기도 수원'
 		}
 		
+		if(locationName == '정읍' && locationLandCode == '11F10000'){
+			locationName = '정읍시'
+		}
+
+		if(locationName == '남원' && locationLandCode == '11F10000'){
+			locationName = '남원시'
+		}
+		if(locationName == '대구' && locationLandCode == '11H10000'){
+			locationName = '대구광역시'
+		}
+		
 		//장소리스트 ajax 보내기
 		$.ajax({
             url: '/course/searchPlaceAjax', //요청경로
@@ -149,12 +160,12 @@ $(document).ready(function(){
             success: function(result) {
             	
                //ajax 실행 성공 후 실행할 코드 작성
-            	alert('성공');
-               $('#weatherArea').empty(); //하위태그만 삭제
-               
-              var str="<%@ include file=\"../template/wheather_side.jsp\"%>";
-               alert(str);
-               $('#weatherArea').prepend(str);
+//               $('#weatherArea').empty(); //하위태그만 삭제
+//
+//               $(result)
+//               
+//               
+//               $('#weatherArea').prepend(str);
             },
             error: function(){
              //ajax 실행 실패 시 실행되는 구간
