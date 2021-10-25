@@ -26,5 +26,5 @@ public interface ReviewService {
 	List<ReviewReplyVO> selectReviewReplyList(ReviewReplyVO reviewReplyVO);
 	
 	//후기게시판에 댓글삭제
-	void deleteReiviewReply(ReviewReplyVO reviewReplyVO);
+	int deleteReiviewReply(ReviewReplyVO reviewReplyVO);
 }

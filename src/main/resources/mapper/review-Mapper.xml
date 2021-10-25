@@ -72,7 +72,9 @@
 	<update id="updateReadCnt">
 		UPDATE REVIEW_BOARD
 		SET REVIEW_BOARD_READ_CNT = REVIEW_BOARD_READ_CNT + 1
+		<if test="reviewBoardCode != null">
 	    WHERE REVIEW_BOARD_CODE = #{reviewBoardCode}
+		</if>
 	</update>
 	<!--후기게시판 댓글등록  -->
 	<insert id="regReply">
@@ -102,7 +104,7 @@
 	
 	<!--후기게시판에 댓글삭제  -->
 	<delete id="deleteReiviewReply">
-		DELETE FROM REVIEW_REPLY
+		DELETE REVIEW_REPLY
 		WHERE REVIEW_REPLY_CODE = #{reviewReplyCode}
 	</delete>
 	

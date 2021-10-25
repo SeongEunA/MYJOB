@@ -82,7 +82,7 @@ for (var i = 0; i < positions.length; i++) {
 	$(document).on('click', '.replyContent', function() {
 		var loginInfo = $('#reviewReplyWriter').val();
 		if(loginInfo == ''){
-			 var result = confirm('로그인하시겠습니까');
+			 var result = confirm('로그인을 하시겠습니까?');
 			 if(result){
 				 location.href = '/member/login';
 			 }
@@ -161,9 +161,9 @@ for (var i = 0; i < positions.length; i++) {
 	        	$('#replyList').empty();
 	        	if(result.length != 0){
 	        		for(var i = 0; i < result.length; i++){
-	        			str += "<div>";
-	        			str += "<div><table class='table'><h6><strong>"+result[i].reviewReplyWriter+"</strong></h6>";
-	        			str += result[i].reviewReplyContent + "<tr><td><input type = 'button' onclick='deleteReviewReply(result[i].reviewReplyCode);' class='deleteReply' value='삭제' style='text-align: right;'></td></tr>";
+	        			str += '<div>';
+	        			str += '<div><table class="table"><h6><strong>' + result[i].reviewReplyWriter + '</strong></h6>';
+	        			str += result[i].reviewReplyContent + '<tr><td><input type = "button" onclick="deleteReply(\'' + result[i].reviewReplyCode+'\');"  class="deleteReply" value="삭제" style="text-align: right;"></td></tr>';
 	        			str += "</table></div>";
 	        			str += "</div>";
 	        		}
@@ -175,7 +175,6 @@ for (var i = 0; i < positions.length; i++) {
 	        		str += "</div>";
 	        		
 	        	}
-	        	
 	        	$('#replyList').append(str);
 	        	
 	        },
@@ -189,10 +188,29 @@ for (var i = 0; i < positions.length; i++) {
 		
 	}
 	//후기에 댓글삭제 함수
-	deleteReviewReply = function(reviewReplyCode){
-		alert(reviewReplyCode);
-		location.href = '/review/deleteReviewReply?reviewReplyCode='+ reviewReplyCode;
-	}
+	deleteReply = function(reviewReplyCode){
+		var result = confirm('댓글을 삭제하시겠습니까?');
+		if(result){
+			$.ajax({
+			      url: '/review/deleteReply', //요청경로
+			      type: 'post',
+			      data:{reviewReplyCode: reviewReplyCode}, //필요한 데이터
+			      success: function(result) {
+			    	  alert('삭제되었습니다');
+			    	  selectReviewReplyList();
+			      },
+			      error: function(){
+			      	alert('실패');
+			     }
+			});
+			
+		}
+	
+	
+	
+	
+	
+	} 
 	
 	
 	

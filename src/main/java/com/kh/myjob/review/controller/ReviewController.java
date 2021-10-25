@@ -40,15 +40,16 @@ public class ReviewController {
 	}
 	//리뷰등록
 	@PostMapping("/regReview")
-	public String regReview(ReviewVO reviewVO) {
+	public String regReview(ReviewVO reviewVO, HttpSession session) {
+		reviewVO.setReviewBoardWriter(	((MemberVO)session.getAttribute("loginInfo")).getMemberId());
 		reviewService.insertReview(reviewVO);
 		return "redirect:/review/selectReviewList";
 	}
 	//해당리뷰 상세보기로 이동
 	@GetMapping("/detailReview")
 	public String detailReview(ReviewVO reviewVO, Model model) {
-		 reviewService.updateReadCnt(reviewVO);
 		 model.addAttribute("review", reviewService.selectReviewDetail(reviewVO));
+		 reviewService.updateReadCnt(reviewVO);
 		return "review/review_detail";
 	}
 	
@@ -65,9 +66,10 @@ public class ReviewController {
 		return reviewService.selectReviewReplyList(reviewReplyVO);
 	}
 	//후기게시판에 댓글목록 삭제
-	@GetMapping("/deleteReiviewReply")
-	public String deleteReiviewReply(ReviewVO reviewVO) {
-		return "redirect:/review/review_detail";
+	@ResponseBody
+	@PostMapping("/deleteReply")
+	public int deleteReply(ReviewReplyVO reviewReplyVO) {
+		return reviewService.deleteReiviewReply(reviewReplyVO);
 	}
 	
 	

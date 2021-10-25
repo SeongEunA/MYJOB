@@ -9,7 +9,6 @@
 <body>
 <div class="container">
 	<form method="post" id="replyForm" name="replyForm">
-	<input type="hidden" id="reviewReplyWriter" value="${sessionScope.loginInfo.memberName }">
 	<br><br>
 		<div>
 			<strong>댓글</strong>	
