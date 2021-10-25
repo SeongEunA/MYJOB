@@ -64,6 +64,12 @@ public class ReviewController {
 	public List<ReviewReplyVO> selectReviewReplyList(ReviewReplyVO reviewReplyVO) {
 		return reviewService.selectReviewReplyList(reviewReplyVO);
 	}
+	//후기게시판에 댓글목록 삭제
+	@GetMapping("/deleteReiviewReply")
+	public String deleteReiviewReply(ReviewVO reviewVO) {
+		return "redirect:/review/review_detail";
+	}
+	
 	
 }
 

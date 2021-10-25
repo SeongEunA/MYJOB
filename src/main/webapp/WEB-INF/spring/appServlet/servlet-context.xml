@@ -39,7 +39,7 @@
 	<context:component-scan base-package="com.kh.myjob.*.controller" />
 	
 	<!-- interceptor 객체 생성 -->
-	<beans:bean id="loginInterceptor" class="com.kh.myjob.review.interceptor.LoginInterceptor"></beans:bean>	
+	<beans:bean id="loginInterceptor" class="com.kh.myjob.common.interceptor.LoginInterceptor"></beans:bean>	
 	<interceptors>
 		<interceptor>
 			<mapping path="/review/regReview"/>

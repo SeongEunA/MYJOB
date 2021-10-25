@@ -71,7 +71,6 @@ for (var i = 0; i < positions.length; i++) {
 	
 		
 	//댓글처리
-	
 	//댓글리스트 조회
 	selectReviewReplyList();
 	
@@ -80,15 +79,19 @@ for (var i = 0; i < positions.length; i++) {
 	
 	
 	
+	$(document).on('click', '.replyContent', function() {
+		var loginInfo = $('#reviewReplyWriter').val();
+		if(loginInfo == ''){
+			 var result = confirm('로그인하시겠습니까');
+			 if(result){
+				 location.href = '/member/login';
+			 }
+		}
 	
-	
-	
-	
-	
-	
-	//이벤트 처리
-	//$(document).on('click', '#id', function() {
-    //});
+		
+		
+		
+	});
    
 	//ajax 사용
 //	$.ajax({
@@ -156,18 +159,14 @@ for (var i = 0; i < positions.length; i++) {
 	        success: function(result) {
 	        	var str = '';
 	        	$('#replyList').empty();
-	        	
 	        	if(result.length != 0){
 	        		for(var i = 0; i < result.length; i++){
 	        			str += "<div>";
 	        			str += "<div><table class='table'><h6><strong>"+result[i].reviewReplyWriter+"</strong></h6>";
-	        			str += result[i].reviewReplyContent + "<tr><td></td></tr>";
+	        			str += result[i].reviewReplyContent + "<tr><td><input type = 'button' onclick='deleteReviewReply(result[i].reviewReplyCode);' class='deleteReply' value='삭제' style='text-align: right;'></td></tr>";
 	        			str += "</table></div>";
 	        			str += "</div>";
-		
 	        		}
-		        	
-		      
 	        	}
 	        	else{
 	        		str += "<div>";
@@ -188,6 +187,11 @@ for (var i = 0; i < positions.length; i++) {
 		
 		
 		
+	}
+	//후기에 댓글삭제 함수
+	deleteReviewReply = function(reviewReplyCode){
+		alert(reviewReplyCode);
+		location.href = '/review/deleteReviewReply?reviewReplyCode='+ reviewReplyCode;
 	}
 	
 	

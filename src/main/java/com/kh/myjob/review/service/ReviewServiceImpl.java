@@ -39,8 +39,12 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<ReviewReplyVO> selectReviewReplyList(ReviewReplyVO replyVO) {
-		return sqlSession.selectList("reviewMapper.selectReviewReplyList", replyVO );
+	public List<ReviewReplyVO> selectReviewReplyList(ReviewReplyVO reviewReplyVO) {
+		return sqlSession.selectList("reviewMapper.selectReviewReplyList", reviewReplyVO);
+	}
+	@Override
+	public void deleteReiviewReply(ReviewReplyVO reviewReplyVO) {
+		sqlSession.delete("reviewMapper.deleteReiviewReply", reviewReplyVO);
 	}
 
 }

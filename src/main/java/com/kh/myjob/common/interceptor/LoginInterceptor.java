@@ -1,4 +1,4 @@
-package com.kh.myjob.review.interceptor;
+package com.kh.myjob.common.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

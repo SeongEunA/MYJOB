@@ -100,6 +100,12 @@
 		ORDER BY REVIEW_REPLY_CODE DESC	
 	</select>
 	
+	<!--후기게시판에 댓글삭제  -->
+	<delete id="deleteReiviewReply">
+		DELETE FROM REVIEW_REPLY
+		WHERE REVIEW_REPLY_CODE = #{reviewReplyCode}
+	</delete>
+	
 	
 </mapper>
 
