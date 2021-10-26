@@ -33,8 +33,9 @@
 
 	<!-- COURSE_REG_PLACE table -->
 	<resultMap type="com.kh.myjob.course.vo.CourseRegVO" id="courseRegPlace">
-		<id column="PLACE_CODE" 			property="placeCode"/>
-		<id column="COURSE_CODE" 			property="courseCode"/>
+		
+		<id column="SAVE_PLACE_CODE" 		property="savePlaceCode"/>
+		<result column="COURSE_CODE" 		property="courseCode"/>
 		<result column="CATE_CODE" 			property="cateCode"/>
 		<result column="PLACE_NAME" 		property="placeName"/>
 		<result column="PLACE_ADDR" 		property="placeAddr"/>
@@ -85,17 +86,17 @@
 	</select>
 
 
-	
+	<!--코스테이블의 코스코드 생성 -->
 	<insert id="insertCourseCode">
 		INSERT INTO COURSE
 			VALUES(
-					(SELECT 'COURSE_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(COURSE_CODE,8,3))),0)+1,4,0) FROM COURSE)
+					(SELECT 'COURSE_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(COURSE_CODE,8,4))),0)+1,4,0) FROM COURSE)
 					,#{courseName}
 					,#{memberId}
 				   )
 	</insert>
-	
-	<select id="selectCourseCode" resultMap="course">
+	<!-- 중복코스이름 검사 -->
+	<select id="checkCourseName" resultMap="course">
 		 SELECT 
 		 	COURSE_NAME
 		 	FROM COURSE
@@ -103,8 +104,42 @@
 		 		AND
 		 		MEMBER_ID=#{memberId}
 	</select> 
+	<!--코스테이블의 courseCode조회 -->
+		<select id="selectCourseCode" resultMap="course">
+		SELECT
+			COURSE_NAME
+			,MEMBER_ID
+			,COURSE_CODE
+			FROM COURSE
+		WHERE COURSE_NAME=#{courseName}
+				AND
+			  MEMBER_ID=#{memberId}		
+		
+		
+		</select>
+	<!-- course_reg_Place table에 코스등록  -->
+	<insert id="insertCourseByCourseCode">
+	INSERT INTO COURSE_REG_PLACE
+		(
+			SAVE_PLACE_CODE
+		    ,PLACE_NAME
+		    , PLACE_ADDR
+		    , PLACE_TEL
+		    , CATE_CODE
+		    , COURSE_CODE
+		    
+		)
+	VALUES(
+			(SELECT 'SAVE_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(SAVE_PLACE_CODE,5,4))),0)+1,4,0) FROM COURSE_REG_PLACE)
+			,#{placeName}
+			,#{placeAddr}
+			,#{placeTel}
+			,#{cateCode}
+			,#{courseCode}
+			
+		)
 	
-	
+	</insert>
 </mapper>
 
 	

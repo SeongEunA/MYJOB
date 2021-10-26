@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.myjob.course.vo.CourseRegVO;
+import com.kh.myjob.course.vo.CourseVO;
 import com.kh.myjob.course.vo.LocationVO;
 import com.kh.myjob.course.vo.PlaceVO;
 
@@ -28,6 +30,30 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public List<PlaceVO> selectPlaceList(PlaceVO placeVO) {
 		return sqlSession.selectList("courseMapper.selectPlaceList", placeVO);
+	}
+
+	@Override
+	public CourseVO checkCourseName(CourseVO courseVO) {
+
+		return sqlSession.selectOne("courseMapper.checkCourseName",courseVO);
+	}
+
+	@Override
+	public void insertCourseCode(CourseVO courseVO) {
+		
+		sqlSession.selectOne("courseMapper.insertCourseCode",courseVO);
+	}
+
+	@Override
+	public CourseVO selectCourseCode(CourseVO courseVO) {
+		
+		return sqlSession.selectOne("courseMapper.selectCourseCode", courseVO);
+	}
+
+	@Override
+	public int insertCourseByCourseCode(CourseRegVO courseRegVO) {
+		return sqlSession.insert("courseMapper.insertCourseByCourseCode", courseRegVO);
+		
 	}
 	
 	

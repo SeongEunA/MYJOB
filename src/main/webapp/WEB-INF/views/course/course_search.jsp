@@ -226,7 +226,7 @@ height:100px;
 visibility: hidden;
 }
 </style>
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=1"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=4"></script>
 </head>
 <body>
 <!-- 검색 영역 -->
@@ -614,13 +614,14 @@ visibility: hidden;
 </div>
 </div><!-- courseHalfLayout -->
 <div class="courseHalfLayout">
-<form action="/course/regCourse" method="post">
+<form id="regCourseForm" method="post">
  <div id="resInfoList" class="resInfoList">
    
   </div>
  <div class="submitCourseBtn"  id="submitCourse">
  	코스이름 입력:<input type="text" name="courseName" id="courseName">
-  <input type="submit" value="코스등록하러가기">
+  <input type="hidden" id="memberId" value="${sessionScope.loginInfo.memberId }">
+  <input type="button" value="코스등록하러가기" id="regCourseBtn">
   </div> 
 </form>
 </div><!-- courseHalfLayout -->

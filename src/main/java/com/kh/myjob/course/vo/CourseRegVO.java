@@ -2,17 +2,21 @@ package com.kh.myjob.course.vo;
 
 public class CourseRegVO {
 
-
+	private String savePlaceCode;
 	private String placeName;
 	private String placeAddr;
 	private String placeTel;
 	private String cateCode;
 	private String courseCode;
 	private String courseName;
-	private String placeCode;
 	private String memberId;
 	
-	
+	public String getSavePlaceCode() {
+		return savePlaceCode;
+	}
+	public void setSavePlaceCode(String savePlaceCode) {
+		this.savePlaceCode = savePlaceCode;
+	}
 	public String getPlaceName() {
 		return placeName;
 	}
@@ -49,18 +53,15 @@ public class CourseRegVO {
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
 	}
-	public String getPlaceCode() {
-		return placeCode;
-	}
-	public void setPlaceCode(String placeCode) {
-		this.placeCode = placeCode;
-	}
 	public String getMemberId() {
 		return memberId;
 	}
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
+	
+	
+	
 	
 	
 	

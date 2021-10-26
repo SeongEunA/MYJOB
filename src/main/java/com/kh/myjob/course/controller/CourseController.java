@@ -4,7 +4,7 @@ package com.kh.myjob.course.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
-
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +18,7 @@ import com.kh.myjob.common.util.WeatherUtil;
 import com.kh.myjob.common.vo.TotalWeatherVO;
 import com.kh.myjob.course.service.CourseService;
 import com.kh.myjob.course.vo.CourseRegVO;
+import com.kh.myjob.course.vo.CourseVO;
 import com.kh.myjob.course.vo.LocationVO;
 import com.kh.myjob.course.vo.PlaceVO;
 
@@ -85,7 +86,32 @@ public class CourseController {
 		
 		
 	}
+	//코스네임이 중복인지 검사하는 ajax
+	@ResponseBody
+	@PostMapping("checkCourseNameAjax")
+	public CourseVO checkCourseName(CourseVO courseVO,HttpSession httpSession) {
+
 	
-			
-			
+		httpSession.getAttribute("loginInfo");
+		return courseService.checkCourseName(courseVO);
+	}
+		
+	//코스코드를 등록하는 ajax
+	@ResponseBody
+	@PostMapping("insertCourseCodeAjax")
+	public int insertCourseCode(CourseVO courseVO,HttpSession httpSession,CourseRegVO courseRegVO) {
+		httpSession.getAttribute("loginInfo");
+		//코스테이블에 insert CourseCode
+		courseService.insertCourseCode(courseVO);
+		
+		//코스테이블의 courseCode조회하기
+		CourseVO course = courseService.selectCourseCode(courseVO);
+		courseRegVO.setCourseCode(course.getCourseCode());	
+		
+		//course_reg_place에 insert하기
+		
+		return courseService.insertCourseByCourseCode(courseRegVO);
+		
+	}
+	
 }
