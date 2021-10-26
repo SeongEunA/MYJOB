@@ -135,9 +135,9 @@ $(document).ready(function(){
 	            		 cateCode[i] = $('.cateCode').eq(i).val();
 	            	 }
 	            		
-	            	 var name = {"placeNameArr":placeName};
-	            	 var addr = {"placeAddrArr":placeAddr};
-	            	 var cate = {"cateCodeArr":cateCode};
+//	            	 var name = {"placeNameArr":placeName};
+//	            	 var addr = {"placeAddrArr":placeAddr};
+//	            	 var cate = {"cateCodeArr":cateCode};
 	            	 
 	          	      //코스코드를 등록한 뒤 코스코드를 조회, 코스를 추가하는 ajax
 	            		$.ajax({
@@ -145,9 +145,9 @@ $(document).ready(function(){
 	                        type: 'post',
 	                        data:{'courseName':courseName,
 	      	            	  	  'memberId':memberId,
-	      	            	  	  'name':name,
-	      	            	  	  'addr':addr,
-	      	            	  	  'cate':cate} //필요한 데이터
+	      	            	  	  'placeNameArr':placeName,
+	      	            	  	  'placeAddrArr':placeAddr,
+	      	            	  	  'cateCodeArr':cateCode} //필요한 데이터
 	                        ,success: function(result) {
 	                     
 	                        	if(result==1){
