@@ -18,9 +18,7 @@ table{
 			<table class="table">
 			<thead>
 			    <tr>
-					<th scope="col">NOTICE_BOARD_CODE</th>
 				    <th scope="col">BOARD_SUBJECT</th>
-				    <th scope="col">BOARD_CONTENT</th>
 				    <th scope="col">BOARD_WRITER</th>
 				    <th scope="col">REG_DATE</th>
 			    </tr>
@@ -28,9 +26,7 @@ table{
 		  	<tbody>
 		  		<c:forEach items="${selectNoticeBoardList }" var="noticeBoardInfo">
 				    <tr>
-				      	<td class="align-middle">${noticeBoardInfo.noticeBoardCode }</td>
 				      	<td class="align-middle">${noticeBoardInfo.boardSubject }</td>
-				      	<td class="align-middle">${noticeBoardInfo.boardContent }</td>
 				      	<td class="align-middle">${noticeBoardInfo.boardWriter }</td>
 				      	<td class="align-middle">${noticeBoardInfo.regDate }</td>
 				    </tr>  

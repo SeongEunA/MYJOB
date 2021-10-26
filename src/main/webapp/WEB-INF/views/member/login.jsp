@@ -28,10 +28,20 @@
 	</div>
 </div>
 
-<div class="container">
-	<div>
-		<div></div>
-	</div>
-</div>
+<!-- <div class="container">
+	<form action="/member/login" method="post">
+		<div>
+			<div>ID</div>
+			<div><input type="text" id="insertId" name="memberId"></div>
+		</div>
+		<div>
+			<div>PASSWORD</div>
+			<div><input type="password" id="insertPw" name="memberPw"></div>
+		</div>
+		<div>
+			<input type="submit" id="loginBtn" value="L o g i n">
+		</div>
+	</form>
+</div> -->
 </body>
 </html>

@@ -5,6 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function deleteMember(memberCode) {
+		var result = confirm('정말로 삭제하시겠습니까?');
+		if(result){
+			location.href='/admin/deleteMember?memberCode=' + memberCode;
+		}
+		
+	}
+</script>
 <style type="text/css">
 .container{
 	width: 1000px;
@@ -66,7 +75,7 @@ td{
 					<td>${selectDetailMember.memberJoinDate }</td>
 				</tr>
 			</table>
-			<div class="deleteMemberBtnDiv"><input type="button" id="deleteMemberBtn" value="삭제" onclick="location.href='/admin/deleteMember?memberCode=${selectDetailMember.memberCode }';"></div>
+			<div class="deleteMemberBtnDiv"><input type="button" id="deleteMemberBtn" value="삭제" onclick="deleteMember('${selectDetailMember.memberCode }');"></div>
 		</div>
 	</div>
 </body>

@@ -65,12 +65,13 @@ span{
 									<a class="nav-link light" aria-current="page" href="/course/courseSearch">코스검색</a>
 									<a class="nav-link light" aria-current="page" href="/course/myCourseList">내코스보기</a>
 									<a class="nav-link light" aria-current="page" href="/review/selectReviewList">코스후기</a>
-									<a class="nav-link light" aria-current="page" href="/admin/noticeBoard">공지사항</a>
+									<a class="nav-link light" aria-current="page" href="/common/noticeBoard">공지사항</a>
 								</c:when>
 								<c:otherwise>
 									<a class="nav-link light" aria-current="page" href="/admin/memberManage">회원 관리</a>
-									<a class="nav-link light" aria-current="page" href="/">게시물 관리</a>
-									<a class="nav-link light" aria-current="page" href="#">댓글기능 관리</a>
+									<a class="nav-link light" aria-current="page" href="/admin/reviewManage">코스후기 관리</a>
+									<a class="nav-link light" aria-current="page" href="/admin/replyManage">댓글 관리</a>
+									<a class="nav-link light" aria-current="page" href="/admin/noticeBoardManage">공지사항 관리</a>
 								</c:otherwise>
 							</c:choose>
 						</div>

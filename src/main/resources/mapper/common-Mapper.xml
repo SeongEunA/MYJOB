@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 모든 SQL문을 mapper태그 안에 작성 -->
+<mapper namespace="commonMapper">
+	<resultMap type="com.kh.myjob.common.vo.NoticeBoardVO" id="noticeBoard">
+		<id 	column="NOTICE_BOARD_CODE" 				property="noticeBoardCode"/>
+		<result column="BOARD_SUBJECT" 					property="boardSubject"/>
+		<result column="BOARD_CONTENT" 					property="boardContent"/>
+		<result column="BOARD_WRITER" 					property="boardWriter"/>
+		<result column="REG_DATE" 						property="regDate"/>
+	</resultMap>
+	
+		<!-- <select id="selectNextMemberCode" resultType="String">
+			SELECT 'MEMBER_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MEMBER_CODE, 8, 3))), 0) + 1, 3, '0') FROM MEMBER
+		</select> -->
+		
+		<select id="selectNoticeBoardList" resultMap="noticeBoard">
+			SELECT NOTICE_BOARD_CODE
+			  , BOARD_SUBJECT
+			  , BOARD_CONTENT
+			  , BOARD_WRITER
+			  , TO_CHAR(REG_DATE, 'YYYY/MM/DD') AS REG_DATE
+			FROM NOTICE_BOARD
+			ORDER BY NOTICE_BOARD_CODE DESC
+		</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

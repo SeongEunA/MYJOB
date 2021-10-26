@@ -9,9 +9,9 @@
 
 	<mappers>
 		<mapper resource="/mapper/course-Mapper.xml"/>
-		<mapper resource="/mapper/admin-Mapper.xml"/>
 		<mapper resource="/mapper/member-Mapper.xml"/>
 		<mapper resource="/mapper/review-Mapper.xml"/>
+		<mapper resource="/mapper/common-Mapper.xml"/>
 	</mappers>
 </configuration>
 

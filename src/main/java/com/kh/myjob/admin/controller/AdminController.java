@@ -17,8 +17,6 @@ public class AdminController {
 	@Resource(name = "memberService")
 	private MemberService memberService;
 	
-	@Resource(name = "adminService")
-	private AdminService adminService;
 	
 	//관리자 페이지로 이동
 	@GetMapping("/adminPage")
@@ -40,18 +38,32 @@ public class AdminController {
 		return "admin/member_detail_page";
 	}
 	
-	//공지사항 페이지로 이동
-	@GetMapping("/noticeBoard")
-	public String goNoticeBoard(Model model) {
-		model.addAttribute("selectNoticeBoardList", adminService.selectNoticeBoardList());
-		return "admin/notice_board";
-	}
-	
 	//회원 삭제
 	@GetMapping("/deleteMember")
 	public String deleteMember(String memberCode, Model model) {
 		model.addAttribute("deleteMemberResult", memberService.deleteMember(memberCode));
-		return "redirect:/admin/memberManage";
+		return "admin/member_delete_result";
+	}
+	
+	//리뷰 게시물 관리 페이지로 이동
+	@GetMapping("/reviewManage")
+	public String reviewManage() {
+		return "admin/review_manage";
+		
+	}
+	
+	//댓글 관리 페이지로 이동
+	@GetMapping("/replyManage")
+	public String replyManage() {
+		return "admin/reply_manage";
+		
+	}
+	
+	//공지사항 관리 페이지로 이동
+	@GetMapping("/noticeBoardManage")
+	public String noticeBoardManage() {
+		return "admin/notice_board_manage";
+		
 	}
 }
 

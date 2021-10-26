@@ -1,4 +1,4 @@
-package com.kh.myjob.admin.vo;
+package com.kh.myjob.common.vo;
 
 public class NoticeBoardVO {
 	private String noticeBoardCode;
