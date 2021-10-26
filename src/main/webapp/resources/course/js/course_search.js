@@ -45,22 +45,22 @@ $(document).ready(function(){
 	
 	//지도에서 목록에 있는 장소명 클릭
 	   $(document).on('click', '#resName', function() { 
-	      var resName = $(this).text();
-	      var resAddr = $(this).next().text();
-	      var resTel = $(this).next().next().text();
+	      var placeName = $(this).text();
+	      var placeAddr = $(this).next().text();
+	      var placeTel = $(this).next().next().text();
 	      
-	      resStr = '';
+	      placeStr = '';
 	      
-	      resStr = '<div class="resInfoDiv">' +
-	              '   <div name="resultResName" style="font-size:18px;">' + resName + '<input type="button" value="X" id="deleteResBtn"></div>';
-	      resStr += '   <div name="resultResAddr">' + resAddr + '</div>';
-	      resStr += '   <input type="hidden" id="cateCode" value="CATE_003">';
-	      if(resTel!=null ||resTel!=''){
-	      resStr += '   <div class="resultTel" name="resultResTel">' + resTel + '</div>' +
+	      placeStr = '<div class="resInfoDiv">' +
+	              '   <div class="resultPlaceName" style="font-size:18px;">' + placeName + '<input type="button" value="X" id="deleteResBtn"></div>';
+	      placeStr += '   <div class="resultPlaceAddr">' + placeAddr + '</div>';
+	      placeStr += '   <input type="hidden" id="cateCode" class="cateCode" value="CATE_003">';
+	      if(placeTel!=null ||placeTel!=''){
+	    	  placeStr += '   <div class="resultTel" class="resultPlaceTel">' + placeTel + '</div>' +
 	                 '</div>';
 	      }
 
-	      $('#resInfoList').append(resStr);
+	      $('#resInfoList').append(placeStr);
 	      document.getElementById('submitCourse').style="visibility:visible";
 	   });
 	   
@@ -85,12 +85,12 @@ $(document).ready(function(){
 	      
 	      var placeStr = '';
 	      placeStr = '<div class="resInfoDiv">' +
-	              '   <div name="resultPlaceName" style="font-size:18px;">' + placeName + '<input type="button" value="X" id="deleteResBtn"></div>';
-	      placeStr += '   <div name="resultPlaceAddr">' + placeAddr + '</div>';
-	      placeStr +='<input type="hidden" name="cateCode" value='+cateCode+'>';
+	              '   <div class="resultPlaceName" style="font-size:18px;">' + placeName + '<input type="button" value="X" id="deleteResBtn"></div>';
+	      placeStr += '   <div class="resultPlaceAddr">' + placeAddr + '</div>';
+	      placeStr +='<input type="hidden" class="cateCode" value='+cateCode+'>';
 	     
 	      if(placeTel!=null ||placeTel!=''){
-	      placeStr += '   <div class="resultTel" name="resultPlaceTel">' + placeTel + '</div>'
+	      placeStr += '   <div class="resultTel" class="resultPlaceTel">' + placeTel + '</div>'
 	      }
 	     
 	      placeStr += '</div>';
@@ -99,7 +99,7 @@ $(document).ready(function(){
 	      document.getElementById('submitCourse').style="visibility:visible";
 	   });
 	
-		//코스등록버튼을 눌렀을 때 동일한 코스네임이 있는지 검사
+		//코스등록버튼을 눌렀을 때 동일한 코스네임이 있는지 검사 후 코스등록
 		$(document).on('click', '#regCourseBtn', function() { 
 			 var courseName = $('#courseName').val();
 			 var memberId = $('#memberId').val();
@@ -114,21 +114,40 @@ $(document).ready(function(){
 	            success: function(result) {
 	            	if(result==null || result==''){
 	            		alert('코스를 등록합니다!');
-	            	  var placeName =$('.resInfoDiv').children().eq(0).text();
-	          	      var placeAddr =$('.resInfoDiv').children().eq(1).text();
-	          	      var cateCode 	=$('.resInfoDiv').children().eq(2).text();
-	          	      var placeTel  =$('.resInfoDiv').children().eq(3).text();
+	            	 
+	            	 var placeName = [];
+	            	 var placeAddr = [];
+	            	 var cateCode = [];
+	            	 
+	            	 var placeNameL = $('.resultPlaceName').length;
+	            	 var placeAddrL = $('.resultPlaceAddr').length;
+	            	 var cateCodeL = $('.cateCode').length;
+	            	 
+	            	 for(var i = 0; i < placeNameL; i++){
+	            		 placeName[i] = $('.resultPlaceName').eq(i).text();
+	            	 }
+	            	 
+	            	 for(var i = 0; i < placeAddrL; i++){
+	            		 placeAddr[i] = $('.resultPlaceAddr').eq(i).text();
+	            	 }
+	            	 
+	            	 for(var i = 0; i < cateCodeL; i++){
+	            		 cateCode[i] = $('.cateCode').eq(i).val();
+	            	 }
 	            		
+	            	 var name = {"placeNameArr":placeName};
+	            	 var addr = {"placeAddrArr":placeAddr};
+	            	 var cate = {"cateCodeArr":cateCode};
+	            	 
 	          	      //코스코드를 등록한 뒤 코스코드를 조회, 코스를 추가하는 ajax
 	            		$.ajax({
 	                        url: '/course/insertCourseCodeAjax', //요청경로
 	                        type: 'post',
 	                        data:{'courseName':courseName,
 	      	            	  	  'memberId':memberId,
-	      	            	  	  'placeName':placeName,
-	      	            	  	  'placeAddr':placeAddr,
-	      	            	  	  'cateCode':cateCode,
-	      	            	  	  'placeTel':placeTel} //필요한 데이터
+	      	            	  	  'name':name,
+	      	            	  	  'addr':addr,
+	      	            	  	  'cate':cate} //필요한 데이터
 	                        ,success: function(result) {
 	                     
 	                        	if(result==1){

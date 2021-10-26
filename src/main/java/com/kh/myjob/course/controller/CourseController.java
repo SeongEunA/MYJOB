@@ -92,25 +92,43 @@ public class CourseController {
 	public CourseVO checkCourseName(CourseVO courseVO,HttpSession httpSession) {
 
 	
-		httpSession.getAttribute("loginInfo");
+//		httpSession.getAttribute("loginInfo");
 		return courseService.checkCourseName(courseVO);
 	}
 		
 	//코스코드를 등록하는 ajax
 	@ResponseBody
 	@PostMapping("insertCourseCodeAjax")
-	public int insertCourseCode(CourseVO courseVO,HttpSession httpSession,CourseRegVO courseRegVO) {
-		httpSession.getAttribute("loginInfo");
+	public int insertCourseCode(CourseVO courseVO, CourseRegVO courseRegVO, @RequestParam(value="placeNameArr[]") List<String> name, @RequestParam(value="placeAddrArr[]") List<String> addr, @RequestParam(value="cateCodeArr[]") List<String> cate) {
+//		httpSession.getAttribute("loginInfo");
+		
+		for(String e : name) {
+			System.out.println("!!!!!!!!"+e);
+		}
+		
+		
+		
 		//코스테이블에 insert CourseCode
 		courseService.insertCourseCode(courseVO);
 		
 		//코스테이블의 courseCode조회하기
 		CourseVO course = courseService.selectCourseCode(courseVO);
-		courseRegVO.setCourseCode(course.getCourseCode());	
 		
 		//course_reg_place에 insert하기
+		int result = 0;
 		
-		return courseService.insertCourseByCourseCode(courseRegVO);
+		for(int i = 0; i < name.size(); i++) {
+
+			courseRegVO.setCourseCode(course.getCourseCode());	
+			courseRegVO.setPlaceName(name.get(i));
+			courseRegVO.setPlaceAddr(addr.get(i));
+			courseRegVO.setCateCode(cate.get(i));
+			
+			courseService.insertCourseByCourseCode(courseRegVO);
+			result = 1;
+		}
+		
+		return result;
 		
 	}
 	

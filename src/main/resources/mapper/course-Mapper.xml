@@ -124,16 +124,14 @@
 			SAVE_PLACE_CODE
 		    ,PLACE_NAME
 		    , PLACE_ADDR
-		    , PLACE_TEL
 		    , CATE_CODE
 		    , COURSE_CODE
 		    
 		)
 	VALUES(
-			(SELECT 'SAVE_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(SAVE_PLACE_CODE,5,4))),0)+1,4,0) FROM COURSE_REG_PLACE)
+			(SELECT 'SAVE_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(SAVE_PLACE_CODE,6,4))),0)+1,4,0) FROM COURSE_REG_PLACE)
 			,#{placeName}
 			,#{placeAddr}
-			,#{placeTel}
 			,#{cateCode}
 			,#{courseCode}
 			
