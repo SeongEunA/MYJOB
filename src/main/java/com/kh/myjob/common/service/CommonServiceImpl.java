@@ -18,5 +18,10 @@ public class CommonServiceImpl implements CommonService{
 		return sqlsession.selectList("commonMapper.selectNoticeBoardList");
 	}
 
+	@Override
+	public NoticeBoardVO selectDetailNoticeBoard(String noticeBoardCode) {
+		return sqlsession.selectOne("commonMapper.selectDetailNoticeBoard", noticeBoardCode);
+	}
+
 	
 }

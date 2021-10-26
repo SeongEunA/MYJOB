@@ -21,7 +21,7 @@ public class MemberController {
 	//회원가입 페이지로 이동
 	@GetMapping("/join")
 	public String goJoin() {
-		return "member/join";
+		return "member/join_page";
 	}
 	
 	//ID 중복 체크
@@ -46,7 +46,7 @@ public class MemberController {
 	//로그인 페이지로 이동
 	@GetMapping("/login")
 	public String goLogin() {
-		return "member/login";
+		return "member/login_page";
 	}
 	
 	//로그인
@@ -65,7 +65,7 @@ public class MemberController {
 			}
 		}
 		
-		return "redirect:/common/main";
+		return "redirect:/member/login";
 	}
 	
 	//로그아웃

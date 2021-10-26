@@ -20,14 +20,21 @@ public class CommonController {
 	//메인페이지로 이동
 	@GetMapping("/main")
 	public String goMain() {
-		return "common/main";
+		return "common/main_page";
 	}
 	
 	//공지사항 페이지로 이동
 	@GetMapping("/noticeBoard")
 	public String goNoticeBoard(Model model) {
-		model.addAttribute("selectNoticeBoardList", commonService.selectNoticeBoardList());
+		model.addAttribute("noticeBoardList", commonService.selectNoticeBoardList());
 		return "common/notice_board";
+	}
+	
+	//공지사항 상세페이지로 이동
+	@GetMapping("/detailNoticeBoard")
+	public String goDetailNoticeBoard(String noticeBoardCode, Model model) {
+		model.addAttribute("detailNoticeBoard", commonService.selectDetailNoticeBoard(noticeBoardCode));
+		return "common/notice_board_detail";
 	}
 }
 

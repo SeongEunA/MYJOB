@@ -63,9 +63,10 @@
 			SELECT MEMBER_CODE
 			  , MEMBER_ID
 			  , MEMBER_NAME
+			  , TO_CHAR(MEMBER_JOIN_DATE, 'YYYY/MM/DD') AS MEMBER_JOIN_DATE
 			FROM MEMBER
 			WHERE MEMBER_IS_ADMIN = 'N'
-			ORDER BY MEMBER_CODE ASC			
+			ORDER BY MEMBER_CODE DESC
 		</select>
 		
 		<select id="selectDetailMember" resultMap="member">

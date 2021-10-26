@@ -20,6 +20,7 @@
 	background-color: #eaeaea;
 	margin-top: 30px;
 	padding: 30px;
+	font-size: 12px;
 }
 table{
 	width: 940px;
@@ -41,41 +42,48 @@ td{
 </style>
 </head>
 <body>
+회원 관리 상세페이지입니다.
 	<div class="container">
 		<div>
 			<table>
+			<colgroup>
+				<col width="10%">
+				<col width="40%">
+				<col width="10%">
+				<col width="40%">
+			</colgroup>
 				<tr>
 					<td>회원코드</td>
-					<td>${selectDetailMember.memberCode }</td>
+					<td>${detailMember.memberCode }</td>
 					<td>회원주소</td>
-					<td>${selectDetailMember.memberAddr }</td>
+					<td>${detailMember.memberAddr }</td>
 				</tr>
 				<tr>
 					<td>회원아이디</td>
-					<td>${selectDetailMember.memberId }</td>
+					<td>${detailMember.memberId }</td>
 					<td>회원이메일</td>
-					<td>${selectDetailMember.memberEmail }</td>
+					<td>${detailMember.memberEmail }</td>
 				</tr>
 				<tr>
 					<td>회원이름</td>
-					<td>${selectDetailMember.memberName }</td>
+					<td>${detailMember.memberName }</td>
 					<td>관리자여부</td>
-					<td>${selectDetailMember.memberIsAdmin }</td>
+					<td>${detailMember.memberIsAdmin }</td>
 				</tr>
 				<tr>
 					<td>회원비밀번호</td>
-					<td>${selectDetailMember.memberPw }</td>
+					<td>${detailMember.memberPw }</td>
 					<td>성별</td>
-					<td>${selectDetailMember.memberGender }</td>
+					<td>${detailMember.memberGender }</td>
 				</tr>
 				<tr>
 					<td>회원연락처</td>
-					<td>${selectDetailMember.memberTel }</td>
+					<td>${detailMember.memberTel }</td>
 					<td>가입일</td>
-					<td>${selectDetailMember.memberJoinDate }</td>
+					<td>${detailMember.memberJoinDate }</td>
 				</tr>
 			</table>
-			<div class="deleteMemberBtnDiv"><input type="button" id="deleteMemberBtn" value="삭제" onclick="deleteMember('${selectDetailMember.memberCode }');"></div>
+			<div class="deleteMemberBtnDiv"><input type="button" id="deleteMemberBtn" value="삭제" onclick="deleteMember('${detailMember.memberCode }');"></div>
 		</div>
 	</div>
 </body>

@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-리뷰관리 페이지 입니다.
+코스후기 관리 페이지입니다.
 </body>
 </html>

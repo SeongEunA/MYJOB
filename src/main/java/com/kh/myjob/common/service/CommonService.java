@@ -6,6 +6,9 @@ import com.kh.myjob.common.vo.NoticeBoardVO;
 
 public interface CommonService {
 	
-	//공지사항 목록조회
+	//공지사항 전체목록조회
 	List<NoticeBoardVO> selectNoticeBoardList();
+	
+	//공지사항 상세조회
+	NoticeBoardVO selectDetailNoticeBoard(String noticeBoardCode);
 }

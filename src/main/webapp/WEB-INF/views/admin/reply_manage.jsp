@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-댓글관리 페이지 입니다.
+댓글 관리 페이지입니다.
 </body>
 </html>
