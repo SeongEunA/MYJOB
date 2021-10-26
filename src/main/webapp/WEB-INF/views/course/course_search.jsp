@@ -9,6 +9,12 @@
 <link rel="stylesheet" href="/resources/course/css/course_search.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 <style>
+@font-face {
+    font-family: 'NanumBarunpen';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;width:100%;height:500px;}
@@ -51,14 +57,181 @@ width: 900px;
 border: 1px solid gray;
 margin-top: 20px;
 }
+
 .placeName{
 cursor: pointer;
 }
+.weatherContainer{
+border:1px solid white;
+width:200px;
+height:400px;
+display:flex;
+flex-direction:row;
+}
+
+.weatherBox{
+border:1px solid white;
+width:400px;
+height:400px;
+display:flex;
+}
+
+ .weatherDiv{
+border:1px solid white;
+width:100%;
+height:100%;
+display:flex;
+flex-flow:row wrap;
+flex-direction:column;
+text-align:center;
+} 
+.weatherDay{
+border:1px solid #eeeeee;
+width:100%;
+height:15%;
+border-radius:5px;
+display:flex;
+
+
+}
+.weatherDayHeader{
+border:1px solid white;
+height:100%;
+width:20%;
+display:flex;
+align-items: center;
+
+}
+.weatherContent{
+border:1px solid white;
+width:80%;
+height:100%;
+flex-direction:row;
+display:flex;
+align-items: center;
+
+}
+.weatherDayNum{
+display:block;
+border:1px solid white;
+width:100%;
+height:60%;
+font-size:12px;
+
+} 
+.weatherDayNum > div{
+color:#303030;
+margin-top:10px;
+font-family: 'NanumBarunpen';
+font-size:13px;
+font-weight:600;
+}
+
+.weatherSkyStatus{
+width:60%;
+height:100%;
+flex-direction:row;
+border:1px solid white;
+
+}
+.weatherSkyStatus2{
+width:40%;
+height:100%;
+flex-direction:row;
+border:1px solid white;
+
+
+}
+.weatherSkyStatusImg{
+border:1px solid white;
+width:40%;
+height:50%;
+margin:0 auto;
+
+
+}
+.weatherSkyStatusImg2{
+border:1px solid white;
+width:90%;
+height:70%;
+margin:0 auto;
+border-radius: 50%;
+}
+.weatherSkyStatusText{
+border:1px solid white;
+flex-direction:column;
+width:40%;
+height:20%;
+font-size:13px;
+margin:0 auto;
+}
+.weatherSkyStatusText2{
+border:1px solid white;
+flex-direction:column;
+width:100%;
+height:30%;
+margin:0 auto;
+font-size:9px;
+font-family: 'NanumBarunpen';
+}
+.weatherTemp{
+border:1px solid white;
+width:35%;
+height:40%;
+font-size:13px;
+color:#dc0100;
+
+margin-right:5px;
+margin-top:5px;
+}
+.weatherTemp > span{
+font-size:12px;
+color:#2a74f8;
+}
+
+.courseContainer{
+border:1px solid black;
+width:1700px;
+height:auto;
+display:flex;
+flex-direction: row;
+}
+.courseHalfLayout:first-child{
+border:1px solid blue;
+width:70%;
+height:auto;
+
+
+}
+.courseHalfLayout:last-child{
+border:1px solid blue;
+width:30%;
+height:auto;
+
+
+}
+.map_wrap{
+border:2px solid pink;
+width:100%;
+height:800px;
+}
+.resInfoDiv{
+border:1px solid #eeeeee;
+border-radius:10px;
+width:400px;
+height:100px;
+
+}
+.submitCourseBtn{
+visibility: hidden;
+}
 </style>
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=2"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=1"></script>
 </head>
 <body>
 <!-- 검색 영역 -->
+<div class="courseContainer">
+	<div class="courseHalfLayout">
 	<div class="row">
 		<div class="col-2">
 			<select class="form-select" aria-label="Default select example" id="highLocation" name="locationLandCode">
@@ -85,60 +258,97 @@ cursor: pointer;
 	</div>
 	
 <!-- 날씨영역 -->
-	<div id="wheatherArea">
-		<div class="col-6" id="weather">
-			<table border="1">
-				<c:forEach items="${weatherList}" var="totalWeatherVO" varStatus="cnt">
-					<tr style="border: 1px solid red;">
-						<td style="border: 1px solid black;">${totalWeatherVO.date}</td>
-						<c:if test="${cnt.count < 4}">
-							<td>${totalWeatherVO.temp }</td>
-							<td>
-								<div>
-									<div>
-										그림
-									</div>
-									<div>
-										${totalWeatherVO.skyStatus }
-									</div>
-								</div>
-							</td>
+<!-- 날씨영역 -->
+<!-- 은아 10/23 테이블 작업 -->
+	<div class="weatherContainer" id="weatherArea">
+	<div class="weatherBox" id="weatherBox">
+		<div class="weatherDiv">
+		<c:forEach items="${weatherList}" var="totalWeatherVO" varStatus="cnt">
+			<div class="weatherDay">
+				<div class="weatherDayHeader">
+					<div class="weatherDayNum">
+						<div>${totalWeatherVO.date}</div>
+					</div>	
+						
+				</div>
+				<c:if test="${cnt.count < 4}">
+				<div class="weatherContent">
+					<div class="weatherSkyStatus2">
+						<div class="weatherSkyStatusImg2">
+							<c:if test="${totalWeatherVO.skyStatus eq '맑음' }">
+								<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt1.svg" width="80%" height="100%">
+							</c:if>
+							<c:if test="${totalWeatherVO.skyStatus eq '구름많음' or totalWeatherVO.skyStatus eq '흐림'}">
+							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt5.svg" width="80%" height="100%">
+							</c:if>
+							<c:if test="${totalWeatherVO.skyStatus eq '흐리고 비' or totalWeatherVO.skyStatus eq '비' }">
+							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg" width="80%" height="100%">
+							</c:if>
+						</div>
+						<div class="weatherSkyStatusText2">
+							${totalWeatherVO.skyStatus }
+						</div>
+					</div>
+					<div class="weatherTemp">
+							${totalWeatherVO.temp }&deg;
+					</div>
+				</div>
+				</c:if>
+				<c:if test="${cnt.count >= 4}">
+				<div class="weatherContent">
+					<div class="weatherSkyStatus2">
+						<div class="weatherSkyStatusImg2">
+						<c:if test="${totalWeatherVO.skyStatusAm eq '맑음' }">
+							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt1.svg" width="80%" height="100%">
 						</c:if>
-						<c:if test="${cnt.count >= 4}">
-							<td>${totalWeatherVO.minTemp } / ${totalWeatherVO.maxTemp }</td>
-							<td>
-								<div>
-									<div>
-										그림/그림
-									</div>
-									<div>
-										${totalWeatherVO.skyStatusAm } / ${totalWeatherVO.skyStatusPm }
-									</div>
-								</div>
-							</td>
+						<c:if test="${totalWeatherVO.skyStatusAm eq '구름많음' or totalWeatherVO.skyStatusAm eq '흐림'}">
+							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt5.svg" width="80%" height="100%">
 						</c:if>
-					</tr>
-				</c:forEach>
-				
-				
-				<%-- <c:forEach items="${weatherLongList}" var="weatherLong" varStatus="cnt">
-					<tr style="border: 1px solid red;">
-						<td style="border: 1px solid black;">${cnt.count}</td>
-						<td>${weatherLong.minTemp }</td>
-					</tr>
-				</c:forEach>
-				<c:forEach items="${weatherLongSkyStatusList}" var="weatherLongSkyStatus" varStatus="cnt">
-					<tr style="border: 1px solid red;">
-						<td style="border: 1px solid black;">${cnt.count}</td>
-						<td>${weatherLongSkyStatus.skyStatusAm }</td>
-					</tr>
-				</c:forEach> --%>
-			</table>
-		</div>
+						<c:if test="${totalWeatherVO.skyStatusAm eq '흐리고 비' or totalWeatherVO.skyStatusAm eq '비' }">
+							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg" width="80%" height="100%">
+							</c:if>
+						</div>
+						<div class="weatherSkyStatusText2">
+							${totalWeatherVO.skyStatusAm }
+						</div>					
+					</div>
+					<div class="weatherSkyStatus2">
+						<div class="weatherSkyStatusImg2">
+							<c:if test="${totalWeatherVO.skyStatusPm eq '맑음'}">
+								<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt1.svg" width="80%" height="100%">
+							</c:if>
+							<c:if test="${totalWeatherVO.skyStatusPm eq '구름많음' or totalWeatherVO.skyStatusPm eq '흐림' }">
+							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt7.svg" width="80%" height="100%">
+							</c:if>
+							<c:if test="${totalWeatherVO.skyStatusPm eq '흐리고 비' or totalWeatherVO.skyStatusPm eq '비' }">
+							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg" width="80%" height="100%">
+							</c:if>
+						</div>
+						<div class="weatherSkyStatusText2">
+							${totalWeatherVO.skyStatusPm}
+						</div>
+					</div>
+					<div class="weatherTemp">
+						<span>${totalWeatherVO.minTemp }&deg;</span>/${totalWeatherVO.maxTemp }&deg;
+					</div>
+				</div>
+				</c:if>
+			</div>
+			</c:forEach>
+		</div><!-- weatherDiv1 -->
+		
+	
 	</div>
+
+
+</div><!--weatherContainer-->
+				
+				
+	
 	
 <!-- 지도영역 -->
-	<div class="map_wrap" style="width:900px; height:500px;">
+
+	<div class="map_wrap">
 	    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 	    <div id="menu_wrap" class="bg_white">
 	        <div class="option">
@@ -396,13 +606,24 @@ cursor: pointer;
 	</script>
 
 <!-- 검색 장소 리스트 영역 -->
-<%@include file="../course/course_list.jsp" %>
+
 <div class="row">
    <div class="col-6" id="placeList">
    </div>
-   <div class="col-6" id="resInfoDiv">
-   </div>
+  
 </div>
-
+</div><!-- courseHalfLayout -->
+<div class="courseHalfLayout">
+<form action="/course/regCourse" method="post">
+ <div id="resInfoList" class="resInfoList">
+   
+  </div>
+ <div class="submitCourseBtn"  id="submitCourse">
+ 	코스이름 입력:<input type="text" name="courseName" id="courseName">
+  <input type="submit" value="코스등록하러가기">
+  </div> 
+</form>
+</div><!-- courseHalfLayout -->
+</div><!-- courseContainer -->
 </body>
 </html>

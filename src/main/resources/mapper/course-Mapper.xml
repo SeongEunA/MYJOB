@@ -31,6 +31,25 @@
 		<result column="VIEW_INTRO"			property="viewIntro"/>
 	</resultMap>
 
+	<!-- COURSE_REG_PLACE table -->
+	<resultMap type="com.kh.myjob.course.vo.CourseRegVO" id="courseRegPlace">
+		<id column="PLACE_CODE" 			property="placeCode"/>
+		<id column="COURSE_CODE" 			property="courseCode"/>
+		<result column="CATE_CODE" 			property="cateCode"/>
+		<result column="PLACE_NAME" 		property="placeName"/>
+		<result column="PLACE_ADDR" 		property="placeAddr"/>
+		<result column="PLACE_TEL"			property="placeTel"/>
+		<result column="MEMBER_ID"			property="memberId"/>
+		<result column="COURSE_NAME"		property="courseName"/>
+	</resultMap>
+	
+		<!-- COURSE table -->
+	<resultMap type="com.kh.myjob.course.vo.CourseVO" id="course">
+		<id column="COURSE_CODE" 			property="courseCode"/>
+		<result column="MEMBER_ID"			property="memberId"/>
+		<result column="COURSE_NAME"		property="courseName"/>
+	</resultMap>
+
 	<!-- 상위 지역이름 리스트조회 -->
 	<select id="selectHighLocationList" resultMap="location">
 		SELECT HIGH_LOCATION_NAME
@@ -59,15 +78,36 @@
 			, PLACE_URL
 			, X
 			, Y
+			, CATE_CODE
 		FROM PLACE
 		WHERE CATE_CODE = #{cateCode}
 		AND PLACE_ADDR LIKE '%'||#{locationName}||'%'
 	</select>
 
 
+	
+	<insert id="insertCourseCode">
+		INSERT INTO COURSE
+			VALUES(
+					(SELECT 'COURSE_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(COURSE_CODE,8,3))),0)+1,4,0) FROM COURSE)
+					,#{courseName}
+					,#{memberId}
+				   )
+	</insert>
+	
+	<select id="selectCourseCode" resultMap="course">
+		 SELECT 
+		 	COURSE_NAME
+		 	FROM COURSE
+		 WHERE COURSE_NAME=#{courseName} 
+		 		AND
+		 		MEMBER_ID=#{memberId}
+	</select> 
+	
+	
 </mapper>
 
-
+	
 
 
 

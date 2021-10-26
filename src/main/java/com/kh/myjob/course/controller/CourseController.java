@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kh.myjob.common.util.WeatherUtil;
 import com.kh.myjob.common.vo.TotalWeatherVO;
 import com.kh.myjob.course.service.CourseService;
+import com.kh.myjob.course.vo.CourseRegVO;
 import com.kh.myjob.course.vo.LocationVO;
 import com.kh.myjob.course.vo.PlaceVO;
 
@@ -69,12 +70,20 @@ public class CourseController {
 	
 		return WeatherUtil.weatherList(date, locationLandCode, locationTempCode);
 	}
-	
+	//내 코스 페이지로 이동
 	@GetMapping("/myCourseList")
 	public String goMyCourse() {
 	      
 	      
 	return "course/mycourse_list";
+	}
+	
+	//코스등록하러 가기
+	@PostMapping("regCourse")
+	public void regCourse(CourseRegVO courseRegVO) {
+		
+		
+		
 	}
 	
 			

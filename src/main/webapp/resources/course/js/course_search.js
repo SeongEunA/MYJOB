@@ -52,23 +52,51 @@ $(document).ready(function(){
 
 	      resStr = '';
 	      
-	      resStr = '<div class="resultInfo">' +
+	      resStr = '<div class="resInfoDiv">' +
 	              '   <div name="resultResName" style="font-size:18px;">' + resName + '<input type="button" value="X" id="deleteResBtn"></div>';
 	      resStr += '   <div name="resultResAddr">' + resAddr + '</div>';
 	      resStr += '   <div class="resultTel" name="resultResTel">' + resTel + '</div>' +
 	                 '</div>';
 	      
 
-	      $('#resInfoDiv').append(resStr);
-	      
-	      
+	      $('#resInfoList').append(resStr);
+	      document.getElementById('submitCourse').style="visibility:visible";
 	   });
 	   
 	   //선택한 식당 목록에서 삭제
 	   $(document).on('click', '#deleteResBtn', function(){
-	      $(this).parent().parent().empty();
+	    
+		   $(this).parent().parent().remove();
+	     if($('.resInfoDiv').length==0){
+	    	 document.getElementById('submitCourse').style="visibility:hidden";
+	     }
 	   });
-	
+	   
+	   
+	   
+	 //placeList에서 담기버튼을 눌렀을 때
+	   $(document).on('click', '#saveCourseInfo', function(){
+	      var placeName = $(this).parent().children().eq(2).text();
+	      var placeAddr =  $(this).parent().children().eq(3).text();
+	      var placeTel =  $(this).parent().children().eq(4).text();
+	      var placeStr = '';
+	      
+	      placeStr = '<div class="resInfoDiv">' +
+	              '   <div name="resultPlaceName" style="font-size:18px;">' + placeName + '<input type="button" value="X" id="deleteResBtn"></div>';
+	      placeStr += '   <div name="resultPlaceAddr">' + placeAddr + '</div>';
+	      if(placeTel!=null ||placeTel!=''){
+	      placeStr += '   <div class="resultTel" name="resultPlaceTel">' + placeTel + '</div>'
+	      }
+	      placeStr +='<input type="hidden" name="placeName" value='+placeName+'>';
+	      placeStr +='<input type="hidden" name="placeAddr" value='+placeAddr+'>';
+	      placeStr +='<input type="hidden" name="placeTel" value='+placeTel+'>';
+	     
+	      
+	      placeStr += '</div>';
+	      	
+	      $('#resInfoList').append(placeStr);
+	      document.getElementById('submitCourse').style="visibility:visible";
+	   });
 	
 	
 	
@@ -87,6 +115,7 @@ $(document).ready(function(){
 		var locationLandCode = $('#highLocation option:selected').val();
 		var locationTempCode = $('#lowLocation option:selected').val();
 		
+	
 		if(locationName == '광주' && locationLandCode == '11B00000'){
 			locationName = '경기도 광주'
 		}
@@ -114,6 +143,21 @@ $(document).ready(function(){
 			locationName = '대구광역시'
 		}
 		
+		var nowPage = 1;
+		var totalCnt;
+		
+		var beginPage;
+		var endPage;
+		
+		var displayCnt = 10;
+		var displayPageCnt = 5;
+		
+		var prev;
+		var next;
+		
+		var startNum = (nowPage - 1) * displayCnt + 1;
+		var endNum = nowPage * displayCnt;
+		
 		//장소리스트 ajax 보내기
 		$.ajax({
             url: '/course/searchPlaceAjax', //요청경로
@@ -129,6 +173,8 @@ $(document).ready(function(){
               $(result).each(function(index,element){
               
             	str += '<div class="placeInfo">'
+            	str += '	<input type="hidden" value="' + element.x + '" name="x" class="placeX">';
+            	str += '	<input type="hidden" value="' + element.y + '" name="y" class="placey">';
             		
             	str += '	<div class="placeName">' + element.placeName + '</div>';
             	str += '	<div class="placeAddr" data-placeAddr="' + element.placeAddr + '">주소 : ' + element.placeAddr + '</div>';
@@ -137,10 +183,8 @@ $(document).ready(function(){
             		str += '	<div class="placeTel">연락처 : ' + element.placeTel + '</div>';
             	}
             	
-            	str += '	<input type="hidden" value="' + element.x + '" name="x" class="placeX">';
-            	str += '	<input type="hidden" value="' + element.y + '" name="y" class="placey">';
-            	
-            	str += '</div>'
+            	str +='<input type="button" value="담기" id="saveCourseInfo">';
+            	str += '</div>';
               });
                
                $('#placeList').prepend(str);
@@ -151,6 +195,10 @@ $(document).ready(function(){
             }
 		});
 		
+		 
+		
+		
+		
 		//날씨 조회를 위한 ajax
 		$.ajax({
             url: '/course/weatherLoadAjax', //요청경로
@@ -160,12 +208,101 @@ $(document).ready(function(){
             success: function(result) {
             	
                //ajax 실행 성공 후 실행할 코드 작성
-//               $('#weatherArea').empty(); //하위태그만 삭제
-//
-//               $(result)
-//               
-//               
-//               $('#weatherArea').prepend(str);
+               $('#weatherArea').empty(); //하위태그만 삭제
+              var str = ""; 
+              
+           	  str +='<div class="weatherBox" id="weatherBox">';
+           	  str +='<div class="weatherDiv">';
+           		$(result).each(function(index,element){
+           		
+ str +='      			<div class="weatherDay">';
+ str +='  				<div class="weatherDayHeader">';
+ str +='  					<div class="weatherDayNum">';
+ str +='  						<div>'+element.date+'</div>';
+ str +='  					</div>	';
+ str +='  				</div>';
+				
+	 					if((index+1)<4){
+ str +='  				<div class="weatherContent">';
+ str +='  					<div class="weatherSkyStatus2">';
+ str +='  						<div class="weatherSkyStatusImg2">';
+ 						if(element.skyStatus=='맑음'){
+ str +='  								<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt1.svg" width="80%" height="100%">';
+ 						}
+						else if(element.skyStatus=='구름많음'||element.skyStatus=='흐림'){
+ str +='  							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt5.svg" width="80%" height="100%">';
+ 						}	
+	 					else if(element.skyStatus=='흐리고 비'||element.skyStatus=='비'){
+ str +='  							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg" width="80%" height="100%">';
+	 					}		
+ str +='  						</div>';
+ str +='  						<div class="weatherSkyStatusText2">';
+ str +=									element.skyStatus
+ str +='  						</div>';
+ str +='  					</div>';
+ str +='  					<div class="weatherTemp">';
+ str +=   							element.temp +'&deg;';
+ str +='  					</div>';
+ str +='  				</div>';
+ 				
+	 					}
+	 					else if((index+1)>=4){
+ str +='  				<div class="weatherContent">';
+ str +='  					<div class="weatherSkyStatus2">';
+ str +='  						<div class="weatherSkyStatusImg2">';
+ 								if(element.skyStatusAm == '맑음'){
+ str +='  							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt1.svg" width="80%" height="100%">';
+ 								}
+ 								else if(element.skyStatusAm == '구름많음'||element.skyStatusAm=='흐림'){
+ str +='  							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt5.svg" width="80%" height="100%">';
+ 								}
+ 								else if(element.skyStatusAm == '흐리고 비'||element.skyStatusAm == '비'){
+ str +='  							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg" width="80%" height="100%">';
+ 								}
+ str +='  						</div>';
+ str +='  						<div class="weatherSkyStatusText2">';
+ str += 								element.skyStatusAm
+ str +='  						</div>	';				
+ str +='  					</div>';
+ str +='  					<div class="weatherSkyStatus2">';
+ str +='  						<div class="weatherSkyStatusImg2">';
+ 								if(element.skyStatusPm == '맑음'){
+ str +='  								<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt1.svg" width="80%" height="100%">';
+ 								}
+ 								else if(element.skyStatusPm == '구름많음'||element.skyStatusPm == '흐림'){
+ str +='  							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt7.svg" width="80%" height="100%">';
+ 								}
+ 								else if(element.skyStatusPm == '흐리고 비'||element.skyStatusPm == '비'){
+ str +='  							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg" width="80%" height="100%">';
+ 								}
+ str +='  						</div>';
+ str +='  						<div class="weatherSkyStatusText2">';
+ str += 								element.skyStatusPm
+ str +='  						</div>';
+ str +='  					</div>';
+ str +='  					<div class="weatherTemp">';
+ str +='  						<span>'+element.minTemp+'&deg;</span>/'+element.maxTemp+'&deg;';
+ str +='  					</div>';
+ str +='  				</div>';
+				
+	 					}
+ str +='  			</div>';
+     			
+           		})
+      
+ str +='      		</div><!-- weatherDiv1 -->';
+     		
+     	
+ str +='      	</div>';
+ 
+ 
+ str +='      </div><!--weatherContainer-->';
+               
+               
+            
+               
+               
+               $('#weatherArea').prepend(str);
             },
             error: function(){
              //ajax 실행 실패 시 실행되는 구간
@@ -174,7 +311,7 @@ $(document).ready(function(){
 		});
 	};
 
-		
+
 	
 
 	
