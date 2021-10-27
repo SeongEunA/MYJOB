@@ -227,7 +227,7 @@ $(document).ready(function(){
             success: function(result) {
                //ajax 실행 성공 후 실행할 코드 작성
                $('#placeList').empty(); //하위태그만 삭제
-               var totalPage = (Math.ceil((parseInt)(result.pageVO.totalCnt) / (parseInt)(result.pageVO.displayCnt)));
+               var totalPage = (Math.ceil(result.pageVO.totalCnt / result.pageVO.displayCnt));
                var str='';
                
                $(result.selectPlaceList).each(function(index,element){
