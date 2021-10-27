@@ -226,7 +226,7 @@ height:100px;
 visibility: hidden;
 }
 </style>
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=1"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=10"></script>
 </head>
 <body>
 <!-- 검색 영역 -->
@@ -253,7 +253,7 @@ visibility: hidden;
 			</select>
 		</div>
 		<div class="col-2">
-			<input type="button" value="검색" onclick="clickSearch();" id="clickSearch">
+			<input type="button" value="검색" onclick="clickSearch(1);" id="clickSearch">
 		</div>
 	</div>
 	

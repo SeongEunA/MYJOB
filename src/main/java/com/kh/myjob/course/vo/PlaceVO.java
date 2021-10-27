@@ -1,6 +1,8 @@
 package com.kh.myjob.course.vo;
 
-public class PlaceVO {
+import com.kh.myjob.common.vo.PageVO;
+
+public class PlaceVO extends PageVO {
 	    private String placeCode;
 	    private String cateCode;
 	    private String placeName;

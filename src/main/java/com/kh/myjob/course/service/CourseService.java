@@ -17,6 +17,9 @@ public interface CourseService {
 	//검색조건에 따른 Place 리스트
 	List<PlaceVO> selectPlaceList(PlaceVO placeVO);
 	
+	//검색조건에 따른 Place 갯수
+	int selectTotalCnt(PlaceVO placeVO);
+	
 	//코스등록시 코스이름 중복확인
 	CourseVO checkCourseName(CourseVO courseVO);
 	

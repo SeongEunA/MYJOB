@@ -56,6 +56,11 @@ public class CourseServiceImpl implements CourseService {
 		
 	}
 	
+	@Override
+	public int selectTotalCnt(PlaceVO placeVO) {
+		return sqlSession.selectOne("courseMapper.selectTotalCnt", placeVO);
+	}
+	
 	
 
 }

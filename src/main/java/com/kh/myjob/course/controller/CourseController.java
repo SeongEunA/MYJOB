@@ -20,6 +20,7 @@ import com.kh.myjob.course.service.CourseService;
 import com.kh.myjob.course.vo.CourseRegVO;
 import com.kh.myjob.course.vo.CourseVO;
 import com.kh.myjob.course.vo.LocationVO;
+import com.kh.myjob.course.vo.PlacePageVO;
 import com.kh.myjob.course.vo.PlaceVO;
 
 @Controller
@@ -54,10 +55,18 @@ public class CourseController {
 	
 	//검색 버튼 클릭시 장소리스트 select ajax
 	@ResponseBody
-	@PostMapping("/searchPlaceAjax")
-	public List<PlaceVO> searchPlaceAjax(PlaceVO placeVO) {
+	@RequestMapping("/searchPlaceAjax")
+	public PlacePageVO searchPlaceAjax(PlaceVO placeVO, PlacePageVO placePageVO) {
+		//totalCnt 갯수 조회 및 세팅
+		placeVO.setTotalCnt(courseService.selectTotalCnt(placeVO));
 		
-		return courseService.selectPlaceList(placeVO);
+		//페이징 처리 세팅
+		placeVO.setPageInfo();
+		
+		placePageVO.setPageVO(placeVO);
+		placePageVO.setSelectPlaceList(courseService.selectPlaceList(placeVO));
+		
+		return placePageVO;
 	}
 	
 	//검색 버튼 클릭시 지역에 맞는 날씨 조회 ajax
@@ -91,8 +100,6 @@ public class CourseController {
 	@PostMapping("checkCourseNameAjax")
 	public CourseVO checkCourseName(CourseVO courseVO,HttpSession httpSession) {
 
-	
-//		httpSession.getAttribute("loginInfo");
 		return courseService.checkCourseName(courseVO);
 	}
 		
@@ -100,13 +107,6 @@ public class CourseController {
 	@ResponseBody
 	@PostMapping("insertCourseCodeAjax")
 	public int insertCourseCode(CourseVO courseVO, CourseRegVO courseRegVO, @RequestParam(value="placeNameArr[]") List<String> name, @RequestParam(value="placeAddrArr[]") List<String> addr, @RequestParam(value="cateCodeArr[]") List<String> cate) {
-//		httpSession.getAttribute("loginInfo");
-		
-		for(String e : name) {
-			System.out.println("!!!!!!!!"+e);
-		}
-		
-		
 		
 		//코스테이블에 insert CourseCode
 		courseService.insertCourseCode(courseVO);

@@ -80,11 +80,33 @@
 			, X
 			, Y
 			, CATE_CODE
+			, ROW_NUM
+		FROM(
+				SELECT PLACE_CODE
+					, PLACE_NAME
+					, PLACE_ADDR
+					, PLACE_TEL
+					, PLACE_PLAY_LAND
+					, PLACE_IS_PARK
+					, PLACE_URL
+					, X
+					, Y
+					, CATE_CODE
+					, ROWNUM AS ROW_NUM
+				FROM PLACE
+				WHERE CATE_CODE = #{cateCode}
+				AND PLACE_ADDR LIKE '%'||#{locationName}||'%'
+			)
+		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
+	</select>
+
+	<!-- 전체 데이터 갯수 -->
+	<select id="selectTotalCnt" resultType="int">
+		SELECT COUNT(PLACE_CODE)
 		FROM PLACE
 		WHERE CATE_CODE = #{cateCode}
 		AND PLACE_ADDR LIKE '%'||#{locationName}||'%'
 	</select>
-
 
 	<!--코스테이블의 코스코드 생성 -->
 	<insert id="insertCourseCode">

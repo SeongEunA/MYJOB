@@ -135,9 +135,6 @@ $(document).ready(function(){
 	            		 cateCode[i] = $('.cateCode').eq(i).val();
 	            	 }
 	            		
-//	            	 var name = {"placeNameArr":placeName};
-//	            	 var addr = {"placeAddrArr":placeAddr};
-//	            	 var cate = {"cateCodeArr":cateCode};
 	            	 
 	          	      //코스코드를 등록한 뒤 코스코드를 조회, 코스를 추가하는 ajax
 	            		$.ajax({
@@ -165,14 +162,11 @@ $(document).ready(function(){
 	                        }
 	            		});
 	            		
-	            		
-	            		
 	            		}
 	            	else{
 	            		alert('코스 이름이 중복입니다!');
 	            	}
 	              
-	          
 	            },
 	            error: function(){
 	             //ajax 실행 실패 시 실행되는 구간
@@ -182,7 +176,6 @@ $(document).ready(function(){
 	    });
 	
 	
-	
        
 });	
 
@@ -190,7 +183,7 @@ $(document).ready(function(){
 //함수 선언 영역
 (function($){
 	//검색버튼 클릭시
-	clickSearch = function(){
+	clickSearch = function(nowPage){
 		var cateCode = $('#cateCode').val();
 		var locationName = $('#lowLocation option:selected').text();
 		var locationLandCode = $('#highLocation option:selected').val();
@@ -224,49 +217,76 @@ $(document).ready(function(){
 			locationName = '대구광역시'
 		}
 		
-		var nowPage = 1;
-		var totalCnt;
-		
-		var beginPage;
-		var endPage;
-		
-		var displayCnt = 10;
-		var displayPageCnt = 5;
-		
-		var prev;
-		var next;
-		
-		var startNum = (nowPage - 1) * displayCnt + 1;
-		var endNum = nowPage * displayCnt;
-		
 		//장소리스트 ajax 보내기
 		$.ajax({
             url: '/course/searchPlaceAjax', //요청경로
             type: 'post',
             data:{'cateCode':cateCode,
-            		'locationName':locationName}, //필요한 데이터
+            		'locationName':locationName,
+            		'nowPage':nowPage}, //필요한 데이터
             success: function(result) {
                //ajax 실행 성공 후 실행할 코드 작성
                $('#placeList').empty(); //하위태그만 삭제
-               
+               var totalPage = (Math.ceil((parseInt)(result.pageVO.totalCnt) / (parseInt)(result.pageVO.displayCnt)));
                var str='';
                
-              $(result).each(function(index,element){
-              
-            	str += '<div class="placeInfo">'
-            	str += '	<input type="hidden" value="' + element.x + '" name="x" class="placeX">';
-            	str += '	<input type="hidden" value="' + element.y + '" name="y" class="placey">';
-            		
-            	str += '	<div class="placeName">' + element.placeName + '</div>';
-            	str += '	<div class="placeAddr" data-placeAddr="' + element.placeAddr + '">주소 : ' + element.placeAddr + '</div>';
-            	str +='<input type="hidden" id="cateCode" value="'+element.cateCode+'">';
-            	
-            	if(element.placeTel != null){
-            		str += '	<div class="placeTel">연락처 : ' + element.placeTel + '</div>';
-            	}
-            	str +='<input type="button" value="담기" id="saveCourseInfo">';
-            	str += '</div>';
-              });
+               $(result.selectPlaceList).each(function(index,element){
+                   
+               	str += '<div class="placeInfo">'
+               	str += '	<input type="hidden" value="' + element.x + '" name="x" class="placeX">';
+               	str += '	<input type="hidden" value="' + element.y + '" name="y" class="placey">';
+               		
+               	str += '	<div class="placeName">' + element.placeName + '</div>';
+               	str += '	<div class="placeAddr" data-placeAddr="' + element.placeAddr + '">주소 : ' + element.placeAddr + '</div>';
+               	str +='<input type="hidden" id="cateCode" value="'+element.cateCode+'">';
+               	
+	               	if(element.placeTel != null){
+	               		str += '	<div class="placeTel">연락처 : ' + element.placeTel + '</div>';
+	               	}
+               	str +='<input type="button" value="담기" id="saveCourseInfo">';
+               	str += '</div>';
+                });
+                 
+                
+                str += '<div class="row">';
+   	          	str += '	<div class="col text-center">';
+   	          	str += '		<nav aria-label="...">';
+   	          	str += '			<ul class="pagination justify-content-center">';
+   	          	str += '				<li class="page-item">';
+   	          	str += '					<a class="page-link" onclick="clickSearch(' + (totalPage-(totalPage-1)) + ')">&lt;&lt;</a>';
+   	          	str += '				</li>';
+   	          	str += '				<li class="page-item';
+   	          							if(result.pageVO.prev == false){
+   	          								str += ' disabled';
+   	          							};
+   	          	str += '">';
+   	          	str += '					<a class="page-link" onclick="clickSearch(' + (result.pageVO.beginPage - 1) +')">이전</a>';
+   	          	str += '				</li>';
+   	          			    for(var i = result.pageVO.beginPage; i <= result.pageVO.endPage; i++){
+   	          			    	str += '<li class="page-item';
+   	          			    	
+   	          			    	if(result.pageVO.nowPage == i){
+   	          			    		str += ' active';
+   	          			    	}
+   	          			    	str += '" aria-current="page">';
+   	          			    	str += '	<a class="page-link" onclick="clickSearch(' + i + ')">' + i + '</a>';
+   	          			    	str += '</li>'
+   	          			    	
+   	          			    };
+   	          	str += '				<li class="page-item';
+   	          							if(result.pageVO.next == false){
+   	          								str += ' disabled';
+   	          							};
+   	          	str += '">';					
+   	          	str += '					<a class="page-link" onclick="clickSearch(' + (result.pageVO.endPage + 1) +')">다음</a>';
+   	          	str += '				</li>';
+   	          	str += '				<li class="page-item">';
+   	          	str += '					<a class="page-link" onclick="clickSearch(' + totalPage + ')">&gt;&gt;</a>';
+   	          	str += '				</li>';
+   	          	str += '			</ul>';
+   	          	str += '		</nav>';
+   	          	str += '	</div>';
+   	          	str += '</div>';
                
                $('#placeList').prepend(str);
             },
@@ -275,10 +295,6 @@ $(document).ready(function(){
                alert('실패');
             }
 		});
-		
-		 
-		
-		
 		
 		//날씨 조회를 위한 ajax
 		$.ajax({
@@ -380,9 +396,6 @@ $(document).ready(function(){
  str +='      </div><!--weatherContainer-->';
                
                
-            
-               
-               
                $('#weatherArea').prepend(str);
             },
             error: function(){
@@ -392,10 +405,5 @@ $(document).ready(function(){
 		});
 	};
 
-
-	
-
-	
-	
 	
 })(jQuery);
