@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<c:if test="${deleteMemberResult }">
+	<c:if test="${joinResult }">
 		<script type="text/javascript">
-			alert('해당 회원이 삭제되었습니다.')
-			location.href='/admin/memberManage';
+			alert('회원가입을 축하합니다.')
+			location.href='/common/main';
 		</script>
 	</c:if>
 </head>

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/member/js/login.js?ver=12"></script>
+<script type="text/javascript" src="/resources/member/js/login_page.js?ver=12"></script>
 <style type="text/css">
 .container{
 	width: 500px;

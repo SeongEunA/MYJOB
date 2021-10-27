@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,13 +35,12 @@ public class MemberController {
 	
 	//회원가입
 	@PostMapping("/join")
-	public String join(MemberVO memberVO) {
-		//다음에 들어갈 MEMBER_CODE 조회
-		String memberCode = memberService.selectNextMemberCode();
-		memberVO.setMemberCode(memberCode);
+	public String join(MemberVO memberVO, Model model ) {
+		//MEMBER_CODE 세팅
+		memberVO.setMemberCode(memberService.selectNextMemberCode());
 		
-		memberService.join(memberVO);
-		return "redirect:/common/main";
+		model.addAttribute("joinResult", memberService.join(memberVO));
+		return "member/join_result";
 	}
 	
 	//로그인 페이지로 이동
@@ -52,12 +52,11 @@ public class MemberController {
 	//로그인
 	@PostMapping("/login")
 	public String login(MemberVO memberVO, HttpSession httpSession) {
-		MemberVO loginInfo = memberService.login(memberVO);
 		
-		if(loginInfo != null) {
-			httpSession.setAttribute("loginInfo", loginInfo);
+		if(memberService.login(memberVO) != null) {
+			httpSession.setAttribute("loginInfo", memberService.login(memberVO));
 			
-			if(loginInfo.getMemberIsAdmin().equals("Y")) {
+			if(memberService.login(memberVO).getMemberIsAdmin().equals("Y")) {
 				return "redirect:/admin/adminPage";
 			}
 			else {
