@@ -150,8 +150,12 @@ $(document).ready(function(){
 	      	            	  	  'cateCodeArr':cateCode} //필요한 데이터
 	                        ,success: function(result) {
 	                     
+	                        	var str='';
 	                        	if(result==1){
 	                        		alert('코스가 등록되었습니다!');
+	                        		$('#resInfoList').empty();
+	                        		document.getElementById('submitCourse').style="visibility:hidden";
+	                        		document.getElementById('courseName').value="";
 	                        	}
 	                       
 	                        },

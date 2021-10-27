@@ -226,7 +226,7 @@ height:100px;
 visibility: hidden;
 }
 </style>
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=8"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=1"></script>
 </head>
 <body>
 <!-- 검색 영역 -->
