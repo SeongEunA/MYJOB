@@ -92,7 +92,7 @@ public class CourseController {
 	
 	//코스네임이 중복인지 검사하는 ajax
 	@ResponseBody
-	@PostMapping("checkCourseNameAjax")
+	@PostMapping("/checkCourseNameAjax")
 	public CourseVO checkCourseName(CourseVO courseVO,HttpSession httpSession) {
 
 		return courseService.checkCourseName(courseVO);
@@ -100,7 +100,7 @@ public class CourseController {
 		
 	//코스코드를 등록하는 ajax
 	@ResponseBody
-	@PostMapping("insertCourseCodeAjax")
+	@PostMapping("/insertCourseCodeAjax")
 	public int insertCourseCode(CourseVO courseVO, CourseRegVO courseRegVO, @RequestParam(value="placeNameArr[]") List<String> name, @RequestParam(value="placeAddrArr[]") List<String> addr, @RequestParam(value="cateCodeArr[]") List<String> cate) {
 		
 		//코스테이블에 insert CourseCode
@@ -125,6 +125,13 @@ public class CourseController {
 		
 		return result;
 		
+	}
+	
+	//mycourse_list에서 코스목록에 있는 X버튼 클릭시 실행 ajax
+	@ResponseBody
+	@PostMapping("/deletePlaceInCourse")
+	public int deletePlaceInCourse(String savePlaceCode) {
+		 return courseService.deletePlaceInCourse(savePlaceCode);
 	}
 	
 }

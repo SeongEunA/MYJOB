@@ -164,19 +164,24 @@
 	
 	<!--아이디별 코스 조회-->
 	<select id="selectCourseByMemberId" resultMap="course">
-	SELECT C.MEMBER_ID
-		,C.COURSE_NAME
-		,P.COURSE_CODE
-		,P.PLACE_NAME
-		,P.PLACE_ADDR
-		,P.SAVE_PLACE_CODE
-		,P.PLACE_TEL
-		,P.CATE_CODE		 
-	FROM COURSE C, COURSE_REG_PLACE P 
-	WHERE C.COURSE_CODE=P.COURSE_CODE AND MEMBER_ID=#{memberId} 
-	ORDER BY COURSE_CODE
-	
+		SELECT C.MEMBER_ID
+			,C.COURSE_NAME
+			,P.COURSE_CODE
+			,P.PLACE_NAME
+			,P.PLACE_ADDR
+			,P.SAVE_PLACE_CODE
+			,P.PLACE_TEL
+			,P.CATE_CODE		 
+		FROM COURSE C, COURSE_REG_PLACE P 
+		WHERE C.COURSE_CODE=P.COURSE_CODE AND MEMBER_ID=#{memberId} 
+		ORDER BY COURSE_CODE
 	</select>
+	
+	<!-- 코스에 등록된 장소 삭제 -->
+	<delete id="deletePlaceInCourse">
+		DELETE COURSE_REG_PLACE
+		WHERE SAVE_PLACE_CODE = #{savePlaceCode}
+	</delete>
 	
 	
 	

@@ -13,13 +13,25 @@ border:1px solid black;
 width:1200px;
 height:600px;
 margin:0 auto;
-
+display: flex;
+flex-direction: row;
 }
 
-.courseLayout{
+.courseLayoutLeft{
 
 border:1px solid black;
 width:500px;
+height:500px;
+display:flex;
+flex-direction:column;
+margin:0 auto;
+margin-top:30px;
+
+}
+.courseLayoutRight{
+
+border:1px solid black;
+width:300px;
 height:500px;
 display:flex;
 flex-direction:column;
@@ -33,8 +45,6 @@ margin-top:30px;
 border:1px solid red;
 width:100%;
 height:20%;
-display:flex;
-flex-direction:column;
 
 }
 .courseDisplay{
@@ -43,7 +53,33 @@ visibility:hidden;
 
 }
 
+.courseName{
+margin-top: 5px;
+margin-bottom: 10px;
+}
+
+.placeName{
+display: inline-block;
+margin-bottom: 10px;
+}
+
+.deletePlaceBtn{
+display: inline-block;
+cursor: pointer;
+border: 1px solid black;
+}
+
+.deletePlaceBtn:hover {
+color: #FF0000;
+border: 1px solid #FF0000;;
+}
+
+.deletePlaceBtn:active {
+color: #FF8000;
+border: 1px solid #FF8000;;
+}
 </style>
+<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=8"></script>
  <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script type="text/javascript">
@@ -90,34 +126,47 @@ $.ajax({
 </head>
 <body>
 <div class="courseContainer">
-   <div class="courseLayout">
-	<c:forEach items="${courseList }" var="courseInfo">
-		<div class="courseBox">
-		코스이름:${courseInfo.courseName }
-      <c:forEach items="${courseInfo.coursePlaceList}" var="placeInfo" varStatus="cnt">
-      	 <c:choose>
-      	 	<c:when test="${cnt.last }">
-      	 		${placeInfo.placeName  }
-      	 	</c:when>
-      	 	<c:otherwise>
-       			 ${placeInfo.placeName  } &#10140;
-      	 	</c:otherwise>
-      	 </c:choose>
-      </c:forEach>
-      	</div>
-     </c:forEach>
-   </div>
+	<div class="courseLayoutLeft">
+		<c:forEach items="${courseList }" var="courseInfo">
+			<div class="courseBox">
+				<div class="courseName">코스이름:${courseInfo.courseName }</div>
+				<c:forEach items="${courseInfo.coursePlaceList}" var="placeInfo" varStatus="cnt">
+					<c:choose>
+						<c:when test="${cnt.last }">
+			      	 		<div class="placeName">
+			      	 			${placeInfo.placeName  } <input type="button" value="x" class="deletePlaceBtn">
+			      	 		</div>
+						</c:when>
+			      	 	<c:otherwise>
+							<div class="placeName">
+								<input type="hidden" name="savePlaceCode" value="${placeInfo.savePlaceCode }">
+								${placeInfo.placeName  } <input type="button" value="x" class="deletePlaceBtn">
+								<div class="hiddenPlaceInfo">
+									<input type="hidden" name="placeAddr" value="${placeInfo.placeAddr }">
+									<input type="hidden" name="placeTel" value="${placeInfo.placeTel }">
+									<input type="hidden" name="cateCode" value="${placeInfo.cateCode }">
+									<input type="hidden" name="courseCode" value="${placeInfo.courseCode }">
+								</div>
+							</div> &#10140;
+			      	 	</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</div>
+	     </c:forEach>
+	</div>
+	<div class="courseLayoutRight" id="courseLayoutRight">
+	</div>
    <div>
       <span>
       <input type="button" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn">
       </span>
    </div>
-   <div class="courseLayout courseDisplay" id="courseDisplay">
+ <!--   <div class="courseLayoutLeft courseDisplay" id="courseDisplay">
       
          추천코스동선
    
    </div>
-   <p>이미지</p>
+   <p>이미지</p> -->
 </div>
 
 
