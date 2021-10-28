@@ -1,6 +1,14 @@
+
+	
+
+
+
+
+	
+
 //화면 로딩 후 바로 실행
 $(document).ready(function(){
-
+	
 	//상위 지역 셀렉트 박스의 값이 변경 되면..
 	$(document).on('change', '#highLocation', function() { 
 		var locationLandCode = $('#highLocation').val();
@@ -33,14 +41,15 @@ $(document).ready(function(){
 		});
     });
 	//장소 리스트에서 장소명 클릭시
-	$(document).on('click', '.placeName', function() { 
-		var placeAddr = $(this).next().attr('data-placeAddr');
-		
+	$(document).on('click', '#showResInfo', function() { 
+		var placeAddr = $(this).prev().val();
+		var x = $(this).parent().children().eq(0).val();
+		var y = $(this).parent().children().eq(1).val();
 		$('#keyword').val(placeAddr + ' 주변 맛집');
 		
 		$('#keywordForm').submit();
 		
-		
+		showPlaceInfo(x,y);
     });
 	
 	//지도에서 목록에 있는 장소명 클릭
@@ -98,7 +107,19 @@ $(document).ready(function(){
 	      $('#resInfoList').append(placeStr);
 	      document.getElementById('submitCourse').style="visibility:visible";
 	   });
-	
+	   
+//	   //숙박지보기 버튼 클릭했을 때
+//	   $(document).on('click', '#showPlaceInfo', function() {
+//		
+//	   var x = $(this).parent().children().eq(1).val();
+//		   var y = $(this).parent().children().eq(2).val();
+//		   var placeName = $(this).parent().children().eq(3).text();
+//		  
+//		   
+//	   });//숙박지보기 버튼 종료
+	   
+	   
+	   
 		//코스등록버튼을 눌렀을 때 동일한 코스네임이 있는지 검사 후 코스등록
 		$(document).on('click', '#regCourseBtn', function() { 
 			
@@ -186,6 +207,11 @@ $(document).ready(function(){
 
 //함수 선언 영역
 (function($){
+	//시작
+	
+	//종료
+	
+	
 	//검색버튼 클릭시
 	clickSearch = function(nowPage){
 		var cateCode = $('#cateCode').val();
@@ -253,6 +279,20 @@ $(document).ready(function(){
 	               		str += '	<div class="placeTel">연락처 : ' + element.placeTel + '</div>';
 	               	}
                	str +='<input type="button" value="담기" id="saveCourseInfo">';
+               	
+               	if(cateCode=='CATE_001'){
+               		
+               		str +='<input type="button" value="관광지보기" id="showViewInfo">';
+               		str +='<input type="hidden" value="'+element.placeAddr+'">';
+               		str +='<input type="button" value="맛집보기" id="showResInfo">';
+               	}
+               	if(cateCode=='CATE_002'){
+               		str +='<input type="hidden" value="'+element.placeAddr+'">';
+               		str +='<input type="button" value="맛집보기" id="showResInfo">';
+               		str +='<input type="button" value="숙박지보기" onClick ="showPlaceInfo('+element.x+','+element.y+')" id="showPlaceInfo">';
+               		
+               	}
+               	
                	str += '</div>';
                 });
                  

@@ -226,7 +226,10 @@ height:100px;
 visibility: hidden;
 }
 </style>
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=2"></script>
+
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=110"></script>
+
+
 </head>
 <body>
 <!-- 검색 영역 -->
@@ -364,30 +367,44 @@ visibility: hidden;
 	        <div id="pagination"></div>
 	    </div>
 	</div>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d45ea450bf493fb0fea992bed62c07e&libraries=services"></script>
-	<script type="text/javascript">
-	// 마커를 담을 배열입니다
-	var markers = [];
 
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-	    mapOption = {
-	        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-	        level: 3 // 지도의 확대 레벨
-	    };  
+	
+<!-- 검색 장소 리스트 영역 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d45ea450bf493fb0fea992bed62c07e&libraries=services"></script>
+<script type="text/javascript">
+//시작
+// 마커를 담을 배열입니다
+var markers = [];
 
-	// 지도를 생성합니다    
-	var map = new kakao.maps.Map(mapContainer, mapOption); 
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
 
-	// 장소 검색 객체를 생성합니다
-	var ps = new kakao.maps.services.Places();  
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
 
-	// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
-	var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+var mapTypeControl = new kakao.maps.MapTypeControl();
 
-	// 키워드로 장소를 검색합니다
-	searchPlaces();
+// 지도 타입 컨트롤을 지도에 표시합니다
+map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+// 장소 검색 객체를 생성합니다
+var ps = new kakao.maps.services.Places();  
 
-	// 키워드 검색을 요청하는 함수입니다
+// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
+var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+
+// 키워드로 장소를 검색합니다
+searchPlaces();
+
+
+
+//종료
+
+
+// 키워드 검색을 요청하는 함수입니다
 	function searchPlaces() {
 
 	    var keyword = document.getElementById('keyword').value;
@@ -603,10 +620,48 @@ visibility: hidden;
 		 
 		 
 	 }
-	</script>
+	 //관광지보기 누르는함수
+	 function showPlaceInfo(x,y){
+	
 
-<!-- 검색 장소 리스트 영역 -->
+		
+		
+		 var positions = [
+			    {
+			        title: "아무거나", 
+			        latlng: new kakao.maps.LatLng(x, y)
+			    },
+			  
+			];
+		    mapOption = { 
+		        center: new kakao.maps.LatLng(x,y), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };
 
+		  
+		   
+		// 마커 이미지의 이미지 주소입니다
+		   var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+		       
+		   for (var i = 0; i < positions.length; i ++) {
+		       
+		       // 마커 이미지의 이미지 크기 입니다
+		       var imageSize = new kakao.maps.Size(24, 35); 
+		       
+		       // 마커 이미지를 생성합니다    
+		       var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+		       
+		       // 마커를 생성합니다
+		       var marker = new kakao.maps.Marker({
+		           map: map, // 마커를 표시할 지도
+		           position: positions[i].latlng, // 마커를 표시할 위치
+		           title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+		           image : markerImage // 마커 이미지 
+		       });
+		   }
+		 
+	 }
+	 </script>
 <div class="row">
    <div class="col-6" id="placeList">
    </div>
