@@ -60,6 +60,12 @@ public class CourseServiceImpl implements CourseService {
 	public int selectTotalCnt(PlaceVO placeVO) {
 		return sqlSession.selectOne("courseMapper.selectTotalCnt", placeVO);
 	}
+
+	@Override
+	public List<CourseVO> selectCoursePlaceList(CourseVO courseVO) {
+		
+		return sqlSession.selectList("courseMapper.selectCourseByMemberId",courseVO);
+	}
 	
 	
 

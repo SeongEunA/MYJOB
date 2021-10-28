@@ -1,14 +1,22 @@
 package com.kh.myjob.course.vo;
 
+import java.util.List;
+
 public class CourseVO {
 
 	private String courseCode;
 	private String courseName;
 	private String memberId;
+	private List<CourseRegVO> coursePlaceList;
 	
 	
 	
-	
+	public List<CourseRegVO> getCoursePlaceList() {
+		return coursePlaceList;
+	}
+	public void setCoursePlaceList(List<CourseRegVO> coursePlaceList) {
+		this.coursePlaceList = coursePlaceList;
+	}
 	public String getCourseCode() {
 		return courseCode;
 	}

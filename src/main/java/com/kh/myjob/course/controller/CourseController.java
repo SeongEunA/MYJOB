@@ -82,19 +82,14 @@ public class CourseController {
 	}
 	//내 코스 페이지로 이동
 	@GetMapping("/myCourseList")
-	public String goMyCourse() {
+	public String goMyCourse(CourseVO courseVO,Model model) {
 	      
-	      
+		model.addAttribute("courseList",  courseService.selectCoursePlaceList(courseVO));
+		
 	return "course/mycourse_list";
 	}
 	
-	//코스등록하러 가기
-	@PostMapping("regCourse")
-	public void regCourse(CourseRegVO courseRegVO) {
-		
-		
-		
-	}
+	
 	//코스네임이 중복인지 검사하는 ajax
 	@ResponseBody
 	@PostMapping("checkCourseNameAjax")

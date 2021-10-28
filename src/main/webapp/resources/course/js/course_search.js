@@ -101,78 +101,82 @@ $(document).ready(function(){
 	
 		//코스등록버튼을 눌렀을 때 동일한 코스네임이 있는지 검사 후 코스등록
 		$(document).on('click', '#regCourseBtn', function() { 
-			 var courseName = $('#courseName').val();
-			 var memberId = $('#memberId').val();
-			alert(memberId);
-			$.ajax({
-	            url: '/course/checkCourseNameAjax', //요청경로
-	            type: 'post',
-	            data:{'courseName':courseName,
-	            	  'memberId':memberId,
-	            	  }, //필요한 데이터
-	           
-	            success: function(result) {
-	            	if(result==null || result==''){
-	            		alert('코스를 등록합니다!');
-	            	 
-	            	 var placeName = [];
-	            	 var placeAddr = [];
-	            	 var cateCode = [];
-	            	 
-	            	 var placeNameL = $('.resultPlaceName').length;
-	            	 var placeAddrL = $('.resultPlaceAddr').length;
-	            	 var cateCodeL = $('.cateCode').length;
-	            	 
-	            	 for(var i = 0; i < placeNameL; i++){
-	            		 placeName[i] = $('.resultPlaceName').eq(i).text();
-	            	 }
-	            	 
-	            	 for(var i = 0; i < placeAddrL; i++){
-	            		 placeAddr[i] = $('.resultPlaceAddr').eq(i).text();
-	            	 }
-	            	 
-	            	 for(var i = 0; i < cateCodeL; i++){
-	            		 cateCode[i] = $('.cateCode').eq(i).val();
-	            	 }
-	            		
-	            	 
-	          	      //코스코드를 등록한 뒤 코스코드를 조회, 코스를 추가하는 ajax
-	            		$.ajax({
-	                        url: '/course/insertCourseCodeAjax', //요청경로
-	                        type: 'post',
-	                        data:{'courseName':courseName,
-	      	            	  	  'memberId':memberId,
-	      	            	  	  'placeNameArr':placeName,
-	      	            	  	  'placeAddrArr':placeAddr,
-	      	            	  	  'cateCodeArr':cateCode} //필요한 데이터
-	                        ,success: function(result) {
-	                     
-	                        	var str='';
-	                        	if(result==1){
-	                        		alert('코스가 등록되었습니다!');
-	                        		$('#resInfoList').empty();
-	                        		document.getElementById('submitCourse').style="visibility:hidden";
-	                        		document.getElementById('courseName').value="";
-	                        	}
-	                       
-	                        },
-	                        error: function(){
-	                         //ajax 실행 실패 시 실행되는 구간
-	                           alert('실패');
-	                        }
-	            		});
-	            		
-	            		}
-	            	else{
-	            		alert('코스 이름이 중복입니다!');
-	            	}
-	              
-	            },
-	            error: function(){
-	             //ajax 실행 실패 시 실행되는 구간
-	               alert('실패');
-	            }
-			});
+			
+			var realReg = confirm('등록하시겠습니까?')
+
+			if(realReg){
+				var courseName = $('#courseName').val();
+				 var memberId = $('#memberId').val();
+				 
+				$.ajax({
+		            url: '/course/checkCourseNameAjax', //요청경로
+		            type: 'post',
+		            data:{'courseName':courseName,
+		            	  'memberId':memberId,
+		            	  }, //필요한 데이터
+		           
+		            success: function(result) {
+		            	if(result==null || result==''){
+		            		
+		            	 var placeName = [];
+		            	 var placeAddr = [];
+		            	 var cateCode = [];
+		            	 
+		            	 var placeNameL = $('.resultPlaceName').length;
+		            	 var placeAddrL = $('.resultPlaceAddr').length;
+		            	 var cateCodeL = $('.cateCode').length;
+		            	 
+		            	 for(var i = 0; i < placeNameL; i++){
+		            		 placeName[i] = $('.resultPlaceName').eq(i).text();
+		            	 }
+		            	 
+		            	 for(var i = 0; i < placeAddrL; i++){
+		            		 placeAddr[i] = $('.resultPlaceAddr').eq(i).text();
+		            	 }
+		            	 
+		            	 for(var i = 0; i < cateCodeL; i++){
+		            		 cateCode[i] = $('.cateCode').eq(i).val();
+		            	 }
+		            		
+		            	 
+		          	      //코스코드를 등록한 뒤 코스코드를 조회, 코스를 추가하는 ajax
+		            		$.ajax({
+		                        url: '/course/insertCourseCodeAjax', //요청경로
+		                        type: 'post',
+		                        data:{'courseName':courseName,
+		      	            	  	  'memberId':memberId,
+		      	            	  	  'placeNameArr':placeName,
+		      	            	  	  'placeAddrArr':placeAddr,
+		      	            	  	  'cateCodeArr':cateCode} //필요한 데이터
+		                        ,success: function(result) {
+		                        	alert('코스가 등록되었습니다!');
+		                        	var str='';
+		                        	if(result==1){
+		                        		$('#resInfoList').empty();
+		                        		document.getElementById('submitCourse').style="visibility:hidden";
+		                        		document.getElementById('courseName').value="";
+		                        	}
+		                       
+		                        },
+		                        error: function(){
+		                         //ajax 실행 실패 시 실행되는 구간
+		                           alert('실패');
+		                        }
+		            		});
+		            		
+		            		}
+		            	else{
+		            		alert('코스 이름이 중복입니다!');
+		            	}
+		              
+		            },
+		            error: function(){
+		             //ajax 실행 실패 시 실행되는 구간
+		               alert('실패');
+		            }
+				});
+			}
+			 
 	    });
 	
 	
@@ -216,6 +220,11 @@ $(document).ready(function(){
 		if(locationName == '대구' && locationLandCode == '11H10000'){
 			locationName = '대구광역시'
 		}
+		
+		$('#keyword').val(locationName);
+	      
+	      $('#keywordForm').submit();
+		
 		
 		//장소리스트 ajax 보내기
 		$.ajax({

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -90,15 +91,21 @@ $.ajax({
 <body>
 <div class="courseContainer">
    <div class="courseLayout">
-      <div class="courseBox">
-        as
-      </div>
-      <div class="courseBox">
-         11
-      </div>
-      <div class="courseBox">
-        22
-      </div>
+	<c:forEach items="${courseList }" var="courseInfo">
+		<div class="courseBox">
+		코스이름:${courseInfo.courseName }
+      <c:forEach items="${courseInfo.coursePlaceList}" var="placeInfo" varStatus="cnt">
+      	 <c:choose>
+      	 	<c:when test="${cnt.last }">
+      	 		${placeInfo.placeName  }
+      	 	</c:when>
+      	 	<c:otherwise>
+       			 ${placeInfo.placeName  } &#10140;
+      	 	</c:otherwise>
+      	 </c:choose>
+      </c:forEach>
+      	</div>
+     </c:forEach>
    </div>
    <div>
       <span>

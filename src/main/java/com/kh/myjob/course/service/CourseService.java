@@ -31,4 +31,7 @@ public interface CourseService {
 	
 	//코스 등록하는 쿼리
 	int insertCourseByCourseCode(CourseRegVO courseRegVO);
+	
+	//내코스 조회하는 쿼리
+	List<CourseVO> selectCoursePlaceList(CourseVO courseVO);
 }
