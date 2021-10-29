@@ -118,6 +118,7 @@
 					,#{memberId}
 				   )
 	</insert>
+	
 	<!-- 중복코스이름 검사 -->
 	<select id="checkCourseName" resultMap="course">
 		 SELECT 
@@ -127,6 +128,7 @@
 		 		AND
 		 		MEMBER_ID=#{memberId}
 	</select> 
+	
 	<!--코스테이블의 courseCode조회 -->
 		<select id="selectCourseCode" resultMap="course">
 		SELECT
@@ -135,29 +137,26 @@
 			,COURSE_CODE
 			FROM COURSE
 		WHERE COURSE_NAME=#{courseName}
-				AND
-			  MEMBER_ID=#{memberId}		
-		
-		
+		AND MEMBER_ID=#{memberId}		
 		</select>
+		
 	<!-- course_reg_Place table에 코스등록  -->
 	<insert id="insertCourseByCourseCode">
-	INSERT INTO COURSE_REG_PLACE
-		(
-			SAVE_PLACE_CODE
-		    , PLACE_NAME
-		    , PLACE_ADDR
-		    , CATE_CODE
-		    , COURSE_CODE
-		)
-	VALUES(
-			(SELECT 'SAVE_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(SAVE_PLACE_CODE,6,4))),0)+1,4,0) FROM COURSE_REG_PLACE)
-			,#{placeName}
-			,#{placeAddr}
-			,#{cateCode}
-			,#{courseCode}
-		)
-	
+		INSERT INTO COURSE_REG_PLACE
+			(
+				SAVE_PLACE_CODE
+			    , PLACE_NAME
+			    , PLACE_ADDR
+			    , CATE_CODE
+			    , COURSE_CODE
+			)
+		VALUES(
+				(SELECT 'SAVE_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(SAVE_PLACE_CODE,6,4))),0)+1,4,0) FROM COURSE_REG_PLACE)
+				,#{placeName}
+				,#{placeAddr}
+				,#{cateCode}
+				,#{courseCode}
+			)
 	</insert>
 	
 	<!--아이디별 코스 조회-->
@@ -179,8 +178,6 @@
 		DELETE COURSE_REG_PLACE
 		WHERE SAVE_PLACE_CODE = #{savePlaceCode}
 	</delete>
-	
-	
 	
 	
 	

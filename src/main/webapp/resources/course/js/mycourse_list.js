@@ -10,6 +10,7 @@ $(document).ready(function(){
 		var courseCode = $(this).next().children().eq(2).val();
 		
 		var placeName = $(this).parent().text();
+		
 		$.ajax({
 			url: '/course/deletePlaceInCourseAjax', //요청경로
 			type: 'post',
@@ -82,15 +83,3 @@ $(document).ready(function(){
 	}
 
 })(jQuery);
-
-
-
-
-var positions = [
-    {
-        title: '카카오', 
-        latlng: new kakao.maps.LatLng(33.450705, 126.570677)
-    }
-];
-
-	console.log(positions[0].title);

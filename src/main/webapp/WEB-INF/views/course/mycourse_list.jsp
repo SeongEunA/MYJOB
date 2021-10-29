@@ -21,7 +21,7 @@ padding: 30px;
 .courseLayoutLeft{
 
 border:1px solid black;
-width:1000px;
+width:800px;
 height:auto;
 display:flex;
 flex-direction:column;
@@ -31,7 +31,7 @@ margin:0 auto;
 .courseLayoutRight{
 
 border:1px solid black;
-width:300px;
+width:500px;
 height:500px;
 display:flex;
 flex-direction:column;
@@ -98,28 +98,20 @@ function clickRecommendCourse(btnValue){
    }
 }
 
-
-
 $.ajax({
     method: "GET",
     url: "https://dapi.kakao.com/v2/search/image",
     data: { 
         query:"부산맛집"
-
      },
     headers:{ Authorization: "KakaoAK c54597009debc59db49dfb8d3e509e1f"
-
      },
 }) 
  .done(function (msg) {
     
-    
-    
     console.log(msg.documents[0].image_url);
     console.log(msg.documents[0].x);
     $("p").append("<img src ="+msg.documents[0].image_url+" width='100' height='100'>");
-   
-    
 
  });
 </script>
@@ -162,6 +154,9 @@ $.ajax({
 	     </c:forEach>
 	</div>
 	<div class="courseLayoutRight" id="courseLayoutRight">
+		<select id="selectCourseCode">
+			<option>코스선택</option>
+		</select>
 	</div>
    <div>
       <span>
