@@ -1,7 +1,5 @@
 
-		
-
-
+		var arrXY = [];
 //화면 로딩 후 바로 실행
 $(document).ready(function(){
 	//상위 지역 셀렉트 박스의 값이 변경 되면..
@@ -555,8 +553,34 @@ $(document).ready(function(){
                var totalPage = (Math.ceil(result.pageVO.totalCnt / result.pageVO.displayCnt));
                var str='';
                
+            
+               //10.29은아 시작
+               function myPosition(x,y,placeName){
+            	   
+            	   this.x=x;
+            	   this.y=y;
+            	   this.placeName=placeName;
+               } //좌표받는 생성자 함수
+               
+               
+               for(var cnt =0; cnt<result.selectPlaceList.length;cnt++){
+            	   
+            	   myXY = new myPosition(result.selectPlaceList[cnt].x,result.selectPlaceList[cnt].y,result.selectPlaceList[cnt].placeName);
+            	   
+            	   arrXY.push(myXY);
+            	   
+            	   
+               }
+               
+//            	  for(var cnt =0; cnt<arrXY.length;cnt++){
+//            		 
+//            		 console.log(arrXY[cnt]); 
+//            		  
+//            	  }
+     		  
                $(result.selectPlaceList).each(function(index,element){
-                   
+            
+            	  
                	str += '<div class="placeInfo">'
                	str += '	<input type="hidden" value="' + element.x + '" name="x" class="placeX">';
                	str += '	<input type="hidden" value="' + element.y + '" name="y" class="placey">';
@@ -565,7 +589,7 @@ $(document).ready(function(){
                	str += '	<div class="placeAddr" data-placeAddr="' + element.placeAddr + '">주소 : ' + element.placeAddr + '</div>';
                	str +='<input type="hidden" id="cateCode" value="'+element.cateCode+'">';
                	
-	               	if(element.placeTel != null){
+	            if(element.placeTel != null){
 	               		str += '	<div class="placeTel">연락처 : ' + element.placeTel + '</div>';
 	               	}
                	str +='<input type="button" value="담기" id="saveCourseInfo">';
@@ -577,8 +601,10 @@ $(document).ready(function(){
                		str +='<input type="button" value="맛집보기" id="showResInfo">';
                	}
                	if(cateCode=='CATE_002'){
+
                		str +='<input type="hidden" value="'+element.placeAddr+'">';
                		str +='<input type="button" value="맛집보기" id="showResInfo">';
+//               		str +='<input type="button" value="숙박지보기" onClick ="showPlaceInfo('+element.x+','+element.y+','+arrXY+')" id="showPlaceInfo">';
                		str +='<input type="button" value="숙박지보기" onClick ="showPlaceInfo('+element.x+','+element.y+')" id="showPlaceInfo">';
                		
                	}
@@ -1013,21 +1039,44 @@ function removeAllChildNods(el) {
 	 
 	 
  }
- //관광지보기 누르는함수
- function showPlaceInfo(x,y){
+ //숙박지보기 누르는함수
+// function showPlaceInfo(x,y,arrXY){
+	 function showPlaceInfo(x,y){
 
-
-	
-	
+	 for(var b =0; b<arrXY.length;b++){
+		 
+//		 console.log('test'+b);
+//		 console.log(arrXY[b]);
+		 
+	 }
+//	 {
+//		 title: '', 
+//		 latlng: new kakao.maps.LatLng(33.450705, 126.570677)
+//	 }
 	 var positions = [
-		    {
-		        title: "", 
-		        latlng: new kakao.maps.LatLng(x, y)
-		    	
-		    	
-		    },
-		  
-		];
+	 ];
+	 
+	 
+	
+	 for(var e = 0;e <arrXY.length;e++){
+		
+		 positions[e].latlng.Ma = arrXY[e].x;
+		 positions[e].latlng.La = arrXY[e].y;
+		positions[e].title=arrXY[e].placeName;
+		
+		 console.log(positions[e].title);
+		 console.log(positions[e].latlng.La);
+		 console.log(positions[e].latlng.Ma);
+//		 console.log(arrXY[e].x);
+//		 console.log(positions[e].latlng);
+		 
+	 }
+	
+	//10.29 은아시작
+	 //alert(arrXY[0]);
+//	   arrXY = [];
+//	   positions = [];
+	
 	    mapOption = { 
 	        center: new kakao.maps.LatLng(x,y), // 지도의 중심좌표
 	        level: 3 // 지도의 확대 레벨

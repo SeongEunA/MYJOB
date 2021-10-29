@@ -226,7 +226,7 @@ height:100px;
 visibility: hidden;
 }
 </style>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	3d45ea450bf493fb0fea992bed62c07e&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d45ea450bf493fb0fea992bed62c07e&libraries=services"></script>
 
 
@@ -371,7 +371,7 @@ visibility: hidden;
 
 	
 <!-- 검색 장소 리스트 영역 -->
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=113"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=40"></script>
 <script type="text/javascript"></script>
 <div class="row">
    <div class="col-6" id="placeList">
