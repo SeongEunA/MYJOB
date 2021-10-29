@@ -151,6 +151,7 @@ for (var i = 0; i < positions.length; i++) {
 	
 	//후기창에 댓글리스트 조회
 	selectReviewReplyList = function(){
+		var reviewReplyWriter = $('.reviewReplyWriter').val();
 		var reviewBoardCode = $('.hiddenBoardCode').val();
 		$.ajax({
 	        url: '/review/selectReviewReplyList', //요청경로
@@ -163,7 +164,7 @@ for (var i = 0; i < positions.length; i++) {
 	        		for(var i = 0; i < result.length; i++){
 	        			str += '<div>';
 	        			str += '<div><table class="table"><h6><strong>' + result[i].reviewReplyWriter + '</strong></h6>';
-	        			str += result[i].reviewReplyContent + '<tr><td><input type = "button" onclick="deleteReply(\'' + result[i].reviewReplyCode+'\');"  class="deleteReply" value="삭제" style="text-align: right;"></td></tr>';
+	        			str += result[i].reviewReplyContent + '<tr><td><input type = "button" onclick="deleteReply(\'' + result[i].reviewReplyCode+'\', \'' + result[i].reviewReplyWriter+'\');"  class="deleteReply" value="삭제" style="text-align: right;"></c:if></td></tr>';
 	        			str += "</table></div>";
 	        			str += "</div>";
 	        		}
@@ -188,23 +189,28 @@ for (var i = 0; i < positions.length; i++) {
 		
 	}
 	//후기에 댓글삭제 함수
-	deleteReply = function(reviewReplyCode){
-		var result = confirm('댓글을 삭제하시겠습니까?');
-		if(result){
-			$.ajax({
-			      url: '/review/deleteReply', //요청경로
-			      type: 'post',
-			      data:{reviewReplyCode: reviewReplyCode}, //필요한 데이터
-			      success: function(result) {
-			    	  alert('삭제되었습니다');
-			    	  selectReviewReplyList();
-			      },
-			      error: function(){
-			      	alert('실패');
-			     }
-			});
-			
+	deleteReply = function(reviewReplyCode, reviewReplyWriter){
+		var hiddenReviewReplyWriter = $('.reviewReplyWriter').val();
+		
+		if(hiddenReviewReplyWriter == reviewReplyWriter){
+			var result = confirm('댓글을 삭제하시겠습니까?');
+			if(result){
+				$.ajax({
+				      url: '/review/deleteReply', //요청경로
+				      type: 'post',
+				      data:{reviewReplyCode: reviewReplyCode}, //필요한 데이터
+				      success: function(result) {
+				    	  alert('삭제되었습니다');
+				    	  selectReviewReplyList();
+				      },
+				      error: function(){
+				      	alert('실패');
+				     }
+				});
+				
+			}
 		}
+		
 	
 	
 	

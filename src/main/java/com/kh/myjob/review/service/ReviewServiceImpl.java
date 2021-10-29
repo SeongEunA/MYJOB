@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.myjob.review.vo.ReviewImgVO;
 import com.kh.myjob.review.vo.ReviewReplyVO;
 import com.kh.myjob.review.vo.ReviewVO;
 
@@ -45,6 +46,18 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public int deleteReiviewReply(ReviewReplyVO reviewReplyVO) {
 		return sqlSession.delete("reviewMapper.deleteReiviewReply", reviewReplyVO);
+	}
+	@Override
+	public String selectNextReviewBoardCode() {
+		return sqlSession.selectOne("reviewMapper.selectNextReviewBoardCode");
+	}
+	@Override
+	public void insertReviewImg(ReviewVO reviewVO) {
+		sqlSession.insert("reviewMapper.insertReviewImg", reviewVO);
+	}
+	@Override
+	public int selectNextReviewNumber() {
+		return sqlSession.selectOne("reviewMapper.selectNextReviewNumber");
 	}
 
 }

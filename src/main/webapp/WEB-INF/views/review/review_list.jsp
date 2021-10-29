@@ -49,7 +49,7 @@
 				</thead>
 				<c:forEach items="${reviewList }" var="reviewVO">
 					<tr>
-						<td><a href="/review/detailReview?reviewBoardCode=${reviewVO.reviewBoardCode }"><img src="/resources/images/picture1.jpg"></a></td>
+						<td><a href="/review/detailReview?reviewBoardCode=${reviewVO.reviewBoardCode }"> <img src="/resources/images/images${reviewVO.reviewImgList[0].reviewImgAttachedName }"></a></td>
 						<td><a href="/review/detailReview?reviewBoardCode=${reviewVO.reviewBoardCode }"> ${reviewVO.reviewBoardTitle }</a></td>
 					</tr>
 				</c:forEach>

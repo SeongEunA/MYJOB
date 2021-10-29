@@ -10,15 +10,16 @@ public class ReviewVO {
 	private String reviewBoardWriter;
 	private int reviewBoardRecommendCnt;
 	private int reviewBoardReadCnt;
-	private List<ReviewVO> reviewImgList;
+	private List<ReviewImgVO> reviewImgList;
 
 	
 	
-	public List<ReviewVO> getReviewImgList() {
+	
+	public List<ReviewImgVO> getReviewImgList() {
 		return reviewImgList;
 	}
 
-	public void setReviewImgList(List<ReviewVO> reviewImgList) {
+	public void setReviewImgList(List<ReviewImgVO> reviewImgList) {
 		this.reviewImgList = reviewImgList;
 	}
 

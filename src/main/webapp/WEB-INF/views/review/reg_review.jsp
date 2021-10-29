@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=1"></script>
+<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=5"></script>
 <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script> 
 <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 
@@ -59,7 +59,7 @@
 </head>
 <body>
 	<div class="contentDiv">
-		<form action="/review/regReview" method="post">
+		<form action="/review/regReview" method="post" enctype="multipart/form-data"> 
 		<input type="hidden" name="reviewBoardWriter" value="${sessionScope.loginInfo.memberId }">
 		<div class="headerDiv">
 			코스선택 
@@ -72,17 +72,22 @@
 		<div class="tableDiv">
 		</div>
 		<div class="introCourseDiv">
-			<textarea name="reviewBoardContent" id="csdesc" maxlength="2000" class="comment_textarea" title="코스 소개" style="" placeholder="코스에 대한 간략한 설명을 기재할 수 있습니다.">
-			</textarea>
+			<textarea name="reviewBoardContent" id="csdesc" maxlength="2000" class="comment_textarea" title="코스 소개" style="resize: none;" placeholder="코스에 대한 간략한 설명을 기재할 수 있습니다."></textarea>
 		</div>
-<!-- 		<form name="fname"> <div class="dropzone" id="fileDropzone"></div> <button id="btn-upload-file">서버전송</button> </form>
- -->
+		 <div>
+           <label for="formFile" class="form-label">등록하실 이미지를 선택해주세요</label>
+             <input name="file1" class="form-control" type="file" id="formFile">
+        </div>
+         <div>
+           <label for="formFileMultiple" class="form-label">등록하실 이미지를 선택해주세요</label>
+             <input name="file2" class="form-control" type="file" id="formFileMultiple" multiple>
+        </div>
 		<div class="btn_center">
 			<input type="button" value="취소" class="reg_back_btn" onclick="location.href='/review/SelectReviewList'">
 			<input type="submit" value="등록" class="reg_btn" >
 		</div>
-		</form>
-	</div>
+ 		</form>
+ 	</div>
 </body>
 </html>
 
