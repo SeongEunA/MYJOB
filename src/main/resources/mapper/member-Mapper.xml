@@ -59,11 +59,11 @@
 			AND MEMBER_PW = #{memberPw}
 		</select>
 		
-		<select id="selectSimpleMemberList" resultMap="member">
+		<select id="selectMemberList" resultMap="member">
 			SELECT MEMBER_CODE
 			  , MEMBER_ID
 			  , MEMBER_NAME
-			  , TO_CHAR(MEMBER_JOIN_DATE, 'YYYY/MM/DD') AS MEMBER_JOIN_DATE
+			  , TO_CHAR(MEMBER_JOIN_DATE, 'YYYY.MM.DD') AS MEMBER_JOIN_DATE
 			FROM MEMBER
 			WHERE MEMBER_IS_ADMIN = 'N'
 			ORDER BY MEMBER_CODE DESC
@@ -79,7 +79,7 @@
 			  , MEMBER_EMAIL
 			  , MEMBER_IS_ADMIN
 			  , MEMBER_GENDER
-			  , TO_CHAR(MEMBER_JOIN_DATE, 'YYYY/MM/DD') AS MEMBER_JOIN_DATE
+			  , TO_CHAR(MEMBER_JOIN_DATE, 'YYYY.MM.DD') AS MEMBER_JOIN_DATE
 			FROM MEMBER
 			WHERE MEMBER_CODE = #{memberCode}
 		</select>

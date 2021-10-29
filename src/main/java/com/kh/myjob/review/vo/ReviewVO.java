@@ -8,12 +8,19 @@ public class ReviewVO {
 	private String reviewBoardTitle;
 	private String reviewBoardContent;
 	private String reviewBoardWriter;
+	private String reviewBoardRegDate;
 	private int reviewBoardRecommendCnt;
 	private int reviewBoardReadCnt;
 	private List<ReviewImgVO> reviewImgList;
 
 	
-	
+	public String getReviewBoardRegDate() {
+		return reviewBoardRegDate;
+	}
+
+	public void setReviewBoardRegDate(String reviewBoardRegDate) {
+		this.reviewBoardRegDate = reviewBoardRegDate;
+	}
 	
 	public List<ReviewImgVO> getReviewImgList() {
 		return reviewImgList;

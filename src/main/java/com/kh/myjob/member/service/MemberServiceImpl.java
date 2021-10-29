@@ -31,8 +31,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<MemberVO> selectSimpleMemberList() {
-		return sqlsession.selectList("memberMapper.selectSimpleMemberList");
+	public List<MemberVO> selectMemberList() {
+		return sqlsession.selectList("memberMapper.selectMemberList");
 	}
 
 	@Override

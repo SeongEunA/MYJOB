@@ -18,7 +18,7 @@ public interface MemberService {
 	MemberVO login(MemberVO memberVO);
 	
 	//회원목록 간단조회
-	List<MemberVO> selectSimpleMemberList();
+	List<MemberVO> selectMemberList();
 	
 	//회원목록 상세조회
 	MemberVO selectDetailMember(String memberCode);

@@ -89,7 +89,7 @@ td{
 			</table>
 		</form>
 	</div>
-	총 ${simpleMemberList.size() } 건
+	총 ${memberList.size() } 건
 	<div class="tableDiv">
 		<table>
 		<colgroup>
@@ -107,12 +107,12 @@ td{
 				</tr>
 			</thead>
 			<tbody>
-				  <c:forEach items="${simpleMemberList }" var="simpleMemberInfo">
+				  <c:forEach items="${memberList }" var="memberListInfo">
 					    <tr>
 					      	<td><a  style="color: black; text-decoration-line: none;">rowNum</a></td>
-					      	<td><a  style="color: black; text-decoration-line: none;" href="/admin/detailMember?memberCode=${simpleMemberInfo.memberCode }">${simpleMemberInfo.memberId }</a></td>
-					      	<td><a  style="color: black; text-decoration-line: none;">${simpleMemberInfo.memberName }</a></td>
-					      	<td><a  style="color: black; text-decoration-line: none;">${simpleMemberInfo.memberJoinDate }</a></td>
+					      	<td><a  style="color: black; text-decoration-line: none;" href="/admin/detailMember?memberCode=${memberListInfo.memberCode }">${memberListInfo.memberId }</a></td>
+					      	<td><a  style="color: black; text-decoration-line: none;">${memberListInfo.memberName }</a></td>
+					      	<td><a  style="color: black; text-decoration-line: none;">${memberListInfo.memberJoinDate }</a></td>
 					    </tr>  
 				  </c:forEach>
 		  	</tbody>
