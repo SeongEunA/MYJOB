@@ -10,22 +10,22 @@
 .courseContainer{
 
 border:1px solid black;
-width:1200px;
-height:600px;
+width:1500px;
+height:auto;
 margin:0 auto;
 display: flex;
 flex-direction: row;
+padding: 30px;
 }
 
 .courseLayoutLeft{
 
 border:1px solid black;
-width:500px;
-height:500px;
+width:1000px;
+height:auto;
 display:flex;
 flex-direction:column;
 margin:0 auto;
-margin-top:30px;
 
 }
 .courseLayoutRight{
@@ -36,7 +36,6 @@ height:500px;
 display:flex;
 flex-direction:column;
 margin:0 auto;
-margin-top:30px;
 
 }
 
@@ -44,8 +43,9 @@ margin-top:30px;
 
 border:1px solid red;
 width:100%;
-height:20%;
-
+height:auto;
+margin-top: 10px;
+margin-bottom: 10px;
 }
 .courseDisplay{
 
@@ -79,7 +79,7 @@ color: #FF8000;
 border: 1px solid #FF8000;;
 }
 </style>
-<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=8"></script>
+<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=15"></script>
  <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script type="text/javascript">
@@ -126,7 +126,7 @@ $.ajax({
 </head>
 <body>
 <div class="courseContainer">
-	<div class="courseLayoutLeft">
+	<div class="courseLayoutLeft" id="courseLayoutLeft">
 		<c:forEach items="${courseList }" var="courseInfo">
 			<div class="courseBox">
 				<div class="courseName">코스이름:${courseInfo.courseName }</div>
@@ -134,16 +134,23 @@ $.ajax({
 					<c:choose>
 						<c:when test="${cnt.last }">
 			      	 		<div class="placeName">
+								<input type="hidden" name="memberId" value="${sessionScope.loginInfo.memberId }">
+								<input type="hidden" name="savePlaceCode" value="${placeInfo.savePlaceCode }">
 			      	 			${placeInfo.placeName  } <input type="button" value="x" class="deletePlaceBtn">
+								<div class="hiddenPlaceInfo">
+									<input type="hidden" name="placeAddr" value="${placeInfo.placeAddr }">
+									<input type="hidden" name="cateCode" value="${placeInfo.cateCode }">
+									<input type="hidden" name="courseCode" value="${placeInfo.courseCode }">
+								</div>
 			      	 		</div>
 						</c:when>
 			      	 	<c:otherwise>
 							<div class="placeName">
+								<input type="hidden" name="memberId" value="${sessionScope.loginInfo.memberId }">
 								<input type="hidden" name="savePlaceCode" value="${placeInfo.savePlaceCode }">
 								${placeInfo.placeName  } <input type="button" value="x" class="deletePlaceBtn">
 								<div class="hiddenPlaceInfo">
 									<input type="hidden" name="placeAddr" value="${placeInfo.placeAddr }">
-									<input type="hidden" name="placeTel" value="${placeInfo.placeTel }">
 									<input type="hidden" name="cateCode" value="${placeInfo.cateCode }">
 									<input type="hidden" name="courseCode" value="${placeInfo.courseCode }">
 								</div>

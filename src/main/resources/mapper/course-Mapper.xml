@@ -145,11 +145,10 @@
 	INSERT INTO COURSE_REG_PLACE
 		(
 			SAVE_PLACE_CODE
-		    ,PLACE_NAME
+		    , PLACE_NAME
 		    , PLACE_ADDR
 		    , CATE_CODE
 		    , COURSE_CODE
-		    
 		)
 	VALUES(
 			(SELECT 'SAVE_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(SAVE_PLACE_CODE,6,4))),0)+1,4,0) FROM COURSE_REG_PLACE)
@@ -157,7 +156,6 @@
 			,#{placeAddr}
 			,#{cateCode}
 			,#{courseCode}
-			
 		)
 	
 	</insert>
@@ -170,11 +168,10 @@
 			,P.PLACE_NAME
 			,P.PLACE_ADDR
 			,P.SAVE_PLACE_CODE
-			,P.PLACE_TEL
 			,P.CATE_CODE		 
 		FROM COURSE C, COURSE_REG_PLACE P 
 		WHERE C.COURSE_CODE=P.COURSE_CODE AND MEMBER_ID=#{memberId} 
-		ORDER BY COURSE_CODE
+		ORDER BY P.SAVE_PLACE_CODE
 	</select>
 	
 	<!-- 코스에 등록된 장소 삭제 -->

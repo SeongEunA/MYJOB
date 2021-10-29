@@ -80,6 +80,7 @@ public class CourseController {
 	
 		return WeatherUtil.weatherList(date, locationLandCode, locationTempCode);
 	}
+	
 	//내 코스 페이지로 이동
 	@GetMapping("/myCourseList")
 	public String goMyCourse(CourseVO courseVO,Model model) {
@@ -88,7 +89,6 @@ public class CourseController {
 		
 	return "course/mycourse_list";
 	}
-	
 	
 	//코스네임이 중복인지 검사하는 ajax
 	@ResponseBody
@@ -129,9 +129,10 @@ public class CourseController {
 	
 	//mycourse_list에서 코스목록에 있는 X버튼 클릭시 실행 ajax
 	@ResponseBody
-	@PostMapping("/deletePlaceInCourse")
-	public int deletePlaceInCourse(String savePlaceCode) {
-		 return courseService.deletePlaceInCourse(savePlaceCode);
+	@PostMapping("/deletePlaceInCourseAjax")
+	public List<CourseVO> deletePlaceInCourse(String savePlaceCode, CourseVO courseVO) {
+		courseService.deletePlaceInCourse(savePlaceCode);
+		return courseService.selectCoursePlaceList(courseVO);
 	}
 	
 }
