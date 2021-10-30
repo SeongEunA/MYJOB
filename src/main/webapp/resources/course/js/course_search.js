@@ -1,5 +1,10 @@
 
-		var arrXY = [];
+		var arrXY = [];//숙박지X,Y
+		var arrXY2 = [];//관광지X,Y
+		var positions = [
+			 ];//숙박지 배열
+		var positions2 = [
+			 ]; //관광지 배열
 //화면 로딩 후 바로 실행
 $(document).ready(function(){
 	//상위 지역 셀렉트 박스의 값이 변경 되면..
@@ -42,7 +47,7 @@ $(document).ready(function(){
 		
 		$('#keywordForm').submit();
 		
-		showPlaceInfo(x,y);
+		showResInfo(x,y);
     });
 	
 	//지도에서 목록에 있는 장소명 클릭
@@ -276,12 +281,24 @@ $(document).ready(function(){
                
                
                for(var cnt =0; cnt<result.selectPlaceList.length;cnt++){
-            	   
+            	   if(cateCode=='CATE_001'){//숙박
             	   myXY = new myPosition(result.selectPlaceList[cnt].x,result.selectPlaceList[cnt].y,result.selectPlaceList[cnt].placeName);
-            	   
             	   arrXY.push(myXY);
+            	   }
+            	  
+            	   else if(cateCode=='CATE_002'){//관광
+            		   myXY2 = new myPosition(result.selectPlaceList[cnt].x,result.selectPlaceList[cnt].y,result.selectPlaceList[cnt].placeName);
+            		   arrXY2.push(myXY2);
             	   
+            	   }
             	   
+               }
+               if(cateCode=='CATE_001'){
+            	   
+            	   showHouseInfo();
+               }
+               if(cateCode=='CATE_002'){
+               showPlaceInfo();
                }
                
 //            	  for(var cnt =0; cnt<arrXY.length;cnt++){
@@ -291,7 +308,7 @@ $(document).ready(function(){
 //            	  }
      		  
                $(result.selectPlaceList).each(function(index,element){
-            
+            	   
             	  
                	str += '<div class="placeInfo">'
                	str += '	<input type="hidden" value="' + element.x + '" name="x" class="placeX">';
@@ -305,21 +322,11 @@ $(document).ready(function(){
 	               		str += '	<div class="placeTel">연락처 : ' + element.placeTel + '</div>';
 	               	}
                	str +='<input type="button" value="담기" id="saveCourseInfo">';
+               		str +='<input type="hidden" value="'+element.placeAddr+'">';
+               		str +='<input type="button" value="맛집보기" id="showResInfo">';
+               		
+               		
                	
-               	if(cateCode=='CATE_001'){
-               		
-               		str +='<input type="button" value="관광지보기" id="showViewInfo">';
-               		str +='<input type="hidden" value="'+element.placeAddr+'">';
-               		str +='<input type="button" value="맛집보기" id="showResInfo">';
-               	}
-               	if(cateCode=='CATE_002'){
-
-               		str +='<input type="hidden" value="'+element.placeAddr+'">';
-               		str +='<input type="button" value="맛집보기" id="showResInfo">';
-//               		str +='<input type="button" value="숙박지보기" onClick ="showPlaceInfo('+element.x+','+element.y+','+arrXY+')" id="showPlaceInfo">';
-               		str +='<input type="button" value="숙박지보기" onClick ="showPlaceInfo('+element.x+','+element.y+')" id="showPlaceInfo">';
-               		
-               	}
                	
                	str += '</div>';
                 });
@@ -678,6 +685,7 @@ function addMarker(position, idx, title) {
 // 지도 위에 표시되고 있는 마커를 모두 제거합니다
 function removeMarker() {
     for ( var i = 0; i < markers.length; i++ ) {
+    
         markers[i].setMap(null);
     }   
     markers = [];
@@ -751,60 +759,31 @@ function removeAllChildNods(el) {
 	 
 	 
  }
- //숙박지보기 누르는함수
+ //관광지보기 누르는함수
 // function showPlaceInfo(x,y,arrXY){
-	 function showPlaceInfo(x,y){
-
-	 for(var b =0; b<arrXY.length;b++){
+	 function showPlaceInfo(){
+		
+		 positions2=[];
 		 
-//		 console.log('test'+b);
-//		 console.log(arrXY[b]);
+	 for(var e =0;e<arrXY2.length;e++){
+
+	 positions2.push({title:arrXY2[e].placeName,latlng:new kakao.maps.LatLng(arrXY2[e].x,arrXY2[e].y)})
 		 
 	 }
-//	 {
-//		 title: '', 
-//		 latlng: new kakao.maps.LatLng(33.450705, 126.570677)
-//	 }
-	 var positions = [
-	 ];
-	 
-	 for(var e =0;e<arrXY.length;e++){
-	 positions.push({title:arrXY[e].placeName,latlng:new kakao.maps.LatLng(arrXY[e].x,arrXY[e].y)})
-	 }
 	
-//	 for(var e = 0;e <arrXY.length;e++){
-//		
-//		 positions[e].latlng.Ma = arrXY[e].x;
-//		 positions[e].latlng.La = arrXY[e].y;
-//		positions[e].title=arrXY[e].placeName;
-//		
-//		 console.log(positions[e].title);
-//		 console.log(positions[e].latlng.La);
-//		 console.log(positions[e].latlng.Ma);
-////		 console.log(arrXY[e].x);
-////		 console.log(positions[e].latlng);
-//		 
-//	 }
-	
-	//10.29 은아시작
-	 //alert(arrXY[0]);
-//	   arrXY = [];
-//	   positions = [];
-	
-	    mapOption = { 
-	        center: new kakao.maps.LatLng(x,y), // 지도의 중심좌표
-	        level: 3 // 지도의 확대 레벨
-	    };
-
-	  
-	   
+	    
+	  //관광지들
 	// 마커 이미지의 이미지 주소입니다
-	   var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-	       
-	   for (var i = 0; i < positions.length; i ++) {
+
+	   
+	 
+	
+		 var imageSrc = "../resources/images/premium-icon-tourism-3307738.png"; 
+	 
+	   for (var i = 0; i < positions2.length; i ++) {
 	       
 	       // 마커 이미지의 이미지 크기 입니다
-	       var imageSize = new kakao.maps.Size(24, 35); 
+	       var imageSize = new kakao.maps.Size(35, 35); 
 	       
 	       // 마커 이미지를 생성합니다    
 	       var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
@@ -812,10 +791,68 @@ function removeAllChildNods(el) {
 	       // 마커를 생성합니다
 	       var marker = new kakao.maps.Marker({
 	           map: map, // 마커를 표시할 지도
-	           position: positions[i].latlng, // 마커를 표시할 위치
-	           title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+	           position: positions2[i].latlng, // 마커를 표시할 위치
+	           title : positions2[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 	           image : markerImage // 마커 이미지 
 	       });
 	   }
 	 
  }
+	 
+	   function showResInfo(x,y){
+		   mapOption = { 
+			        center: new kakao.maps.LatLng(x,y), // 지도의 중심좌표
+			        level: 3 // 지도의 확대 레벨
+			    };
+		   	//현재위치
+		    //현재위치의 마커 생성
+
+			    
+			    var imageSrcNow = "../resources/images/you-are-here.png"
+			    
+			    var imageSizeNow = new kakao.maps.Size(35,35);
+			    
+			    var markerImageNow = new kakao.maps.MarkerImage(imageSrcNow, imageSizeNow); 
+			    	
+			    
+			    var markerNow = new kakao.maps.Marker({
+			    	map: map,
+			    	position: new kakao.maps.LatLng(x,y),
+			    	title:"현재 위치",
+			    	image:markerImageNow
+			    });
+	   }
+	   
+	   function showHouseInfo(){
+		   
+			 positions=[];
+			 
+			 for(var e =0;e<arrXY.length;e++){
+
+			 positions.push({title:arrXY[e].placeName,latlng:new kakao.maps.LatLng(arrXY[e].x,arrXY[e].y)})
+				 
+			 }
+			    
+			  //숙박지
+			// 마커 이미지의 이미지 주소입니다
+			
+				 var imageSrc = "../resources/images/free-icon-home-insurance-1456946.png"; 
+			 
+			   for (var i = 0; i < positions.length; i ++) {
+			       
+			       // 마커 이미지의 이미지 크기 입니다
+			       var imageSize = new kakao.maps.Size(35, 35); 
+			       
+			       // 마커 이미지를 생성합니다    
+			       var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+			       
+			       // 마커를 생성합니다
+			       var marker = new kakao.maps.Marker({
+			           map: map, // 마커를 표시할 지도
+			           position: positions[i].latlng, // 마커를 표시할 위치
+			           title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+			           image : markerImage // 마커 이미지 
+			       });
+			   }
+	   }
+	 
