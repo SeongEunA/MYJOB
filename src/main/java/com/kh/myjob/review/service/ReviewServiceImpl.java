@@ -59,5 +59,9 @@ public class ReviewServiceImpl implements ReviewService {
 	public int selectNextReviewNumber() {
 		return sqlSession.selectOne("reviewMapper.selectNextReviewNumber");
 	}
+	@Override
+	public List<ReviewReplyVO> manageReplyList() {
+		return sqlSession.selectList("reviewMapper.manageReplyList");
+	}
 
 }

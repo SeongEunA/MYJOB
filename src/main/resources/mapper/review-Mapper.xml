@@ -127,6 +127,21 @@
 			, #{reviewBoardCode}
 		)
 	</insert>
+	
+	<!--후기관리게시판에 댓글목록 조회  -->
+	<select id="manageReplyList" resultMap="reviewReply">
+		SELECT REVIEW_REPLY_CODE
+			, REVIEW_REPLY_WRITER 
+			, REVIEW_REPLY_REG_DATE
+			, REVIEW_REPLY_CONTENT
+			, REVIEW_BOARD_CODE
+		FROM REVIEW_REPLY
+		ORDER BY REVIEW_REPLY_CODE
+	</select>
+	
+	
+	
+	
 	<!--후기게시판에 댓글목록 조회  -->
 	<select id="selectReviewReplyList" resultMap="reviewReply">
 		SELECT REVIEW_REPLY_CODE

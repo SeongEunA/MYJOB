@@ -39,7 +39,8 @@ public interface ReviewService {
 	//후기게시판에 댓글삭제
 	int deleteReiviewReply(ReviewReplyVO reviewReplyVO);
 	
-	
+	//댓글관리게시판에 댓글목록조회
+	List<ReviewReplyVO> manageReplyList();
 	
 	
 }
