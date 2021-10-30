@@ -38,15 +38,20 @@ td{
 	padding: 10px;
 	
 }
-.manageBtnDiv{
+.manageBtnDiv1{
+	margin-bottom: 10px;
+	text-align: right;
+}
+.manageBtnDiv2{
 	margin-top: 10px;
 	text-align: right;
 }
-.UpdateDetailMyInfoBtnDiv{
+
+.DeleteMemberBtnDiv{
 	display: inline-block;
 }
 
-.DeleteDetailMyInfoBtnDiv{
+.UpdateMyInfoBtnDiv{
 	display: inline-block;
 }
 
@@ -56,6 +61,9 @@ td{
 마이페이지입니다.
 	<div class="container">
 		<div>
+			<div class="manageBtnDiv1">
+				<div class="DeleteMemberBtnDiv"><input type="button" id="deleteMemberBtn" value="회원탈퇴" onclick="deleteMember('${detailMyInfo.memberCode }');"></div>
+			</div>
 			<table>
 			<colgroup>
 				<col width="10%">
@@ -88,9 +96,8 @@ td{
 					<td>${detailMyInfo.memberJoinDate }</td>
 				</tr>
 			</table>
-			<div class="manageBtnDiv">
-				<div class="UpdateDetailMyInfoBtnDiv"><input type="button" id="deleteMemberBtn" value="수정"></div>
-				<div class="DeleteDetailMyInfoBtnDiv"><input type="button" id="deleteMemberBtn" value="회원탈퇴" onclick="deleteMember('${detailMyInfo.memberCode }');"></div>
+			<div class="manageBtnDiv2">
+				<div class="UpdateMyInfoBtnDiv"><input type="button" id="UpdateMyInfoBtn" value="수정"></div>
 			</div>
 		</div>
 	</div>

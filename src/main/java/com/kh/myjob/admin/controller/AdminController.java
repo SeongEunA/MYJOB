@@ -59,10 +59,17 @@ public class AdminController {
 		return "admin/review_manage";
 	}
 	
+	//코스후기 삭제
+	@GetMapping("/deleteReviewBoard")
+	public String deleteReviewBoard(String reviewBoardCode, Model model) {
+		model.addAttribute("deleteReviewBoardResult", reviewService.deleteReviewBoard(reviewBoardCode));
+		return "admin/delete_review_board_result";
+		}
+	
 	//댓글 관리 페이지로 이동
 	@GetMapping("/replyManage")
 	public String goReplyManage(Model model) {
-//		model.addAttribute("replyList", reviewService.selectReviewReplyList(reviewReplyVO));
+		model.addAttribute("replyList", reviewService.manageReplyList());
 		return "admin/reply_manage";
 	}
 	
@@ -80,6 +87,12 @@ public class AdminController {
 		return "admin/notice_board_detail_manage";
 	}
 	
+	//공지사항 삭제
+	@GetMapping("/deleteNoticeBoard")
+	public String deleteNoticeBoard(String noticeBoardCode, Model model) {
+		model.addAttribute("deleteNoticeBoardResult", commonService.deleteNoticeBoard(noticeBoardCode));
+		return "admin/delete_notice_board_result";
+	}
 
 	
 	

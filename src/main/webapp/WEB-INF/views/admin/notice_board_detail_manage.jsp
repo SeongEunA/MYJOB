@@ -5,6 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function deleteNoticeBoard(noticeBoardCode) {
+		var result = confirm('정말로 삭제하시겠습니까?');
+		if(result){
+			location.href='/admin/deleteNoticeBoard?noticeBoardCode=' + noticeBoardCode;
+		}
+		
+	}
+</script>
 <style type="text/css">
 .container{
 	width: 1000px;
@@ -51,7 +60,7 @@ td{
 </style>
 </head>
 <body>
-공지사항 상세관리페이지 입니다.
+공지사항 상세관리 페이지 입니다.
 <div class="container">
 	<div>
 		<table>
@@ -78,8 +87,8 @@ td{
 			</tr>
 		</table>
 		<div class="manageBtnDiv">
-			<div class="updateNoticeBoardBtnDiv"><input type="button" id="" value="수정" onclick=""></div>
-			<div class="deleteNoticeBoardBtnDiv"><input type="button" id="" value="삭제" onclick=""></div>
+			<div class="updateNoticeBoardBtnDiv"><input type="button" id="updateNoticeBoardBtn" value="수정" onclick=""></div>
+			<div class="deleteNoticeBoardBtnDiv"><input type="button" id="deleteNoticeBoardBtn" value="삭제" onclick="deleteNoticeBoard('${detailNoticeBoard.noticeBoardCode }');"></div>
 		</div>
 	</div>
 </div>

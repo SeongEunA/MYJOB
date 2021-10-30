@@ -63,5 +63,11 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<ReviewReplyVO> manageReplyList() {
 		return sqlSession.selectList("reviewMapper.manageReplyList");
 	}
+	@Override
+	public boolean deleteReviewBoard(String reviewBoardCode) {
+		//리뷰게시글 삭제 성공 : true, 리뷰게시글 삭제 실패 : false
+		int result = sqlSession.delete("reviewMapper.deleteReviewBoard", reviewBoardCode);
+		return result == 1 ? true : false;
+	}
 
 }

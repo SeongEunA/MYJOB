@@ -111,7 +111,7 @@ td{
 				  <c:forEach items="${reviewList }" var="reviewListInfo">
 					    <tr>
 					      	<td><a  style="color: black; text-decoration-line: none;">rowNum</a></td>
-					      	<td><a  style="color: black; text-decoration-line: none;" href="/admin/detailReview?reviewBoardCode=${reviewListInfo.reviewBoardCode }">${reviewListInfo.reviewBoardTitle }</a></td>
+					      	<td><a  style="color: black; text-decoration-line: none;" href="/review/detailReview?reviewBoardCode=${reviewListInfo.reviewBoardCode }">${reviewListInfo.reviewBoardTitle }</a></td>
 					      	<td><a  style="color: black; text-decoration-line: none;">${reviewListInfo.reviewBoardWriter }</a></td>
 					      	<td><a  style="color: black; text-decoration-line: none;">${reviewListInfo.reviewBoardRegDate }</a></td>
 					    </tr>  

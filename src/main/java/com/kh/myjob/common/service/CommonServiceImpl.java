@@ -23,5 +23,12 @@ public class CommonServiceImpl implements CommonService{
 		return sqlsession.selectOne("commonMapper.selectDetailNoticeBoard", noticeBoardCode);
 	}
 
+	@Override
+	public boolean deleteNoticeBoard(String noticeBoardCode) {
+		//공지사항 삭제 성공 : true, 공지사항 삭제 실패 : false
+		int result = sqlsession.delete("commonMapper.deleteNoticeBoard", noticeBoardCode);
+		return result == 1 ? true : false;
+	}
+
 	
 }

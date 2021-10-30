@@ -78,7 +78,7 @@ public class MemberController {
 	//마이페이지로 이동
 	@GetMapping("/myPage")
 	public String goMyPage(String memberCode, Model model) {
-		model.addAttribute("detailMyInfo", memberService.selectDetailMyInfo(memberCode));
+		model.addAttribute("detailMyInfo", memberService.selectDetailMember(memberCode));
 		return "member/my_page";
 	}
 	

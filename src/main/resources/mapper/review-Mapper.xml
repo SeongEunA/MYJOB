@@ -113,6 +113,13 @@
 	    WHERE REVIEW_BOARD_CODE = #{reviewBoardCode}
 		</if>
 	</update>
+	
+	<!-- 후기게시글 삭제 -->
+	<delete id="deleteReviewBoard">
+		DELETE REVIEW_BOARD
+		WHERE REVIEW_BOARD_CODE = #{reviewBoardCode}
+	</delete>
+	
 	<!--후기게시판 댓글등록  -->
 	<insert id="regReply">
 		INSERT INTO REVIEW_REPLY(

@@ -11,4 +11,7 @@ public interface CommonService {
 	
 	//공지사항 상세조회
 	NoticeBoardVO selectDetailNoticeBoard(String noticeBoardCode);
+	
+	//공지사항 삭제
+	boolean deleteNoticeBoard(String noticeBoardCode);
 }

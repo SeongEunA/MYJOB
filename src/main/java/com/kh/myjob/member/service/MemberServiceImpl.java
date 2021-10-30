@@ -39,10 +39,12 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO selectDetailMember(String memberCode) {
 		return sqlsession.selectOne("memberMapper.selectDetailMember", memberCode);
 	}
-
+	
 	@Override
-	public MemberVO selectDetailMyInfo(String memberCode) {
-		return sqlsession.selectOne("memberMapper.selectDetailMyInfo", memberCode);
+	public boolean deleteMember(String memberCode) {
+		//회원삭제 성공 : true, 회원삭제 실패 : false
+		int result = sqlsession.delete("memberMapper.deleteMember", memberCode);
+		return result == 1 ? true : false;
 	}
 	
 	@Override
@@ -59,12 +61,6 @@ public class MemberServiceImpl implements MemberService{
 		return result == null ? false : true;
 	}
 
-	@Override
-	public boolean deleteMember(String memberCode) {
-		//회원삭제 성공 : true, 회원삭제 실패 : false
-		int result = sqlsession.delete("memberMapper.deleteMember", memberCode);
-		return result == 1 ? true : false;
-	}
 
 	
 	

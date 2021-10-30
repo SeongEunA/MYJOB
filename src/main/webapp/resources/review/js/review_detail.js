@@ -216,8 +216,15 @@ for (var i = 0; i < positions.length; i++) {
 	
 	
 	
-	} 
-	
+	}
+	//후기 상세페이지에서 관리자가 삭제버튼을 누르면 얼럿창 함수발생
+	deleteReviewBoard = function(reviewBoardCode) {
+		var result = confirm('정말로 삭제하시겠습니까?');
+		if(result){
+			location.href='/admin/deleteReviewBoard?reviewBoardCode=' + reviewBoardCode;
+		}
+		
+	}
 	
 	
 	
