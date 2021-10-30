@@ -38,36 +38,49 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<ReviewVO> selectReviewList() {
 		return sqlSession.selectList("reviewMapper.selectReviewList");
 	}
+	
+	@Override
+	public List<ReviewVO> manageReviewList() {
+		return sqlSession.selectList("reviewMapper.manageReviewList");
+	}
 
 	@Override
 	public List<ReviewReplyVO> selectReviewReplyList(ReviewReplyVO reviewReplyVO) {
 		return sqlSession.selectList("reviewMapper.selectReviewReplyList", reviewReplyVO);
 	}
+	
 	@Override
 	public int deleteReiviewReply(ReviewReplyVO reviewReplyVO) {
 		return sqlSession.delete("reviewMapper.deleteReiviewReply", reviewReplyVO);
 	}
+	
 	@Override
 	public String selectNextReviewBoardCode() {
 		return sqlSession.selectOne("reviewMapper.selectNextReviewBoardCode");
 	}
+	
 	@Override
 	public void insertReviewImg(ReviewVO reviewVO) {
 		sqlSession.insert("reviewMapper.insertReviewImg", reviewVO);
 	}
+	
 	@Override
 	public int selectNextReviewNumber() {
 		return sqlSession.selectOne("reviewMapper.selectNextReviewNumber");
 	}
+	
 	@Override
 	public List<ReviewReplyVO> manageReplyList() {
 		return sqlSession.selectList("reviewMapper.manageReplyList");
 	}
+	
 	@Override
 	public boolean deleteReviewBoard(String reviewBoardCode) {
 		//리뷰게시글 삭제 성공 : true, 리뷰게시글 삭제 실패 : false
 		int result = sqlSession.delete("reviewMapper.deleteReviewBoard", reviewBoardCode);
 		return result == 1 ? true : false;
 	}
+	
+	
 
 }

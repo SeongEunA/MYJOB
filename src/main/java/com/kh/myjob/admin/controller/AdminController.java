@@ -55,7 +55,7 @@ public class AdminController {
 	//코스후기 관리 페이지로 이동
 	@GetMapping("/reviewManage")
 	public String goReviewManage(Model model) {
-		model.addAttribute("reviewList", reviewService.selectReviewList());
+		model.addAttribute("reviewList", reviewService.manageReviewList());
 		return "admin/review_manage";
 	}
 	
