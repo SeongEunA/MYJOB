@@ -52,7 +52,7 @@ public class ReviewController {
 		//name 속성 값으로 첨부파일을 가져온다
 		Iterator<String> inpuNames = multi.getFileNames();
 		//첨부할 경로
-		String uploadPath = "C:\\Users\\kh202-04\\git\\MYJOB\\src\\main\\webapp\\resources\\images\\";
+		String uploadPath = "C:\\Users\\이정우\\git\\MYJOB\\src\\main\\webapp\\resources\\images\\";
 		// 첨부파일의 정보를 받을 통
 		List<ReviewImgVO> imgList = new ArrayList<>();
 		//다음 리뷰코드조회

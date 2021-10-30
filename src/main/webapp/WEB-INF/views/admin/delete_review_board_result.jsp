@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 	<c:if test="${deleteReviewBoardResult }">
 		<script type="text/javascript">
-			alert('해당 공지사항이 삭제되었습니다.')
+			alert('해당 리뷰게시물이 삭제되었습니다.')
 			location.href='/admin/reviewManage';
 		</script>
 	</c:if>

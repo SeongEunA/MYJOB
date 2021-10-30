@@ -7,7 +7,7 @@
 <meta charset="utf-8"/>
 <title>Kakao 지도 시작하기</title>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=70d7b169893841eb187f9823a06d83f4"></script>
-<script type="text/javascript" src="/resources/review/js/review_detail.js?ver=55"></script>
+<script type="text/javascript" src="/resources/review/js/review_detail.js?ver=56"></script>
 <style type="text/css">
 .contentDiv{
 	width: 1100px;
@@ -15,10 +15,13 @@
 	margin-bottom: 35px;
 }
 
-.deleteReviewBoardBtnDiv{
-	display: inline-block;
+.manageBtnDiv{
 	margin-bottom: 10px;
 	text-align: right;
+}
+
+.deleteReviewBoardBtnDiv{
+	display: inline-block;
 }
 
 #map{
@@ -29,8 +32,10 @@
 </head>
 <body>
 	<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' }">
-		<div class="deleteReviewBoardBtnDiv">
-			<input type="button" id="deleteReviewBoardBtn" value="삭제" onclick="deleteReviewBoard('${review.reviewBoardCode}');">
+		<div class="manageBtnDiv">
+			<div class="deleteReviewBoardBtnDiv">
+				<input type="button" id="deleteReviewBoardBtn" value="삭제" onclick="deleteReviewBoard('${review.reviewBoardCode}');">
+			</div>
 		</div>
 	</c:if>
 	
