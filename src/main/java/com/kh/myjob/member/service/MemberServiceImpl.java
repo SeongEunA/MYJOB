@@ -41,11 +41,15 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
+	public MemberVO selectDetailMyInfo(String memberCode) {
+		return sqlsession.selectOne("memberMapper.selectDetailMyInfo", memberCode);
+	}
+	
+	@Override
 	public boolean isJoined(String memberId) {
 		//기가입 : true, 미가입 : false
 		String result = sqlsession.selectOne("memberMapper.isJoined", memberId);
 		return result == null ? false : true;
-		
 	}
 
 	@Override
@@ -61,6 +65,7 @@ public class MemberServiceImpl implements MemberService{
 		int result = sqlsession.delete("memberMapper.deleteMember", memberCode);
 		return result == 1 ? true : false;
 	}
+
 	
 	
 

@@ -59,6 +59,7 @@
 			AND MEMBER_PW = #{memberPw}
 		</select>
 		
+		
 		<select id="selectMemberList" resultMap="member">
 			SELECT MEMBER_CODE
 			  , MEMBER_ID
@@ -68,6 +69,7 @@
 			WHERE MEMBER_IS_ADMIN = 'N'
 			ORDER BY MEMBER_CODE DESC
 		</select>
+		
 		
 		<select id="selectDetailMember" resultMap="member">
 			SELECT MEMBER_CODE
@@ -84,11 +86,29 @@
 			WHERE MEMBER_CODE = #{memberCode}
 		</select>
 		
+		
+		<select id="selectDetailMyInfo" resultMap="member">
+			SELECT MEMBER_CODE
+			  , MEMBER_ID
+			  , MEMBER_NAME
+			  , MEMBER_PW
+			  , MEMBER_TEL
+			  , MEMBER_ADDR
+			  , MEMBER_EMAIL
+			  , MEMBER_IS_ADMIN
+			  , MEMBER_GENDER
+			  , TO_CHAR(MEMBER_JOIN_DATE, 'YYYY.MM.DD') AS MEMBER_JOIN_DATE
+			FROM MEMBER
+			WHERE MEMBER_CODE = #{memberCode}
+		</select>
+		
+		
 		<select id="emailCheck" resultType="String">
 			SELECT MEMBER_EMAIL
 			FROM MEMBER
 			WHERE MEMBER_EMAIL = #{memberEmail}
 		</select>
+		
 		
 		<delete id="deleteMember">
 			DELETE MEMBER

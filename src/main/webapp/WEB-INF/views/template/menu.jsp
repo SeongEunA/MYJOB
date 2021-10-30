@@ -26,7 +26,7 @@ span{
 					<div>&nbsp;</div>
 					<c:choose>
 						<c:when test="${sessionScope.loginInfo.memberIsAdmin eq 'N' }">
-							<a href="/member/myPage" style="color: black; text-decoration-line: none;">마이페이지</a>
+							<a href="/member/myPage?memberCode=${sessionScope.loginInfo.memberCode }" style="color: black; text-decoration-line: none;">마이페이지</a>
 						</c:when>
 						<c:otherwise>
 							<a href="/admin/adminPage" style="color: black; text-decoration-line: none;">관리자페이지</a>

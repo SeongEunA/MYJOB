@@ -23,6 +23,9 @@ public interface MemberService {
 	//회원목록 상세조회
 	MemberVO selectDetailMember(String memberCode);
 	
+	//내정보 상세조회
+	MemberVO selectDetailMyInfo(String memberCode);
+	
 	//Email중복확인
 	boolean emailCheck(String memberEmail);
 	

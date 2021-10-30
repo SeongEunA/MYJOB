@@ -61,7 +61,8 @@ public class AdminController {
 	
 	//댓글 관리 페이지로 이동
 	@GetMapping("/replyManage")
-	public String goReplyManage() {
+	public String goReplyManage(Model model) {
+//		model.addAttribute("replyList", reviewService.selectReviewReplyList(reviewReplyVO));
 		return "admin/reply_manage";
 	}
 	

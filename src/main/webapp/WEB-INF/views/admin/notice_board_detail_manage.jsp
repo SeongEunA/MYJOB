@@ -40,11 +40,11 @@ td{
 	text-align: right;
 }
 
-.updateNoticeBoardDiv{
+.updateNoticeBoardBtnDiv{
 	display: inline-block;
 }
 
-.deleteNoticeBoardDiv{
+.deleteNoticeBoardBtnDiv{
 	display: inline-block;
 }
 
@@ -78,8 +78,8 @@ td{
 			</tr>
 		</table>
 		<div class="manageBtnDiv">
-			<div class="updateNoticeBoardDiv"><input type="button" id="" value="수정" onclick=""></div>
-			<div class="deleteNoticeBoardDiv"><input type="button" id="" value="삭제" onclick=""></div>
+			<div class="updateNoticeBoardBtnDiv"><input type="button" id="" value="수정" onclick=""></div>
+			<div class="deleteNoticeBoardBtnDiv"><input type="button" id="" value="삭제" onclick=""></div>
 		</div>
 	</div>
 </div>

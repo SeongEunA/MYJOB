@@ -75,8 +75,8 @@ td{
 					<td>
 						<select name="searchKeyword">
 								<option selected>전  체</option>
-							<option value="MEMBER_ID">아이디</option>
-							<option value="MEMBER_NAME">이 름</option>
+							<option value="REVIEW_REPLY_WRITER">작성자</option>
+							<option value="REVIEW_REPLY_CONTENT">내 용</option>
 						</select>
 					</td>
 					<td>
