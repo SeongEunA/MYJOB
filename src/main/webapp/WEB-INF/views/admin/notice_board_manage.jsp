@@ -108,9 +108,9 @@ td{
 					</tr>
 				</thead>
 				<tbody>
-					  <c:forEach items="${noticeBoardList }" var="noticeBoardInfo">
+					  <c:forEach items="${noticeBoardList }" var="noticeBoardInfo" varStatus="i">
 						    <tr>
-						      	<td><a  style="color: black; text-decoration-line: none;">rowNum</a></td>
+						      	<td><a  style="color: black; text-decoration-line: none;">${noticeBoardList.size() - i.index }</a></td>
 						      	<td><a  style="color: black; text-decoration-line: none;" href="/admin/manageNoticeBoard?noticeBoardCode=${noticeBoardInfo.noticeBoardCode }">${noticeBoardInfo.boardSubject }</a></td>
 						      	<td><a  style="color: black; text-decoration-line: none;">${noticeBoardInfo.boardWriter }</a></td>
 						      	<td><a  style="color: black; text-decoration-line: none;">${noticeBoardInfo.regDate }</a></td>

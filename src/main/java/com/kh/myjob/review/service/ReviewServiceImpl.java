@@ -81,6 +81,18 @@ public class ReviewServiceImpl implements ReviewService {
 		return result == 1 ? true : false;
 	}
 	@Override
+	public ReviewReplyVO selectReplyDetail(String reviewReplyCode) {
+		return sqlSession.selectOne("reviewMapper.selectReplyDetail", reviewReplyCode);
+	}
+	
+	@Override
+	public boolean deleteReviewReplyManage(String reviewReplyCode) {
+		//댓글 삭제 성공 : true, 댓글 삭제 실패 : false
+		int result = sqlSession.delete("reviewMapper.deleteReviewReplyManage", reviewReplyCode);
+		return result == 1 ? true : false;
+	}
+	
+	@Override
 	public int selectReviewCnt(ReviewVO reviewVO) {
 		return sqlSession.selectOne("reviewMapper.selectReviewCnt", reviewVO);
 	}

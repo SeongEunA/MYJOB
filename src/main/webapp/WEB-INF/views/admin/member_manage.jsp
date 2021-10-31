@@ -107,9 +107,9 @@ td{
 				</tr>
 			</thead>
 			<tbody>
-				  <c:forEach items="${memberList }" var="memberListInfo">
+				  <c:forEach items="${memberList }" var="memberListInfo" varStatus="i">
 					    <tr>
-					      	<td><a  style="color: black; text-decoration-line: none;">rowNum</a></td>
+					      	<td><a  style="color: black; text-decoration-line: none;">${memberList.size() - i.index }</a></td>
 					      	<td><a  style="color: black; text-decoration-line: none;" href="/admin/detailMember?memberCode=${memberListInfo.memberCode }">${memberListInfo.memberId }</a></td>
 					      	<td><a  style="color: black; text-decoration-line: none;">${memberListInfo.memberName }</a></td>
 					      	<td><a  style="color: black; text-decoration-line: none;">${memberListInfo.memberJoinDate }</a></td>

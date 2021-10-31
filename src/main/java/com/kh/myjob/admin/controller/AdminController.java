@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.kh.myjob.common.service.CommonService;
 import com.kh.myjob.member.service.MemberService;
 import com.kh.myjob.review.service.ReviewService;
+import com.kh.myjob.review.vo.ReviewReplyVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -38,7 +39,7 @@ public class AdminController {
 		return "admin/member_manage";
 	}
 	
-	//회원 관리 상세 페이지로 이동
+	//회원 관리 상세페이지로 이동
 	@GetMapping("/detailMember")
 	public String detailMember(String memberCode, Model model) {
 		model.addAttribute("detailMember", memberService.selectDetailMember(memberCode));
@@ -52,7 +53,7 @@ public class AdminController {
 		return "admin/delete_member_result";
 	}
 	
-	//코스후기 관리 페이지로 이동
+	//코스후기 관리페이지로 이동
 	@GetMapping("/reviewManage")
 	public String goReviewManage(Model model) {
 		model.addAttribute("reviewList", reviewService.manageReviewList());
@@ -71,6 +72,20 @@ public class AdminController {
 	public String goReplyManage(Model model) {
 		model.addAttribute("replyList", reviewService.manageReplyList());
 		return "admin/reply_manage";
+	}
+	
+	//댓글 관리 상세페이지로 이동
+	@GetMapping("/detailReply")
+	public String goDetailReply(Model model, String reviewReplyCode) {
+		model.addAttribute("detailReply", reviewService.selectReplyDetail(reviewReplyCode));
+		return "admin/reply_detail_manage";
+	}
+	
+	//댓글 삭제
+	@GetMapping("/deleteReviewReply")
+	public String deleteReply(Model model, String reviewReplyCode) {
+		model.addAttribute("deleteReplyResult", reviewService.deleteReviewReplyManage(reviewReplyCode));
+		return "admin/delete_reply_result";
 	}
 	
 	//공지사항 관리 페이지로 이동

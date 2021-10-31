@@ -106,9 +106,9 @@ td{
 				</tr>
 			</thead>
 			<tbody>
-				  <c:forEach items="${replyList }" var="replyListInfo">
+				  <c:forEach items="${replyList }" var="replyListInfo" varStatus="i">
 					    <tr>
-					      	<td><a  style="color: black; text-decoration-line: none;">rowNum</a></td>
+					      	<td><a  style="color: black; text-decoration-line: none;">${replyList.size() - i.index }</a></td>
 					      	<td><a  style="color: black; text-decoration-line: none;" href="/admin/detailReply?reviewReplyCode=${replyListInfo.reviewReplyCode }">${replyListInfo.reviewReplyWriter }</a></td>
 					      	<td><a  style="color: black; text-decoration-line: none;">${replyListInfo.reviewReplyRegDate }</a></td>
 					    </tr>  
