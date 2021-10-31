@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.myjob.common.service.CommonService;
+import com.kh.myjob.common.vo.NoticeBoardVO;
 
 
 @Controller
@@ -24,9 +25,18 @@ public class CommonController {
 	}
 	
 	//공지사항 페이지로 이동
-	@GetMapping("/noticeBoard")
-	public String goNoticeBoard(Model model) {
-		model.addAttribute("noticeBoardList", commonService.selectNoticeBoardList());
+	@RequestMapping("/noticeBoard")
+	public String goNoticeBoard(Model model, NoticeBoardVO noticeBoardVO) {
+		
+		//전체 데이터 수
+		int dataCnt = commonService.selectNoticeBoardCnt(noticeBoardVO);
+		noticeBoardVO.setTotalCnt(dataCnt);
+			
+		//페이징 처리
+		noticeBoardVO.setPageInfo();
+		
+		
+		model.addAttribute("noticeBoardList", commonService.selectNoticeBoardList(noticeBoardVO));
 		return "common/notice_board";
 	}
 	

@@ -14,8 +14,8 @@ public class CommonServiceImpl implements CommonService{
 	private SqlSessionTemplate sqlsession;
 	
 	@Override
-	public List<NoticeBoardVO> selectNoticeBoardList() {
-		return sqlsession.selectList("commonMapper.selectNoticeBoardList");
+	public List<NoticeBoardVO> selectNoticeBoardList(NoticeBoardVO noticeBoardVO) {
+		return sqlsession.selectList("commonMapper.selectNoticeBoardList", noticeBoardVO);
 	}
 
 	@Override
@@ -28,6 +28,11 @@ public class CommonServiceImpl implements CommonService{
 		//공지사항 삭제 성공 : true, 공지사항 삭제 실패 : false
 		int result = sqlsession.delete("commonMapper.deleteNoticeBoard", noticeBoardCode);
 		return result == 1 ? true : false;
+	}
+
+	@Override
+	public int selectNoticeBoardCnt(NoticeBoardVO noticeBoardVO) {
+		return sqlsession.selectOne("commonMapper.selectNoticeBoardCnt", noticeBoardVO);
 	}
 
 	

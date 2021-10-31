@@ -1,6 +1,6 @@
 package com.kh.myjob.common.vo;
 
-public class NoticeBoardVO {
+public class NoticeBoardVO extends PageVO{
 	private String noticeBoardCode;
 	private String boardSubject;
 	private String boardContent;

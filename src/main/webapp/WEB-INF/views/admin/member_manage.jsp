@@ -58,13 +58,16 @@ td{
 	padding: 10px;
 }
 
+.row{
+	margin-top: 30px;
+}
 </style>
 </head>
 <body>
 회원 관리 페이지입니다.
 <div class="container">
 	<div class="searchDiv">
-		<form action="">
+		<form action="/admin/memberManage" method="post">
 			<table class="searchTable">
 			<colgroup>
 				<col width="20%">
@@ -74,16 +77,16 @@ td{
 				<tr>
 					<td>
 						<select name="searchKeyword">
-								<option selected>전  체</option>
-							<option value="REVIEW_REPLY_WRITER">작성자</option>
-							<option value="REVIEW_REPLY_CONTENT">내 용</option>
+							<option selected>전  체</option>
+							<option value="MEMBER_ID" <c:if test="${memberVO.searchKeyword eq 'MEMBER_ID'}">selected</c:if>>아이디</option>
+							<option value="MEMBER_NAME" <c:if test="${memberVO.searchKeyword eq 'MEMBER_NAME'}">selected</c:if>>이 름</option>
 						</select>
 					</td>
 					<td>
-						<input type="text" name="searchValue" value="">
+						<input type="text" name="searchValue" value="${memberVO.searchValue }">
 					</td>
 					<td>
-						<button type="button">검색</button>
+						<button type="submit">검색</button>
 					</td>
 				</tr>
 			</table>
@@ -119,5 +122,31 @@ td{
 		</table>
 	</div>
 </div>
+
+${memberVO.beginPage }
+${memberVO.endPage }
+<div class="row">
+	<div class="col text-center">
+		<nav aria-label="...">
+			<ul class="pagination justify-content-center">
+				<li class="page-item <c:if test="${!memberVO.prev }">disabled</c:if>">
+					<a class="page-link" href="/admin/memberManage?nowPage=${memberVO.beginPage - 1 }">Prev</a>
+				</li>
+				
+				<c:forEach begin="${memberVO.beginPage }" end="${memberVO.endPage }" var="pageNumber">
+					<li class="page-item <c:if test="${memberVO.nowPage eq pageNumber }">active</c:if>">
+						<a class="page-link" href="/admin/memberManage?nowPage=${pageNumber }&searchKeyword=${memberVO.searchKeyword}&searchValue=${memberVO.searchValue}">${pageNumber }</a>
+					</li>
+				</c:forEach>
+				
+				<li class="page-item <c:if test="${!memberVO.next }">disabled</c:if>">
+					<a class="page-link" href="/admin/memberManage?nowPage=${memberVO.endPage + 1 }">Next</a>
+				</li>
+			</ul>
+		</nav>
+	</div>	
+</div>
+
+
 </body>
 </html>

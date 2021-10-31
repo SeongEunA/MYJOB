@@ -65,12 +65,32 @@
 		<!-- 맴버리스트 전체조회 -->
 		<select id="selectMemberList" resultMap="member">
 			SELECT MEMBER_CODE
-			  , MEMBER_ID
-			  , MEMBER_NAME
-			  , TO_CHAR(MEMBER_JOIN_DATE, 'YYYY.MM.DD') AS MEMBER_JOIN_DATE
-			FROM MEMBER
-			WHERE MEMBER_IS_ADMIN = 'N'
-			ORDER BY MEMBER_CODE DESC
+	       		  , MEMBER_ID
+	       		  , MEMBER_NAME
+				  , MEMBER_JOIN_DATE
+	        	  , ROW_NUM
+	     		FROM
+	     		(
+	     			SELECT MEMBER_CODE
+	       			  , MEMBER_ID
+	       			  , MEMBER_NAME
+	        		  , MEMBER_JOIN_DATE
+	        		  , ROWNUM AS ROW_NUM
+	     			FROM
+	     			(
+	      				SELECT MEMBER_CODE
+	        			  , MEMBER_ID
+	        			  , MEMBER_NAME
+	         			  , TO_CHAR(MEMBER_JOIN_DATE, 'YYYY.MM.DD') AS MEMBER_JOIN_DATE
+		      			FROM MEMBER
+						WHERE MEMBER_IS_ADMIN = 'N'
+		      			<if test="searchValue != null and !searchValue.equals('')">
+		      			AND ${searchKeyword} LIKE '%'||#{searchValue}||'%'
+		      			</if>
+		      			ORDER BY MEMBER_CODE DESC
+	     			)
+	     		)
+				WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 		</select>
 		
 		<!-- 맴버 상세조회 -->
@@ -101,6 +121,16 @@
 			DELETE MEMBER
 			WHERE MEMBER_CODE = #{memberCode}
 		</delete>
+		
+		
+		<!-- 게시글 전체 데이터 개수 조회 -->
+		<select id="selectMemberCnt" resultType="int">
+			SELECT COUNT(MEMBER_CODE)
+			FROM MEMBER
+			<if test="searchValue != null and !searchValue.equals('')">
+	      	WHERE ${searchKeyword} LIKE '%'||#{searchValue}||'%'
+	      	</if>
+		</select>
 		
 
 </mapper>

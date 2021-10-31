@@ -31,8 +31,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<MemberVO> selectMemberList() {
-		return sqlsession.selectList("memberMapper.selectMemberList");
+	public List<MemberVO> selectMemberList(MemberVO memberVO) {
+		return sqlsession.selectList("memberMapper.selectMemberList", memberVO);
 	}
 
 	@Override
@@ -59,6 +59,11 @@ public class MemberServiceImpl implements MemberService{
 		//이메일 중복 : true, 이메일 미중복 : false
 		String result = sqlsession.selectOne("memberMapper.emailCheck", memberEmail);
 		return result == null ? false : true;
+	}
+
+	@Override
+	public int selectMemberCnt(MemberVO memberVO) {
+		return sqlsession.selectOne("memberMapper.selectMemberCnt", memberVO);
 	}
 
 

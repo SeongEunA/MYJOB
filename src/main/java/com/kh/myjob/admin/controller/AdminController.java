@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.myjob.common.service.CommonService;
+import com.kh.myjob.common.vo.NoticeBoardVO;
 import com.kh.myjob.member.service.MemberService;
+import com.kh.myjob.member.vo.MemberVO;
 import com.kh.myjob.review.service.ReviewService;
 import com.kh.myjob.review.vo.ReviewReplyVO;
 
@@ -33,9 +35,19 @@ public class AdminController {
 	}
 	
 	//회원 관리 페이지로 이동
-	@GetMapping("/memberManage")
-	public String goMemberManage(Model model) {
-		model.addAttribute("memberList", memberService.selectMemberList());
+	@RequestMapping("/memberManage")
+	public String goMemberManage(Model model, MemberVO memberVO) {
+		
+		
+		//전체 데이터 수
+		int dataCnt = memberService.selectMemberCnt(memberVO);
+		memberVO.setTotalCnt(dataCnt);
+			
+		//페이징 처리
+		memberVO.setPageInfo();
+		
+		
+		model.addAttribute("memberList", memberService.selectMemberList(memberVO));
 		return "admin/member_manage";
 	}
 	
@@ -90,8 +102,8 @@ public class AdminController {
 	
 	//공지사항 관리 페이지로 이동
 	@GetMapping("/noticeBoardManage")
-	public String goNoticeBoardManage(Model model) {
-		model.addAttribute("noticeBoardList", commonService.selectNoticeBoardList());
+	public String goNoticeBoardManage(Model model, NoticeBoardVO noticeBoardVO) {
+		model.addAttribute("noticeBoardList", commonService.selectNoticeBoardList(noticeBoardVO));
 		return "admin/notice_board_manage";
 	}
 	

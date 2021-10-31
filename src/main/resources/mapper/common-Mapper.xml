@@ -14,12 +14,34 @@
 		<!-- 공지사항 전체 리스트 조회 -->
 		<select id="selectNoticeBoardList" resultMap="noticeBoard">
 			SELECT NOTICE_BOARD_CODE
-			  , BOARD_SUBJECT
-			  , BOARD_CONTENT
+       		  , BOARD_SUBJECT
+       		  , BOARD_CONTENT
 			  , BOARD_WRITER
-			  , TO_CHAR(REG_DATE, 'YYYY.MM.DD') AS REG_DATE
-			FROM NOTICE_BOARD
-			ORDER BY NOTICE_BOARD_CODE DESC
+        	  , REG_DATE
+        	  , ROW_NUM
+     		FROM
+     		(
+     			SELECT NOTICE_BOARD_CODE
+       			  , BOARD_SUBJECT
+       			  , BOARD_CONTENT
+        		  , BOARD_WRITER
+        		  , REG_DATE
+        		  , ROWNUM AS ROW_NUM
+     			FROM
+     			(
+      				SELECT NOTICE_BOARD_CODE
+        			  , BOARD_SUBJECT
+        			  , BOARD_CONTENT
+         			  , BOARD_WRITER
+         			  , TO_CHAR(REG_DATE, 'YYYY.MM.DD') AS REG_DATE
+	      			FROM NOTICE_BOARD
+	      			<if test="searchValue != null and !searchValue.equals('')">
+	      			WHERE ${searchKeyword} LIKE '%'||#{searchValue}||'%'
+	      			</if>
+	      			ORDER BY NOTICE_BOARD_CODE DESC
+     			)
+     		)
+			WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 		</select>
 		
 		<!-- 공지사항 상세조회 -->
@@ -38,6 +60,15 @@
 			DELETE NOTICE_BOARD
 			WHERE NOTICE_BOARD_CODE = #{noticeBoardCode}
 		</delete>
+		
+		<!-- 게시글 전체 데이터 개수 조회 -->
+		<select id="selectNoticeBoardCnt" resultType="int">
+			SELECT COUNT(NOTICE_BOARD_CODE)
+			FROM NOTICE_BOARD
+			<if test="searchValue != null and !searchValue.equals('')">
+	      	WHERE ${searchKeyword} LIKE '%'||#{searchValue}||'%'
+	      	</if>
+		</select>
 	
 </mapper>
 

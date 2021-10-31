@@ -18,7 +18,7 @@ public interface MemberService {
 	MemberVO login(MemberVO memberVO);
 	
 	//회원목록 간단조회
-	List<MemberVO> selectMemberList();
+	List<MemberVO> selectMemberList(MemberVO memberVO);
 	
 	//회원목록 상세조회
 	MemberVO selectDetailMember(String memberCode);
@@ -28,6 +28,9 @@ public interface MemberService {
 	
 	//회원삭제
 	boolean deleteMember(String memberCode);
+	
+	//회원 관리 목록 전체개수조회
+	int selectMemberCnt(MemberVO memberVO);
 	
 	
 	
