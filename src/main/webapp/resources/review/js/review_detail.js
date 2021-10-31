@@ -116,16 +116,17 @@ for (var i = 0; i < positions.length; i++) {
 	
 	//댓글등록
 	regReply = function(){
+		var memberId = $('.reviewReplyId').val();
 		var reviewReplyWriter = $('.reviewReplyWriter').val();
 		var reviewReplyContent = $('#reviewReplyContent').val();
 		var reviewBoardCode = $('.hiddenBoardCode').val();
 	
 
-		출처: https://mine-it-record.tistory.com/265 [나만의 기록들]
 		$.ajax({
 	        url: '/review/regRely', //요청경로
 	        type: 'post',
 	        data:{'reviewReplyWriter': reviewReplyWriter
+	        	, 'memberId' : memberId
 	        	,'reviewReplyContent':reviewReplyContent
 	        	, 'reviewBoardCode': reviewBoardCode
 	        },
@@ -153,6 +154,7 @@ for (var i = 0; i < positions.length; i++) {
 	
 	//후기창에 댓글리스트 조회
 	selectReviewReplyList = function(){
+		var reviewReplyId = $('.reviewReplyId').val();
 		var reviewReplyWriter = $('.reviewReplyWriter').val();
 		var reviewBoardCode = $('.hiddenBoardCode').val();
 		$.ajax({
@@ -191,16 +193,18 @@ for (var i = 0; i < positions.length; i++) {
 		
 	}
 	//후기에 댓글삭제 함수
-	deleteReply = function(reviewReplyCode, reviewReplyWriter){
-		var reviewReplyId = $('.reviewReplyId').val();
-		
-		if(hiddenReviewReplyWriter == reviewReplyId){
+	deleteReply = function(reviewReplyCode, reviewReplyId){
+		var sessionReviewReplyId = $('.reviewReplyId').val();
+		var sessionReviewReplyIsAdmin = $('.reviewReplyIsAdmin').val();
+			
+		alert(reviewReplyCode);
+		if(sessionReviewReplyId == reviewReplyId || sessionReviewReplyIsAdmin == 'Y' ){
 			var result = confirm('댓글을 삭제하시겠습니까?');
 			if(result){
 				$.ajax({
 				      url: '/review/deleteReply', //요청경로
 				      type: 'post',
-				      data:{reviewReplyCode: reviewReplyCode}, //필요한 데이터
+				      data:{'reviewReplyCode': reviewReplyCode}, //필요한 데이터
 				      success: function(result) {
 				    	  alert('삭제되었습니다');
 				    	  selectReviewReplyList();

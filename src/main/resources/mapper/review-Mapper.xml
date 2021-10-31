@@ -24,6 +24,7 @@
 	<!-- REVIEW_BOARD_REPLY Table -->
 	<resultMap type="com.kh.myjob.review.vo.ReviewReplyVO" id="reviewReply">
 		<id column="REVIEW_REPLY_CODE"  				property="reviewReplyCode"/>
+		<result column="MEMBER_ID" 						property="memberId"/>
 		<result column="REVIEW_REPLY_WRITER" 			property="reviewReplyWriter"/>
 		<result column="REVIEW_REPLY_REG_DATE" 			property="reviewReplyRegDate"/>
 		<result column="REVIEW_REPLY_CONTENT"	 		property="reviewReplyContent"/>
@@ -170,11 +171,13 @@
 	<insert id="regReply">
 		INSERT INTO REVIEW_REPLY(
 			REVIEW_REPLY_CODE
+			, MEMBER_ID
 			, REVIEW_REPLY_WRITER
 			, REVIEW_REPLY_CONTENT
 			, REVIEW_BOARD_CODE
 		) VALUES(
 			(SELECT 'REVIEW_REPLY_'|| LPAD((NVL(MAX(TO_NUMBER(SUBSTR(REVIEW_REPLY_CODE,14,3))), 0) + 1), 3 ,'0') FROM REVIEW_REPLY)
+			, #{memberId}
 			, #{reviewReplyWriter}
 			, #{reviewReplyContent}
 			, #{reviewBoardCode}
@@ -212,6 +215,7 @@
 	<!--후기게시판에 댓글목록 조회  -->
 	<select id="selectReviewReplyList" resultMap="reviewReply">
 		SELECT REVIEW_REPLY_CODE
+			, MEMBER_ID
 			, REVIEW_REPLY_WRITER 
 			, REVIEW_REPLY_REG_DATE
 			, REVIEW_REPLY_CONTENT

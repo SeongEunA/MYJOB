@@ -17,7 +17,7 @@
 			<table class="replyTable">
 				<tr>
 					<td>
-						<textarea style="width: 1100px; resize: none;"  class="replyContent" rows="3" cols="30" id="reviewReplyContent"></textarea>
+						<textarea style="width: 1100px; resize: none;" class="replyContent" rows="3" cols="30" id="reviewReplyContent" required></textarea>
 						<br>
 						<div>
 							<input type="button" onclick="regReply();" value="등록" class="btn pull-right btn-secondary">

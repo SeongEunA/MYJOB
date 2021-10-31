@@ -43,7 +43,7 @@ public interface ReviewService {
 	List<ReviewReplyVO> selectReviewReplyList(ReviewReplyVO reviewReplyVO);
 	
 	//후기게시판에 댓글삭제
-	int deleteReiviewReply(ReviewReplyVO reviewReplyVO);
+	int deleteReviewReply(ReviewReplyVO reviewReplyVO);
 	
 	//관리자 댓글 관리 댓글 전체목록조회
 	List<ReviewReplyVO> manageReplyList();

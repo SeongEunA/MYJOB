@@ -62,7 +62,7 @@
 					<a href="/review/selectReviewList?nowPage=${reviewVO.beginPage - 1 }">prev</a>
 				</c:if>
 				<c:forEach begin="${reviewVO.beginPage }" end="${reviewVO.endPage }" var="pageNumber">
-					<a href="/review/selectReviewList?nowPage=${pageNumber }&searchKeyWord=${reviewVO.searchKeyWord}&searchValue=${reviewVO.searchValue}" <c:if test="${reviewVO.nowPage eq pageNumber }">class="selectedPage"</c:if> >
+					<a href="/review/selectReviewList?nowPage=${pageNumber }&searchKeyword=${reviewVO.searchKeyword}&searchValue=${reviewVO.searchValue}" <c:if test="${reviewVO.nowPage eq pageNumber }">class="selectedPage"</c:if> >
 					${pageNumber }</a>  
 				</c:forEach>
 				<c:if test="${reviewVO.next }"> 
@@ -74,9 +74,9 @@
 			<form class="row align-items-center" action="/review/selectReviewList" method="post">
 			   <div class="col-4">
 			    <label class="visually-hidden" for="autoSizingSelect">Preference</label>
-			    <select class="form-select" id="autoSizingSelect" name="searchKeyWord">
-			      <option value="REVIEW_BOARD_TITLE" selected>제목</option>
-			      <option value="REVIEW_BOARD_WRITER">작성자</option>
+			    <select class="form-select" id="autoSizingSelect" name="searchKeyword">
+			      <option value="REVIEW_BOARD_TITLE" <c:if test="${reviewVO.reviewBoardTitle eq REVIEW_BOARD_TITLE}">selected</c:if>>제목</option>
+			      <option value="REVIEW_BOARD_WRITER"<c:if test="${reviewVO.reviewBoardWriter eq REVIEW_BOARD_WRITER }">selected</c:if>>작성자</option>
 			    </select>
 			  </div>  
 			  <div class="col-5">
@@ -84,7 +84,7 @@
 			    <input type="text" name="searchValue" class="form-control" id="autoSizingInput" value="${reviewVO.searchValue }">
 			  </div>
 				 <div class="col-3">
-			    <button type="submit" class="btn btn-primary">검색</button>
+			    <button type="submit" class="btn btn-primary" id="se">검색</button>
 			  </div>
 			</form>
 		</div>

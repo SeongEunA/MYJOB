@@ -50,8 +50,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public int deleteReiviewReply(ReviewReplyVO reviewReplyVO) {
-		return sqlSession.delete("reviewMapper.deleteReiviewReply", reviewReplyVO);
+	public int deleteReviewReply(ReviewReplyVO reviewReplyVO) {
+		return sqlSession.delete("reviewMapper.deleteReviewReply", reviewReplyVO);
 	}
 	
 	@Override
@@ -88,7 +88,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public boolean deleteReviewReplyManage(String reviewReplyCode) {
 		//댓글 삭제 성공 : true, 댓글 삭제 실패 : false
-		int result = sqlSession.delete("reviewMapper.deleteReviewReplyManage", reviewReplyCode);
+		int result = sqlSession.delete("reviewMapper.manageDeleteReviewReply", reviewReplyCode);
 		return result == 1 ? true : false;
 	}
 	

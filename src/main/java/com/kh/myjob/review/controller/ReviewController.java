@@ -46,6 +46,8 @@ public class ReviewController {
 		
 		model.addAttribute("reviewList", reviewService.selectReviewList(reviewVO));
 		
+		
+		
 		return "review/review_list";
 	}
 
@@ -154,7 +156,7 @@ public class ReviewController {
 	@ResponseBody
 	@PostMapping("/deleteReply")
 	public int deleteReply(ReviewReplyVO reviewReplyVO) {
-		return reviewService.deleteReiviewReply(reviewReplyVO);
+		return reviewService.deleteReviewReply(reviewReplyVO);
 	}
 
 }
