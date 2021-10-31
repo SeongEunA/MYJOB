@@ -32,10 +32,19 @@ public class ReviewController {
 	private ReviewService reviewService;
 
 	// 리뷰목록화면
-	@GetMapping("/selectReviewList")
+	@RequestMapping("/selectReviewList")
 	public String SelectReviewList(Model model, ReviewVO reviewVO) {
-
-		model.addAttribute("reviewList", reviewService.selectReviewList());
+		//페이징처리 게시글수 
+		int reviewCnt = reviewService.selectReviewCnt(reviewVO);
+	
+		/*
+		 * reviewVO.setTotalCnt(reviewCnt);
+		 * 
+		 * //페이징처리 reviewVO.setPageInfo();
+		 */
+		
+		model.addAttribute("reviewList", reviewService.selectReviewList(reviewVO));
+		
 		return "review/review_list";
 	}
 

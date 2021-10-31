@@ -35,8 +35,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<ReviewVO> selectReviewList() {
-		return sqlSession.selectList("reviewMapper.selectReviewList");
+	public List<ReviewVO> selectReviewList(ReviewVO reviewVO) {
+		return sqlSession.selectList("reviewMapper.selectReviewList", reviewVO);
 	}
 	
 	@Override
@@ -79,6 +79,10 @@ public class ReviewServiceImpl implements ReviewService {
 		//리뷰게시글 삭제 성공 : true, 리뷰게시글 삭제 실패 : false
 		int result = sqlSession.delete("reviewMapper.deleteReviewBoard", reviewBoardCode);
 		return result == 1 ? true : false;
+	}
+	@Override
+	public int selectReviewCnt(ReviewVO reviewVO) {
+		return sqlSession.selectOne("reviewMapper.selectReviewCnt", reviewVO);
 	}
 	
 	

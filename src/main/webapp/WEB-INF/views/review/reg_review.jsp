@@ -76,7 +76,7 @@
 		</div>
 		 <div>
            <label for="formFile" class="form-label">등록하실 이미지를 선택해주세요</label>
-             <input name="file1" class="form-control" type="file" id="formFile">
+             <input name="file1" class="form-control" type="file" id="formFile" required>
         </div>
          <div>
            <label for="formFileMultiple" class="form-label">등록하실 이미지를 선택해주세요</label>

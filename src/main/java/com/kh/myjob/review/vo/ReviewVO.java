@@ -12,8 +12,8 @@ public class ReviewVO {
 	private int reviewBoardRecommendCnt;
 	private int reviewBoardReadCnt;
 	private List<ReviewImgVO> reviewImgList;
-
 	
+
 	public String getReviewBoardRegDate() {
 		return reviewBoardRegDate;
 	}

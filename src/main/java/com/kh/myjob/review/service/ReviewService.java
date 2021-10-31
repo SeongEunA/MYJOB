@@ -22,7 +22,7 @@ public interface ReviewService {
 	void insertReviewImg(ReviewVO reviewVO);
 	
 	//후기게시판 리스트 조회
-	List<ReviewVO> selectReviewList();
+	List<ReviewVO> selectReviewList(ReviewVO reviewVO);
 	
 	//관리자 후기게시판 리스트 조회
 	List<ReviewVO> manageReviewList();
@@ -48,5 +48,7 @@ public interface ReviewService {
 	//댓글관리게시판에 댓글목록조회
 	List<ReviewReplyVO> manageReplyList();
 	
+	//페이징처리 총 게시글수
+	int selectReviewCnt(ReviewVO reviewVO);
 	
 }
