@@ -1,14 +1,15 @@
 package com.kh.myjob.common.vo;
 
 public class BaseSearchVO {
-	private String searchKeyword;
+	private String searchKeyWord;
 	private String searchValue;
 	
-	public String getSearchKeyword() {
-		return searchKeyword;
+	
+	public String getSearchKeyWord() {
+		return searchKeyWord;
 	}
-	public void setSearchKeyword(String searchKeyword) {
-		this.searchKeyword = searchKeyword;
+	public void setSearchKeyWord(String searchKeyWord) {
+		this.searchKeyWord = searchKeyWord;
 	}
 	public String getSearchValue() {
 		return searchValue;

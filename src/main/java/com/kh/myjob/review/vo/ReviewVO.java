@@ -2,7 +2,9 @@ package com.kh.myjob.review.vo;
 
 import java.util.List;
 
-public class ReviewVO {
+import com.kh.myjob.common.vo.PageVO;
+
+public class ReviewVO extends PageVO {
 
 	private String reviewBoardCode;
 	private String reviewBoardTitle;

@@ -37,11 +37,12 @@ public class ReviewController {
 		//페이징처리 게시글수 
 		int reviewCnt = reviewService.selectReviewCnt(reviewVO);
 	
-		/*
-		 * reviewVO.setTotalCnt(reviewCnt);
-		 * 
-		 * //페이징처리 reviewVO.setPageInfo();
-		 */
+	
+		reviewVO.setTotalCnt(reviewCnt);
+		 
+		 //페이징처리 
+		reviewVO.setPageInfo();
+	
 		
 		model.addAttribute("reviewList", reviewService.selectReviewList(reviewVO));
 		
@@ -145,6 +146,7 @@ public class ReviewController {
 	@ResponseBody
 	@PostMapping("/selectReviewReplyList")
 	public List<ReviewReplyVO> selectReviewReplyList(ReviewReplyVO reviewReplyVO) {
+	
 		return reviewService.selectReviewReplyList(reviewReplyVO);
 	}
 

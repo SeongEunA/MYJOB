@@ -58,14 +58,14 @@
 		
 		<div class="row">
 			<div class="col text-center pagingDiv">
-				<c:if test="${reviewVO.prev }"> <!-- boardVO.getPrev -->
+				<c:if test="${reviewVO.prev }"> 
 					<a href="/review/selectReviewList?nowPage=${reviewVO.beginPage - 1 }">prev</a>
 				</c:if>
 				<c:forEach begin="${reviewVO.beginPage }" end="${reviewVO.endPage }" var="pageNumber">
 					<a href="/review/selectReviewList?nowPage=${pageNumber }&searchKeyWord=${reviewVO.searchKeyWord}&searchValue=${reviewVO.searchValue}" <c:if test="${reviewVO.nowPage eq pageNumber }">class="selectedPage"</c:if> >
 					${pageNumber }</a>  
 				</c:forEach>
-				<c:if test="${reviewVO.next }"> <!-- boardVO.getnext -->
+				<c:if test="${reviewVO.next }"> 
 					<a href="/review/selectReviewList?nowPage=${reviewVO.endPage + 1 }">next</a>
 				</c:if>
 			</div>

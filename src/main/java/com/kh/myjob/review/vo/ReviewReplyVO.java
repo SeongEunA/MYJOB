@@ -1,12 +1,24 @@
 package com.kh.myjob.review.vo;
 
-public class ReviewReplyVO {
+
+public class ReviewReplyVO{
 	private String reviewReplyCode;
 	private String reviewReplyWriter;
 	private String reviewReplyRegDate;
 	private String reviewReplyContent;
 	private String reviewBoardCode;
+	private String memberId;
 	
+	
+	
+	
+	
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
 	public String getReviewReplyCode() {
 		return reviewReplyCode;
 	}

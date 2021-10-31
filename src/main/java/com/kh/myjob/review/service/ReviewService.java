@@ -51,4 +51,5 @@ public interface ReviewService {
 	//페이징처리 총 게시글수
 	int selectReviewCnt(ReviewVO reviewVO);
 	
+	
 }

@@ -199,6 +199,7 @@
 			, REVIEW_REPLY_REG_DATE
 			, REVIEW_REPLY_CONTENT
 			, REVIEW_BOARD_CODE
+			, MEMBER_ID
 		FROM REVIEW_REPLY
 		WHERE REVIEW_BOARD_CODE = #{reviewBoardCode} 
 		ORDER BY REVIEW_REPLY_CODE DESC	
@@ -218,8 +219,6 @@
       		WHERE ${searchKeyWord} LIKE '%'||#{searchValue}||'%'
       	</if>
 	</select>
-	
-	
 	
 </mapper>
 
