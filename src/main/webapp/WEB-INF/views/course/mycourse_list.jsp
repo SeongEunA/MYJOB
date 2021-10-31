@@ -33,8 +33,6 @@ margin:0 auto;
 border:1px solid black;
 width:500px;
 height:500px;
-display:flex;
-flex-direction:column;
 margin:0 auto;
 
 }
@@ -78,8 +76,11 @@ border: 1px solid #FF0000;;
 color: #FF8000;
 border: 1px solid #FF8000;;
 }
+.deletePlace{
+width: auto;
+}
 </style>
-<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=15"></script>
+<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=11"></script>
  <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script type="text/javascript">
@@ -132,7 +133,6 @@ $.ajax({
 								<div class="hiddenPlaceInfo">
 									<input type="hidden" name="placeAddr" value="${placeInfo.placeAddr }">
 									<input type="hidden" name="cateCode" value="${placeInfo.cateCode }">
-									<input type="hidden" name="courseCode" value="${placeInfo.courseCode }">
 								</div>
 			      	 		</div>
 						</c:when>
@@ -144,7 +144,6 @@ $.ajax({
 								<div class="hiddenPlaceInfo">
 									<input type="hidden" name="placeAddr" value="${placeInfo.placeAddr }">
 									<input type="hidden" name="cateCode" value="${placeInfo.cateCode }">
-									<input type="hidden" name="courseCode" value="${placeInfo.courseCode }">
 								</div>
 							</div> &#10140;
 			      	 	</c:otherwise>
@@ -156,11 +155,16 @@ $.ajax({
 	<div class="courseLayoutRight" id="courseLayoutRight">
 		<select id="selectCourseCode">
 			<option>코스선택</option>
+		<c:forEach items="${courseList }" var="courseInfo">
+			<option value="${courseInfo.courseCode }">${courseInfo.courseName }</option>
+		</c:forEach>
 		</select>
+		<input type="button" value="코스저장" id="saveCourseBtn">
+      	<input type="hidden" name="memberId" value="${sessionScope.loginInfo.memberId }">
 	</div>
    <div>
       <span>
-      <input type="button" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn">
+      	<input type="button" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn">
       </span>
    </div>
  <!--   <div class="courseLayoutLeft courseDisplay" id="courseDisplay">

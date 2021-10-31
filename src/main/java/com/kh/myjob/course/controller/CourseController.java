@@ -131,7 +131,15 @@ public class CourseController {
 	@ResponseBody
 	@PostMapping("/deletePlaceInCourseAjax")
 	public List<CourseVO> deletePlaceInCourse(String savePlaceCode, CourseVO courseVO) {
-		courseService.deletePlaceInCourse(savePlaceCode);
+//		courseService.deletePlaceInCourse(savePlaceCode);
+		return courseService.selectCoursePlaceList(courseVO);
+	}
+	
+	//삭제된 장소들을 원하는 코스에 다시 insert
+	@ResponseBody
+	@PostMapping("/insertPlaceByDeleteAjax")
+	public List<CourseVO> insertPlaceByDeleteAjax(CourseRegVO courseRegVO, CourseVO courseVO) {
+		courseService.insertCourseByCourseCode(courseRegVO);
 		return courseService.selectCoursePlaceList(courseVO);
 	}
 	
