@@ -120,9 +120,12 @@ $.ajax({
 <body>
 <div class="courseContainer">
 	<div class="courseLayoutLeft" id="courseLayoutLeft">
+	<form action="/course/theShortestCourse" method="post">
 		<c:forEach items="${courseList }" var="courseInfo">
 			<div class="courseBox">
-				<div class="courseName">코스이름:${courseInfo.courseName }</div>
+				<div class="courseName">
+					<input type="radio" name="courseCode" value="${courseInfo.courseCode }">코스이름:${courseInfo.courseName }
+				</div>
 				<c:forEach items="${courseInfo.coursePlaceList}" var="placeInfo" varStatus="cnt">
 					<c:choose>
 						<c:when test="${cnt.last }">
@@ -131,8 +134,11 @@ $.ajax({
 								<input type="hidden" name="savePlaceCode" value="${placeInfo.savePlaceCode }">
 			      	 			${placeInfo.placeName  } <input type="button" value="x" class="deletePlaceBtn">
 								<div class="hiddenPlaceInfo">
+									<input type="hidden" name="placeName" value="${placeInfo.placeName }">
 									<input type="hidden" name="placeAddr" value="${placeInfo.placeAddr }">
 									<input type="hidden" name="cateCode" value="${placeInfo.cateCode }">
+									<input type="hidden" name="x" value="${placeInfo.x }">
+									<input type="hidden" name="y" value="${placeInfo.y }">
 								</div>
 			      	 		</div>
 						</c:when>
@@ -142,8 +148,11 @@ $.ajax({
 								<input type="hidden" name="savePlaceCode" value="${placeInfo.savePlaceCode }">
 								${placeInfo.placeName  } <input type="button" value="x" class="deletePlaceBtn">
 								<div class="hiddenPlaceInfo">
+									<input type="hidden" name="placeName" value="${placeInfo.placeName }">
 									<input type="hidden" name="placeAddr" value="${placeInfo.placeAddr }">
 									<input type="hidden" name="cateCode" value="${placeInfo.cateCode }">
+									<input type="hidden" name="x" value="${placeInfo.x }">
+									<input type="hidden" name="y" value="${placeInfo.y }">
 								</div>
 							</div> &#10140;
 			      	 	</c:otherwise>
@@ -151,6 +160,12 @@ $.ajax({
 				</c:forEach>
 			</div>
 	     </c:forEach>
+		<div>
+			<span>
+				<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn">
+			</span>
+		</div>
+	</form>
 	</div>
 	<div class="courseLayoutRight" id="courseLayoutRight">
 		<select id="selectCourseCode">
@@ -162,11 +177,6 @@ $.ajax({
 		<input type="button" value="코스저장" id="saveCourseBtn">
       	<input type="hidden" name="memberId" value="${sessionScope.loginInfo.memberId }">
 	</div>
-   <div>
-      <span>
-      	<input type="button" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn">
-      </span>
-   </div>
  <!--   <div class="courseLayoutLeft courseDisplay" id="courseDisplay">
       
          추천코스동선

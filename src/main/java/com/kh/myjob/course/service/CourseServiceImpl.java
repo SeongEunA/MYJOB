@@ -71,6 +71,11 @@ public class CourseServiceImpl implements CourseService {
 	public int deletePlaceInCourse(String savePlaceCode) {
 		return sqlSession.delete("courseMapper.deletePlaceInCourse", savePlaceCode);
 	}
+
+	@Override
+	public List<CourseVO> selectCoursePlaceListByCourseCode(String courseCode) {
+		return sqlSession.selectList("courseMapper.selectCourseByCourseCode", courseCode);
+	}
 	
 	
 

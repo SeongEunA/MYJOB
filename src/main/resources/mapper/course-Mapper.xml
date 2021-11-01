@@ -42,6 +42,8 @@
 		<result column="PLACE_TEL"			property="placeTel"/>
 		<result column="MEMBER_ID"			property="memberId"/>
 		<result column="COURSE_NAME"		property="courseName"/>
+		<result column="X"					property="x"/>
+		<result column="Y"					property="y"/>
 	</resultMap>
 	
 		<!-- COURSE table -->
@@ -171,9 +173,27 @@
 			,P.PLACE_NAME
 			,P.PLACE_ADDR
 			,P.SAVE_PLACE_CODE
-			,P.CATE_CODE		 
+			,P.CATE_CODE
+			,P.X
+			,P.Y	 
 		FROM COURSE C, COURSE_REG_PLACE P 
 		WHERE C.COURSE_CODE=P.COURSE_CODE AND MEMBER_ID=#{memberId} 
+		ORDER BY P.SAVE_PLACE_CODE
+	</select>
+	
+	<!-- 코스코드로 코스조회 -->
+	<select id="selectCourseByCourseCode" resultMap="course">
+		SELECT C.MEMBER_ID
+			,C.COURSE_NAME
+			,P.COURSE_CODE
+			,P.PLACE_NAME
+			,P.PLACE_ADDR
+			,P.SAVE_PLACE_CODE
+			,P.CATE_CODE
+			,P.X
+			,P.Y	 
+		FROM COURSE C, COURSE_REG_PLACE P 
+		WHERE C.COURSE_CODE=P.COURSE_CODE AND C.COURSE_CODE=#{courseCode} 
 		ORDER BY P.SAVE_PLACE_CODE
 	</select>
 	

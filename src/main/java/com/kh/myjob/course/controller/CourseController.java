@@ -101,7 +101,7 @@ public class CourseController {
 	//코스코드를 등록하는 ajax
 	@ResponseBody
 	@PostMapping("/insertCourseCodeAjax")
-	public int insertCourseCode(CourseVO courseVO, CourseRegVO courseRegVO, @RequestParam(value="placeNameArr[]") List<String> name, @RequestParam(value="placeAddrArr[]") List<String> addr, @RequestParam(value="cateCodeArr[]") List<String> cate,@RequestParam(value="placeXArr[]") List<Double> placeX,@RequestParam(value="placeYArr[]") List<Double> placeY) {
+	public int insertCourseCode(CourseVO courseVO, CourseRegVO courseRegVO, @RequestParam(value="placeNameArr[]") List<String> name, @RequestParam(value="placeAddrArr[]") List<String> addr, @RequestParam(value="cateCodeArr[]") List<String> cate,@RequestParam(value="placeXArr[]") List<String> placeX,@RequestParam(value="placeYArr[]") List<String> placeY) {
 		
 		//코스테이블에 insert CourseCode
 		courseService.insertCourseCode(courseVO);
@@ -145,6 +145,42 @@ public class CourseController {
 	public List<CourseVO> insertPlaceByDeleteAjax(CourseRegVO courseRegVO, CourseVO courseVO) {
 		courseService.insertCourseByCourseCode(courseRegVO);
 		return courseService.selectCoursePlaceList(courseVO);
+	}
+	
+	//최단거리 코스추천
+	@PostMapping("/theShortestCourse")
+	public String theShortestCourse(String courseCode) {
+		List<CourseVO> courseList = courseService.selectCoursePlaceListByCourseCode(courseCode);
+		
+		List<CourseRegVO> courseRegList = courseList.get(0).getCoursePlaceList();
+		
+		double[][] arrXY = new double[courseRegList.size()][2];
+		
+		for(int i = 0; i < courseRegList.size(); i++) {
+			for(int j = 0; j < 2; j++) {
+				if(j == 0) {
+					arrXY[i][j] = (Double.parseDouble(courseRegList.get(i).getX()));
+				}
+				else if(j == 1) {
+					arrXY[i][j] = (Double.parseDouble(courseRegList.get(i).getY()));
+				}
+			}
+		}
+		
+		
+		
+		
+		// x1에서 각 지점 까지 x거리
+		// arrXY[0]-arrXY[2], arrXY[0]-arrXY[4], arrXY[0]-arrXY[6], arrXY[0]-arrXY[8], arrXY[0]-arrXY[10], arrXY[0]-arrXY[12]
+		// y1에서 각 지점 까지 y거리
+		// arrXY[1]-arrXY[3], arrXY[1]-arrXY[5], arrXY[1]-arrXY[7], arrXY[1]-arrXY[9], arrXY[1]-arrXY[11], arrXY[1]-arrXY[13]
+		
+		for(int i = 0; i < arrXY.length; i++) {
+			
+		}
+		
+		
+		return "redirect:/course/myCourseList";
 	}
 	
 }
