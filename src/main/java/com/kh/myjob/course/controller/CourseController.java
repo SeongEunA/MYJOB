@@ -101,7 +101,7 @@ public class CourseController {
 	//코스코드를 등록하는 ajax
 	@ResponseBody
 	@PostMapping("/insertCourseCodeAjax")
-	public int insertCourseCode(CourseVO courseVO, CourseRegVO courseRegVO, @RequestParam(value="placeNameArr[]") List<String> name, @RequestParam(value="placeAddrArr[]") List<String> addr, @RequestParam(value="cateCodeArr[]") List<String> cate) {
+	public int insertCourseCode(CourseVO courseVO, CourseRegVO courseRegVO, @RequestParam(value="placeNameArr[]") List<String> name, @RequestParam(value="placeAddrArr[]") List<String> addr, @RequestParam(value="cateCodeArr[]") List<String> cate,@RequestParam(value="placeXArr[]") List<Double> placeX,@RequestParam(value="placeYArr[]") List<Double> placeY) {
 		
 		//코스테이블에 insert CourseCode
 		courseService.insertCourseCode(courseVO);
@@ -118,6 +118,10 @@ public class CourseController {
 			courseRegVO.setPlaceName(name.get(i));
 			courseRegVO.setPlaceAddr(addr.get(i));
 			courseRegVO.setCateCode(cate.get(i));
+			
+			courseRegVO.setX(placeX.get(i));
+			courseRegVO.setY(placeY.get(i));
+			
 			
 			courseService.insertCourseByCourseCode(courseRegVO);
 			result = 1;

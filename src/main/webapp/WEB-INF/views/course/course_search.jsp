@@ -371,7 +371,7 @@ visibility: hidden;
 
 	
 <!-- 검색 장소 리스트 영역 -->
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=45"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=60"></script>
 <script type="text/javascript"></script>
 <div class="row">
    <div class="col-6" id="placeList">

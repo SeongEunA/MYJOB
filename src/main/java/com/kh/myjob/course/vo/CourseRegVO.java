@@ -10,7 +10,25 @@ public class CourseRegVO {
 	private String courseCode;
 	private String courseName;
 	private String memberId;
+	private double x;
+	private double y;
 	
+	
+	
+	
+	
+	public double getX() {
+		return x;
+	}
+	public void setX(double x) {
+		this.x = x;
+	}
+	public double getY() {
+		return y;
+	}
+	public void setY(double y) {
+		this.y = y;
+	}
 	public String getSavePlaceCode() {
 		return savePlaceCode;
 	}

@@ -55,13 +55,17 @@ $(document).ready(function(){
 	   var placeName = $(this).text();
 	   var placeAddr = $(this).next().text();
 	   var placeTel = $(this).next().next().text();
-      
+	   var placeX = $(this).prev().val();
+	   var placeY = $(this).prev().prev().val();
+	   
 	   placeStr = '';
       
 	   placeStr = '<div class="resInfoDiv">' +
               	'   <div class="resultPlaceName" style="font-size:18px;">' + placeName + '<input type="button" value="X" id="deleteResBtn"></div>';
 	   placeStr += '   <div class="resultPlaceAddr">' + placeAddr + '</div>';
 	   placeStr += '   <input type="hidden" id="cateCode" class="cateCode" value="CATE_003">';
+	   placeStr += '	<input type="hidden" value="'+placeX+'" class="kakaoPlaceX">';	
+	   placeStr += '	<input type="hidden" value="'+placeY+'" class="kakaoPlaceY">';	
 	   if(placeTel!=null ||placeTel!=''){
     	  placeStr += '   <div class="resultTel" class="resultPlaceTel">' + placeTel + '</div>' +
                  '</div>';
@@ -140,11 +144,18 @@ $(document).ready(function(){
 	            	 var placeName = [];
 	            	 var placeAddr = [];
 	            	 var cateCode = [];
-	            	 
+	            	
+	            	 var kakaoPlaceX = [];
+	    			 var kakaoPlaceY = [];
+	    			 
 	            	 var placeNameL = $('.resultPlaceName').length;
 	            	 var placeAddrL = $('.resultPlaceAddr').length;
 	            	 var cateCodeL = $('.cateCode').length;
 	            	 
+	            	 var placeXLen = $('.kakaoPlaceX').length;
+	            	 var placeYLen = $('.kakaoPlaceY').length;
+	            	 
+	            	 alert(placeXLen);
 	            	 for(var i = 0; i < placeNameL; i++){
 	            		 placeName[i] = $('.resultPlaceName').eq(i).text();
 	            	 }
@@ -156,8 +167,12 @@ $(document).ready(function(){
 	            	 for(var i = 0; i < cateCodeL; i++){
 	            		 cateCode[i] = $('.cateCode').eq(i).val();
 	            	 }
-	            		
-	            	 
+	            	for(var i = 0; i < placeXLen; i++){
+	            		 kakaoPlaceX[i] = $('.kakaoPlaceX').eq(i).val();
+	            	}	
+	            	for(var i = 0; i < placeXLen; i++){
+	            		 kakaoPlaceY[i] = $('.kakaoPlaceY').eq(i).val();
+	            	}	
 	          	      //코스코드를 등록한 뒤 코스코드를 조회, 코스를 추가하는 ajax
 	            		$.ajax({
 	                        url: '/course/insertCourseCodeAjax', //요청경로
@@ -166,7 +181,11 @@ $(document).ready(function(){
 	      	            	  	  'memberId':memberId,
 	      	            	  	  'placeNameArr':placeName,
 	      	            	  	  'placeAddrArr':placeAddr,
-	      	            	  	  'cateCodeArr':cateCode} //필요한 데이터
+	      	            	  	  'cateCodeArr':cateCode,
+	      	            	  	  'placeXArr':kakaoPlaceX,
+	      	            	  	  'placeYArr':kakaoPlaceY
+	                        
+	                        } //필요한 데이터
 	                        ,success: function(result) {
 	                        	alert('코스가 등록되었습니다!');
 	                        	var str='';
@@ -219,12 +238,20 @@ $(document).ready(function(){
 	
 	//검색버튼 클릭시
 	clickSearch = function(nowPage){
+		
 		var cateCode = $('#cateCode').val();
 		var locationName = $('#lowLocation option:selected').text();
 		var locationLandCode = $('#highLocation option:selected').val();
 		var locationTempCode = $('#lowLocation option:selected').val();
 		
 	
+		if(locationLandCode=='지역'){
+			locationLandCode='11B00000';
+			locationTempCode='11B10101';
+			alert('지역을 선택해주세요!');
+			return
+		}
+		
 		if(locationName == '광주' && locationLandCode == '11B00000'){
 			locationName = '경기도 광주'
 		}
@@ -265,6 +292,10 @@ $(document).ready(function(){
             		'locationName':locationName,
             		'nowPage':nowPage}, //필요한 데이터
             success: function(result) {
+            	
+            	console.log(result);
+            	console.log('test2');
+            	console.log(arrXY2);
                //ajax 실행 성공 후 실행할 코드 작성
                $('#placeList').empty(); //하위태그만 삭제
                var totalPage = (Math.ceil(result.pageVO.totalCnt / result.pageVO.displayCnt));
@@ -279,7 +310,8 @@ $(document).ready(function(){
             	   this.placeName=placeName;
                } //좌표받는 생성자 함수
                
-               
+               arrXY=[];
+               arrXY2=[];
                for(var cnt =0; cnt<result.selectPlaceList.length;cnt++){
             	   if(cateCode=='CATE_001'){//숙박
             	   myXY = new myPosition(result.selectPlaceList[cnt].x,result.selectPlaceList[cnt].y,result.selectPlaceList[cnt].placeName);
@@ -311,8 +343,8 @@ $(document).ready(function(){
             	   
             	  
                	str += '<div class="placeInfo">'
-               	str += '	<input type="hidden" value="' + element.x + '" name="x" class="placeX">';
-               	str += '	<input type="hidden" value="' + element.y + '" name="y" class="placey">';
+               	str += '	<input type="hidden" value="' + element.x + '" name="x" class="kakaoPlaceX">';
+               	str += '	<input type="hidden" value="' + element.y + '" name="y" class="kakaoPlaceY">';
                		
                	str += '	<div class="placeName">' + element.placeName + '</div>';
                	str += '	<div class="placeAddr" data-placeAddr="' + element.placeAddr + '">주소 : ' + element.placeAddr + '</div>';
@@ -601,7 +633,6 @@ function displayPlaces(places) {
         var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
             marker = addMarker(placePosition, i), 
             itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
-
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
         bounds.extend(placePosition);
@@ -641,9 +672,13 @@ function displayPlaces(places) {
 // 검색결과 항목을 Element로 반환하는 함수입니다
 function getListItem(index, places) {
 
+	
+	
 	var el = document.createElement('li'),
        itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                    '<div class="info">' +
+                   '<input type="hidden" value="'+places.x+'" name="y">'+
+                   '<input type="hidden" value="'+places.y+'" name="x">'+
                    '   <h5 id="resName" name="resName">' + places.place_name + '</h5>';
 
        if (places.road_address_name) {
@@ -654,7 +689,7 @@ function getListItem(index, places) {
                     
          itemStr += '  <span class="tel" name="resTel">' + places.phone  + '</span>' +
                    '</div>';           
-
+         
        el.innerHTML = itemStr;
        el.className = 'item';
 
@@ -762,7 +797,7 @@ function removeAllChildNods(el) {
  //관광지보기 누르는함수
 // function showPlaceInfo(x,y,arrXY){
 	 function showPlaceInfo(){
-		
+		console.log(positions2.length);
 		 positions2=[];
 		 
 	 for(var e =0;e<arrXY2.length;e++){
@@ -826,7 +861,7 @@ function removeAllChildNods(el) {
 	   function showHouseInfo(){
 		   
 			 positions=[];
-			 
+			
 			 for(var e =0;e<arrXY.length;e++){
 
 			 positions.push({title:arrXY[e].placeName,latlng:new kakao.maps.LatLng(arrXY[e].x,arrXY[e].y)})
