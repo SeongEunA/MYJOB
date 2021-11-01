@@ -29,7 +29,7 @@ span{
 							<a href="/member/myPage?memberCode=${sessionScope.loginInfo.memberCode }" style="color: black; text-decoration-line: none;">마이페이지</a>
 						</c:when>
 						<c:otherwise>
-							<a href="/admin/adminPage" style="color: black; text-decoration-line: none;">관리자페이지</a>
+							<a href="/admin/memberManage" style="color: black; text-decoration-line: none;">관리자페이지</a>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -59,21 +59,22 @@ span{
 					</button>
 					<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 						<div class="navbar-nav">
-							<c:choose>
-								<c:when test="${empty sessionScope.loginInfo or sessionScope.loginInfo.memberIsAdmin eq 'N'}">
-									<a class="nav-link light" aria-current="page" href="/common/main">Home</a>
-									<a class="nav-link light" aria-current="page" href="/course/courseSearch">코스검색</a>
-									<a class="nav-link light" aria-current="page" href="/course/myCourseList?memberId=${sessionScope.loginInfo.memberId }">내코스보기</a>
-									<a class="nav-link light" aria-current="page" href="/review/selectReviewList">코스후기</a>
-									<a class="nav-link light" aria-current="page" href="/common/noticeBoard">공지사항</a>
-								</c:when>
-								<c:otherwise>
-									<a class="nav-link light" aria-current="page" href="/admin/memberManage">회원 관리</a>
-									<a class="nav-link light" aria-current="page" href="/admin/reviewManage">코스후기 관리</a>
-									<a class="nav-link light" aria-current="page" href="/admin/replyManage">댓글 관리</a>
-									<a class="nav-link light" aria-current="page" href="/admin/noticeBoardManage">공지사항 관리</a>
-								</c:otherwise>
-							</c:choose>
+						<c:choose>
+							<c:when test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' }">
+								<a class="nav-link light" aria-current="page" href="/common/main">홈</a>
+								<a class="nav-link light" aria-current="page" href="/course/courseSearch">코스검색</a>
+								<a class="nav-link light" aria-current="page" href="/course/myCourseList?memberId=${sessionScope.loginInfo.memberId }">내코스보기</a>
+								<a class="nav-link light" aria-current="page" href="/review/selectReviewList">코스후기</a>
+								<a class="nav-link light" aria-current="page" href="/common/noticeBoard">공지사항</a>
+							</c:when>
+							<c:otherwise>
+								<a class="nav-link light" aria-current="page" href="/common/main">홈</a>
+								<a class="nav-link light" aria-current="page" href="/course/courseSearch">코스검색</a>
+								<a class="nav-link light" aria-current="page" href="/course/myCourseList?memberId=${sessionScope.loginInfo.memberId }">내코스보기</a>
+								<a class="nav-link light" aria-current="page" href="/review/selectReviewList">코스후기</a>
+								<a class="nav-link light" aria-current="page" href="/common/noticeBoard">공지사항</a>
+							</c:otherwise>
+						</c:choose>
 						</div>
 					</div>
 				</div>

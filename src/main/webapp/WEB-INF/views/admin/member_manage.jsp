@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 .container{
-	width: 1000px;
+	width: 100%;
 	background-color: #eaeaea;
 	margin-top: 30px;
 	padding: 30px;
@@ -44,7 +44,7 @@
 }
 
 table{
-	width: 940px;
+	width: 100%;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -123,8 +123,7 @@ td{
 	</div>
 </div>
 
-${memberVO.beginPage }
-${memberVO.endPage }
+
 <div class="row">
 	<div class="col text-center">
 		<nav aria-label="...">

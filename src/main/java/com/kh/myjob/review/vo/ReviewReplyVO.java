@@ -1,7 +1,8 @@
 package com.kh.myjob.review.vo;
 
+import com.kh.myjob.common.vo.PageVO;
 
-public class ReviewReplyVO{
+public class ReviewReplyVO extends PageVO{
 	private String reviewReplyCode;
 	private String reviewReplyWriter;
 	private String reviewReplyRegDate;

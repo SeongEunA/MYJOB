@@ -40,8 +40,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public List<ReviewVO> manageReviewList() {
-		return sqlSession.selectList("reviewMapper.manageReviewList");
+	public List<ReviewVO> manageReviewList(ReviewVO reviewVO) {
+		return sqlSession.selectList("reviewMapper.manageReviewList", reviewVO);
 	}
 
 	@Override
@@ -70,8 +70,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public List<ReviewReplyVO> manageReplyList() {
-		return sqlSession.selectList("reviewMapper.manageReplyList");
+	public List<ReviewReplyVO> manageReplyList(ReviewReplyVO reviewReplyVO) {
+		return sqlSession.selectList("reviewMapper.manageReplyList", reviewReplyVO);
 	}
 	
 	@Override
@@ -95,6 +95,16 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public int selectReviewCnt(ReviewVO reviewVO) {
 		return sqlSession.selectOne("reviewMapper.selectReviewCnt", reviewVO);
+	}
+	
+	@Override
+	public int manageReviewCnt(ReviewVO reviewVO) {
+		return sqlSession.selectOne("reviewMapper.selectReviewCnt", reviewVO);
+	}
+	
+	@Override
+	public int manageReplyCnt(ReviewReplyVO reviewReplyVO) {
+		return sqlSession.selectOne("reviewMapper.manageReplyCnt", reviewReplyVO);
 	}
 	
 	

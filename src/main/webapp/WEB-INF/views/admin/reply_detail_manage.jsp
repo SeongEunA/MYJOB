@@ -16,7 +16,7 @@
 </script>
 <style type="text/css">
 .container{
-	width: 1000px;
+	width: 100%;
 	background-color: #eaeaea;
 	margin-top: 30px;
 	padding: 30px;
@@ -24,7 +24,7 @@
 }
 
 table{
-	width: 940px;
+	width: 100%;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -40,7 +40,7 @@ td{
 }
 
 .contentTr td {
-	height: 200px;
+	height: 100px;
 	vertical-align: middle;
 }
 

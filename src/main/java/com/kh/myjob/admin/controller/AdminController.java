@@ -6,14 +6,15 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.myjob.common.service.CommonService;
-import com.kh.myjob.common.vo.NoticeBoardVO;
 import com.kh.myjob.member.service.MemberService;
 import com.kh.myjob.member.vo.MemberVO;
 import com.kh.myjob.review.service.ReviewService;
 import com.kh.myjob.review.vo.ReviewReplyVO;
+import com.kh.myjob.review.vo.ReviewVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -26,13 +27,6 @@ public class AdminController {
 	
 	@Resource(name = "reviewService")
 	private ReviewService reviewService;
-	
-	
-	//관리자 페이지로 이동
-	@GetMapping("/adminPage")
-	public String goAdminPage() {
-		return "admin/admin_page";
-	}
 	
 	//회원 관리 페이지로 이동
 	@RequestMapping("/memberManage")
@@ -66,9 +60,19 @@ public class AdminController {
 	}
 	
 	//코스후기 관리페이지로 이동
-	@GetMapping("/reviewManage")
-	public String goReviewManage(Model model) {
-		model.addAttribute("reviewList", reviewService.manageReviewList());
+	@RequestMapping("/reviewManage")
+	public String goReviewManage(Model model, ReviewVO reviewVO) {
+		
+		
+		//전체 데이터 수
+		int dataCnt = reviewService.manageReviewCnt(reviewVO);
+		reviewVO.setTotalCnt(dataCnt);
+			
+		//페이징 처리
+		reviewVO.setPageInfo();
+		
+		
+		model.addAttribute("reviewList", reviewService.manageReviewList(reviewVO));
 		return "admin/review_manage";
 	}
 	
@@ -80,9 +84,19 @@ public class AdminController {
 		}
 	
 	//댓글 관리 페이지로 이동
-	@GetMapping("/replyManage")
-	public String goReplyManage(Model model) {
-		model.addAttribute("replyList", reviewService.manageReplyList());
+	@RequestMapping("/replyManage")
+	public String goReplyManage(Model model, ReviewReplyVO reviewReplyVO) {
+		
+		
+		//전체 데이터 수
+		int dataCnt = reviewService.manageReplyCnt(reviewReplyVO);
+		reviewReplyVO.setTotalCnt(dataCnt);
+			
+		//페이징 처리
+		reviewReplyVO.setPageInfo();
+		
+		
+		model.addAttribute("replyList", reviewService.manageReplyList(reviewReplyVO));
 		return "admin/reply_manage";
 	}
 	
@@ -100,18 +114,16 @@ public class AdminController {
 		return "admin/delete_reply_result";
 	}
 	
-	//공지사항 관리 페이지로 이동
-	@GetMapping("/noticeBoardManage")
-	public String goNoticeBoardManage(Model model, NoticeBoardVO noticeBoardVO) {
-		model.addAttribute("noticeBoardList", commonService.selectNoticeBoardList(noticeBoardVO));
-		return "admin/notice_board_manage";
+	//공지사항 등록페이지로 이동
+	@GetMapping("/regNoticeBoard")
+	public String goRegBoticeBoard() {
+		return "admin/reg_notice_board";
 	}
 	
-	//공지사항 상세관리 페이지로 이동
-	@GetMapping("/manageNoticeBoard")
-	public String goManageNoticeBoard(String noticeBoardCode, Model model) {
-		model.addAttribute("detailNoticeBoard", commonService.selectDetailNoticeBoard(noticeBoardCode));
-		return "admin/notice_board_detail_manage";
+	//공지사항 등록페이지로 이동
+	@PostMapping("/regNoticeBoard")
+	public String regBoticeBoard() {
+		return "admin/notice_board";
 	}
 	
 	//공지사항 삭제
@@ -121,6 +133,8 @@ public class AdminController {
 		return "admin/delete_notice_board_result";
 	}
 
+	
+	
 	
 	
 }

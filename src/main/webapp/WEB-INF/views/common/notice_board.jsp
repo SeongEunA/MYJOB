@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 .container{
-	width: 1000px;
+	width: 100%;
 	background-color: #eaeaea;
 	margin-top: 30px;
 	padding: 30px;
@@ -43,7 +43,7 @@
 }
 
 table{
-	width: 940px;
+	width: 100%;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -62,6 +62,12 @@ td{
 <body>
 공지사항 페이지입니다.
 <div class="container">
+		<div>
+		&nbsp;
+			<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' }">
+				<a href="/admin/regNoticeBoard"><input type="button" value="등록"></a>
+			</c:if>
+		</div>
 		<div class="searchDiv">
 		<form action="/common/noticeBoard" method="post">
 			<table class="searchTable">

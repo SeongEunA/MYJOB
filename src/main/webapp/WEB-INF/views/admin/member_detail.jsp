@@ -16,14 +16,14 @@
 </script>
 <style type="text/css">
 .container{
-	width: 1000px;
+	width: 100%;
 	background-color: #eaeaea;
 	margin-top: 30px;
 	padding: 30px;
 	font-size: 12px;
 }
 table{
-	width: 940px;
+	width: 100%;
 	margin: 0 auto;
 	text-align: center;
 }

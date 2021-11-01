@@ -24,9 +24,6 @@ public interface ReviewService {
 	//후기게시판 리스트 조회
 	List<ReviewVO> selectReviewList(ReviewVO reviewVO);
 	
-	//관리자 리뷰 관리 전체목록조회
-	List<ReviewVO> manageReviewList();
-	
 	//후기게시판 상세보기
 	ReviewVO selectReviewDetail(ReviewVO reviewVO);
 	
@@ -45,8 +42,18 @@ public interface ReviewService {
 	//후기게시판에 댓글삭제
 	int deleteReviewReply(ReviewReplyVO reviewReplyVO);
 	
+	//페이징처리 총 게시글수
+	int selectReviewCnt(ReviewVO reviewVO);
+	
+	
+	//---------------아래는 관리자기능----------------//
+	
+	
+	//관리자 리뷰 관리 전체목록조회
+	List<ReviewVO> manageReviewList(ReviewVO reviewVO);
+	
 	//관리자 댓글 관리 댓글 전체목록조회
-	List<ReviewReplyVO> manageReplyList();
+	List<ReviewReplyVO> manageReplyList(ReviewReplyVO reviewReplyVO);
 	
 	//관리자 댓글 관리 댓글 상세조회
 	ReviewReplyVO selectReplyDetail(String reviewReplyCode);
@@ -54,8 +61,11 @@ public interface ReviewService {
 	//관리자 댓글 관리 댓글삭제
 	boolean deleteReviewReplyManage(String reviewReplyCode);
 	
-	//페이징처리 총 게시글수
-	int selectReviewCnt(ReviewVO reviewVO);
+	//관리자 코스후기 관리 총 게시글수
+	int manageReviewCnt(ReviewVO reviewVO);
+	
+	//관리자 댓글 관리 총 댓글수
+	int manageReplyCnt(ReviewReplyVO reviewReplyVO);
 	
 	
 }
