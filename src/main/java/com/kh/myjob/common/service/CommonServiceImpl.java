@@ -35,5 +35,17 @@ public class CommonServiceImpl implements CommonService{
 		return sqlsession.selectOne("commonMapper.selectNoticeBoardCnt", noticeBoardVO);
 	}
 
+	@Override
+	public String nextNoticeBoardCode() {
+		return sqlsession.selectOne("commonMapper.nextNoticeBoardCode");
+	}
+
+	@Override
+	public boolean regNoticeBoard(NoticeBoardVO noticeBoardVO) {
+		int result = sqlsession.insert("commonMapper.regNoticeBoard", noticeBoardVO);
+		//공지사항 등록성공 : true, 공지사항등록 실패 : false
+		return result == 1 ? true : false;
+	}
+
 	
 }

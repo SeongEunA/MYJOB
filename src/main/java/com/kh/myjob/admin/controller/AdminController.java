@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.myjob.common.service.CommonService;
+import com.kh.myjob.common.vo.NoticeBoardVO;
 import com.kh.myjob.member.service.MemberService;
 import com.kh.myjob.member.vo.MemberVO;
 import com.kh.myjob.review.service.ReviewService;
@@ -120,10 +121,14 @@ public class AdminController {
 		return "admin/reg_notice_board";
 	}
 	
-	//공지사항 등록페이지로 이동
+	//공지사항 등록
 	@PostMapping("/regNoticeBoard")
-	public String regBoticeBoard() {
-		return "admin/notice_board";
+	public String regBoticeBoard(NoticeBoardVO noticeBoardVO, Model model) {
+		//NOTICE_BOARD_CODE 세팅
+		noticeBoardVO.setNoticeBoardCode(commonService.nextNoticeBoardCode());
+		
+		model.addAttribute("regNoticeBoardResult", commonService.regNoticeBoard(noticeBoardVO));
+		return "admin/reg_notice_board_result";
 	}
 	
 	//공지사항 삭제

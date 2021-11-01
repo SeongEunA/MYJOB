@@ -6,6 +6,12 @@ import com.kh.myjob.common.vo.NoticeBoardVO;
 
 public interface CommonService {
 	
+	//다음에 들어갈 NOTICE_BOARD_CODE 조회
+	String nextNoticeBoardCode();
+	
+	//공지사항 등록
+	boolean regNoticeBoard(NoticeBoardVO noticeBoardVO);
+	
 	//공지사항 전체목록조회
 	List<NoticeBoardVO> selectNoticeBoardList(NoticeBoardVO noticeBoardVO);
 	
