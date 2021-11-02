@@ -43,6 +43,11 @@ body {
 			<tiles:insertAttribute name="body"/>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col">
+			<tiles:insertAttribute name="footer"/>
+		</div>
+	</div>
 </div>
 </body>
 </html>
