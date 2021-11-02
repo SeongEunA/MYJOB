@@ -1,6 +1,7 @@
 package com.kh.myjob.course.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -22,6 +23,7 @@ import com.kh.myjob.course.vo.CourseVO;
 import com.kh.myjob.course.vo.LocationVO;
 import com.kh.myjob.course.vo.PlacePageVO;
 import com.kh.myjob.course.vo.PlaceVO;
+import com.kh.myjob.course.vo.ShortCourseVO;
 
 @Controller
 @RequestMapping("/course")
@@ -151,36 +153,149 @@ public class CourseController {
 	@PostMapping("/theShortestCourse")
 	public String theShortestCourse(String courseCode) {
 		List<CourseVO> courseList = courseService.selectCoursePlaceListByCourseCode(courseCode);
-		
 		List<CourseRegVO> courseRegList = courseList.get(0).getCoursePlaceList();
+
+		List<ShortCourseVO> shortCourseList = new ArrayList<ShortCourseVO>(); //shortCourseList 객체를 담은 리스트
 		
-		double[][] arrXY = new double[courseRegList.size()][2];
-		
+		//객체에 x,y 값 좌표 설정
 		for(int i = 0; i < courseRegList.size(); i++) {
-			for(int j = 0; j < 2; j++) {
-				if(j == 0) {
-					arrXY[i][j] = (Double.parseDouble(courseRegList.get(i).getX()));
-				}
-				else if(j == 1) {
-					arrXY[i][j] = (Double.parseDouble(courseRegList.get(i).getY()));
-				}
+			ShortCourseVO shortCourseVO = new ShortCourseVO();
+			
+			if(courseRegList.get(i).getCateCode().equals("CATE_001")) {
+				shortCourseVO.setCate(true);
+				shortCourseVO.setOriginIndex(i);
+				shortCourseVO.setResultIndex(0);
+				shortCourseVO.setX(Double.parseDouble(courseRegList.get(i).getX()));
+				shortCourseVO.setY(Double.parseDouble(courseRegList.get(i).getY()));
+			}
+			else {
+				shortCourseVO.setOriginIndex(i);
+				shortCourseVO.setX(Double.parseDouble(courseRegList.get(i).getX()));
+				shortCourseVO.setY(Double.parseDouble(courseRegList.get(i).getY()));
+			}
+			
+			shortCourseList.add(shortCourseVO);
+		}
+		
+		
+		//기준장소 x,y값
+		double startX = 0;
+		double startY = 0;
+		
+		
+		
+		//계산된 거리값
+		//List<Double> distance = new ArrayList<Double>();
+		
+		//최종 추천코스가 담길 리스트
+		List<String> resultCourse = new ArrayList<String>();
+		
+		for(int i = 0; i < shortCourseList.size(); i++) {
+			if(shortCourseList.get(i).isCate()) {
+				startX = shortCourseList.get(i).getX();
+				startY = shortCourseList.get(i).getY();
+				shortCourseList.get(i).setVisit(true);
+				resultCourse.add(courseRegList.get(i).getPlaceName());
 			}
 		}
 		
 		
 		
+		shortCourse(shortCourseList,startX,startY,resultCourse,courseRegList);
 		
-		// x1에서 각 지점 까지 x거리
-		// arrXY[0]-arrXY[2], arrXY[0]-arrXY[4], arrXY[0]-arrXY[6], arrXY[0]-arrXY[8], arrXY[0]-arrXY[10], arrXY[0]-arrXY[12]
-		// y1에서 각 지점 까지 y거리
-		// arrXY[1]-arrXY[3], arrXY[1]-arrXY[5], arrXY[1]-arrXY[7], arrXY[1]-arrXY[9], arrXY[1]-arrXY[11], arrXY[1]-arrXY[13]
-		
-		for(int i = 0; i < arrXY.length; i++) {
+		for(int i=0; i<resultCourse.size();i++) {
 			
+			System.out.println(resultCourse.get(i));
 		}
+		
+		
 		
 		
 		return "redirect:/course/myCourseList";
 	}
 	
+	
+	public int shortCourse(List<ShortCourseVO> shortCourseList,double startX,double startY,List<String> resultCourse,List<CourseRegVO> courseRegList) {
+		//남은장소 x,y값
+		double placeX = 0;
+		double placeY = 0;
+		
+		int visitCnt = 0;
+		for(int i = 0;i< shortCourseList.size();i++) {
+			
+			
+			if(shortCourseList.get(i).isVisit()) {
+				
+				visitCnt++;
+			}
+			
+		}
+		
+		if(visitCnt==shortCourseList.size()) {
+			
+			return 0;
+		}
+		
+		
+		else {
+			System.out.println("!!!!" + visitCnt);
+			for(int i = 0; i < shortCourseList.size(); i++) {
+				
+				if(shortCourseList.get(i).isVisit() == false) {
+					System.out.println(i+"번째"+"placeX : "+placeX);
+					System.out.println(i+"번째"+"placeY : "+placeY);
+					placeX = shortCourseList.get(i).getX();
+					placeY = shortCourseList.get(i).getY();
+					shortCourseList.get(i).setDistance(((startX-placeX)*(startX-placeX)) + ((startY-placeY)*(startY-placeY)));
+					System.out.println("계산된 거리 : " +  shortCourseList.get(i).getDistance());
+				}
+			}
+			
+			double minDis = 100;
+			
+			int originIndex=0;
+			
+			for(int i =0; i<shortCourseList.size(); i++) {
+				
+				if(shortCourseList.get(i).isVisit()==false) {
+					if(minDis > shortCourseList.get(i).getDistance()) {
+						System.out.println("shortCourseList.get(i).getDistance() = " + shortCourseList.get(i).getDistance());
+						
+						minDis = shortCourseList.get(i).getDistance();
+						System.out.println("바뀌기 전 origin index = " + originIndex);
+						originIndex = shortCourseList.get(i).getOriginIndex();
+						System.out.println("바뀐 후 origin index = " + originIndex);
+					}
+				
+				}
+				
+				
+			}
+			
+			for(int i =0; i<shortCourseList.size();i++) {
+			System.out.println("i = " + i);
+			System.out.println("originIndex = " + originIndex + " / shortCourseList.get(i).getOriginIndex() = " + shortCourseList.get(i).getOriginIndex());
+				
+				if(shortCourseList.get(i).getOriginIndex()==originIndex) {
+			
+					startX = shortCourseList.get(i).getX();
+					startY = shortCourseList.get(i).getY();
+					shortCourseList.get(i).setVisit(true);
+					resultCourse.add(courseRegList.get(i).getPlaceName());
+					
+				}
+			}
+			
+			
+			
+			return shortCourse(shortCourseList,startX,startY,resultCourse,courseRegList);
+		}
+	}
 }
+
+
+
+
+
+
+
