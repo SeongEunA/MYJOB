@@ -6,15 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-	function deleteNoticeBoard(noticeBoardCode) {
-		var result = confirm('정말로 삭제하시겠습니까?');
-		if(result){
-			location.href='/admin/deleteNoticeBoard?noticeBoardCode=' + noticeBoardCode;
-		}
-		
-	}
-</script>
+<script type="text/javascript" src="/resources/common/js/notice_board_detail.js?ver=3"></script>
 <style type="text/css">
 .container{
 	width: 1000px;
@@ -63,20 +55,20 @@ td{
 <body>
 공지사항 상세페이지 입니다.
 <div class="container">
-	<div>
+	<div id="detailNoticeBoard">
 		<table>
-		<colgroup>
-			<col width="85%">
-			<col width="5%">
-			<col width="10%">
-		</colgroup>
+			<colgroup>
+				<col width="85%">
+				<col width="5%">
+				<col width="10%">
+			</colgroup>
 			<tr>
 				<td>제 목</td>
 				<td>작성자</td>
 				<td>작성일</td>
 			</tr>
 			<tr>
-				<td>${detailNoticeBoard.boardSubject }</td>
+				<td id="boardSubject">${detailNoticeBoard.boardSubject }</td>
 				<td>${detailNoticeBoard.boardWriter }</td>
 				<td>${detailNoticeBoard.regDate }</td>
 			</tr>
@@ -84,13 +76,14 @@ td{
 				<td colspan="3">내 용</td>
 			</tr>
 			<tr class="contentTr">
-				<td colspan="3">${detailNoticeBoard.boardContent }</td>
+				<td colspan="3" id="boardContent">${detailNoticeBoard.boardContent }</td>
 			</tr>
 		</table>
 		<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' }">
 			<div class="manageBtnDiv">
-				<div class="updateNoticeBoardBtnDiv"><input type="button" id="updateNoticeBoardBtn" value="수정" onclick=""></div>
-				<div class="deleteNoticeBoardBtnDiv"><input type="button" id="deleteNoticeBoardBtn" value="삭제" onclick="deleteNoticeBoard('${detailNoticeBoard.noticeBoardCode }');"></div>
+				<div class="updateNoticeBoardBtnDiv"><input type="button" id="updateNoticeBoard" value="수정" onclick="updateNoticeBoard('${detailNoticeBoard.noticeBoardCode }');"></div>
+				<div class="deleteNoticeBoardBtnDiv"><input type="button" id="deleteNoticeBoard" value="삭제" onclick="deleteNoticeBoard('${detailNoticeBoard.noticeBoardCode }');"></div>
+				<div><input id="memberIsAdmin" type="hidden" value="${sessionScope.loginInfo.memberIsAdmin}"></div>
 			</div>
 		</c:if>
 	</div>

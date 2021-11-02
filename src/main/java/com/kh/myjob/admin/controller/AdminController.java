@@ -1,6 +1,8 @@
 package com.kh.myjob.admin.controller;
 
 
+import java.util.Calendar;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.myjob.common.service.CommonService;
 import com.kh.myjob.common.vo.NoticeBoardVO;
@@ -117,7 +120,12 @@ public class AdminController {
 	
 	//공지사항 등록페이지로 이동
 	@GetMapping("/regNoticeBoard")
-	public String goRegBoticeBoard() {
+	public String goRegBoticeBoard(Model model) {
+		
+		//오늘 날짜 세팅
+		String nowDate = getNowDateToString();
+		model.addAttribute("nowDate", nowDate);
+		
 		return "admin/reg_notice_board";
 	}
 	
@@ -131,14 +139,47 @@ public class AdminController {
 		return "admin/reg_notice_board_result";
 	}
 	
+	//공지사항 수정
+	@ResponseBody
+	@PostMapping("/updateNoticeBoard")
+	public boolean updateNoticeBoard(NoticeBoardVO noticeBoardVO) {
+		return commonService.updateNoticeBoard(noticeBoardVO);
+	}
+	
+	//수정된 공지사항 상세페이지 가져오기
+	@ResponseBody
+	@PostMapping("/selectDetailNoticeBoard")
+	public NoticeBoardVO selectDetailNoticeBoard(String noticeBoardCode) {
+		return commonService.selectDetailNoticeBoard(noticeBoardCode);
+	}
+	
 	//공지사항 삭제
 	@GetMapping("/deleteNoticeBoard")
 	public String deleteNoticeBoard(String noticeBoardCode, Model model) {
 		model.addAttribute("deleteNoticeBoardResult", commonService.deleteNoticeBoard(noticeBoardCode));
 		return "admin/delete_notice_board_result";
 	}
-
 	
+	//오늘날짜 구하는 메소드
+	private String getNowDateToString() {
+		//YYYY-MM-DD
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.MONTH) + 1;
+		int date = cal.get(Calendar.DATE);
+		
+		String strMonth = String.valueOf(month);
+		if(month < 10) {
+			strMonth = "0" + strMonth;
+		}
+		
+		String strDate = String.valueOf(date);
+		if(date < 10) {
+			strDate = "0" + strDate;
+		}
+		
+		return year +  "." + strMonth + "." + strDate;
+	}
 	
 	
 	

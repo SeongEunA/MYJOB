@@ -21,13 +21,15 @@
 			INSERT INTO NOTICE_BOARD (
 			  NOTICE_BOARD_CODE
 			  , BOARD_SUBJECT
-			  , BOARD_CONTENT
 			  , BOARD_WRITER
+			  , REG_DATE
+			  , BOARD_CONTENT
 			) VALUES (
 			  #{noticeBoardCode}
 			  , #{boardSubject}
-			  , #{boardContent}
 			  , #{boardWriter}
+			  , #{regDate}
+			  , #{boardContent}
 			)
 		</insert>
 		
@@ -74,6 +76,15 @@
 			FROM NOTICE_BOARD
 			WHERE NOTICE_BOARD_CODE = #{noticeBoardCode}
 		</select>
+		
+		<!-- 공지사항 수정 -->
+		<update id="updateNoticeBoard">
+			UPDATE NOTICE_BOARD
+			SET
+			BOARD_SUBJECT = #{boardSubject}
+			, BOARD_CONTENT = #{boardContent}
+			WHERE NOTICE_BOARD_CODE = #{noticeBoardCode}
+		</update>		
 		
 		<!-- 공지사항 삭제 -->
 		<delete id="deleteNoticeBoard">

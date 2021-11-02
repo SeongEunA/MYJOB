@@ -5,15 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-	function deleteMember(memberCode) {
-		var result = confirm('정말로 삭제하시겠습니까?');
-		if(result){
-			location.href='/admin/deleteMember?memberCode=' + memberCode;
-		}
-		
-	}
-</script>
+<script type="text/javascript" src="/resources/admin/js/member_detail.js?ver=2"></script>
 <style type="text/css">
 .container{
 	width: 100%;

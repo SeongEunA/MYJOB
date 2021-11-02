@@ -75,7 +75,6 @@ td{
 					<td>
 						<select name="searchKeyword">
 							<option selected>전  체</option>
-							<option value="REVIEW_BOARD_TITLE" <c:if test="${reviewVO.searchKeyword eq 'REVIEW_BOARD_TITLE'}">selected</c:if>>전  체</option>
 							<option value="REVIEW_BOARD_TITLE" <c:if test="${reviewVO.searchKeyword eq 'REVIEW_BOARD_TITLE'}">selected</c:if>>제  목</option>
 							<option value="REVIEW_BOARD_CONTENT" <c:if test="${reviewVO.searchKeyword eq 'REVIEW_BOARD_CONTENT'}">selected</c:if>>내 용</option>
 							<option value="REVIEW_BOARD_WRITER" <c:if test="${reviewVO.searchKeyword eq 'REVIEW_BOARD_WRITER'}">selected</c:if>>작성자</option>

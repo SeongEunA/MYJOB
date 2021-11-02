@@ -9,7 +9,7 @@
 	<c:if test="${deleteNoticeBoardResult }">
 		<script type="text/javascript">
 			alert('해당 공지사항이 삭제되었습니다.')
-			location.href='/admin/noticeBoardManage';
+			location.href='/common/noticeBoard';
 		</script>
 	</c:if>
 </head>

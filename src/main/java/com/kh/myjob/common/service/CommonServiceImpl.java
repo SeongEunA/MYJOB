@@ -47,5 +47,12 @@ public class CommonServiceImpl implements CommonService{
 		return result == 1 ? true : false;
 	}
 
+	@Override
+	public boolean updateNoticeBoard(NoticeBoardVO noticeBoardVO) {
+		//공지사항 수정성공 : true, 공지사항 수정실패 : false
+		int result = sqlsession.update("commonMapper.updateNoticeBoard", noticeBoardVO);
+		return result == 1 ? true : false;
+	}
+
 	
 }

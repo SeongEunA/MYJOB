@@ -33,6 +33,14 @@ public class MemberController {
 		return memberService.isJoined(memberId);
 	}
 	
+	//EMAIL 중복 체크
+	@ResponseBody
+	@PostMapping("/emailCheck")
+	public boolean emailCheck(String memberEmail) {
+		//기가입 : true, 미가입 : false
+		return memberService.emailCheck(memberEmail);
+	}
+	
 	//회원가입
 	@PostMapping("/join")
 	public String join(MemberVO memberVO, Model model ) {
@@ -82,14 +90,19 @@ public class MemberController {
 		return "member/my_page";
 	}
 	
-	//EMAIL 중복 체크
+	//회원정보 수정
 	@ResponseBody
-	@PostMapping("/emailCheck")
-	public boolean emailCheck(String memberEmail) {
-		//기가입 : true, 미가입 : false
-		return memberService.emailCheck(memberEmail);
+	@PostMapping("/updateMyInfo")
+	public boolean updateMyInfo(MemberVO memberVO) {
+		return memberService.updateMyInfo(memberVO);
 	}
 	
+	//수정된 회원정보 상세페이지 가져오기
+	@ResponseBody
+	@PostMapping("/selectDetailMember")
+	public MemberVO selectDetailMember(String memberCode) {
+		return memberService.selectDetailMember(memberCode);
+	}
 }
 
 

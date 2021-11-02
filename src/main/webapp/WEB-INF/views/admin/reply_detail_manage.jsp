@@ -5,15 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-	function deleteReviewReply(reviewReplyCode) {
-		var result = confirm('정말로 삭제하시겠습니까?');
-		if(result){
-			location.href='/admin/deleteReviewReply?reviewReplyCode=' + reviewReplyCode;
-		}
-		
-	}
-</script>
+<script type="text/javascript" src="/resources/admin/js/reply_detail_manage.js?ver=5"></script>
 <style type="text/css">
 .container{
 	width: 100%;

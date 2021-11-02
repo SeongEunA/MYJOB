@@ -8,6 +8,9 @@ public interface MemberService {
 	//ID중복확인
 	boolean isJoined(String memberId);
 	
+	//Email중복확인
+	boolean emailCheck(String memberEmail);
+	
 	//회원가입
 	boolean join(MemberVO memberVO);
 	
@@ -23,8 +26,8 @@ public interface MemberService {
 	//회원목록 상세조회
 	MemberVO selectDetailMember(String memberCode);
 	
-	//Email중복확인
-	boolean emailCheck(String memberEmail);
+	//회원목록 수정
+	boolean updateMyInfo(MemberVO memberVO);
 	
 	//회원삭제
 	boolean deleteMember(String memberCode);

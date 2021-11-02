@@ -23,6 +23,13 @@
 			WHERE MEMBER_ID = #{memberId}
 		</select>
 		
+		<!-- 이메일체크 -->
+		<select id="emailCheck" resultType="String">
+			SELECT MEMBER_EMAIL
+			FROM MEMBER
+			WHERE MEMBER_EMAIL = #{memberEmail}
+		</select>
+		
 		<!-- 회원가입 -->
 		<insert id="join">
 			INSERT INTO MEMBER (
@@ -109,26 +116,30 @@
 			WHERE MEMBER_CODE = #{memberCode}
 		</select>
 		
-		<!-- 이메일체크 -->
-		<select id="emailCheck" resultType="String">
-			SELECT MEMBER_EMAIL
-			FROM MEMBER
-			WHERE MEMBER_EMAIL = #{memberEmail}
-		</select>
-		
+		<!-- 회원 정보 수정 -->
+		<update id="updateMyInfo">
+			UPDATE MEMBER
+			SET
+			MEMBER_PW = #{memberPw}
+			, MEMBER_EMAIL = #{memberEmail}
+			, MEMBER_TEL = #{memberTel}
+			, MEMBER_ADDR = #{memberAddr}
+			WHERE MEMBER_CODE = #{memberCode}
+		</update>
+
 		<!-- 관리자 회원 관리에서 회원삭제, 일반회원 마이페이지에서 회원탈퇴 -->
 		<delete id="deleteMember">
 			DELETE MEMBER
 			WHERE MEMBER_CODE = #{memberCode}
 		</delete>
 		
-		
-		<!-- 게시글 전체 데이터 개수 조회 -->
+		<!-- 관리자 회원 관리 전체 데이터 개수 조회 -->
 		<select id="selectMemberCnt" resultType="int">
-			SELECT COUNT(MEMBER_CODE)
+			SELECT COUNT(MEMBER_IS_ADMIN)
 			FROM MEMBER
+			WHERE MEMBER_IS_ADMIN = 'N'
 			<if test="searchValue != null and !searchValue.equals('')">
-	      	WHERE ${searchKeyword} LIKE '%'||#{searchValue}||'%'
+	      	AND ${searchKeyword} LIKE '%'||#{searchValue}||'%'
 	      	</if>
 		</select>
 		

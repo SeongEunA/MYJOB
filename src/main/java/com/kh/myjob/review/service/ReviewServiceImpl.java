@@ -88,7 +88,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public boolean deleteReviewReplyManage(String reviewReplyCode) {
 		//댓글 삭제 성공 : true, 댓글 삭제 실패 : false
-		int result = sqlSession.delete("reviewMapper.manageDeleteReviewReply", reviewReplyCode);
+		int result = sqlSession.delete("reviewMapper.deleteReviewReplyManage", reviewReplyCode);
 		return result == 1 ? true : false;
 	}
 	
