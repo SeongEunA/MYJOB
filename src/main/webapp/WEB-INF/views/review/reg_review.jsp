@@ -1,52 +1,12 @@
-<%@page import="java.util.Date"%>
-<%@page import="org.apache.commons.fileupload.FileItem"%>
-<%@page import="java.util.List"%>
-<%@page import="java.io.File"%>
-<%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
-<%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	String saveDir = "C:/Users/CHOE YUSEUNG/git/MYJOB/src/main/webapp/resources/images";
-	String tempDir = "c:/temp/";
-	int maxSize = 1024*1024*50;
-	String encoding = "utf-8";
-	long fileLength = 0l;
-	long filepos = 0l;
-	String data = "";
-	DiskFileItemFactory factory = new DiskFileItemFactory();
-	factory.setSizeThreshold(4096);
-	factory.setRepository(new File(tempDir) );
-	
-	ServletFileUpload sf = new ServletFileUpload(factory);
-	sf.setHeaderEncoding("utf-8");
-	sf.setFileSizeMax(maxSize);	
-	
-	List<FileItem> list = sf.parseRequest(request);
-	for(FileItem fi : list) {
-		String v = fi.getString("utf-8");
-		String k = fi.getFieldName();
-		
-		
-		if(fi.getSize()>0) {
-			String f = fi.getName();
-			String sysfile = new Date().getTime() + "-" +f ;
-			out.print(f);
-			File file = new File(saveDir + sysfile);
-			fi.write(file);
-			fi.delete();
-		}
-	}
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="/resources/review/js/reg_review.js?ver=5"></script>
-<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script> 
-<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 
 
 <style type="text/css">
@@ -112,18 +72,20 @@
 		<div class="introCourseDiv">
 			<textarea name="reviewBoardContent" id="csdesc" maxlength="2000" class="comment_textarea" title="코스 소개" style="resize: none;" placeholder="코스에 대한 간략한 설명을 기재할 수 있습니다."></textarea>
 		</div>
-		 <script>
-			upload.start('btnAtt', 'submitAction', 'imgs_wrap', 'file_upload_action.jsp');
-		</script>
-		 
-		 	<h2>이미지 미리보기 | 멀티 업로드 TEST</h2>
-		<div class='input-wrap'>
-			<input type='file' id='btnAtt' multiple />
-		</div>
-		<div class='imgs_wrap' id='imgs_wrap'>
-		</div>
-		<input type='button' value='멀티파일 전송' id='submitAction'/>
-	
+		
+		
+			
+		<section class="pr_img">
+	          <p>    
+	            <label for="img"></label>
+	        </p>
+	        <div id="pr_img">
+	            <input type="file" id="img" name="pr_img_files"/>            
+	        
+	        </div>
+	    
+	    </section>
+
 		
 		 
 		 

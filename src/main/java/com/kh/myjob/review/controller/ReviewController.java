@@ -120,10 +120,11 @@ public class ReviewController {
 		}
 		reviewVO.setReviewBoardCode(reviewBoardCode);
 		reviewService.insertReview(reviewVO);
-
+		
 		reviewVO.setReviewImgList(imgList);
-
-		reviewService.insertReviewImg(reviewVO);
+		if(reviewVO.getReviewImgList().get(0).getReviewImgOriginName() != "") {
+			reviewService.insertReviewImg(reviewVO);			
+		}
 
 		return "redirect:/review/selectReviewList";
 	}
