@@ -69,14 +69,14 @@ public class AdminController {
 		
 		
 		//전체 데이터 수
-		int dataCnt = reviewService.manageReviewCnt(reviewVO);
+		int dataCnt = reviewService.selectReviewCnt(reviewVO);
 		reviewVO.setTotalCnt(dataCnt);
 			
 		//페이징 처리
 		reviewVO.setPageInfo();
 		
 		
-		model.addAttribute("reviewList", reviewService.manageReviewList(reviewVO));
+		model.addAttribute("reviewList", reviewService.selectReviewList(reviewVO));
 		return "admin/review_manage";
 	}
 	
@@ -107,14 +107,14 @@ public class AdminController {
 	//댓글 관리 상세페이지로 이동
 	@GetMapping("/detailReply")
 	public String goDetailReply(Model model, String reviewReplyCode) {
-		model.addAttribute("detailReply", reviewService.selectReplyDetail(reviewReplyCode));
+		model.addAttribute("detailReply", reviewService.manageReplyDetail(reviewReplyCode));
 		return "admin/reply_detail_manage";
 	}
 	
 	//댓글 삭제
 	@GetMapping("/deleteReviewReply")
-	public String deleteReply(Model model, String reviewReplyCode) {
-		model.addAttribute("deleteReplyResult", reviewService.deleteReviewReplyManage(reviewReplyCode));
+	public String deleteReply(Model model, ReviewReplyVO reviewReplyVO) {
+		model.addAttribute("deleteReplyResult", reviewService.deleteReviewReply(reviewReplyVO));
 		return "admin/delete_reply_result";
 	}
 	
