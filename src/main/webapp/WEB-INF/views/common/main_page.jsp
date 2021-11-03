@@ -8,36 +8,62 @@
 <style type="text/css">
 .mainPhotoContainer{
 
-border:1px solid black;
+border:1px solid white;
 width:auto;
 height:400px;
-background-image:url('/resources/images/야경1.png');
-background-repeat: no-repeat;
 
+
+}
+.mainPhoto{
+width:100%;
+height:100%;
+background-image:url('/resources/images/call.png');
+background-repeat: no-repeat;
 }
 .tagContainer{
 border:1px solid black;
-height:200px;
+height:160px;
 margin:0 auto;
 }
+.tagLayout{
+border:1px solid red;
+height:50px;
+margin-top:20px;
+}
+
 .mainReviewContainer{
-border:1px solid black;
+border:1px solid #EBF7FF;
 height:400px;
 text-align: center;
+background-color:#EBF7FF;
 }
 .mainReviewDiv{
-border:1px solid blue;
+border:1px solid #EBF7FF;
 height:80%;
 margin-top:35px;
 margin-right:20px;
 display:inline-block;
 border-radius:10px;
+background-color:white;
 }
-
+.mainReviewPhoto{
+border:1px solid #EBF7FF;
+border-top-left-radius:10px;
+border-top-right-radius:10px;
+height:80%;
+}
+.mainReviewText{
+border:1px solid #EBF7FF;
+border-bottom-left-radius:10px;
+border-bottom-right-radius:10px;
+width:100%;
+height:20%;
+}
 .noticeEventContainer{
-border:1px solid red;
+border:1px solid white;
 height:500px;
 text-align: center;
+margin-top:100px;
 }
 .noticeEventLayout{
 border:1px solid blue;
@@ -77,28 +103,53 @@ flex-direction:row;
 border:1px solid red;
 }
 .healingTripContainer{
-border:1px solid blue;
+border:1px solid white;
 height:100%;
 margin:0 auto;
 display:flex;
 flex-direction:column;
+
 }
 
 .healingTripLayout{
-border:1px solid orange;
+border:1px solid white;
 height:100%;
 display:flex;
 flex-direction: row;
 }
 .healingTripDiv{
-border:1px solid blue;
+border:1px solid #e6e6e6;
+border-radius:5px;
 margin:0 auto;
 height:80%;
+}
+.healingTripDivPhoto{
+border:1px solid white;
+border-radius:5px;
+width:83%;
+height:90%;
+margin:0 auto;
+margin-top:7%;
+position:relative;
+}
+.healingTripDivPhotoText{
+color:white;
+position:absolute;
+margin-top:10%;
+z-index:9;
+text-align:left;
+padding: 2px 15px;
 }
 .healingTitle{
 border:1px solid red;
 width:100%;
 height:30px;
+}
+.healingImg{
+border-radius:5px;
+width:100%;
+height:100%;
+filter: brightness(70%);
 }
 </style>
 </head>
@@ -106,31 +157,49 @@ height:30px;
 <div class="row justify-content-center">
 	<div class="col-12">
 		<div class="mainPhotoContainer">
-		배너 사진
+			<div class="mainPhoto col-12">
+				<img src="/resources/images/call.png" width="100%" height="100%">
+			</div>
 		</div>
 		<div class="row">
 				<div class="col-12">
 					<div class="tagContainer col-8">
-					태그
+						<div class="col-12 tagLayout">
+							태그1
+						</div>
+						<div class="col-12 tagLayout">
+							태그2
+						</div>
 					</div>
 				</div>
 		</div>
 		<div class="row">
 			<div class="col-12 mainReviewContainer">
 				<div class="col-2 mainReviewDiv">
-				 리뷰썸네일1
+					 <div class="mainReviewPhoto">
+						 <img src="/resources/images/리뷰1.jpg" style="border-top-left-radius:10px;border-top-right-radius:10px;" width="100%" height="100%">
+					 </div>
+					 <div class="mainReviewText">캠핑여행을갔다왔..</div>
 				</div>
 				<div class="col-2 mainReviewDiv">
-				리뷰썸네일1
+					<div class="mainReviewPhoto">
+					<img src="/resources/images/리뷰2.jpg" style="border-top-left-radius:10px;border-top-right-radius:10px;" width="100%" height="100%">
+					</div>
+					 <div class="mainReviewText">리뷰텍스트</div>
 				</div>
 				<div class="col-2 mainReviewDiv">
-				리뷰썸네일1
+					<div class="mainReviewPhoto">
+					<img src="/resources/images/리뷰3.jpeg" style="border-top-left-radius:10px;border-top-right-radius:10px;" width="100%" height="100%">
+					</div>
+					 <div class="mainReviewText">리뷰텍스트</div>
 				</div>
 				<div class="col-2 mainReviewDiv">
-				리뷰썸네일1
+					<div class="mainReviewPhoto"></div>
+					 <div class="mainReviewText">리뷰텍스트</div>
 				</div>
 				<div class="col-2 mainReviewDiv">
-				리뷰썸네일1
+					<div class="mainReviewPhoto"></div>
+					 <div class="mainReviewText">리뷰텍스트</div>
 				</div>
 			</div>
 		</div>
@@ -167,43 +236,77 @@ height:30px;
 				
 			</div><!-- noticeEventContainer -->
 		</div><!-- 힐링 테마 여행 -->
-			<div class="row">
+		<div class="row">
 			<div class="col-12 noticeEventContainer">
 				<div class="col-8 healingTripContainer">
-				
 					<div class="col-12 healingTripLayout">
 						<div class="col-3 healingTripDiv">
-							여행테마1
+							<div class="healingTripDivPhoto">
+								<div class="healingTripDivPhotoText">
+								웅장한 자연이 파노라마로 펼쳐지는
+								담양 금성산성 힐링 풍경 여행
+								</div>
+								<img src="/resources/images/힐링4.png" class="healingImg">
+							</div>
 						</div>
-						<div class="col-3 healingTripDiv">
-							여행테마2
+					<div class="col-3 healingTripDiv">
+						<div class="healingTripDivPhoto">
+								<div class="healingTripDivPhotoText">
+								설렘 가득한 기차 테마 파크로!
+								곡성 섬진강기차마을
+								</div>
+							<img src="/resources/images/힐링5.png" class="healingImg">
 						</div>
-						<div class="col-3 healingTripDiv">
-							여행테마3
+					</div>
+					<div class="col-3 healingTripDiv">
+						<div class="healingTripDivPhoto">
+								<div class="healingTripDivPhotoText">
+								그윽한 맛과 향 즐기는 시음부터
+								힐링 와인 족욕 체험까지, 영월 ♡
+								</div>
+							<img src="/resources/images/힐링6.png" class="healingImg">
 						</div>
+					</div>
 					</div>
 				</div>
 			</div>
 		</div>
-			<div class="row">
+			<div class="row" style="position:relative;top:-100px;">
 				<div class="col-12 noticeEventContainer">
 					<div class="col-8 healingTripContainer">
 						<div class="col-12 healingTripLayout">
 							<div class="col-3 healingTripDiv">
-								여행테마4
+								<div class="healingTripDivPhoto">
+									<div class="healingTripDivPhotoText">
+										곶감공원, 자전거 박물관, 학전망대
+										추억 새기는 상주 가을 여행 코스
+									</div>
+									<img src="/resources/images/힐링1.png" class="healingImg">
+								</div>
 							</div>
 							<div class="col-3 healingTripDiv">
-								여행테마5
+								<div class="healingTripDivPhoto">
+									<div class="healingTripDivPhotoText">
+										쪽빛바다와 드넓은 초원, 이국적
+										풍경의 제주 섬 ‘차귀도’
+									</div>
+									<img src="/resources/images/힐링2.png" class="healingImg">
+								</div>
 							</div>
 							<div class="col-3 healingTripDiv">
-								여행테마6
+								<div class="healingTripDivPhoto">
+									<div class="healingTripDivPhotoText">
+										여유롭게 걸으면서 만나는 가을
+										청도 운문호반에코트레일
+									</div>
+									<img src="/resources/images/힐링3.png" class="healingImg">
+								</div>
 							</div>
 						</div>
-					
-				
+					</div>
 				</div><!-- noticeEventContainer -->
 			</div>
-		</div>
+		
 		<!-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
 			<div class="carousel-inner">
 				<div class="carousel-item active">
@@ -227,5 +330,6 @@ height:30px;
 		</div> -->
 	</div>
 </div>
+
 </body>
 </html>

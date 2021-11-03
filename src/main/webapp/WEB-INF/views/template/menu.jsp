@@ -4,14 +4,50 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+
 .userInterface{
 	font-size: 15px;
 }
 span{
    cursor: pointer;
+}
+li{
+	display:inline-block;
+	width:250px;
+}
+ul{
+	text-decoration: none;
+}
+.menuLayout{
+
+	border:1px solid white;
+	margin:0 auto;
+	margin-top:40px;
+	font-size:25px;
+	font-family: 'CookieRun-Regular';
+	letter-spacing:-1.0px;
+	color:black;
+	
+}
+a{
+	color:#333333;
+	text-decoration: none;
+}
+.mainTitle{
+	border:1px solid white;
+	color: navy; 
+	text-decoration-line: none;
+	font-family: 'Manse';
+	font-size:70px;
+}
+.loginLayout{
+	color: black; 
+	text-decoration-line: none;
+	font-size:20px;
 }
 </style>
 </head>
@@ -35,50 +71,29 @@ span{
 				</div>
 			</c:when>
 			<c:otherwise>
-				<a href="/member/join" style="color: black; text-decoration-line: none;">Join</a> |
-				<a href="/member/login" style="color: black; text-decoration-line: none;">Login</a>
+				<a href="/member/join" class="loginLayout">Join</a> |
+				<a href="/member/login" class="loginLayout">Login</a>
 			</c:otherwise>
 		</c:choose>
 	</div>
 </div>
 <div class="row">
    <div class="col-12 text-center">
-      <h1><a href="/common/main" style="color: black; text-decoration-line: none;">Travel course</a></h1>
+      <a href="/common/main" class="mainTitle">놀러가고싶어요</a>
    </div>
 </div>
 	<div class="row">
 		<div class="col-12 text-center mb-3">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<div class="container-fluid">
-					<a class="navbar-brand" href="#">여행</a>
-					<button class="navbar-toggler" type="button"
-						data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-						aria-controls="navbarNavAltMarkup" aria-expanded="false"
-						aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-						<div class="navbar-nav">
-						<c:choose>
-							<c:when test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' }">
-								<a class="nav-link light" aria-current="page" href="/common/main">홈</a>
-								<a class="nav-link light" aria-current="page" href="/course/courseSearch">코스검색</a>
-								<a class="nav-link light" aria-current="page" href="/course/myCourseList?memberId=${sessionScope.loginInfo.memberId }">내코스보기</a>
-								<a class="nav-link light" aria-current="page" href="/review/selectReviewList">코스후기</a>
-								<a class="nav-link light" aria-current="page" href="/common/noticeBoard">공지사항</a>
-							</c:when>
-							<c:otherwise>
-								<a class="nav-link light" aria-current="page" href="/common/main">홈</a>
-								<a class="nav-link light" aria-current="page" href="/course/courseSearch">코스검색</a>
-								<a class="nav-link light" aria-current="page" href="/course/myCourseList?memberId=${sessionScope.loginInfo.memberId }">내코스보기</a>
-								<a class="nav-link light" aria-current="page" href="/review/selectReviewList">코스후기</a>
-								<a class="nav-link light" aria-current="page" href="/common/noticeBoard">공지사항</a>
-							</c:otherwise>
-						</c:choose>
-						</div>
-					</div>
+			
+				<div class="col-12 menuLayout">
+					<ul>
+						<li><a href="/common/main">홈</a></li>
+						<li><a href="/course/courseSearch">코스검색</a></li>
+						<li><a href="/course/myCourseList?memberId=${sessionScope.loginInfo.memberId }">내코스보기</a></li>
+						<li><a href="/review/selectReviewList">코스후기</a></li>
+						<li><a href="/common/noticeBoard">공지사항</a></li>
+					</ul>
 				</div>
-			</nav>
 		</div>
 	</div>
 </body>

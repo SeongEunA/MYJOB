@@ -5,8 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.footerContainer{
+	border:1px solid black;
+	background-color:gray;
+	height:50px;
+	width:auto;
+}
+</style>
 </head>
 <body>
-에렐렐레 footer지롱
+<div class="footerContainer">
+	
+</div>
+
 </body>
 </html>
