@@ -28,11 +28,6 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public String selectNextMemberCode() {
-		return sqlsession.selectOne("memberMapper.selectNextMemberCode");
-	}
-	
-	@Override
 	public boolean join(MemberVO memberVO) {
 		int result = sqlsession.insert("memberMapper.join", memberVO);
 		//회원가입 성공 : true, 회원가입 실패 : false

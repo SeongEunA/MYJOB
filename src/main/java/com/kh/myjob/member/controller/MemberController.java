@@ -45,8 +45,6 @@ public class MemberController {
 	//회원가입
 	@PostMapping("/join")
 	public String join(MemberVO memberVO, Model model ) {
-		//MEMBER_CODE 세팅
-		memberVO.setMemberCode(memberService.selectNextMemberCode());
 		
 		model.addAttribute("joinResult", memberService.join(memberVO));
 		return "member/join_result";

@@ -14,9 +14,6 @@ public interface MemberService {
 	//회원가입
 	boolean join(MemberVO memberVO);
 	
-	//다음에 들어갈 MEMBER_CODE 조회
-	String selectNextMemberCode();
-	
 	//로그인
 	MemberVO login(MemberVO memberVO);
 	
@@ -34,7 +31,5 @@ public interface MemberService {
 	
 	//회원 관리 목록 전체개수조회
 	int selectMemberCnt(MemberVO memberVO);
-	
-	
 	
 }
