@@ -139,7 +139,7 @@ height:30px;
 				<div class="col-8 noticeEventLayout">
 					<div class="col-6 noticeEventDiv">
 						<div class="col-12 noticeBanner">
-						공지사항배너
+							공지사항배너
 						</div>
 						<div class="col-12 noticeBanner">
 						공지사항테이블
@@ -148,10 +148,10 @@ height:30px;
 					<div class="col-6 noticeEventDiv">
 							<div class="col-12 noticeBanner">
 								<div class="col-6 eventDiv">
-								이벤트1
+								<img src="/resources/images/배너1.jpg" width="100%" height="100%">
 								</div>
 								<div class="col-6 eventDiv">
-								이벤트2
+								<img src="/resources/images/배너2.png" width="100%" height="100%">
 								</div>
 							</div>
 							<div class="col-12 noticeBanner">
