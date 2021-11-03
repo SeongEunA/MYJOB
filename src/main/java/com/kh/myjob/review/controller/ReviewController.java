@@ -156,7 +156,7 @@ public class ReviewController {
 	// 후기게시판에 댓글목록 삭제
 	@ResponseBody
 	@PostMapping("/deleteReply")
-	public int deleteReply(ReviewReplyVO reviewReplyVO) {
+	public boolean deleteReply(ReviewReplyVO reviewReplyVO) {
 		return reviewService.deleteReviewReply(reviewReplyVO);
 	}
 
