@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/common/js/notice_board_detail.js?ver=3"></script>
+<script type="text/javascript" src="/resources/common/js/notice_board_detail.js?ver=4"></script>
 <style type="text/css">
 .container{
 	width: 1000px;

@@ -41,10 +41,117 @@
 	<!-- interceptor 객체 생성 -->
 	<beans:bean id="loginInterceptor" class="com.kh.myjob.common.interceptor.LoginInterceptor"></beans:bean>	
 	<interceptors>
+	
+		<!-- 코스후기 등록 -->
 		<interceptor>
 			<mapping path="/review/regReview"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
+		
+		<!-- //////////일반회원 기능////////// -->
+		
+		<!-- 회원정보 수정 -->
+		<interceptor>
+			<mapping path="/member/updateMyInfo"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<!-- 수정된 회원정보 가져오기 (Ajax사용시) -->
+		<interceptor>
+			<mapping path="/member/updatedDetailMember"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<!-- 회원탈퇴 -->
+		<interceptor>
+			<mapping path="/member/deleteMember"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<!-- ///////////////////////////////// -->
+		
+		
+		<!-- ////////관리자 기능////////////// -->
+		
+		<!-- 회원관리를 클릭하면 회원 관리 페이지로 이동 -->
+		<interceptor>
+			<mapping path="/admin/memberManage"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<!-- 회원 클릭하면 상세보기 -->
+		<interceptor>
+			<mapping path="/admin/detailMember"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<!-- 회원삭제 -->
+		<interceptor>
+			<mapping path="/admin/detailMember"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<!-- 코스후기 관리를 클릭하면 코스후기 관리 페이지로 이동 -->
+		<interceptor>
+			<mapping path="/admin/reviewManage "/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<!-- 코스후기 클릭하면 해당 상세페이지로 이동 -->
+		<interceptor>
+			<mapping path="/review/detailReview"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<!-- 코스후기 상세게시판에서 관리자 삭제버튼 눌렀을 때 -->
+		<interceptor>
+			<mapping path="/admin/deleteReviewBoard"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<!-- 댓글 관리를 클릭하면 댓글 관리 페이지로 이동 -->
+		<interceptor>
+			<mapping path="/admin/replyManage"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<!-- 댓글 클릭하면 상세페이지로 이동 -->
+		<interceptor>
+			<mapping path="/admin/detailReply"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<!-- 댓글 삭제 -->
+		<interceptor>
+			<mapping path="/admin/deleteReviewReply"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<!-- 공지사항 게시판에서 관리자 등록버튼 눌렀을 때 -->
+		<interceptor>
+			<mapping path="/admin/goRegNoticeBoard"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<!-- 공지사항 등록 -->
+		<interceptor>
+			<mapping path="/admin/regNoticeBoard"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<!-- 공지사항 수정 -->
+		<interceptor>
+			<mapping path="/admin/updateNoticeBoard"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<!-- 공지사항 삭제 -->
+		<interceptor>
+			<mapping path="/admin/deleteNoticeBoard"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<!-- ///////////////////////////////// -->
 	</interceptors>
 	
 	

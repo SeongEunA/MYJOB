@@ -65,7 +65,7 @@ td{
 		<div>
 		&nbsp;
 			<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' }">
-				<a href="/admin/regNoticeBoard"><input type="button" value="등록"></a>
+				<a href="/admin/goRegNoticeBoard"><input type="button" value="등록"></a>
 			</c:if>
 		</div>
 		<div class="searchDiv">

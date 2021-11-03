@@ -20,7 +20,7 @@ $(document).ready(function(){
 	deleteMember = function(memberCode){
 		var result = confirm('정말로 탈퇴하시겠습니까?');
 		if(result){
-			location.href='/admin/deleteMember?memberCode=' + memberCode;
+			location.href='/member/deleteMember?memberCode=' + memberCode;
 		}
 	}
 	
@@ -67,7 +67,7 @@ $(document).ready(function(){
 		            success: function(result) {
 		               	if(result){
 							alert('회원정보가 수정되었습니다.');
-							selectDetailMember(memberCode);
+							updatedDetailMember(memberCode);
 					   	}
 					   	else{
 							alert('관리자에게 문의하세요.');
@@ -81,10 +81,10 @@ $(document).ready(function(){
 				
 				
 				//회원정보 상세조회
-				selectDetailMember = function(memberCode){
+				updatedDetailMember = function(memberCode){
 					
 					$.ajax({
-						url: '/member/selectDetailMember', //요청경로
+						url: '/member/updatedDetailMember', //요청경로
 						type: 'post',
 						data:{'memberCode':memberCode}, //필요한 데이터
 						success: function(result) {

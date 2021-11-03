@@ -57,7 +57,7 @@ $(document).ready(function(){
 		            success: function(result) {
 		               	if(result){
 							alert('공지사항이 수정되었습니다.');
-							selectDetailNoticeBoard(noticeBoardCode);
+							updatedDetailNoticeBoard(noticeBoardCode);
 					   	}
 					   	else{
 							alert('관리자에게 문의하세요.');
@@ -70,12 +70,12 @@ $(document).ready(function(){
 	      		});
 				
 				//공지사항 상세조회
-				selectDetailNoticeBoard = function(noticeBoardCode){
+				updatedDetailNoticeBoard = function(noticeBoardCode){
 					//히든으로 넘겨준 관리자정보받기
 					var memberIsAdmin = $('#memberIsAdmin').val();
 					
 					$.ajax({
-						url: '/admin/selectDetailNoticeBoard', //요청경로
+						url: '/admin/updatedDetailNoticeBoard', //요청경로
 			            type: 'post',
 			            data:{'noticeBoardCode':noticeBoardCode}, //필요한 데이터
 			            success: function(result) {

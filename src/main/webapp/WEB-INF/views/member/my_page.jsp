@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/member/js/my_page.js?ver=27"></script>
+<script type="text/javascript" src="/resources/member/js/my_page.js?ver=31"></script>
 <style type="text/css">
 .container{
 	width: 1000px;

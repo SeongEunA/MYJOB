@@ -99,10 +99,18 @@ public class MemberController {
 	
 	//수정된 회원정보 상세페이지 가져오기
 	@ResponseBody
-	@PostMapping("/selectDetailMember")
-	public MemberVO selectDetailMember(String memberCode) {
+	@PostMapping("/updatedDetailMember")
+	public MemberVO updatedDetailMember(String memberCode) {
 		return memberService.selectDetailMember(memberCode);
 	}
+	
+	//회원 탈퇴
+	@GetMapping("/deleteMember")
+	public String deleteMember(String memberCode, Model model) {
+		model.addAttribute("deleteMemberResult", memberService.deleteMember(memberCode));
+		return "member/delete_member_result";
+	}
+	
 }
 
 

@@ -119,7 +119,7 @@ public class AdminController {
 	}
 	
 	//공지사항 등록페이지로 이동
-	@GetMapping("/regNoticeBoard")
+	@GetMapping("/goRegNoticeBoard")
 	public String goRegBoticeBoard(Model model) {
 		
 		//오늘 날짜 세팅
@@ -148,7 +148,7 @@ public class AdminController {
 	
 	//수정된 공지사항 상세페이지 가져오기
 	@ResponseBody
-	@PostMapping("/selectDetailNoticeBoard")
+	@PostMapping("/updatedDetailNoticeBoard")
 	public NoticeBoardVO selectDetailNoticeBoard(String noticeBoardCode) {
 		return commonService.selectDetailNoticeBoard(noticeBoardCode);
 	}
