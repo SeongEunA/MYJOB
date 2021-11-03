@@ -43,8 +43,6 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/review/regReview"/>
-			<mapping path="/member/updateMyInfo"/>
-			<mapping path="/member/updatedDetailMember"/>
 			<mapping path="/member/deleteMember"/>
 			<mapping path="/admin/memberManage"/>
 			<mapping path="/admin/detailMember"/>
@@ -57,7 +55,6 @@
 			<mapping path="/admin/deleteReviewReply"/>
 			<mapping path="/admin/goRegNoticeBoard"/>
 			<mapping path="/admin/regNoticeBoard"/>
-			<mapping path="/admin/updateNoticeBoard"/>
 			<mapping path="/admin/deleteNoticeBoard"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>		

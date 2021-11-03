@@ -64,12 +64,7 @@ public class MemberController {
 		if(memberService.login(memberVO) != null) {
 			httpSession.setAttribute("loginInfo", memberService.login(memberVO));
 			
-			if(memberService.login(memberVO).getMemberIsAdmin().equals("Y")) {
-				return "redirect:/admin/memberManage";
-			}
-			else {
-				return "redirect:/common/main";
-			}
+			return "member/login_result";
 		}
 		
 		return "redirect:/member/login";
