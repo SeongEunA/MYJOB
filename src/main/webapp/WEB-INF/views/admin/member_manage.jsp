@@ -77,9 +77,8 @@ td{
 				<tr>
 					<td>
 						<select name="searchKeyword">
-							<option selected value="all">전  체</option>
 							<option value="MEMBER_ID" <c:if test="${memberVO.searchKeyword eq 'MEMBER_ID'}">selected</c:if>>아이디</option>
-							<option value="MEMBER_NAME" <c:if test="${memberVO.searchKeyword eq 'MEMBER_NAME'}">selected</c:if>>이 름</option>
+							<option value="MEMBER_NAME" <c:if test="${memberVO.searchKeyword eq 'MEMBER_NAME'}">selected</c:if>>이&nbsp;&nbsp;&nbsp;름</option>
 						</select>
 					</td>
 					<td>

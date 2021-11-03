@@ -38,11 +38,6 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<ReviewVO> selectReviewList(ReviewVO reviewVO) {
 		return sqlSession.selectList("reviewMapper.selectReviewList", reviewVO);
 	}
-	
-	@Override
-	public List<ReviewVO> manageReviewList(ReviewVO reviewVO) {
-		return sqlSession.selectList("reviewMapper.manageReviewList", reviewVO);
-	}
 
 	@Override
 	public List<ReviewReplyVO> selectReviewReplyList(ReviewReplyVO reviewReplyVO) {
@@ -50,8 +45,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public int deleteReviewReply(ReviewReplyVO reviewReplyVO) {
-		return sqlSession.delete("reviewMapper.deleteReviewReply", reviewReplyVO);
+	public boolean deleteReviewReply(ReviewReplyVO reviewReplyVO) {
+		return sqlSession.delete("reviewMapper.deleteReviewReply", reviewReplyVO) == 1 ? true : false;
 	}
 	
 	@Override
@@ -77,28 +72,15 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public boolean deleteReviewBoard(String reviewBoardCode) {
 		//리뷰게시글 삭제 성공 : true, 리뷰게시글 삭제 실패 : false
-		int result = sqlSession.delete("reviewMapper.deleteReviewBoard", reviewBoardCode);
-		return result == 1 ? true : false;
+		return sqlSession.delete("reviewMapper.deleteReviewBoard", reviewBoardCode) == 1 ? true : false;
 	}
 	@Override
-	public ReviewReplyVO selectReplyDetail(String reviewReplyCode) {
-		return sqlSession.selectOne("reviewMapper.selectReplyDetail", reviewReplyCode);
-	}
-	
-	@Override
-	public boolean deleteReviewReplyManage(String reviewReplyCode) {
-		//댓글 삭제 성공 : true, 댓글 삭제 실패 : false
-		int result = sqlSession.delete("reviewMapper.deleteReviewReplyManage", reviewReplyCode);
-		return result == 1 ? true : false;
+	public ReviewReplyVO manageReplyDetail(String reviewReplyCode) {
+		return sqlSession.selectOne("reviewMapper.manageReplyDetail", reviewReplyCode);
 	}
 	
 	@Override
 	public int selectReviewCnt(ReviewVO reviewVO) {
-		return sqlSession.selectOne("reviewMapper.selectReviewCnt", reviewVO);
-	}
-	
-	@Override
-	public int manageReviewCnt(ReviewVO reviewVO) {
 		return sqlSession.selectOne("reviewMapper.selectReviewCnt", reviewVO);
 	}
 	

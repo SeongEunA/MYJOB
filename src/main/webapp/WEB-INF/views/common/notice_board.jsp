@@ -79,9 +79,8 @@ td{
 				<tr>
 					<td>
 						<select name="searchKeyword">
-							<option selected>전  체</option>
-							<option value="BOARD_SUBJECT" <c:if test="${noticeBoardVO.searchKeyword eq 'BOARD_SUBJECT'}">selected</c:if>>제  목</option>
-							<option value="BOARD_CONTENT" <c:if test="${noticeBoardVO.searchKeyword eq 'BOARD_CONTENT'}">selected</c:if>>내용</option>
+							<option value="BOARD_SUBJECT" <c:if test="${noticeBoardVO.searchKeyword eq 'BOARD_SUBJECT'}">selected</c:if>>제&nbsp;&nbsp;&nbsp;목</option>
+							<option value="BOARD_CONTENT" <c:if test="${noticeBoardVO.searchKeyword eq 'BOARD_CONTENT'}">selected</c:if>>내&nbsp;&nbsp;&nbsp;용</option>
 							<option value="BOARD_WRITER" <c:if test="${noticeBoardVO.searchKeyword eq 'BOARD_WRITER'}">selected</c:if>>작성자</option>
 						</select>
 					</td>
