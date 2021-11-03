@@ -45,7 +45,8 @@ public interface ReviewService {
 	//총 게시글수
 	int selectReviewCnt(ReviewVO reviewVO);
 	
-	
+	//해당 게시판 댓글수
+	int selectReplyCnt(ReviewReplyVO reviewReplyVO);
 	
 	//---------------아래는 관리자기능----------------//
 	

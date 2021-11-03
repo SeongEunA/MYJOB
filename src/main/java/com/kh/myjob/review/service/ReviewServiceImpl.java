@@ -88,6 +88,10 @@ public class ReviewServiceImpl implements ReviewService {
 	public int manageReplyCnt(ReviewReplyVO reviewReplyVO) {
 		return sqlSession.selectOne("reviewMapper.manageReplyCnt", reviewReplyVO);
 	}
+	@Override
+	public int selectReplyCnt(ReviewReplyVO reviewReplyVO) {
+		return sqlSession.selectOne("reviewMapper.selectReplyCnt", reviewReplyVO);
+	}
 	
 	
 	
