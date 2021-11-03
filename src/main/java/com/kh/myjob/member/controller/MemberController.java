@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.myjob.member.service.MemberService;
@@ -53,19 +54,27 @@ public class MemberController {
 	
 	//로그인 페이지로 이동
 	@GetMapping("/login")
-	public String goLogin() {
+	public String goLogin(@RequestParam(required = false) String prevRequestUrl, Model model) {
+		model.addAttribute("prevRequestUrl", prevRequestUrl);
+		
 		return "member/login_page";
 	}
 	
 	//로그인
 	@PostMapping("/login")
-	public String login(MemberVO memberVO, HttpSession httpSession) {
+	public String login(MemberVO memberVO, HttpSession httpSession,@RequestParam(required = false) String prevRequestUrl) {
 		
 		if(memberService.login(memberVO) != null) {
-			httpSession.setAttribute("loginInfo", memberService.login(memberVO));
-			
-			return "member/login_result";
-		}
+	         httpSession.setAttribute("loginInfo", memberService.login(memberVO));
+	         
+	         
+	         if(prevRequestUrl == null || prevRequestUrl.equals("")) {
+	        	 return "redirect:/common/main";
+	         }
+	         else {
+	        	 return "redirect:" + prevRequestUrl;	
+	         }
+	      }
 		
 		return "redirect:/member/login";
 	}

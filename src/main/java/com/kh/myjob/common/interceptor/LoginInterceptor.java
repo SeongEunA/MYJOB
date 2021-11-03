@@ -12,10 +12,17 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)throws Exception {
 		HttpSession session = request.getSession();
 		
+
+		String prevPath = request.getHeader("referer");
+		String contextPath = "http://localhost:8081";
+		
+		String prevRequestUrl = prevPath.substring(contextPath.length());
+		
+		
 		Object result = session.getAttribute("loginInfo");
 		
 		if(result == null) {
-			response.sendRedirect("/member/login");
+			response.sendRedirect("/member/login?prevRequestUrl=" + prevRequestUrl);
 			return false;
 		}
 		return true;

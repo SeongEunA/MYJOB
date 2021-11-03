@@ -46,6 +46,7 @@
 <div class="container">
 	<div class="loginDiv">
 		<form action="/member/login" method="post">
+			<input type="hidden" name="prevRequestUrl" value="${prevRequestUrl }">
 			<div class="checkIdDiv" id="checkIdDiv">
 				<div>ID</div>
 				<div><input type="text" id="insertId" name="memberId"></div>
