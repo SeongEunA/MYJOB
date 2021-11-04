@@ -58,6 +58,14 @@ public class MemberController {
 		return "member/login_page";
 	}
 	
+	//로그인체크
+	@ResponseBody
+	@PostMapping("/loginCheck")
+	public String loginCheck(MemberVO memberVO) {
+		System.out.println("loginCheck.memberVO : " + memberVO);
+		return memberService.loginCheck(memberVO);
+	}
+	
 	//로그인
 	@PostMapping("/login")
 	public String login(MemberVO memberVO, HttpSession httpSession,@RequestParam(required = false) String prevRequestUrl) {

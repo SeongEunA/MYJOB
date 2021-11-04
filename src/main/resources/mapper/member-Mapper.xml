@@ -53,6 +53,14 @@
 			)
 		</insert>
 		
+		<!-- 로그인체크 -->
+		<select id="loginCheck" resultType="String">
+			SELECT MEMBER_CODE
+			FROM MEMBER
+			WHERE MEMBER_ID = #{memberId}
+			AND MEMBER_PW = #{memberPw}
+		</select>
+		
 		<!-- 로그인 -->
 		<select id="login" resultMap="member">
 			SELECT MEMBER_CODE

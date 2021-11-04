@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div><a class="nav-link light" aria-current="page" href="/admin/memberManage" style="color: black; text-decoration-line: none;">회원 관리</a></div>
-	<div><a class="nav-link light" aria-current="page" href="/admin/reviewManage" style="color: black; text-decoration-line: none;">코스후기 관리</a></div>
+<!-- 	<div><a class="nav-link light" aria-current="page" href="/admin/reviewManage" style="color: black; text-decoration-line: none;">코스후기 관리</a></div> -->
 	<div><a class="nav-link light" aria-current="page" href="/admin/replyManage" style="color: black; text-decoration-line: none;">댓글 관리</a></div>
 </body>
 </html>

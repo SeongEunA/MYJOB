@@ -1,5 +1,7 @@
 package com.kh.myjob.member.vo;
 
+import java.util.Arrays;
+
 import com.kh.myjob.common.vo.PageVO;
 
 public class MemberVO extends PageVO{
@@ -99,5 +101,16 @@ public class MemberVO extends PageVO{
 		String memberEmail = memberEmails[0] + "@" + memberEmails[1];
 		setMemberEmail(memberEmail);
 	}
+	@Override
+	public String toString() {
+		return "MemberVO [memberCode=" + memberCode + ", memberId=" + memberId + ", memberName=" + memberName
+				+ ", memberPw=" + memberPw + ", memberTel=" + memberTel + ", memberAddr=" + memberAddr
+				+ ", memberEmail=" + memberEmail + ", memberIsAdmin=" + memberIsAdmin + ", memberGender=" + memberGender
+				+ ", memberJoinDate=" + memberJoinDate + ", memberTels=" + Arrays.toString(memberTels)
+				+ ", memberAddres=" + Arrays.toString(memberAddres) + ", memberEmails=" + Arrays.toString(memberEmails)
+				+ "]";
+	}
+	
+	
 	
 }

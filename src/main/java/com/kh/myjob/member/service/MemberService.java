@@ -14,6 +14,9 @@ public interface MemberService {
 	//회원가입
 	boolean join(MemberVO memberVO);
 	
+	//로그인체크
+	String loginCheck(MemberVO memberVO);
+	
 	//로그인
 	MemberVO login(MemberVO memberVO);
 	

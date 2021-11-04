@@ -174,7 +174,7 @@
 	font-size: 12px;
 }
 </style>
-<script type="text/javascript" src="/resources/member/js/join_page.js?ver=13"></script>
+<script type="text/javascript" src="/resources/member/js/join_page.js?ver=17"></script>
 </head>
 <body>
 	<div>

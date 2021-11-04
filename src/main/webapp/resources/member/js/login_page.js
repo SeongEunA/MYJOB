@@ -1,6 +1,6 @@
-//이벤트처리
 //화면 로딩 후 바로 실행 이벤트처리
-//$(document).ready(function(){
+$(document).ready(function(){
+	$('insertId').focus();
 	//이벤트발생조건, ID, 함수호출
 	//$(document).on('focus', '#memberName', function() {
 		
@@ -11,51 +11,48 @@
 		//alert('111');
 	//});
 
-//});
+});
 
 
 //함수선언영역
-//(function($){
-	//idCheck = function(){
-	//};
-//};
-
-
-
-
-
-
-//화면 로딩 후 바로 실행 이벤트처리
-$(document).ready(function(){
-	$('#insertId').focus();
-	
-	//login 버튼을 누르면 유효성 검사 실행
-	//$(document).on('click', '#loginBtn', function() {
+(function($){
+	loginCheck = function(){
+		var memberId = $('#memberId').val();
+		var memberPw = $('#memberPw').val();
+//		alert(memberId);
+//		alert(memberPw);
 		
-		//아이디 비밀번호 변수 생성
-//		var insertId = $('#insertId').val();
-//		var insertPw = $('#insertPw').val();
+		$.ajax({
+			url: '/member/loginCheck', //요청경로
+			type: 'post',
+			data:{'memberId':memberId
+					, 'memberPw':memberPw}, //필요한 데이터
+			success: function(result) {
+				//로그인체크
+				if(!result){
+//					alert('확인');
+					$('#noticeLogin').text('아이디 또는 비밀번호를 확인해주세요.');
+					$('#noticeLogin').css('color', 'red');
+					$('#memberId').focus();
+				}
+				else{
+//					alert('확인');
+					$('#loginInfoForm').submit();
+				}
+				
+			},
+			error: function(){
+				//ajax 실행 실패 시 실행되는 구간
+				alert('실패');
+			}
+			
+		});
 		
-		//아이디가 빈값일 때
-//		if(insertId == ''){
-//			alert('아이디를 입력하세요.');
-//			$('#insertId').focus();
-//		}
-		
-		//비밀번호가 빈값일 때
-//		else if(insertPw == ''){
-//			alert('비밀번호를 입력하세요.');
-//			$('#insertPw').focus();
-//		}
-		
-	//});
-	
-	//커서가 사라지면 이벤트발생
-	//$('#memberId').blur(function() {
-		//alert('111');
-	//});
+	};
 
-});
+
+
+})(jQuery);
 
 
 

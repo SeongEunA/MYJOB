@@ -35,6 +35,11 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
+	public String loginCheck(MemberVO memberVO) {
+		return sqlsession.selectOne("memberMapper.loginCheck", memberVO);
+	}
+	
+	@Override
 	public MemberVO login(MemberVO memberVO) {
 		return sqlsession.selectOne("memberMapper.login", memberVO);
 	}
@@ -67,6 +72,7 @@ public class MemberServiceImpl implements MemberService{
 	public int selectMemberCnt(MemberVO memberVO) {
 		return sqlsession.selectOne("memberMapper.selectMemberCnt", memberVO);
 	}
+
 
 
 

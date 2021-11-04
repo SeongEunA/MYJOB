@@ -63,22 +63,22 @@ public class AdminController {
 		return "admin/delete_member_result";
 	}
 	
-	//코스후기 관리페이지로 이동
-	@RequestMapping("/reviewManage")
-	public String goReviewManage(Model model, ReviewVO reviewVO) {
-		
-		
-		//전체 데이터 수
-		int dataCnt = reviewService.selectReviewCnt(reviewVO);
-		reviewVO.setTotalCnt(dataCnt);
-			
-		//페이징 처리
-		reviewVO.setPageInfo();
-		
-		
-		model.addAttribute("reviewList", reviewService.selectReviewList(reviewVO));
-		return "admin/review_manage";
-	}
+//	//코스후기 관리페이지로 이동
+//	@RequestMapping("/reviewManage")
+//	public String goReviewManage(Model model, ReviewVO reviewVO) {
+//		
+//		
+//		//전체 데이터 수
+//		int dataCnt = reviewService.selectReviewCnt(reviewVO);
+//		reviewVO.setTotalCnt(dataCnt);
+//			
+//		//페이징 처리
+//		reviewVO.setPageInfo();
+//		
+//		
+//		model.addAttribute("reviewList", reviewService.selectReviewList(reviewVO));
+//		return "admin/review_manage";
+//	}
 	
 	//코스후기 삭제
 	@GetMapping("/deleteReviewBoard")
