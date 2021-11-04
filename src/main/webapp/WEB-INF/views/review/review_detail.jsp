@@ -7,27 +7,8 @@
 <meta charset="utf-8"/>
 <title>Kakao 지도 시작하기</title>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=70d7b169893841eb187f9823a06d83f4"></script>
-<script type="text/javascript" src="/resources/review/js/review_detail.js?ver=23"></script>
+<script type="text/javascript" src="/resources/review/js/review_detail.js?ver=26"></script>
 <style type="text/css">
-.contentDiv{
-	width: 1100px;
-	margin : 0 auto;
-	margin-bottom: 35px;
-}
-
-.manageBtnDiv{
-	margin-bottom: 10px;
-	text-align: right;
-}
-
-.deleteReviewBoardBtnDiv{
-	display: inline-block;
-}
-
-#map{
-	text-align: center;
-}
-
 </style>
 </head>
 <body>
@@ -38,18 +19,16 @@
 			</div>
 		</div>
 	</c:if>
-	<div class="row">
-		<div class="col-2" id="appendRecommendCnt">
+	<div class="row justify-center">
+		<div class="col-12" id="appendRecommendCnt">
 			<c:choose>
 				<c:when test="${reviewRecom.isRecommend eq 'Y'}">
-					<img id="recomBtn" src="/resources/images/updateRecommend.PNG">
+					<img id="recomBtn" src="/resources/images/updateRecommend.PNG">	${review.reviewBoardRecommendCnt }
 				</c:when>
 				<c:otherwise>
 					<img id="recomBtn" onclick="updateRecommend();"  src="/resources/images/nomalRecommend.PNG">${review.reviewBoardRecommendCnt }
 				</c:otherwise>
 			</c:choose>
-		
-		
 		</div>
 	</div>
 	
@@ -131,5 +110,6 @@
         </div>
     </div>
 </div>
+	</div>
 </body>
 </html>

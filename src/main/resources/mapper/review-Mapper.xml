@@ -309,7 +309,7 @@
 	</insert>
 	
 	 <!-- 후기추천멤버 조회 -->
-	<select id="selectRecomMember">
+	<select id="selectRecomMember" resultMap="recommend">
 		SELECT REVIEW_RECOMMEND_CODE
 			, MEMBER_ID
 			, REVIEW_BOARD_CODE

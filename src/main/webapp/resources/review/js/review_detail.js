@@ -143,6 +143,7 @@ for (var i = 0; i < positions.length; i++) {
 	updateRecommend = function() {
 		var reviewBoardCode = $('.reviewBoardCode').val();
 		var memberId = $('.reviewReplyId').val();	
+		if(memberId != ''){
 			if(!isRecommend){
 				isRecommend = true;
 				$.ajax({
@@ -156,9 +157,7 @@ for (var i = 0; i < positions.length; i++) {
 		            	str +='<div>';
 		            	str +='<img id="recomBtn" src="/resources/images/updateRecommend.PNG">'+ result.reviewBoardRecommendCnt  +'';
 		            	str +='</div>';
-		            	
-		            	
-		            	
+	 	
 		            	$('#appendRecommendCnt').append(str);	
 		            	
 		            	
@@ -168,15 +167,10 @@ for (var i = 0; i < positions.length; i++) {
 		            }
 		      });
 			}
-			
-		
-	
-	
-	
-	
-	
-	
+		}	
 	}
+	
+
 	
 	
 })(jQuery);
