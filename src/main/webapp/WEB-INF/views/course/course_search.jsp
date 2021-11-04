@@ -195,6 +195,7 @@ width:1700px;
 height:auto;
 display:flex;
 flex-direction: row;
+margin: 0 auto;
 }
 .courseHalfLayout:first-child{
 border:1px solid blue;
@@ -228,38 +229,35 @@ visibility: hidden;
 </style>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	3d45ea450bf493fb0fea992bed62c07e&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d45ea450bf493fb0fea992bed62c07e&libraries=services"></script>
-
-
-
 </head>
 <body>
 <!-- 검색 영역 -->
 <div class="courseContainer">
 	<div class="courseHalfLayout">
-	<div class="row">
-		<div class="col-2">
-			<select class="form-select" aria-label="Default select example" id="highLocation" name="locationLandCode">
-				<option selected>지역</option>
-				<c:forEach items="${highLocationList }" var="highLocationInfo">
-					<option value="${highLocationInfo.locationLandCode }">${highLocationInfo.highLocationName }</option>
-				</c:forEach>
-			</select>
+		<div class="row">
+			<div class="col-2">
+				<select class="form-select" aria-label="Default select example" id="highLocation" name="locationLandCode">
+					<option selected>지역</option>
+					<c:forEach items="${highLocationList }" var="highLocationInfo">
+						<option value="${highLocationInfo.locationLandCode }">${highLocationInfo.highLocationName }</option>
+					</c:forEach>
+				</select>
+			</div>
+			<div class="col-2">
+				<select class="form-select" aria-label="Default select example" id="lowLocation" name="locationTempCode">
+					<option selected>하위지역</option>
+				</select>
+			</div>
+			<div class="col-2">
+				<select class="form-select" aria-label="Default select example" id="cateCode">
+					<option value="CATE_001">숙박</option>
+					<option value="CATE_002">관광지</option>
+				</select>
+			</div>
+			<div class="col-2">
+				<input type="button" value="검색" onclick="clickSearch(1);" id="clickSearch">
+			</div>
 		</div>
-		<div class="col-2">
-			<select class="form-select" aria-label="Default select example" id="lowLocation" name="locationTempCode">
-				<option selected>하위지역</option>
-			</select>
-		</div>
-		<div class="col-2">
-			<select class="form-select" aria-label="Default select example" id="cateCode">
-				<option value="CATE_001">숙박</option>
-				<option value="CATE_002">관광지</option>
-			</select>
-		</div>
-		<div class="col-2">
-			<input type="button" value="검색" onclick="clickSearch(1);" id="clickSearch">
-		</div>
-	</div>
 	
 <!-- 날씨영역 -->
 <!-- 날씨영역 -->
@@ -285,7 +283,7 @@ visibility: hidden;
 							<c:if test="${totalWeatherVO.skyStatus eq '구름많음' or totalWeatherVO.skyStatus eq '흐림'}">
 							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt5.svg" width="80%" height="100%">
 							</c:if>
-							<c:if test="${totalWeatherVO.skyStatus eq '흐리고 비' or totalWeatherVO.skyStatus eq '비' }">
+							<c:if test="${totalWeatherVO.skyStatus eq '흐리고 비' or totalWeatherVO.skyStatus eq '비' or totalWeatherVO.skyStatus eq '구름많고 비' or totalWeatherVO.skyStatus eq '구름많고 한때 비' }">
 							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg" width="80%" height="100%">
 							</c:if>
 						</div>
@@ -308,7 +306,7 @@ visibility: hidden;
 						<c:if test="${totalWeatherVO.skyStatusAm eq '구름많음' or totalWeatherVO.skyStatusAm eq '흐림'}">
 							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt5.svg" width="80%" height="100%">
 						</c:if>
-						<c:if test="${totalWeatherVO.skyStatusAm eq '흐리고 비' or totalWeatherVO.skyStatusAm eq '비' }">
+						<c:if test="${totalWeatherVO.skyStatusAm eq '흐리고 비' or totalWeatherVO.skyStatusAm eq '비' or totalWeatherVO.skyStatusAm eq '구름많고 비' or totalWeatherVO.skyStatusAm eq '구름많고 한때 비' }">
 							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg" width="80%" height="100%">
 							</c:if>
 						</div>
@@ -324,7 +322,7 @@ visibility: hidden;
 							<c:if test="${totalWeatherVO.skyStatusPm eq '구름많음' or totalWeatherVO.skyStatusPm eq '흐림' }">
 							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt7.svg" width="80%" height="100%">
 							</c:if>
-							<c:if test="${totalWeatherVO.skyStatusPm eq '흐리고 비' or totalWeatherVO.skyStatusPm eq '비' }">
+							<c:if test="${totalWeatherVO.skyStatusPm eq '흐리고 비' or totalWeatherVO.skyStatusPm eq '비' or totalWeatherVO.skyStatusPm eq '구름많고 비' or totalWeatherVO.skyStatusPm eq '구름많고 한때 비' }">
 							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg" width="80%" height="100%">
 							</c:if>
 						</div>
@@ -340,57 +338,49 @@ visibility: hidden;
 			</div>
 			</c:forEach>
 		</div><!-- weatherDiv1 -->
-		
-	
 	</div>
-
-
 </div><!--weatherContainer-->
 				
 				
 	
 	
-<!-- 지도영역 -->
-
-	<div class="map_wrap">
-	    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-	    <div id="menu_wrap" class="bg_white">
-	        <div class="option">
-	            <div>
-	                <form onsubmit="searchPlaces(); return false;" id="keywordForm">
-	                    키워드 : <input type="text" value="맛집" id="keyword" size="15"> 
-	                    <button type="submit">검색하기</button> 
-	                </form>
-	            </div>
-	        </div>
-	        <hr>
-	        <ul id="placesList"></ul>
-	        <div id="pagination"></div>
-	    </div>
-	</div>
-
+	<!-- 지도영역 -->
+		<div class="map_wrap">
+		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+		    <div id="menu_wrap" class="bg_white">
+		        <div class="option">
+		            <div>
+		                <form onsubmit="searchPlaces(); return false;" id="keywordForm">
+		                    키워드 : <input type="text" value="맛집" id="keyword" size="15"> 
+		                    <button type="submit">검색하기</button> 
+		                </form>
+		            </div>
+		        </div>
+		        <hr>
+		        <ul id="placesList"></ul>
+		        <div id="pagination"></div>
+		    </div>
+		</div>
 	
-<!-- 검색 장소 리스트 영역 -->
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=60"></script>
-<script type="text/javascript"></script>
-<div class="row">
-   <div class="col-6" id="placeList">
-   </div>
-  
-</div>
-</div><!-- courseHalfLayout -->
-<div class="courseHalfLayout">
-<form id="regCourseForm" method="post">
- <div id="resInfoList" class="resInfoList">
-   
-  </div>
- <div class="submitCourseBtn"  id="submitCourse">
- 	코스이름 입력:<input type="text" name="courseName" id="courseName">
-  <input type="hidden" id="memberId" value="${sessionScope.loginInfo.memberId }">
-  <input type="button" value="코스등록하러가기" id="regCourseBtn">
-  </div> 
-</form>
-</div><!-- courseHalfLayout -->
+	<!-- 검색 장소 리스트 영역 -->
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=8"></script>
+		<div class="row">
+		   <div class="col-6" id="placeList">
+		   </div>
+		</div>
+	</div><!-- courseHalfLayout -->
+	<div class="courseHalfLayout">
+		<form id="regCourseForm" method="post">
+		 <div id="resInfoList" class="resInfoList">
+		   
+		  </div>
+		 <div class="submitCourseBtn"  id="submitCourse">
+		 	코스이름 입력:<input type="text" name="courseName" id="courseName">
+		  <input type="hidden" id="memberId" value="${sessionScope.loginInfo.memberId }">
+		  <input type="button" value="코스등록하러가기" id="regCourseBtn">
+		  </div> 
+		</form>
+	</div><!-- courseHalfLayout -->
 </div><!-- courseContainer -->
 </body>
 </html>

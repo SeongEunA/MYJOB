@@ -1,43 +1,39 @@
-
-		var arrXY = [];//숙박지X,Y
-		var arrXY2 = [];//관광지X,Y
-		var positions = [
-			 ];//숙박지 배열
-		var positions2 = [
-			 ]; //관광지 배열
+	var arrXY = [];//숙박지X,Y
+	var arrXY2 = [];//관광지X,Y
+	var positions = [];//숙박지 배열
+	var positions2 = []; //관광지 배열
 //화면 로딩 후 바로 실행
 $(document).ready(function(){
 	//상위 지역 셀렉트 박스의 값이 변경 되면..
 	$(document).on('change', '#highLocation', function() { 
 		var locationLandCode = $('#highLocation').val();
 		$.ajax({
-            url: '/course/lowLocationListAjax', //요청경로
-            type: 'post',
-            data:{'locationLandCode':locationLandCode}, //필요한 데이터
-            success: function(result) {
+			url: '/course/lowLocationListAjax', //요청경로
+			type: 'post',
+			data:{'locationLandCode':locationLandCode}, //필요한 데이터
+			success: function(result) {
+
+				$('#lowLocation').empty(); //하위태그만 삭제
+				
+				var str='';
+				 
+				$(result).each(function(index,element){
+	                
+					str += '<option value="' + element.locationTempCode + '" class="lowLocation">';
+					str += element.lowLocationName;
+					str += '</option>';
+	           
+				});
+	                
+				$('#lowLocation').prepend(str);
                
-               //ajax 실행 성공 후 실행할 코드 작성
-               $('#lowLocation').empty(); //하위태그만 삭제
-              
-               var str='';
-                
-              $(result).each(function(index,element){
-                
-             	str += '<option value="' + element.locationTempCode + '" class="lowLocation">';
-             	str += element.lowLocationName;
-             	str += '</option>';
-           
-              });
-                
-               
-               $('#lowLocation').prepend(str);
             },
             error: function(){
-             //ajax 실행 실패 시 실행되는 구간
-               alert('실패');
+            	alert('실패');
             }
 		});
-    });
+	});
+	
 	//장소 리스트에서 장소명 클릭시
 	$(document).on('click', '#showResInfo', function() { 
 		var placeAddr = $(this).prev().val();
@@ -48,194 +44,191 @@ $(document).ready(function(){
 		$('#keywordForm').submit();
 		
 		showResInfo(x,y);
-    });
+	});
 	
 	//지도에서 목록에 있는 장소명 클릭
-   $(document).on('click', '#resName', function() {
-	   var placeName = $(this).text();
-	   var placeAddr = $(this).next().text();
-	   var placeTel = $(this).next().next().text();
-	   var placeX = $(this).prev().val();
-	   var placeY = $(this).prev().prev().val();
-	   
-	   placeStr = '';
-      
-	   placeStr = '<div class="resInfoDiv">' +
-              	'   <div class="resultPlaceName" style="font-size:18px;">' + placeName + '<input type="button" value="X" id="deleteResBtn"></div>';
-	   placeStr += '   <div class="resultPlaceAddr">' + placeAddr + '</div>';
-	   placeStr += '   <input type="hidden" id="cateCode" class="cateCode" value="CATE_003">';
-	   placeStr += '	<input type="hidden" value="'+placeX+'" class="kakaoPlaceX">';	
-	   placeStr += '	<input type="hidden" value="'+placeY+'" class="kakaoPlaceY">';	
-	   if(placeTel!=null ||placeTel!=''){
-    	  placeStr += '   <div class="resultTel" class="resultPlaceTel">' + placeTel + '</div>' +
-                 '</div>';
-      }
+	$(document).on('click', '#resName', function() {
+		var placeName = $(this).text();
+		var placeAddr = $(this).next().text();
+		var placeTel = $(this).next().next().text();
+		var placeX = $(this).prev().val();
+		var placeY = $(this).prev().prev().val();
+			
+		placeStr = '';
+		
+		placeStr = '<div class="resInfoDiv">' +
+		       	'   <div class="resultPlaceName" style="font-size:18px;">' + placeName + '<input type="button" value="X" id="deleteResBtn"></div>';
+		placeStr += '   <div class="resultPlaceAddr">' + placeAddr + '</div>';
+		placeStr += '   <input type="hidden" id="cateCode" class="cateCode" value="CATE_003">';
+		placeStr += '	<input type="hidden" value="'+placeX+'" class="kakaoPlaceX">';	
+		placeStr += '	<input type="hidden" value="'+placeY+'" class="kakaoPlaceY">';	
+		
+		if(placeTel!=null ||placeTel!=''){
+		placeStr += '   <div class="resultTel" class="resultPlaceTel">' + placeTel + '</div>' +
+					'</div>';
+		}
 
-      $('#resInfoList').append(placeStr);
-      document.getElementById('submitCourse').style="visibility:visible";
-   });
+		$('#resInfoList').append(placeStr);
+		document.getElementById('submitCourse').style="visibility:visible";
+	});
    
-   //선택한 식당 목록에서 삭제
-   $(document).on('click', '#deleteResBtn', function(){
+	//선택한 식당 목록에서 삭제
+	$(document).on('click', '#deleteResBtn', function(){
 	   $(this).parent().parent().remove();
-	   
+
 	   if($('.resInfoDiv').length==0){
 		   document.getElementById('submitCourse').style="visibility:hidden";
 	   }
    });
+
+	
+	//placeList에서 담기버튼을 눌렀을 때
+	$(document).on('click', '#saveCourseInfo', function(){
+		   
+	   var placeName = $(this).parent().children().eq(2).text();
+	   var placeAddr =  $(this).parent().children().eq(3).text();
+	   var cateCode =  $(this).parent().children().eq(4).val();
+	   var placeTel =  $(this).parent().children().eq(5).text();
 	   
+	   var cateCode = [];
+	   var cateCodeL = $('.cateCode').length;
 	   
-	   
-	 //placeList에서 담기버튼을 눌렀을 때
-   $(document).on('click', '#saveCourseInfo', function(){
-	   
-      var placeName = $(this).parent().children().eq(2).text();
-      var placeAddr =  $(this).parent().children().eq(3).text();
-      var cateCode =  $(this).parent().children().eq(4).val();
-      var placeTel =  $(this).parent().children().eq(5).text();
-      
-      var placeStr = '';
-      placeStr = '<div class="resInfoDiv">' +
-              '   <div class="resultPlaceName" style="font-size:18px;">' + placeName + '<input type="button" value="X" id="deleteResBtn"></div>';
-      placeStr += '   <div class="resultPlaceAddr">' + placeAddr + '</div>';
-      placeStr +='<input type="hidden" class="cateCode" value='+cateCode+'>';
-     
-      if(placeTel!=null ||placeTel!=''){
-      placeStr += '   <div class="resultTel" class="resultPlaceTel">' + placeTel + '</div>'
-      }
-     
-      placeStr += '</div>';
-      	
-      $('#resInfoList').append(placeStr);
-      document.getElementById('submitCourse').style="visibility:visible";
-   });
-	   
-//	   //숙박지보기 버튼 클릭했을 때
-//	   $(document).on('click', '#showPlaceInfo', function() {
-//		
-//	   var x = $(this).parent().children().eq(1).val();
-//		   var y = $(this).parent().children().eq(2).val();
-//		   var placeName = $(this).parent().children().eq(3).text();
-//		  
-//		   
-//	   });//숙박지보기 버튼 종료
-	   
-	   
-	   
+	   var placeStr = '';
+	   placeStr += '<div class="resInfoDiv">';
+	   placeStr += '	<div class="resultPlaceName" style="font-size:18px;">' + placeName + '<input type="button" value="X" id="deleteResBtn"></div>';
+	   placeStr += '	<div class="resultPlaceAddr">' + placeAddr + '</div>';
+	   placeStr += '	<input type="hidden" class="cateCode" value='+cateCode+'>';
+	  
+	   if(placeTel!=null ||placeTel!=''){
+	   placeStr += '   <div class="resultTel" class="resultPlaceTel">' + placeTel + '</div>'
+	   }
+	  
+	   placeStr += '</div>';
+	   	
+	   $('#resInfoList').append(placeStr);
+	   document.getElementById('submitCourse').style="visibility:visible";
+	});
+
+
 	//코스등록버튼을 눌렀을 때 동일한 코스네임이 있는지 검사 후 코스등록
 	$(document).on('click', '#regCourseBtn', function() { 
+		var memberId = $('#memberId').val();
+
+		if(memberId == null || memberId == ''){
+			alert('로그인이 필요한 서비스입니다.\n로그인 후 이용해주세요.');
+			location.href = '/member/login';
+			return;
+		}
 		
 		var realReg = confirm('등록하시겠습니까?')
 
 		if(realReg){
 			var courseName = $('#courseName').val();
-			 var memberId = $('#memberId').val();
 			 
 			$.ajax({
-	            url: '/course/checkCourseNameAjax', //요청경로
-	            type: 'post',
-	            data:{'courseName':courseName,
-	            	  'memberId':memberId,
-	            	  }, //필요한 데이터
-	           
-	            success: function(result) {
-	            	if(result==null || result==''){
+				url: '/course/checkCourseNameAjax', //요청경로
+				type: 'post',
+				data:{'courseName':courseName,
+						'memberId':memberId
+				}, //필요한 데이터
+				success: function(result) {
+					//result 코스네임 중복없으면 null or 빈값
+					if(result==null || result==''){
 	            		
-	            	 var placeName = [];
-	            	 var placeAddr = [];
-	            	 var cateCode = [];
-	            	
-	            	 var kakaoPlaceX = [];
-	    			 var kakaoPlaceY = [];
-	    			 
-	            	 var placeNameL = $('.resultPlaceName').length;
-	            	 var placeAddrL = $('.resultPlaceAddr').length;
-	            	 var cateCodeL = $('.cateCode').length;
-	            	 
-	            	 var placeXLen = $('.kakaoPlaceX').length;
-	            	 var placeYLen = $('.kakaoPlaceY').length;
-	            	 
-	            	 alert(placeXLen);
-	            	 for(var i = 0; i < placeNameL; i++){
-	            		 placeName[i] = $('.resultPlaceName').eq(i).text();
-	            	 }
-	            	 
-	            	 for(var i = 0; i < placeAddrL; i++){
-	            		 placeAddr[i] = $('.resultPlaceAddr').eq(i).text();
-	            	 }
-	            	 
-	            	 for(var i = 0; i < cateCodeL; i++){
-	            		 cateCode[i] = $('.cateCode').eq(i).val();
-	            	 }
-	            	for(var i = 0; i < placeXLen; i++){
-	            		 kakaoPlaceX[i] = $('.kakaoPlaceX').eq(i).val();
-	            	}	
-	            	for(var i = 0; i < placeXLen; i++){
-	            		 kakaoPlaceY[i] = $('.kakaoPlaceY').eq(i).val();
-	            	}	
-	          	      //코스코드를 등록한 뒤 코스코드를 조회, 코스를 추가하는 ajax
-	            		$.ajax({
-	                        url: '/course/insertCourseCodeAjax', //요청경로
-	                        type: 'post',
-	                        data:{'courseName':courseName,
-	      	            	  	  'memberId':memberId,
-	      	            	  	  'placeNameArr':placeName,
-	      	            	  	  'placeAddrArr':placeAddr,
-	      	            	  	  'cateCodeArr':cateCode,
-	      	            	  	  'placeXArr':kakaoPlaceX,
-	      	            	  	  'placeYArr':kakaoPlaceY
-	                        
-	                        } //필요한 데이터
-	                        ,success: function(result) {
-	                        	alert('코스가 등록되었습니다!');
-	                        	var str='';
-	                        	if(result==1){
-	                        		$('#resInfoList').empty();
-	                        		document.getElementById('submitCourse').style="visibility:hidden";
-	                        		document.getElementById('courseName').value="";
-	                        	}
-	                       
+						var placeName = [];
+						var placeAddr = [];
+						var cateCode = [];
+						
+						var kakaoPlaceX = [];
+						var kakaoPlaceY = [];
+						
+						var placeNameL = $('.resultPlaceName').length;
+						var placeAddrL = $('.resultPlaceAddr').length;
+						var cateCodeL = $('.cateCode').length;
+						
+						var placeXLen = $('.kakaoPlaceX').length;
+						var placeYLen = $('.kakaoPlaceY').length;
+						
+						for(var i = 0; i < placeNameL; i++){
+							placeName[i] = $('.resultPlaceName').eq(i).text();
+						}
+						
+						for(var i = 0; i < placeAddrL; i++){
+							placeAddr[i] = $('.resultPlaceAddr').eq(i).text();
+						}
+						
+						for(var i = 0; i < cateCodeL; i++){
+							cateCode[i] = $('.cateCode').eq(i).val();
+						}
+						
+						//숙박지가 2개이상 cateCode 배열에 안담기도록...
+						var houseCnt = 0;
+						for(var i = 0; i < cateCodeL; i++){
+							if(cateCode[i] == 'CATE_001'){
+								houseCnt++;
+							}
+							if(houseCnt >= 2){
+								alert('숙박지는 코스당 한 곳의 장소만 담아주세요!');
+								return;
+							}
+						}
+						
+						for(var i = 0; i < placeXLen; i++){
+							kakaoPlaceX[i] = $('.kakaoPlaceX').eq(i).val();
+						}
+						
+						for(var i = 0; i < placeXLen; i++){
+							kakaoPlaceY[i] = $('.kakaoPlaceY').eq(i).val();
+						}
+						
+						//코스코드를 등록한 뒤 코스코드를 조회, 코스를 추가하는 ajax
+						$.ajax({
+							url: '/course/insertCourseCodeAjax', //요청경로
+							type: 'post',
+							data:{'courseName':courseName,
+									'memberId':memberId,
+									'placeNameArr':placeName,
+									'placeAddrArr':placeAddr,
+									'cateCodeArr':cateCode,
+									'placeXArr':kakaoPlaceX,
+									'placeYArr':kakaoPlaceY
+							}, //필요한 데이터
+							success: function(result) {
+								alert('코스가 등록되었습니다!');
+								var str='';
+								if(result==1){
+									$('#resInfoList').empty();
+									document.getElementById('submitCourse').style="visibility:hidden";
+									document.getElementById('courseName').value="";
+								}
 	                        },
 	                        error: function(){
-	                         //ajax 실행 실패 시 실행되는 구간
-	                           alert('실패');
+	                        	alert('실패');
 	                        }
-	            		});
+						});
 	            		
-	            		}
-	            	else{
-	            		alert('코스 이름이 중복입니다!');
-	            	}
+					}
+					else{
+						alert('코스 이름이 중복입니다!');
+					}
 	              
-	            },
-	            error: function(){
-	             //ajax 실행 실패 시 실행되는 구간
-	               alert('실패');
-	            }
-			});
-		}
-		 
-    });
+				},
+				error: function(){
+					//ajax 실행 실패 시 실행되는 구간
+					alert('실패');
+				}
+				
+			});//코스중복 ajax 검사 end
+			
+		}//'등록하시겠습니까? if문 end'
 		
+	});//코스등록버튼 클릭시 end
 	
-	
-		
-		
-		
-		
-		
-		
-       
 });	
 
 
 //함수 선언 영역
 (function($){
-	//시작
-	
-	//종료
-	
-	
 	//검색버튼 클릭시
 	clickSearch = function(nowPage){
 		
@@ -333,14 +326,8 @@ $(document).ready(function(){
                showPlaceInfo();
                }
                
-//            	  for(var cnt =0; cnt<arrXY.length;cnt++){
-//            		 
-//            		 console.log(arrXY[cnt]); 
-//            		  
-//            	  }
      		  
                $(result.selectPlaceList).each(function(index,element){
-            	   
             	  
                	str += '<div class="placeInfo">'
                	str += '	<input type="hidden" value="' + element.x + '" name="x" class="kakaoPlaceX">';
@@ -348,19 +335,17 @@ $(document).ready(function(){
                		
                	str += '	<div class="placeName">' + element.placeName + '</div>';
                	str += '	<div class="placeAddr" data-placeAddr="' + element.placeAddr + '">주소 : ' + element.placeAddr + '</div>';
-               	str +='<input type="hidden" id="cateCode" value="'+element.cateCode+'">';
+               	str += '	<input type="hidden" id="cateCode" value="'+element.cateCode+'">';
                	
 	            if(element.placeTel != null){
 	               		str += '	<div class="placeTel">연락처 : ' + element.placeTel + '</div>';
 	               	}
-               	str +='<input type="button" value="담기" id="saveCourseInfo">';
-               		str +='<input type="hidden" value="'+element.placeAddr+'">';
-               		str +='<input type="button" value="맛집보기" id="showResInfo">';
-               		
-               		
-               	
+               	str += '	<input type="button" value="담기" id="saveCourseInfo">';
+               	str += '	<input type="hidden" value="'+element.placeAddr+'">';
+               	str += '	<input type="button" value="맛집보기" id="showResInfo">';
                	
                	str += '</div>';
+               	
                 });
                  
                 
@@ -445,7 +430,7 @@ $(document).ready(function(){
 						else if(element.skyStatus=='구름많음'||element.skyStatus=='흐림'){
  str +='  							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt5.svg" width="80%" height="100%">';
  						}	
-	 					else if(element.skyStatus=='흐리고 비'||element.skyStatus=='비'){
+	 					else if(element.skyStatus=='흐리고 비'||element.skyStatus=='비'||element.skyStatus == '구름많고 비'||element.skyStatus == '구름많고 한때 비'){
  str +='  							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg" width="80%" height="100%">';
 	 					}		
  str +='  						</div>';
@@ -469,7 +454,7 @@ $(document).ready(function(){
  								else if(element.skyStatusAm == '구름많음'||element.skyStatusAm=='흐림'){
  str +='  							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt5.svg" width="80%" height="100%">';
  								}
- 								else if(element.skyStatusAm == '흐리고 비'||element.skyStatusAm == '비'){
+ 								else if(element.skyStatusAm == '흐리고 비'||element.skyStatusAm == '비'||element.skyStatusAm == '구름많고 비'||element.skyStatusAm == '구름많고 한때 비'){
  str +='  							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg" width="80%" height="100%">';
  								}
  str +='  						</div>';
@@ -485,7 +470,7 @@ $(document).ready(function(){
  								else if(element.skyStatusPm == '구름많음'||element.skyStatusPm == '흐림'){
  str +='  							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt7.svg" width="80%" height="100%">';
  								}
- 								else if(element.skyStatusPm == '흐리고 비'||element.skyStatusPm == '비'){
+ 								else if(element.skyStatusPm == '흐리고 비'||element.skyStatusPm == '비'||element.skyStatusPm == '구름많고 비'||element.skyStatusPm == '구름많고 한때 비'){
  str +='  							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg" width="80%" height="100%">';
  								}
  str +='  						</div>';
