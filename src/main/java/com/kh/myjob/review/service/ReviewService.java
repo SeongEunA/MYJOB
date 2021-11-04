@@ -3,6 +3,7 @@ package com.kh.myjob.review.service;
 import java.util.List;
 
 import com.kh.myjob.review.vo.ReviewImgVO;
+import com.kh.myjob.review.vo.ReviewRecomVO;
 import com.kh.myjob.review.vo.ReviewReplyVO;
 import com.kh.myjob.review.vo.ReviewVO;
 
@@ -48,9 +49,17 @@ public interface ReviewService {
 	//해당 게시판 댓글수
 	int selectReplyCnt(ReviewReplyVO reviewReplyVO);
 	
+	//후기 게시판 추천수 증가
+	int updateRecommendCnt(ReviewVO reviewVO);
+	
+	//후기 게시판 멤버 추가
+	int insertRecomMember(ReviewRecomVO reviewRecomVO);
+	
+	//후기 게시판 멤버 조회
+	ReviewRecomVO selectRecomMember(ReviewRecomVO reviewRecomVO);
+	
 	//---------------아래는 관리자기능----------------//
 	
-
 	//총 댓글수
 	int manageReplyCnt(ReviewReplyVO reviewReplyVO);
 

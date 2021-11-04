@@ -1,3 +1,5 @@
+var isRecommend = false;	
+
 //화면 로딩 후 바로 실행
 $(document).ready(function(){
 
@@ -72,7 +74,7 @@ for (var i = 0; i < positions.length; i++) {
 		
 	//댓글처리
 	//댓글리스트 조회
-	selectReviewReplyList();
+/*	selectReviewReplyList();*/
 	
 	
 	
@@ -112,127 +114,69 @@ for (var i = 0; i < positions.length; i++) {
 });
 /*$("#replyForm").serialize()*/
 //함수 선언 영역
+
 (function($){
 	
-	//댓글등록
-	regReply = function(){
-		var memberId = $('.reviewReplyId').val();
-		var reviewReplyWriter = $('.reviewReplyWriter').val();
-		var reviewReplyContent = $('#reviewReplyContent').val();
-		var reviewBoardCode = $('.hiddenBoardCode').val();
+
 	
 
-		$.ajax({
-	        url: '/review/regRely', //요청경로
-	        type: 'post',
-	        data:{'reviewReplyWriter': reviewReplyWriter
-	        	, 'memberId' : memberId
-	        	,'reviewReplyContent':reviewReplyContent
-	        	, 'reviewBoardCode': reviewBoardCode
-	        },
-	        success: function(result) {
-	        	if(result == 1){
-	        	 	alert('댓글이 등록되었습니다');
-	        	 	$('.replyContent').val('');
-	        	 	selectReviewReplyList();
-	        		
-				}
-	        	else{
-	        		alert('관리자에게 문의하세요');
-	        		
-	        	}
-	        	
-	      
-	        },
-	        error: function(){
-	        	alert('실패');
-	        }
-	  });
-		
-		
-	};
-	
-	//후기창에 댓글리스트 조회
-	selectReviewReplyList = function(){
-		var reviewReplyId = $('.reviewReplyId').val();
-		var reviewReplyWriter = $('.reviewReplyWriter').val();
-		var reviewBoardCode = $('.hiddenBoardCode').val();
-		$.ajax({
-	        url: '/review/selectReviewReplyList', //요청경로
-	        type: 'post',
-	        data:{'reviewBoardCode':reviewBoardCode}, //필요한 데이터
-	        success: function(result) {
-	        	var str = '';
-	        	$('#replyList').empty();        
-	        	if(result.length != 0){
-	        		for(var i = 0; i < result.length; i++){
-	        			str += '<div>';
-	        			str += '<div><table class="table"><h6><strong>' + result[i].reviewReplyWriter + '</strong></h6>';
-	        			str += result[i].reviewReplyContent + '<tr><td><input type = "button" onclick="deleteReply(\'' + result[i].reviewReplyCode+'\', \'' + result[i].memberId+'\');"  class="deleteReply" value="삭제" style="text-align: right;"></c:if></td></tr>';	        					
-	        			str += "</table></div>";
-	        			str += "</div>";		
-	        		}
-	        	}
-	        	else{
-	        		str += "<div>";
-	        		str += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
-	        		str += "</table></div>";
-	        		str += "</div>";
-	        		
-	        	}
-	        	$('#replyList').append(str);
-	        	
-	        },
-	        error: function(){
-	        	alert('실패');
-	        }
-	  });
-		
-		
-		
-		
-	}
 	//후기에 댓글삭제 함수
-	deleteReply = function(reviewReplyCode, reviewReplyId){
-		var sessionReviewReplyId = $('.reviewReplyId').val();
-		var sessionReviewReplyIsAdmin = $('.reviewReplyIsAdmin').val();
-			
-		alert(reviewReplyCode);
-		if(sessionReviewReplyId == reviewReplyId || sessionReviewReplyIsAdmin == 'Y' ){
+	deleteReply = function(){
 			var result = confirm('댓글을 삭제하시겠습니까?');
+			
 			if(result){
-				$.ajax({
-				      url: '/review/deleteReply', //요청경로
-				      type: 'post',
-				      data:{'reviewReplyCode': reviewReplyCode}, //필요한 데이터
-				      success: function(result) {
-				    	  alert('삭제되었습니다');
-				    	  selectReviewReplyList();
-				      },
-				      error: function(){
-				      	alert('실패');
-				     }
-				});
-				
+				$('#deleteReply').submit();
 			}
-		}
 		
-	
-	
-	
-	
-	
 	}
-	//후기 상세페이지에서 관리자가 삭제버튼을 누르면 얼럿창 함수발생
-	deleteReviewBoard = function(reviewBoardCode) {
+	//관리자가 삭제버튼을 누르면 얼럿창
+	deleteReviewBoard = function() {
+		var reviewBoardCode = $('.reviewBoardCode').val();
 		var result = confirm('정말로 삭제하시겠습니까?');
 		if(result){
 			location.href='/admin/deleteReviewBoard?reviewBoardCode=' + reviewBoardCode;
 		}
 		
 	}
+
+	//추천수증가
+	updateRecommend = function() {
+		var reviewBoardCode = $('.reviewBoardCode').val();
+		var memberId = $('.reviewReplyId').val();	
+			if(!isRecommend){
+				isRecommend = true;
+				$.ajax({
+		            url: '/review/updateRecommend', //요청경로
+		            type: 'get',
+		            data:{'reviewBoardCode': reviewBoardCode
+		            	, 'memberId': memberId}, //필요한 데이터
+		            success: function(result) {
+		            	$('#appendRecommendCnt').empty();
+		            	var str ='';
+		            	str +='<div>';
+		            	str +='<img id="recomBtn" src="/resources/images/updateRecommend.PNG">'+ result.reviewBoardRecommendCnt  +'';
+		            	str +='</div>';
+		            	
+		            	
+		            	
+		            	$('#appendRecommendCnt').append(str);	
+		            	
+		            	
+		            },
+		            error: function(){
+		               alert('실패');
+		            }
+		      });
+			}
+			
+		
 	
 	
+	
+	
+	
+	
+	}
 	
 	
 })(jQuery);

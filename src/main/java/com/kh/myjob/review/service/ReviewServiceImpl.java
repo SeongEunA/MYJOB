@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.myjob.review.vo.ReviewImgVO;
+import com.kh.myjob.review.vo.ReviewRecomVO;
 import com.kh.myjob.review.vo.ReviewReplyVO;
 import com.kh.myjob.review.vo.ReviewVO;
 
@@ -65,33 +66,51 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public List<ReviewReplyVO> manageReplyList(ReviewReplyVO reviewReplyVO) {
-		return sqlSession.selectList("reviewMapper.manageReplyList", reviewReplyVO);
-	}
-	
-	@Override
 	public boolean deleteReviewBoard(String reviewBoardCode) {
 		//리뷰게시글 삭제 성공 : true, 리뷰게시글 삭제 실패 : false
 		return sqlSession.delete("reviewMapper.deleteReviewBoard", reviewBoardCode) == 1 ? true : false;
 	}
 	@Override
+	public int selectReviewCnt(ReviewVO reviewVO) {
+		return sqlSession.selectOne("reviewMapper.selectReviewCnt", reviewVO);
+	}
+	
+
+	@Override
+	public int selectReplyCnt(ReviewReplyVO reviewReplyVO) {
+		return sqlSession.selectOne("reviewMapper.selectReplyCnt", reviewReplyVO);
+	}
+	
+	
+	@Override
 	public ReviewReplyVO manageReplyDetail(String reviewReplyCode) {
 		return sqlSession.selectOne("reviewMapper.manageReplyDetail", reviewReplyCode);
 	}
 	
-	@Override
-	public int selectReviewCnt(ReviewVO reviewVO) {
-		return sqlSession.selectOne("reviewMapper.selectReviewCnt", reviewVO);
-	}
 	
 	@Override
 	public int manageReplyCnt(ReviewReplyVO reviewReplyVO) {
 		return sqlSession.selectOne("reviewMapper.manageReplyCnt", reviewReplyVO);
 	}
+	
 	@Override
-	public int selectReplyCnt(ReviewReplyVO reviewReplyVO) {
-		return sqlSession.selectOne("reviewMapper.selectReplyCnt", reviewReplyVO);
+	public List<ReviewReplyVO> manageReplyList(ReviewReplyVO reviewReplyVO) {
+		return sqlSession.selectList("reviewMapper.manageReplyList", reviewReplyVO);
 	}
+	@Override
+	public int updateRecommendCnt(ReviewVO reviewVO) {
+		return sqlSession.update("reviewMapper.updateRecommendCnt", reviewVO);
+	}
+	@Override
+	public int insertRecomMember(ReviewRecomVO reviewRecomVO) {
+		return sqlSession.insert("reviewMapper.insertRecomMember", reviewRecomVO);
+	}
+	@Override
+	public ReviewRecomVO selectRecomMember(ReviewRecomVO reviewRecomVO) {
+		return sqlSession.selectOne("reviewMapper.selectRecomMember", reviewRecomVO);
+	}
+	
+	
 	
 	
 	

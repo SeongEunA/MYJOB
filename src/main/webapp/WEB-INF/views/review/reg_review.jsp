@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=5"></script>
+<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=30"></script>
 
 
 <style type="text/css">
@@ -74,19 +74,19 @@
 		</div>
 		
 		
-			
-		<section class="pr_img">
-	          <p>    
+	
+		    <section class="pr_img">
+	         <p>    
 	            <label for="img"></label>
 	        </p>
 	        <div id="pr_img">
-	            <input type="file" id="img" name="pr_img_files"/>            
-	        
+	            <input type="file" id="img" name="file"/>
+	            
 	        </div>
-	    
-	    </section>
+	    </section>  
+ 
 
-		
+
 		 
 		 
 		 

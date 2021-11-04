@@ -25,8 +25,10 @@ $(document).ready(function(){
 
 //함수 선언 영역
 (function($){
-	//aaa = function(){
-	//};
+	regReply = function(){
+		$('#regSubmit').submit();
+	
+	};
    
 })(jQuery);
 

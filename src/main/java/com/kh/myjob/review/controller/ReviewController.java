@@ -14,14 +14,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.myjob.common.util.FileUploadUtil;
 import com.kh.myjob.member.vo.MemberVO;
 import com.kh.myjob.review.service.ReviewService;
 import com.kh.myjob.review.vo.ReviewImgVO;
+import com.kh.myjob.review.vo.ReviewRecomVO;
 import com.kh.myjob.review.vo.ReviewReplyVO;
 import com.kh.myjob.review.vo.ReviewVO;
 
@@ -76,7 +79,7 @@ public class ReviewController {
 			// 이제 첨부
 			try {
 				// 다중첨부
-				if (inputName.equals("file2")) {
+				if (inputName.equals("file")) {
 					List<MultipartFile> filList = multi.getFiles(inputName);
 					for (MultipartFile file : filList) {
 						String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename();
@@ -121,48 +124,59 @@ public class ReviewController {
 		reviewVO.setReviewBoardCode(reviewBoardCode);
 		reviewService.insertReview(reviewVO);
 		
-		reviewVO.setReviewImgList(imgList);
-		if(reviewVO.getReviewImgList().get(0).getReviewImgOriginName() != "") {
-			reviewService.insertReviewImg(reviewVO);			
-		}
-
+		
+		  reviewVO.setReviewImgList(imgList);
+		 // reviewService.insertReviewImg(reviewVO);
+	
+		  if(reviewVO.getReviewImgList().get(0).getReviewImgOriginName() != "") {
+			  reviewService.insertReviewImg(reviewVO); 
+		  }
+		
+		 
 		return "redirect:/review/selectReviewList";
 	}
 
 	// 해당리뷰 상세보기로 이동
 	@GetMapping("/detailReview")
-	public String detailReview(ReviewVO reviewVO, Model model) {
-		model.addAttribute("review", reviewService.selectReviewDetail(reviewVO));
+	public String detailReview(@RequestParam(value="reviewBoardCode")String reviewBoardCode  , ReviewReplyVO reviewReplyVO, ReviewVO reviewVO ,Model model, ReviewRecomVO reviewRecomVO) {
 		reviewService.updateReadCnt(reviewVO);
+		int replyCnt =  reviewService.selectReplyCnt(reviewReplyVO);
+		reviewReplyVO.setTotalCnt(replyCnt);
+		  
+		reviewReplyVO.setPageInfo();
+		
+		model.addAttribute("reviewRecom", reviewService.selectRecomMember(reviewRecomVO));
+		model.addAttribute("review", reviewService.selectReviewDetail(reviewVO));
+		model.addAttribute("reviewReplyList", reviewService.selectReviewReplyList(reviewReplyVO));
 		return "review/review_detail";
 	}
 
 	// 리뷰에 댓글 등록
-	@ResponseBody
 	@PostMapping("/regRely")
-	public int regReply(ReviewReplyVO reviewReplyVO, HttpSession session) {
-		reviewReplyVO.setReviewReplyWriter(((MemberVO) session.getAttribute("loginInfo")).getMemberName());
-		return reviewService.regReply(reviewReplyVO);
+	public String regReply(ReviewReplyVO reviewReplyVO, RedirectAttributes redirect) {
+		reviewService.regReply(reviewReplyVO);
+		redirect.addAttribute("reviewBoardCode", reviewReplyVO.getReviewBoardCode());
+		return "redirect:/review/detailReview";
 	}
 
-	// 후기게시판에 댓글목록 조회
-	@ResponseBody
-	@PostMapping("/selectReviewReplyList")
-	public List<ReviewReplyVO> selectReviewReplyList(ReviewReplyVO reviewReplyVO) {
-		//총 데이터 수
-		int replyCnt = reviewService.selectReplyCnt(reviewReplyVO);
-		reviewReplyVO.setTotalCnt(replyCnt);
-		
-		reviewReplyVO.setPageInfo();
-		
-		return reviewService.selectReviewReplyList(reviewReplyVO);
-	}
-
+	
+	
 	// 후기게시판에 댓글목록 삭제
-	@ResponseBody
-	@PostMapping("/deleteReply")
-	public boolean deleteReply(ReviewReplyVO reviewReplyVO) {
-		return reviewService.deleteReviewReply(reviewReplyVO);
+	@GetMapping("/deleteReply")
+	public String deleteReply(ReviewReplyVO reviewReplyVO, RedirectAttributes redirectAttributes) {
+		reviewService.deleteReviewReply(reviewReplyVO);
+		redirectAttributes.addAttribute("reviewBoardCode", reviewReplyVO.getReviewBoardCode());
+		return "redirect:/review/detailReview";
 	}
-
+	
+	// 추천수증가
+	@ResponseBody
+	@GetMapping("/updateRecommend")
+	public ReviewVO updateRecommend(ReviewVO reviewVO, ReviewRecomVO reviewRecomVO) {
+		reviewService.updateRecommendCnt(reviewVO);
+		reviewService.insertRecomMember(reviewRecomVO);
+		return reviewService.selectReviewDetail(reviewVO);			
+	}
+	
+	
 }
