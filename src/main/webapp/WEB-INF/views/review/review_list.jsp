@@ -49,8 +49,8 @@
 				</thead>
 				<c:forEach items="${reviewList }" var="reviewVO">
 					<tr>
-						<td><a href="/review/detailReview?reviewBoardCode=${reviewVO.reviewBoardCode }"> <img src="/resources/images/${reviewVO.reviewImgList[0].reviewImgAttachedName }"></a></td>
-						<td><a href="/review/detailReview?reviewBoardCode=${reviewVO.reviewBoardCode }"> ${reviewVO.reviewBoardTitle }</a></td>
+						<td><a href="/review/detailReview?reviewBoardCode=${reviewVO.reviewBoardCode }&memberId=${sessionScope.loginInfo.memberId}"> <img src="/resources/images/${reviewVO.reviewImgList[0].reviewImgAttachedName }"></a></td>
+						<td><a href="/review/detailReview?reviewBoardCode=${reviewVO.reviewBoardCode }&&memberId=${sessionScope.loginInfo.memberId}"> ${reviewVO.reviewBoardTitle }</a></td>
 					</tr>
 				</c:forEach>
 			</table>

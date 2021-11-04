@@ -315,7 +315,7 @@
 			, REVIEW_BOARD_CODE
 			, IS_RECOMMEND
 		FROM REVIEW_RECOMMEND	
-	 	WHERE MEMBER ID = #{memberId}
+	 	WHERE MEMBER_ID = #{memberId}
 	 	AND REVIEW_BOARD_CODE = #{reviewBoardCode}
 	</select>
 	

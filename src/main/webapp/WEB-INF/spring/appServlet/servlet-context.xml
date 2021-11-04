@@ -48,7 +48,6 @@
 			<mapping path="/admin/detailMember"/>
 			<mapping path="/admin/detailMember"/>
 			<mapping path="/admin/reviewManage "/>
-			<mapping path="/review/detailReview"/>
 			<mapping path="/admin/deleteReviewBoard"/>
 			<mapping path="/admin/replyManage"/>
 			<mapping path="/admin/detailReply"/>
