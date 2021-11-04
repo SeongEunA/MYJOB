@@ -10,6 +10,7 @@ import com.kh.myjob.course.vo.CourseRegVO;
 import com.kh.myjob.course.vo.CourseVO;
 import com.kh.myjob.course.vo.LocationVO;
 import com.kh.myjob.course.vo.PlaceVO;
+import com.kh.myjob.course.vo.TempSaveCourseVO;
 
 @Service("courseService")
 public class CourseServiceImpl implements CourseService {
@@ -68,13 +69,23 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public int deletePlaceInCourse(String savePlaceCode) {
-		return sqlSession.delete("courseMapper.deletePlaceInCourse", savePlaceCode);
+	public int deletePlaceInCourse(CourseRegVO courseRegVO) {
+		return sqlSession.delete("courseMapper.deletePlaceInCourse", courseRegVO);
 	}
 
 	@Override
-	public List<CourseVO> selectCoursePlaceListByCourseCode(String courseCode) {
-		return sqlSession.selectList("courseMapper.selectCourseByCourseCode", courseCode);
+	public List<CourseVO> selectCoursePlaceListByCourseCode(CourseVO courseVO) {
+		return sqlSession.selectList("courseMapper.selectCourseByCourseCode", courseVO);
+	}
+
+	@Override
+	public void insertTempSaveCourse(CourseRegVO courseRegVO) {
+		sqlSession.insert("courseMapper.insertTempSaveCourse", courseRegVO);		
+	}
+
+	@Override
+	public List<TempSaveCourseVO> selectTempSaveCourse(TempSaveCourseVO tempSaveCourseVO) {
+		return sqlSession.selectList("courseMapper.selectTempSaveCourse", tempSaveCourseVO);
 	}
 	
 	

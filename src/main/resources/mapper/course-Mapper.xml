@@ -46,14 +46,25 @@
 		<result column="Y"					property="y"/>
 	</resultMap>
 	
-		<!-- COURSE table -->
+	<!-- COURSE table -->
 	<resultMap type="com.kh.myjob.course.vo.CourseVO" id="course">
 		<id column="COURSE_CODE" 			property="courseCode"/>
 		<result column="MEMBER_ID"			property="memberId"/>
 		<result column="COURSE_NAME"		property="courseName"/>
 		<collection property="coursePlaceList" resultMap="courseRegPlace"></collection>
 	</resultMap>
-
+	
+	<!-- TEMP_SAVE_COURSE table -->
+	<resultMap type="com.kh.myjob.course.vo.TempSaveCourseVO" id="tempSaveCourse">
+		<id column="TEMP_CODE"			property="tempCode"/>
+		<result column="MEMBER_ID"		property="memberId"/>
+		<result column="PLACE_NAME"		property="placeName"/>
+		<result column="PLACE_ADDR"		property="placeAddr"/>
+		<result column="CATE_CODE"		property="cateCode"/>
+		<result column="X"				property="x"/>
+		<result column="Y"				property="y"/>
+	</resultMap>
+	
 	<!-- 상위 지역이름 리스트조회 -->
 	<select id="selectHighLocationList" resultMap="location">
 		SELECT HIGH_LOCATION_NAME
@@ -203,6 +214,38 @@
 		WHERE SAVE_PLACE_CODE = #{savePlaceCode}
 	</delete>
 	
+	<!-- 임시저장코스 테이블에 등록 -->
+	<insert id="insertTempSaveCourse">
+		INSERT INTO TEMP_SAVE_COURSE(
+			TEMP_CODE
+			, MEMBER_ID
+			, PLACE_NAME
+			, PLACE_ADDR
+			, CATE_CODE
+			, X
+			, Y
+		) VALUES (
+			(SELECT 'TEMP_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(TEMP_CODE,6,4))),0)+1,4,0) FROM TEMP_SAVE_COURSE)
+			, #{memberId}
+			, #{placeName}
+			, #{placeAddr}
+			, #{cateCode}
+			, #{x}
+			, #{y}
+		)
+	</insert>
+	
+	<!-- 임시저장코스 테이블 조회 -->
+	<select id="selectTempSaveCourse" resultMap="tempSaveCourse">
+		SELECT TEMP_CODE
+			, PLACE_NAME
+			, PLACE_ADDR
+			, CATE_CODE
+			, X
+			, Y
+		FROM TEMP_SAVE_COURSE
+		WHERE MEMBER_ID = #{memberId}
+	</select>
 	
 	
 </mapper>

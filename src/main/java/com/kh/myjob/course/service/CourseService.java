@@ -6,6 +6,7 @@ import com.kh.myjob.course.vo.CourseRegVO;
 import com.kh.myjob.course.vo.CourseVO;
 import com.kh.myjob.course.vo.LocationVO;
 import com.kh.myjob.course.vo.PlaceVO;
+import com.kh.myjob.course.vo.TempSaveCourseVO;
 
 public interface CourseService {
 	//상위 지역명 리스트
@@ -36,8 +37,14 @@ public interface CourseService {
 	List<CourseVO> selectCoursePlaceList(CourseVO courseVO);
 	
 	//코스코드로 코스정보 조회하는 쿼리
-	List<CourseVO> selectCoursePlaceListByCourseCode(String courseCode); 
+	List<CourseVO> selectCoursePlaceListByCourseCode(CourseVO courseVO); 
 	
 	//코스에 등록된 장소 삭제
-	int deletePlaceInCourse(String savePlaceCode);
+	int deletePlaceInCourse(CourseRegVO courseRegVO);
+	
+	//임시저장코스 테이블 등록
+	void insertTempSaveCourse(CourseRegVO courseRegVO);
+	
+	//아이디로 임시저장코스 테이블 조회
+	List<TempSaveCourseVO> selectTempSaveCourse(TempSaveCourseVO tempSaveCourseVO);
 }

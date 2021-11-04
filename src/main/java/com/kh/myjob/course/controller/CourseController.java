@@ -24,6 +24,7 @@ import com.kh.myjob.course.vo.LocationVO;
 import com.kh.myjob.course.vo.PlacePageVO;
 import com.kh.myjob.course.vo.PlaceVO;
 import com.kh.myjob.course.vo.ShortCourseVO;
+import com.kh.myjob.course.vo.TempSaveCourseVO;
 
 @Controller
 @RequestMapping("/course")
@@ -87,7 +88,7 @@ public class CourseController {
 	@GetMapping("/myCourseList")
 	public String goMyCourse(CourseVO courseVO,Model model) {
 	      
-		model.addAttribute("courseList",  courseService.selectCoursePlaceList(courseVO));
+		model.addAttribute("courseList", courseService.selectCoursePlaceList(courseVO));
 		
 	return "course/mycourse_list";
 	}
@@ -120,10 +121,8 @@ public class CourseController {
 			courseRegVO.setPlaceName(name.get(i));
 			courseRegVO.setPlaceAddr(addr.get(i));
 			courseRegVO.setCateCode(cate.get(i));
-			
 			courseRegVO.setX(placeX.get(i));
 			courseRegVO.setY(placeY.get(i));
-			
 			
 			courseService.insertCourseByCourseCode(courseRegVO);
 			result = 1;
@@ -136,8 +135,10 @@ public class CourseController {
 	//mycourse_list에서 코스목록에 있는 X버튼 클릭시 실행 ajax
 	@ResponseBody
 	@PostMapping("/deletePlaceInCourseAjax")
-	public List<CourseVO> deletePlaceInCourse(String savePlaceCode, CourseVO courseVO) {
-		courseService.deletePlaceInCourse(savePlaceCode);
+	public List<CourseVO> deletePlaceInCourse(CourseRegVO courseRegVO, CourseVO courseVO) {
+		System.out.println("id:"+courseVO.getMemberId());
+		courseService.deletePlaceInCourse(courseRegVO);
+		courseService.insertTempSaveCourse(courseRegVO);
 		return courseService.selectCoursePlaceList(courseVO);
 	}
 	
@@ -166,8 +167,10 @@ public class CourseController {
 	
 	//최단거리 코스추천
 	@PostMapping("/theShortestCourse")
-	public String theShortestCourse(String courseCode) {
-		List<CourseVO> courseList = courseService.selectCoursePlaceListByCourseCode(courseCode);
+	public String theShortestCourse(Model model, CourseVO courseVO, TempSaveCourseVO tempSaveCourseVO) {
+		System.out.println("최단거리 시작!!!!!!!");
+		System.out.println("id"+tempSaveCourseVO.getMemberId());
+		List<CourseVO> courseList = courseService.selectCoursePlaceListByCourseCode(courseVO);
 		List<CourseRegVO> courseRegList = courseList.get(0).getCoursePlaceList();
 
 		List<ShortCourseVO> shortCourseList = new ArrayList<ShortCourseVO>(); //shortCourseList 객체를 담은 리스트
@@ -177,6 +180,8 @@ public class CourseController {
 			ShortCourseVO shortCourseVO = new ShortCourseVO();
 			
 			if(courseRegList.get(i).getCateCode().equals("CATE_001")) {
+				System.out.println(courseRegList.get(i).getX());
+				System.out.println(courseRegList.get(i).getY());
 				shortCourseVO.setCate(true);
 				shortCourseVO.setOriginIndex(i);
 				shortCourseVO.setResultIndex(0);
@@ -192,12 +197,9 @@ public class CourseController {
 			shortCourseList.add(shortCourseVO);
 		}
 		
-		
 		//기준장소 x,y값
 		double startX = 0;
 		double startY = 0;
-		
-		
 		
 		//계산된 거리값
 		//List<Double> distance = new ArrayList<Double>();
@@ -214,8 +216,6 @@ public class CourseController {
 			}
 		}
 		
-		
-		
 		shortCourse(shortCourseList,startX,startY,resultCourse,courseRegList);
 		
 		for(int i=0; i<resultCourse.size();i++) {
@@ -223,13 +223,14 @@ public class CourseController {
 			System.out.println(resultCourse.get(i));
 		}
 		
+		model.addAttribute("resultCourseList", resultCourse);
+		model.addAttribute("courseList", courseService.selectCoursePlaceList(courseVO));
+		model.addAttribute("tempSaveCourseList", courseService.selectTempSaveCourse(tempSaveCourseVO));
 		
-		
-		
-		return "redirect:/course/myCourseList";
+		return "course/mycourse_list";
 	}
 	
-	
+	//추천코스 메소드
 	public int shortCourse(List<ShortCourseVO> shortCourseList,double startX,double startY,List<String> resultCourse,List<CourseRegVO> courseRegList) {
 		//남은장소 x,y값
 		double placeX = 0;

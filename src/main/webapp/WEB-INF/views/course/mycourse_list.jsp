@@ -46,7 +46,9 @@ margin-top: 10px;
 margin-bottom: 10px;
 }
 .courseDisplay{
-
+border:1px solid black;
+width:100px;
+height:100px;
 visibility:hidden;
 
 }
@@ -80,22 +82,22 @@ border: 1px solid #FF8000;;
 width: auto;
 }
 </style>
-<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=28"></script>
+<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=40"></script>
  <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script type="text/javascript">
 function clickRecommendCourse(btnValue){
    if(btnValue=='추천코스보기'){
+	   
       document.getElementById("courseDisplay").style="visibility:visible";
       document.getElementById("courseRecommendBtn").value="코스추천닫기";
-      console.log("if");
-      console.log(btnValue);
+      
    }
    else{
+	   
       document.getElementById("courseDisplay").style="visibility:hidden";
       document.getElementById("courseRecommendBtn").value="추천코스보기";
-      console.log("else");
-      console.log(btnValue);
+      
    }
 }
 
@@ -121,6 +123,7 @@ $.ajax({
 <div class="courseContainer">
 	<div class="courseLayoutLeft" id="courseLayoutLeft">
 	<form action="/course/theShortestCourse" method="post">
+		<input type="hidden" name="memberId" id="memberId" value="${sessionScope.loginInfo.memberId }">
 		<c:forEach items="${courseList }" var="courseInfo">
 			<div class="courseBox" id="courseBox">
 				<div class="courseName">
@@ -130,7 +133,6 @@ $.ajax({
 					<c:choose>
 						<c:when test="${cnt.last }">
 			      	 		<div class="placeName">
-								<input type="hidden" name="memberId" value="${sessionScope.loginInfo.memberId }">
 								<input type="hidden" name="savePlaceCode" value="${placeInfo.savePlaceCode }">
 			      	 			${placeInfo.placeName  } <input type="button" value="x" class="deletePlaceBtn">
 								<div class="hiddenPlaceInfo">
@@ -144,7 +146,6 @@ $.ajax({
 						</c:when>
 			      	 	<c:otherwise>
 							<div class="placeName">
-								<input type="hidden" name="memberId" value="${sessionScope.loginInfo.memberId }">
 								<input type="hidden" name="savePlaceCode" value="${placeInfo.savePlaceCode }">
 								${placeInfo.placeName  } <input type="button" value="x" class="deletePlaceBtn">
 								<div class="hiddenPlaceInfo">
@@ -177,14 +178,49 @@ $.ajax({
 		
 		<input type="button" value="코스저장" id="saveCourseBtn">
       	<input type="hidden" name="memberId" value="${sessionScope.loginInfo.memberId }">
-		<div id="CourseListPoint"></div>
+      	<!-- 임시저장코스 출력Div -->
+      	<c:choose>
+      		<c:when test="${tempSaveCourseList eq null }">
+				<div id="CourseListPoint"></div>
+      		</c:when>
+      		<c:otherwise>
+				<c:forEach items="${tempSaveCourseList }" var="tempSaveCourseInfo">
+				<div id="CourseListPoint">
+					<div class="deletePlaceDiv row">
+						<div class="checkbox">
+							<div class="deletePlace col-11" style="border:1px solid red"><input type="checkbox" class="checkbox">${tempSaveCourseInfo.placeName }
+								<input type="hidden" class="placeAddr" value="${tempSaveCourseInfo.placeAddr }">
+								<input type="hidden" class="cateCode" value=""${tempSaveCourseInfo.cateCode }>
+								<input type="hidden" class="x" value="'${tempSaveCourseInfo.x }">
+								<input type="hidden" class="y" value="${tempSaveCourseInfo.y }">
+							</div>
+						</div>
+					</div>
+				</div>
+				</c:forEach>
+      		</c:otherwise>
+      	</c:choose>
 	</div>
- <!--   <div class="courseLayoutLeft courseDisplay" id="courseDisplay">
-      
-         추천코스동선
-   
-   </div>
-   <p>이미지</p> -->
+	<c:if test="${resultCourseList ne null}">
+	<div class="courseLayoutBottom">
+		<div class="recommendCourse">
+			<c:forEach items="${resultCourseList}" var="resultCourseInfo" varStatus="cnt">
+					<c:choose>
+						<c:when test="${cnt.last }">
+			      	 		<div class="resultCourse">
+			      	 			${resultCourseInfo }
+			      	 		</div>
+						</c:when>
+			      	 	<c:otherwise>
+							<div class="resultCourse">
+								${resultCourseInfo }
+							</div> &#10140;
+			      	 	</c:otherwise>
+					</c:choose>
+				</c:forEach>
+		</div>
+	</div>
+	</c:if>
 </div>
 
 

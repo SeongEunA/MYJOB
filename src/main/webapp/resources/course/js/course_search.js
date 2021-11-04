@@ -90,8 +90,8 @@ $(document).ready(function(){
 	   var cateCode =  $(this).parent().children().eq(4).val();
 	   var placeTel =  $(this).parent().children().eq(5).text();
 	   
-	   var cateCode = [];
-	   var cateCodeL = $('.cateCode').length;
+//	   var cateCode = [];
+//	   var cateCodeL = $('.cateCode').length;
 	   
 	   var placeStr = '';
 	   placeStr += '<div class="resInfoDiv">';
@@ -164,6 +164,7 @@ $(document).ready(function(){
 						//숙박지가 2개이상 cateCode 배열에 안담기도록...
 						var houseCnt = 0;
 						for(var i = 0; i < cateCodeL; i++){
+							
 							if(cateCode[i] == 'CATE_001'){
 								houseCnt++;
 							}

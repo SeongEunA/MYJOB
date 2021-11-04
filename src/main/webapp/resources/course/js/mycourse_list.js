@@ -3,7 +3,8 @@ $(document).ready(function(){
 	//x버튼 클릭시 실행
 	$(document).on('click', '.deletePlaceBtn', function(){
 		var savePlaceCode = $(this).prev().val();
-		var memberId = $(this).prev().prev().val();
+		var memberId = $('#memberId').val();
+		alert(memberId);
 
 		var placeName = $(this).next().children().eq(0).val();
 		var placeAddr = $(this).next().children().eq(1).val();
@@ -16,7 +17,12 @@ $(document).ready(function(){
 			url: '/course/deletePlaceInCourseAjax', //요청경로
 			type: 'post',
 			data:{'savePlaceCode':savePlaceCode,
-				  'memberId':memberId}, //필요한 데이터
+				  'memberId':memberId,
+				  'placeName':placeName,
+				  'placeAddr':placeAddr,
+				  'cateCode':cateCode,
+				  'x':x,
+				  'y':y}, //필요한 데이터
 			success: function(result) {
 				//ajax 실행 성공 후 실행할 코드 작성
 				$('#courseLayoutLeft').empty();
@@ -25,16 +31,14 @@ $(document).ready(function(){
 				
 				deleteStr += '<div class="deletePlaceDiv row">';
 				deleteStr += '	<div class="checkbox">';
-				deleteStr += '		<input type="checkbox" class="checkbox">';
-				
-				deleteStr += '	<div class="deletePlace col-11" style="border:1px solid red">' + placeName;
-				deleteStr += '		<input type="hidden" class="placeAddr" value="' + placeAddr + '">';
-				deleteStr += '		<input type="hidden" class="cateCode" value="' + cateCode + '">';
-				deleteStr += '		<input type="hidden" class="x" value="' + x + '">';
-				deleteStr += '		<input type="hidden" class="y" value="' + y + '">';
+				deleteStr += '		<div class="deletePlace col-11" style="border:1px solid red"><input type="checkbox" class="checkbox">' + placeName;
+				deleteStr += '			<input type="hidden" class="placeAddr" value="' + placeAddr + '">';
+				deleteStr += '			<input type="hidden" class="cateCode" value="' + cateCode + '">';
+				deleteStr += '			<input type="hidden" class="x" value="' + x + '">';
+				deleteStr += '			<input type="hidden" class="y" value="' + y + '">';
+				deleteStr += '		</div>';
 				deleteStr += '	</div>';
-				deleteStr += '</div>';
-				deleteStr += '	</div>';//수정
+				deleteStr += '</div>';//수정
 				var listStr = '';
 				
 				$(result).each(function(index,element){
@@ -44,7 +48,6 @@ $(document).ready(function(){
 					$(element.coursePlaceList).each(function(i,placeInfo){
 						if(element.coursePlaceList.length == (i+1)){
 							listStr += '<div class="placeName">';
-							listStr += '	<input type="hidden" name="memberId" value="' + memberId + '">';
 							listStr += '	<input type="hidden" name="savePlaceCode" value="' + placeInfo.savePlaceCode + '">';
 							listStr += placeInfo.placeName + '<input type="button" value="x" class="deletePlaceBtn">';
 							listStr += '	<div class="hiddenPlaceInfo">';
@@ -58,7 +61,6 @@ $(document).ready(function(){
 						}
 						else{
 							listStr += '<div class="placeName">';
-							listStr += '	<input type="hidden" name="memberId" value="' + memberId + '">';
 							listStr += '	<input type="hidden" name="savePlaceCode" value="' + placeInfo.savePlaceCode + '">';
 							listStr += placeInfo.placeName + '<input type="button" value="x" class="deletePlaceBtn">';
 							listStr += '	<div class="hiddenPlaceInfo">';
@@ -96,19 +98,19 @@ $(document).ready(function(){
 	$(document).on('click', '#saveCourseBtn', function(){
 		var courseCode = $('#selectCourseCode option:selected').val();
 		
-		var memberId = $(this).next().val();
+		var memberId = $('#memberId').val();
 		
-		var placeName = $('.checkbox:checked').next().text();
-		var placeAddr = $('.checkbox:checked').next().children().eq(0).val();
-		var cateCode = $('.checkbox:checked').next().children().eq(1).val();
-		var x = $('.checkbox:checked').next().children().eq(2).val();
-		var y = $('.checkbox:checked').next().children().eq(3).val();
+//		var placeName = $('.checkbox:checked').parent().text();
+//		var placeAddr = $('.checkbox:checked').parent().children().eq(1).val();
+//		var cateCode = $('.checkbox:checked').parent().children().eq(2).val();
+//		var x = $('.checkbox:checked').parent().children().eq(3).val();
+//		var y = $('.checkbox:checked').parent().children().eq(4).val();
 		
-		console.log(courseCode);
-		console.log(memberId);
-		console.log(placeName);
-		console.log(placeAddr);
-		console.log(cateCode);
+//		console.log(courseCode);
+//		console.log(memberId);
+//		console.log(placeName);
+//		console.log(placeAddr);
+//		console.log(cateCode);
 		
 		var placeNameArr=[];
 		var placeAddrArr=[];
@@ -120,12 +122,21 @@ $(document).ready(function(){
 		var placeNameL = $('.checkbox:checked').length;
 		
 		for(var i =0;i<placeNameL;i++){
-			placeNameArr[i] =  $('.checkbox:checked').eq(i).next().text();
-			placeAddrArr[i] = $('.checkbox:checked').eq(i).next().children().eq(0).val();
-			cateCodeArr[i] = $('.checkbox:checked').eq(i).next().children().eq(1).val();
-			xArr[i] = $('.checkbox:checked').eq(i).next().children().eq(2).val();
-			yArr[i] = $('.checkbox:checked').eq(i).next().children().eq(3).val();
-			$('.checkbox:checked').eq(i).parent().parent().remove();
+			placeNameArr[i] =  $('.checkbox:checked').eq(i).parent().text();
+			placeAddrArr[i] = $('.checkbox:checked').eq(i).parent().children().eq(1).val();
+			cateCodeArr[i] = $('.checkbox:checked').eq(i).parent().children().eq(2).val();
+			xArr[i] = $('.checkbox:checked').eq(i).parent().children().eq(3).val();
+			yArr[i] = $('.checkbox:checked').eq(i).parent().children().eq(4).val();
+		}
+		
+		for(var i=0;i<placeNameL;i++){
+			
+			$('.checkbox:checked').eq(i).parent().parent().parent().remove();
+			i--
+			if($('.checkbox:checked').eq(i).parent().text()==''||$('.checkbox:checked').eq(i).parent().text()==null){
+				
+				i=placeNameL;
+			}
 		}
 		
 		$.ajax({
@@ -155,7 +166,6 @@ $(document).ready(function(){
 					$(element.coursePlaceList).each(function(i,placeInfo){
 						if(element.coursePlaceList.length == (i+1)){
 							listStr += '<div class="placeName">';
-							listStr += '	<input type="hidden" name="memberId" value="' + memberId + '">';
 							listStr += '	<input type="hidden" name="savePlaceCode" value="' + placeInfo.savePlaceCode + '">';
 							listStr += placeInfo.placeName + '<input type="button" value="x" class="deletePlaceBtn">';
 							listStr += '	<div class="hiddenPlaceInfo">';
@@ -169,7 +179,6 @@ $(document).ready(function(){
 						}
 						else{
 							listStr += '<div class="placeName">';
-							listStr += '	<input type="hidden" name="memberId" value="' + memberId + '">';
 							listStr += '	<input type="hidden" name="savePlaceCode" value="' + placeInfo.savePlaceCode + '">';
 							listStr += placeInfo.placeName + '<input type="button" value="x" class="deletePlaceBtn">';
 							listStr += '	<div class="hiddenPlaceInfo">';
