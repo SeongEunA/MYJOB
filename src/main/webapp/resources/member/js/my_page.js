@@ -123,10 +123,10 @@ $(document).ready(function(){
 							str += '			<td id="memberAddr">' + result.memberAddr + '</td>';
 							str += '		</tr>';
 							str += '	</table>';
-							str += '	<div class="manageBtnDiv2">';
-							str += '		<div class="updateMyInfoBtnDiv">';
+							str += '	<div class="updateMyInfoBtnDiv">';
+							str += '		<div class="updateMyInfoBtn">';
 							str += '			<input type="button" id="updateMyInfo" value="수정" onclick="updateMyInfo(\'' + result.memberCode + '\');">';
-							str += '		<div class="updateMyInfoBtnDiv">';
+							str += '		</div>';
 							str += '	</div>';
 							
 							$('#detailMyInfo').append(str);

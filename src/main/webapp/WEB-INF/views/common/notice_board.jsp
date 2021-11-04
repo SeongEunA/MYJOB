@@ -7,22 +7,30 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.container{
-	width: 100%;
-	background-color: #eaeaea;
+.noticeTitleDiv{
+	border: 1px solid red;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	margin:0 auto;
+}
+.noticeTitle{
+	border: 1px solid orange;
+	padding: 0 20px;
+	margin: 0 auto;
+	font-size: 20pt;
+}
+.noticeSearchDiv{
+	border: 1px solid blue;
+	margin: 0 auto;
+}
+.noticeSerach{
+	border: 1px solid black;
+	margin:0 auto;
 	margin-top: 30px;
-	padding: 30px;
-	font-size: 12px;
-}
-
-.searchDiv{
 	margin-bottom: 30px;
+	padding: 20px;
+	font-size: 13px;
 }
-
-.tableDiv{
-	margin-top: 10px;
-}
-
 .searchTable td{
 	height: 30px;
 }
@@ -60,95 +68,107 @@ td{
 </style>
 </head>
 <body>
-공지사항 페이지입니다.
-<div class="container">
-		<div>
-		&nbsp;
-			<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' }">
-				<a href="/admin/goRegNoticeBoard"><input type="button" value="등록"></a>
-			</c:if>
-		</div>
-		<div class="searchDiv">
-		<form action="/common/noticeBoard" method="post">
-			<table class="searchTable">
-			<colgroup>
-				<col width="20%">
-				<col width="*%">
-				<col width="20%">
-			</colgroup>
-				<tr>
-					<td>
-						<select name="searchKeyword">
-							<option value="BOARD_SUBJECT" <c:if test="${noticeBoardVO.searchKeyword eq 'BOARD_SUBJECT'}">selected</c:if>>제&nbsp;&nbsp;&nbsp;목</option>
-							<option value="BOARD_CONTENT" <c:if test="${noticeBoardVO.searchKeyword eq 'BOARD_CONTENT'}">selected</c:if>>내&nbsp;&nbsp;&nbsp;용</option>
-							<option value="BOARD_WRITER" <c:if test="${noticeBoardVO.searchKeyword eq 'BOARD_WRITER'}">selected</c:if>>작성자</option>
-						</select>
-					</td>
-					<td>
-						<input type="text" name="searchValue" value="${noticeBoardVO.searchValue }">
-					</td>
-					<td>
-						<button type="submit">검색</button>
-					</td>
-				</tr>
-			</table>
-		</form>
-	</div>
-	총 ${noticeBoardList.size() } 건
-	<div class="tableDiv">
-		<table>
-		<colgroup>
-			<col width="5%">
-			<col width="80%">
-			<col width="5%">
-			<col width="10%">
-		</colgroup>
-			<thead>
-				<tr>
-					<td>No</td>
-					<td>공지사항 제목</td>
-					<td>작성자</td>
-					<td>등록일</td>
-				</tr>
-			</thead>
-			<tbody>
-				  <c:forEach items="${noticeBoardList }" var="noticeBoardInfo" varStatus="i">
-					    <tr>
-					      	<td><a  style="color: black; text-decoration-line: none;">${noticeBoardList.size() - i.index }</a></td>
-					      	<td><a  style="color: black; text-decoration-line: none;" href="/common/detailNoticeBoard?noticeBoardCode=${noticeBoardInfo.noticeBoardCode }">${noticeBoardInfo.boardSubject }</a></td>
-					      	<td><a  style="color: black; text-decoration-line: none;">${noticeBoardInfo.boardWriter }</a></td>
-					      	<td><a  style="color: black; text-decoration-line: none;">${noticeBoardInfo.regDate }</a></td>
-					    </tr>  
-				  </c:forEach>
-		  	</tbody>
-		</table>
-	</div>
-</div>
-
-
 <div class="row">
-	<div class="col text-center">
-		<nav aria-label="...">
-			<ul class="pagination justify-content-center">
-				<li class="page-item <c:if test="${!noticeBoardVO.prev }">disabled</c:if>">
-					<a class="page-link" href="/common/noticeBoard?nowPage=${noticeBoardVO.beginPage - 1 }">Prev</a>
-				</li>
-				
-				<c:forEach begin="${noticeBoardVO.beginPage }" end="${noticeBoardVO.endPage }" var="pageNumber">
-					<li class="page-item <c:if test="${noticeBoardVO.nowPage eq pageNumber }">active</c:if>">
-						<a class="page-link" href="/common/noticeBoard?nowPage=${pageNumber }&searchKeyword=${noticeBoardVO.searchKeyword}&searchValue=${noticeBoardVO.searchValue}">${pageNumber }</a>
-					</li>
-				</c:forEach>
-				
-				<li class="page-item <c:if test="${!noticeBoardVO.next }">disabled</c:if>">
-					<a class="page-link" href="/common/noticeBoard?nowPage=${noticeBoardVO.endPage + 1 }">Next</a>
-				</li>
-			</ul>
-		</nav>
-	</div>	
+	<div class="col12">
+		<div class="col-8 noticeTitleDiv">
+			<div class="col-12 noticeTitle">공지사항 페이지입니다.</div>
+		</div>
+		<div class="col-8 noticeSearchDiv">
+			<div class="col-8 noticeSerach">
+				<form action="/common/noticeBoard" method="post">
+					<table class="searchTable">
+					<colgroup>
+						<col width="20%">
+						<col width="*%">
+						<col width="20%">
+					</colgroup>
+						<tr>
+							<td>
+								<select name="searchKeyword">
+									<option value="BOARD_SUBJECT" <c:if test="${noticeBoardVO.searchKeyword eq 'BOARD_SUBJECT'}">selected</c:if>>제&nbsp;&nbsp;&nbsp;목</option>
+									<option value="BOARD_CONTENT" <c:if test="${noticeBoardVO.searchKeyword eq 'BOARD_CONTENT'}">selected</c:if>>내&nbsp;&nbsp;&nbsp;용</option>
+									<option value="BOARD_WRITER" <c:if test="${noticeBoardVO.searchKeyword eq 'BOARD_WRITER'}">selected</c:if>>작성자</option>
+								</select>
+							</td>
+							<td>
+								<input type="text" name="searchValue" value="${noticeBoardVO.searchValue }">
+							</td>
+							<td>
+								<button type="submit">검색</button>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+		
+		<div class="col-8 noticeTableDiv">
+		<div class="">
+		</div>
+			<div>
+			&nbsp;
+				<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' }">
+					<a href="/admin/goRegNoticeBoard"><input type="button" value="등록"></a>
+				</c:if>
+			</div>
+			
+			총 ${noticeBoardList.size() } 건
+			<div class="tableDiv">
+				<table>
+				<colgroup>
+					<col width="5%">
+					<col width="80%">
+					<col width="5%">
+					<col width="10%">
+				</colgroup>
+					<thead>
+						<tr>
+							<td>No</td>
+							<td>공지사항 제목</td>
+							<td>작성자</td>
+							<td>등록일</td>
+						</tr>
+					</thead>
+					<tbody>
+						  <c:forEach items="${noticeBoardList }" var="noticeBoardInfo" varStatus="i">
+							    <tr>
+							      	<td><a  style="color: black; text-decoration-line: none;">${noticeBoardList.size() - i.index }</a></td>
+							      	<td><a  style="color: black; text-decoration-line: none;" href="/common/detailNoticeBoard?noticeBoardCode=${noticeBoardInfo.noticeBoardCode }">${noticeBoardInfo.boardSubject }</a></td>
+							      	<td><a  style="color: black; text-decoration-line: none;">${noticeBoardInfo.boardWriter }</a></td>
+							      	<td><a  style="color: black; text-decoration-line: none;">${noticeBoardInfo.regDate }</a></td>
+							    </tr>  
+						  </c:forEach>
+				  	</tbody>
+				</table>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col text-center">
+				<nav aria-label="...">
+					<ul class="pagination justify-content-center">
+						<li class="page-item <c:if test="${!noticeBoardVO.prev }">disabled</c:if>">
+							<a class="page-link" href="/common/noticeBoard?nowPage=${noticeBoardVO.beginPage - 1 }">Prev</a>
+						</li>
+						
+						<c:forEach begin="${noticeBoardVO.beginPage }" end="${noticeBoardVO.endPage }" var="pageNumber">
+							<li class="page-item <c:if test="${noticeBoardVO.nowPage eq pageNumber }">active</c:if>">
+								<a class="page-link" href="/common/noticeBoard?nowPage=${pageNumber }&searchKeyword=${noticeBoardVO.searchKeyword}&searchValue=${noticeBoardVO.searchValue}">${pageNumber }</a>
+							</li>
+						</c:forEach>
+						
+						<li class="page-item <c:if test="${!noticeBoardVO.next }">disabled</c:if>">
+							<a class="page-link" href="/common/noticeBoard?nowPage=${noticeBoardVO.endPage + 1 }">Next</a>
+						</li>
+					</ul>
+				</nav>
+			</div>	
+		</div>
+
+
+	</div>
 </div>
-
-
 </body>
 </html>
 
