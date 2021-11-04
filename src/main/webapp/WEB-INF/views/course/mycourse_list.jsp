@@ -82,7 +82,7 @@ border: 1px solid #FF8000;;
 width: auto;
 }
 </style>
-<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=40"></script>
+<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=6"></script>
  <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script type="text/javascript">
@@ -177,7 +177,7 @@ $.ajax({
 		</select>
 		
 		<input type="button" value="코스저장" id="saveCourseBtn">
-      	<input type="hidden" name="memberId" value="${sessionScope.loginInfo.memberId }">
+		<input type="button" value="선택삭제" id="deleteCourseBtn">
       	<!-- 임시저장코스 출력Div -->
       	<c:choose>
       		<c:when test="${tempSaveCourseList eq null }">

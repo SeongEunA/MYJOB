@@ -47,4 +47,7 @@ public interface CourseService {
 	
 	//아이디로 임시저장코스 테이블 조회
 	List<TempSaveCourseVO> selectTempSaveCourse(TempSaveCourseVO tempSaveCourseVO);
+	
+	//체크된 장소 삭제
+	void deleteCheck(CourseRegVO courseRegVO);
 }

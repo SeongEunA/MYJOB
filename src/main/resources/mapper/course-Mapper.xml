@@ -247,7 +247,12 @@
 		WHERE MEMBER_ID = #{memberId}
 	</select>
 	
-	
+	<!-- 임시저장코스 체크박스 선택된 장소 삭제 -->
+	<delete id="deleteCheck">
+		DELETE TEMP_SAVE_COURSE
+		WHERE MEMBER_ID = #{memberId}
+		AND PLACE_ADDR = #{placeAddr}
+	</delete>
 </mapper>
 
 	

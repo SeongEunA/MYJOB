@@ -55,6 +55,7 @@
 			<mapping path="/admin/goRegNoticeBoard"/>
 			<mapping path="/admin/regNoticeBoard"/>
 			<mapping path="/admin/deleteNoticeBoard"/>
+			<mapping path="/course/myCourseList"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>		
 	</interceptors>

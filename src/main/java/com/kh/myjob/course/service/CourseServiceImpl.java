@@ -87,6 +87,11 @@ public class CourseServiceImpl implements CourseService {
 	public List<TempSaveCourseVO> selectTempSaveCourse(TempSaveCourseVO tempSaveCourseVO) {
 		return sqlSession.selectList("courseMapper.selectTempSaveCourse", tempSaveCourseVO);
 	}
+
+	@Override
+	public void deleteCheck(CourseRegVO courseRegVO) {
+		sqlSession.delete("courseMapper.deleteCheck", courseRegVO);
+	}
 	
 	
 

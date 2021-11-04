@@ -4,7 +4,6 @@ $(document).ready(function(){
 	$(document).on('click', '.deletePlaceBtn', function(){
 		var savePlaceCode = $(this).prev().val();
 		var memberId = $('#memberId').val();
-		alert(memberId);
 
 		var placeName = $(this).next().children().eq(0).val();
 		var placeAddr = $(this).next().children().eq(1).val();
@@ -40,6 +39,9 @@ $(document).ready(function(){
 				deleteStr += '	</div>';
 				deleteStr += '</div>';//수정
 				var listStr = '';
+				
+				listStr += '<form action="/course/theShortestCourse" method="post">';
+				listStr += '<input type="hidden" name="memberId" id="memberId" value="' + memberId + '">';
 				
 				$(result).each(function(index,element){
 					listStr += '<div class="courseBox">';
@@ -83,6 +85,7 @@ $(document).ready(function(){
 				listStr += '		<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn">'
 				listStr += '	</span>'
 				listStr += '</div>'
+				listStr += '</form>'
 				
 				$('#CourseListPoint').append(deleteStr);
 				$('#courseLayoutLeft').append(listStr);
@@ -99,18 +102,6 @@ $(document).ready(function(){
 		var courseCode = $('#selectCourseCode option:selected').val();
 		
 		var memberId = $('#memberId').val();
-		
-//		var placeName = $('.checkbox:checked').parent().text();
-//		var placeAddr = $('.checkbox:checked').parent().children().eq(1).val();
-//		var cateCode = $('.checkbox:checked').parent().children().eq(2).val();
-//		var x = $('.checkbox:checked').parent().children().eq(3).val();
-//		var y = $('.checkbox:checked').parent().children().eq(4).val();
-		
-//		console.log(courseCode);
-//		console.log(memberId);
-//		console.log(placeName);
-//		console.log(placeAddr);
-//		console.log(cateCode);
 		
 		var placeNameArr=[];
 		var placeAddrArr=[];
@@ -129,15 +120,24 @@ $(document).ready(function(){
 			yArr[i] = $('.checkbox:checked').eq(i).parent().children().eq(4).val();
 		}
 		
-		for(var i=0;i<placeNameL;i++){
-			
-			$('.checkbox:checked').eq(i).parent().parent().parent().remove();
-			i--
-			if($('.checkbox:checked').eq(i).parent().text()==''||$('.checkbox:checked').eq(i).parent().text()==null){
-				
-				i=placeNameL;
-			}
+		if(placeNameL == 1){
+			$('.checkbox:checked').eq(0).parent().parent().parent().remove();
 		}
+		else{
+			
+			for(var i=0;i<placeNameL;i++){
+				
+				$('.checkbox:checked').eq(i).parent().parent().parent().remove();
+				i--
+				if($('.checkbox:checked').eq(i).parent().text()==''||$('.checkbox:checked').eq(i).parent().text()==null){
+					
+					i=placeNameL;
+				}
+			}
+			
+		}
+		
+		
 		
 		$.ajax({
 			url: '/course/insertPlaceByDeleteAjax', //요청경로
@@ -158,6 +158,9 @@ $(document).ready(function(){
 				
 
 				var listStr = '';
+				
+				listStr += '<form action="/course/theShortestCourse" method="post">';
+				listStr += '<input type="hidden" name="memberId" id="memberId" value="' + memberId + '">';
 				
 				$(result).each(function(index,element){
 					listStr += '<div class="courseBox">';
@@ -191,20 +194,19 @@ $(document).ready(function(){
 							listStr += '</div> &#10140;';
 						}
 
-					
-						
-
 					});
 				
 					listStr += '</div>';
 					
 				});
 				
-				listStr += '<div>'
-					listStr += '	<span>'
-					listStr += '		<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn">'
-					listStr += '	</span>'
-					listStr += '</div>'
+				listStr += '<div>';
+				listStr += '	<span>';
+				listStr += '		<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn">';
+				listStr += '	</span>';
+				listStr += '</div>';
+				listStr += '</form>';
+						
 				$('#courseLayoutLeft').append(listStr);
 			},
 			error: function(){
@@ -213,11 +215,61 @@ $(document).ready(function(){
 			}
 		});
 		
-
-		
-		
-		
 	});
+
+	//선택삭제 버튼 클릭시
+	$(document).on('click', '#deleteCourseBtn', function(){
+		var resultCon = confirm('선택한 장소들을 삭제 하시겠습니까?');
+		
+		if(resultCon){
+			var memberId = $('#memberId').val();
+			
+			var placeAddrArr=[];
+			
+			var placeAddrL = $('.checkbox:checked').length;
+			
+			for(var i =0;i<placeAddrL;i++){
+				placeAddrArr[i] = $('.checkbox:checked').eq(i).parent().children().eq(1).val();
+			}
+			
+			if(placeAddrL == 1){
+				$('.checkbox:checked').eq(0).parent().parent().parent().remove();
+			}
+			else{
+				
+				for(var i=0;i<placeAddrL;i++){
+					
+					$('.checkbox:checked').eq(i).parent().parent().parent().remove();
+					i--
+					if($('.checkbox:checked').eq(i).parent().children().eq(1).val()==''||$('.checkbox:checked').eq(i).parent().children().eq(1).val()==null){
+						
+						i=placeAddrL;
+					}
+				}
+			}
+			
+			$.ajax({
+				url: '/course/deleteCheckCourseAjax', //요청경로
+				type: 'post',
+				data:{'memberId':memberId,
+					  'placeAddrArr':placeAddrArr}, //필요한 데이터
+				success: function(result) {
+					//ajax 실행 성공 후 실행할 코드 작성
+					alert('삭제성공')
+					
+					
+				},
+				error: function(){
+					//ajax 실행 실패 시 실행되는 구간
+					alert('실패');
+				}
+			});
+		}//컨펌 if 문 end
+		else{
+			alert('잘못된 요청입니다.')
+		}
+	});
+	
 });
 
 //함수 선언 영역

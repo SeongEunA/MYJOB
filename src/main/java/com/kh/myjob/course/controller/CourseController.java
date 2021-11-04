@@ -86,9 +86,11 @@ public class CourseController {
 	
 	//내 코스 페이지로 이동
 	@GetMapping("/myCourseList")
-	public String goMyCourse(CourseVO courseVO,Model model) {
+	public String goMyCourse(CourseVO courseVO,Model model, TempSaveCourseVO tempSaveCourseVO) {
 	      
 		model.addAttribute("courseList", courseService.selectCoursePlaceList(courseVO));
+		
+		model.addAttribute("tempSaveCourseList", courseService.selectTempSaveCourse(tempSaveCourseVO));
 		
 	return "course/mycourse_list";
 	}
@@ -145,7 +147,7 @@ public class CourseController {
 	//삭제된 장소들을 원하는 코스에 다시 insert
 	@ResponseBody
 	@PostMapping("/insertPlaceByDeleteAjax")
-	public List<CourseVO> insertPlaceByDeleteAjax(CourseRegVO courseRegVO, CourseVO courseVO,@RequestParam(value="placeNameArr[]") List<String> name,@RequestParam(value="placeAddrArr[]") List<String> addr,@RequestParam(value="cateCodeArr[]") List<String> cate,@RequestParam(value="xArr[]") List<String> xArr,@RequestParam(value="yArr[]") List<String> yArr) {
+	public List<CourseVO> insertPlaceByDeleteAjax(CourseRegVO courseRegVO, CourseVO courseVO, @RequestParam(value="placeNameArr[]") List<String> name, @RequestParam(value="placeAddrArr[]") List<String> addr,@RequestParam(value="cateCodeArr[]") List<String> cate,@RequestParam(value="xArr[]") List<String> xArr,@RequestParam(value="yArr[]") List<String> yArr) {
 	
 		for(int i = 0; i < name.size(); i++) {
 			courseRegVO.setCourseCode(courseRegVO.getCourseCode());	
@@ -157,12 +159,25 @@ public class CourseController {
 			courseRegVO.setY(yArr.get(i));
 			
 			courseService.insertCourseByCourseCode(courseRegVO);
+			courseService.deleteCheck(courseRegVO);
 		}
 		
 		
-		System.out.println("TEST1 : ");
-		System.out.println(courseRegVO.getPlaceName());
+		
 		return courseService.selectCoursePlaceList(courseVO);
+	}
+	
+	@ResponseBody
+	@PostMapping("/deleteCheckCourseAjax")
+	public int deleteCheckCourse(CourseRegVO courseRegVO, @RequestParam(value="placeAddrArr[]") List<String> addr) {
+
+		for(int i = 0; i < addr.size(); i++) {
+			courseRegVO.setPlaceAddr(addr.get(i));
+			
+			courseService.deleteCheck(courseRegVO);
+		}
+		
+		return 0;
 	}
 	
 	//최단거리 코스추천
