@@ -7,12 +7,9 @@
 <title>Insert title here</title>
 <style type="text/css">
 .mainPhotoContainer{
-
 border:1px solid white;
 width:auto;
 height:400px;
-
-
 }
 .mainPhoto{
 width:100%;
@@ -21,30 +18,64 @@ background-image:url('/resources/images/call.png');
 background-repeat: no-repeat;
 }
 .tagContainer{
-border:1px solid black;
+border:1px solid white;
 height:160px;
 margin:0 auto;
 }
 .tagLayout{
-border:1px solid red;
+border:1px solid white;
 height:50px;
 margin-top:20px;
 }
-
+.tagLayout > .tag-li-container >ul >li{
+width:auto;
+border:1px solid #A6A6A6;
+border-radius: 5px;
+padding:10px 20px;
+color:#A6A6A6;
+margin-left:10px;
+margin-right:10px;
+cursor: pointer;
+}
+.tagLayout > .tag-li-container >ul >li:hover{
+width:auto;
+border:1px solid #D5D5D5;
+border-radius: 5px;
+padding:10px 20px;
+color:#D5D5D5;
+margin-left:10px;
+margin-right:10px;
+cursor: pointer;
+}
+.tag-li-container{
+border:1px solid white;
+height:100%;
+margin:0 auto;
+text-align:center;
+}
 .mainReviewContainer{
 border:1px solid #EBF7FF;
 height:400px;
 text-align: center;
 background-color:#EBF7FF;
 }
+.mainReviewLayout{
+border:1px solid #EBF7FF;
+height:100%;
+margin:0 auto;
+text-align:center;
+}
 .mainReviewDiv{
 border:1px solid #EBF7FF;
 height:80%;
 margin-top:35px;
-margin-right:20px;
 display:inline-block;
 border-radius:10px;
 background-color:white;
+width:280px;
+margin-left:5px;
+margin-right:5px;
+
 }
 .mainReviewPhoto{
 border:1px solid #EBF7FF;
@@ -151,6 +182,10 @@ width:100%;
 height:100%;
 filter: brightness(70%);
 }
+.bannerBox{
+border:1px solid black;
+height:90px;
+}
 </style>
 </head>
 <body>
@@ -165,41 +200,63 @@ filter: brightness(70%);
 				<div class="col-12">
 					<div class="tagContainer col-8">
 						<div class="col-12 tagLayout">
-							태그1
+							<div class="tag-li-container col-8">
+								<ul>
+									<li>#태그1</li>
+									<li>#태그2</li>
+									<li>#태그3</li>
+									<li>#태그4</li>
+									<li>#태그5</li>
+									<li>#태그6</li>
+								</ul>
+							</div>
 						</div>
-						<div class="col-12 tagLayout">
-							태그2
+							<div class="tagContainer col-12">
+								<div class="col-12 tagLayout">
+									<div class="tag-li-container col-8">
+							<ul>
+								<li>태그1</li>
+								<li>태그2</li>
+								<li>태그3</li>
+								<li>태그4</li>
+								<li>태그5</li>
+								<li>태그6</li>
+							</ul>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 		</div>
 		<div class="row">
 			<div class="col-12 mainReviewContainer">
-				<div class="col-2 mainReviewDiv">
-					 <div class="mainReviewPhoto">
-						 <img src="/resources/images/리뷰1.jpg" style="border-top-left-radius:10px;border-top-right-radius:10px;" width="100%" height="100%">
-					 </div>
-					 <div class="mainReviewText">캠핑여행을갔다왔..</div>
-				</div>
-				<div class="col-2 mainReviewDiv">
-					<div class="mainReviewPhoto">
-					<img src="/resources/images/리뷰2.jpg" style="border-top-left-radius:10px;border-top-right-radius:10px;" width="100%" height="100%">
+				<div class="col-10 mainReviewLayout">
+					<div class="mainReviewDiv">
+						 <div class="mainReviewPhoto">
+							 <img src="/resources/images/리뷰1.jpg" style="border-top-left-radius:10px;border-top-right-radius:10px;" width="100%" height="100%">
+						 </div>
+						 <div class="mainReviewText">캠핑여행을갔다왔..</div>
 					</div>
-					 <div class="mainReviewText">리뷰텍스트</div>
-				</div>
-				<div class="col-2 mainReviewDiv">
-					<div class="mainReviewPhoto">
-					<img src="/resources/images/리뷰3.jpeg" style="border-top-left-radius:10px;border-top-right-radius:10px;" width="100%" height="100%">
+					<div class="mainReviewDiv">
+						<div class="mainReviewPhoto">
+						<img src="/resources/images/리뷰2.jpg" style="border-top-left-radius:10px;border-top-right-radius:10px;" width="100%" height="100%">
+						</div>
+						 <div class="mainReviewText">리뷰텍스트</div>
 					</div>
-					 <div class="mainReviewText">리뷰텍스트</div>
-				</div>
-				<div class="col-2 mainReviewDiv">
-					<div class="mainReviewPhoto"></div>
-					 <div class="mainReviewText">리뷰텍스트</div>
-				</div>
-				<div class="col-2 mainReviewDiv">
-					<div class="mainReviewPhoto"></div>
-					 <div class="mainReviewText">리뷰텍스트</div>
+					<div class="mainReviewDiv">
+						<div class="mainReviewPhoto">
+						<img src="/resources/images/리뷰3.jpeg" style="border-top-left-radius:10px;border-top-right-radius:10px;" width="100%" height="100%">
+						</div>
+						 <div class="mainReviewText">리뷰텍스트</div>
+					</div>
+					<div class="mainReviewDiv">
+						<div class="mainReviewPhoto"></div>
+						 <div class="mainReviewText">리뷰텍스트</div>
+					</div>
+					<div class="mainReviewDiv">
+						<div class="mainReviewPhoto"></div>
+						 <div class="mainReviewText">리뷰텍스트</div>
+					</div>
 				</div>
 			</div>
 		</div>
