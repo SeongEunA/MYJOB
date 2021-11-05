@@ -6,11 +6,43 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.adminSideDiv{
+	margin: 0 auto;
+	text-align: center;
+	padding: 40px;
+	width: 100%;
+	letter-spacing: 6.0px;
+}
+.memberManageDiv{
+	border: 1px solid blue;
+	height: 30px;
+	background-color: #efefef;
+	margin-top: 60px;
+	margin-bottom: 30px;
+}
+.replyManageDiv{
+	border: 1px solid blue;
+	height: 30px;
+	background-color: #efefef;
+	margin-top: 30px;
+}
+.row{
+	margin: 0px;
+}
+</style>
 </head>
 <body>
-	<div><a class="nav-link light" aria-current="page" href="/admin/memberManage" style="color: black; text-decoration-line: none;">회원 관리</a></div>
-<!-- 	<div><a class="nav-link light" aria-current="page" href="/admin/reviewManage" style="color: black; text-decoration-line: none;">코스후기 관리</a></div> -->
-	<div><a class="nav-link light" aria-current="page" href="/admin/replyManage" style="color: black; text-decoration-line: none;">댓글 관리</a></div>
+	<div class="row">
+		<div class="col-9 adminSideDiv">
+			<div class="col-12 memberManageDiv">
+				<div class="memberManage"><a href="/admin/memberManage" style="color: black; text-decoration-line: none;">회원 관리</a></div>
+			</div>
+			<div class="col-12 replyManageDiv">
+				<div class="replyManage"><a href="/admin/replyManage" style="color: black; text-decoration-line: none;">댓글 관리</a></div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
 

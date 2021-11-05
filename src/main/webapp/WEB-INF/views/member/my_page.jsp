@@ -8,26 +8,27 @@
 <script type="text/javascript" src="/resources/member/js/my_page.js?ver=32"></script>
 <style type="text/css">
 .myPageTitleDiv{
-	border: 1px solid red;
 	padding-top: 30px;
 	padding-bottom: 30px;
 	margin:0 auto;
 }
 .myPageTitle{
-	border: 1px solid orange;
-	padding: 0 20px;
+	border-bottom: 3px solid #AFDDFA;
+	padding: 20px;
 	margin: 0 auto;
 	font-size: 20pt;
 }
 .myPageTableDiv{
 	border: 1px solid blue;
 	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 .myPageTable{
 	border: 1px solid black;
 	margin:0 auto;
-	margin-top: 30px;
-	margin-bottom: 30px;
+	margin-top: 50px;
+	margin-bottom: 50px;
 	padding: 20px;
 	font-size: 13px;
 }
@@ -42,21 +43,37 @@ tr{
 
 td{
 	border: 1px solid black;
- 	padding: 10px;
+ 	padding: 20px;
 }
 .deleteMemberBtnDiv{
+	padding-top: 20px;
 	padding-bottom: 20px;
+	border: 1px solid purple;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 .deleteMemberBtn{
 	border: 1px solid red;
 	text-align: right;
 }
+.deleteMemberBtn input[type="button"]{
+	width: 100px;
+	height: 30px;
+}
 .updateMyInfoBtnDiv{
 	padding-top: 20px;
+	padding-bottom: 20px;
+	border: 1px solid purple;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 .updateMyInfoBtn{
 	border: 1px solid red;
 	text-align: right;
+}
+.updateMyInfoBtn input[type="button"]{
+	width: 100px;
+	height: 30px;
 }
 </style>
 </head>
@@ -67,7 +84,7 @@ td{
 			<div class="col-12 myPageTitle">마이페이지입니다.</div>
 		</div>
 		<div class="col-8 myPageTableDiv">
-			<div class="col-8 myPageTable">
+			<div class="col-10 myPageTable">
 				<div class="col-12 deleteMemberBtnDiv">
 					<div class="deleteMemberBtn"><input type="button" id="deleteMember" value="회원탈퇴" onclick="deleteMember('${detailMyInfo.memberCode }');"></div>
 				</div>

@@ -79,7 +79,7 @@ $(document).ready(function(){
 			            type: 'post',
 			            data:{'noticeBoardCode':noticeBoardCode}, //필요한 데이터
 			            success: function(result) {
-						    $('#detailNoticeBoard').empty();
+						    $('.noticeContent').empty();
 							
 						    var str = '';
 						    str += ' 	<table>';
@@ -110,7 +110,7 @@ $(document).ready(function(){
 			  	   				str += '			<div class="updateNoticeBoardBtnDiv"><input type="button" id="updateNoticeBoard" value="수정" onclick="updateNoticeBoard(\'' + result.noticeBoardCode + '\');"></div>';
 			  	   				str += '			<div class="deleteNoticeBoardBtnDiv"><input type="button" id="deleteNoticeBoard" value="삭제" onclick="deleteNoticeBoard(\'' + result.noticeBoardCode + '\');"></div>';
 			  	   			}
-						    $('#detailNoticeBoard').append(str);
+						    $('.noticeContent').append(str);
 						    
 			           },
 			           error: function(){

@@ -16,23 +16,40 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 <style type="text/css">
-.aaa{
-	background-color: aqua;
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@font-face {
+    font-family: 'Manse';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Manse.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
-.container-fluid{
-	width: 90%;
-	margin-top: 20px;
-	margin-bottom: 20px;
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'EliceDigitalBaeum_Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/EliceDigitalBaeum_Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 body {
   line-height: 1;
-  font-family: 'S-CoreDream-5Medium'; 
+  font-family: 'EliceDigitalBaeum_Bold'; 
   font-size: 18px;
+}
+.col-2{
+	padding: 0px;
+}
+.col-10{
+	padding: 0px;
 }
 </style>
 </head>
 <body>
-<div class="container-fluid">
+<div>
 	<div class="row">
 		<div class="col">
 			<tiles:insertAttribute name="menu"/>
@@ -44,6 +61,11 @@ body {
 		</div>
 		<div class="col-10">
 			<tiles:insertAttribute name="body"/>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<tiles:insertAttribute name="footer"/>
 		</div>
 	</div>
 </div>
