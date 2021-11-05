@@ -82,7 +82,7 @@ border: 1px solid #FF8000;;
 width: auto;
 }
 </style>
-<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=6"></script>
+<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=8"></script>
  <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script type="text/javascript">
@@ -179,45 +179,40 @@ $.ajax({
 		<input type="button" value="코스저장" id="saveCourseBtn">
 		<input type="button" value="선택삭제" id="deleteCourseBtn">
       	<!-- 임시저장코스 출력Div -->
-      	<c:choose>
-      		<c:when test="${tempSaveCourseList eq null }">
-				<div id="CourseListPoint"></div>
-      		</c:when>
-      		<c:otherwise>
-				<c:forEach items="${tempSaveCourseList }" var="tempSaveCourseInfo">
-				<div id="CourseListPoint">
-					<div class="deletePlaceDiv row">
-						<div class="checkbox">
-							<div class="deletePlace col-11" style="border:1px solid red"><input type="checkbox" class="checkbox">${tempSaveCourseInfo.placeName }
-								<input type="hidden" class="placeAddr" value="${tempSaveCourseInfo.placeAddr }">
-								<input type="hidden" class="cateCode" value=""${tempSaveCourseInfo.cateCode }>
-								<input type="hidden" class="x" value="'${tempSaveCourseInfo.x }">
-								<input type="hidden" class="y" value="${tempSaveCourseInfo.y }">
-							</div>
-						</div>
+		<c:forEach items="${tempSaveCourseList }" var="tempSaveCourseInfo">
+		<div id="testTwo">
+			<div class="deletePlaceDiv row">
+				<div class="checkbox">
+					<div class="deletePlace col-11" style="border:1px solid red"><input type="checkbox" class="checkbox">${tempSaveCourseInfo.placeName }
+						<input type="hidden" class="placeName" value="${tempSaveCourseInfo.placeName }">
+						<input type="hidden" class="placeAddr" value="${tempSaveCourseInfo.placeAddr }">
+						<input type="hidden" class="cateCode" value="${tempSaveCourseInfo.cateCode }">
+						<input type="hidden" class="x" value="${tempSaveCourseInfo.x }">
+						<input type="hidden" class="y" value="${tempSaveCourseInfo.y }">
 					</div>
 				</div>
-				</c:forEach>
-      		</c:otherwise>
-      	</c:choose>
+			</div>
+		</div>
+		</c:forEach>
+		<div id="testOne"></div>
 	</div>
 	<c:if test="${resultCourseList ne null}">
 	<div class="courseLayoutBottom">
 		<div class="recommendCourse">
 			<c:forEach items="${resultCourseList}" var="resultCourseInfo" varStatus="cnt">
-					<c:choose>
-						<c:when test="${cnt.last }">
-			      	 		<div class="resultCourse">
-			      	 			${resultCourseInfo }
-			      	 		</div>
-						</c:when>
-			      	 	<c:otherwise>
-							<div class="resultCourse">
-								${resultCourseInfo }
-							</div> &#10140;
-			      	 	</c:otherwise>
-					</c:choose>
-				</c:forEach>
+				<c:choose>
+					<c:when test="${cnt.last }">
+		      	 		<div class="resultCourse">
+		      	 			${resultCourseInfo }
+		      	 		</div>
+					</c:when>
+		      	 	<c:otherwise>
+						<div class="resultCourse">
+							${resultCourseInfo }
+						</div> &#10140;
+		      	 	</c:otherwise>
+				</c:choose>
+			</c:forEach>
 		</div>
 	</div>
 	</c:if>

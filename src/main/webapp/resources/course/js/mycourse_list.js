@@ -31,6 +31,7 @@ $(document).ready(function(){
 				deleteStr += '<div class="deletePlaceDiv row">';
 				deleteStr += '	<div class="checkbox">';
 				deleteStr += '		<div class="deletePlace col-11" style="border:1px solid red"><input type="checkbox" class="checkbox">' + placeName;
+				deleteStr += '			<input type="hidden" class="placeName" value="' + placeName + '">';
 				deleteStr += '			<input type="hidden" class="placeAddr" value="' + placeAddr + '">';
 				deleteStr += '			<input type="hidden" class="cateCode" value="' + cateCode + '">';
 				deleteStr += '			<input type="hidden" class="x" value="' + x + '">';
@@ -38,6 +39,7 @@ $(document).ready(function(){
 				deleteStr += '		</div>';
 				deleteStr += '	</div>';
 				deleteStr += '</div>';//수정
+				
 				var listStr = '';
 				
 				listStr += '<form action="/course/theShortestCourse" method="post">';
@@ -87,7 +89,7 @@ $(document).ready(function(){
 				listStr += '</div>'
 				listStr += '</form>'
 				
-				$('#CourseListPoint').append(deleteStr);
+				$('#testOne').append(deleteStr);
 				$('#courseLayoutLeft').append(listStr);
 			},
 			error: function(){
@@ -113,11 +115,11 @@ $(document).ready(function(){
 		var placeNameL = $('.checkbox:checked').length;
 		
 		for(var i =0;i<placeNameL;i++){
-			placeNameArr[i] =  $('.checkbox:checked').eq(i).parent().text();
-			placeAddrArr[i] = $('.checkbox:checked').eq(i).parent().children().eq(1).val();
-			cateCodeArr[i] = $('.checkbox:checked').eq(i).parent().children().eq(2).val();
-			xArr[i] = $('.checkbox:checked').eq(i).parent().children().eq(3).val();
-			yArr[i] = $('.checkbox:checked').eq(i).parent().children().eq(4).val();
+			placeNameArr[i] =  $('.checkbox:checked').eq(i).parent().children().eq(1).val();
+			placeAddrArr[i] = $('.checkbox:checked').eq(i).parent().children().eq(2).val();
+			cateCodeArr[i] = $('.checkbox:checked').eq(i).parent().children().eq(3).val();
+			xArr[i] = $('.checkbox:checked').eq(i).parent().children().eq(4).val();
+			yArr[i] = $('.checkbox:checked').eq(i).parent().children().eq(5).val();
 		}
 		
 		if(placeNameL == 1){
@@ -129,7 +131,7 @@ $(document).ready(function(){
 				
 				$('.checkbox:checked').eq(i).parent().parent().parent().remove();
 				i--
-				if($('.checkbox:checked').eq(i).parent().text()==''||$('.checkbox:checked').eq(i).parent().text()==null){
+				if($('.checkbox:checked').eq(i).parent().children().eq(1).val()==''||$('.checkbox:checked').eq(i).parent().children().eq(1).val()==null){
 					
 					i=placeNameL;
 				}
@@ -224,35 +226,36 @@ $(document).ready(function(){
 		if(resultCon){
 			var memberId = $('#memberId').val();
 			
-			var placeAddrArr=[];
+			var placeNameArr=[];
 			
-			var placeAddrL = $('.checkbox:checked').length;
+			var placeNameL = $('.checkbox:checked').length;
 			
-			for(var i =0;i<placeAddrL;i++){
-				placeAddrArr[i] = $('.checkbox:checked').eq(i).parent().children().eq(1).val();
+			for(var i =0;i<placeNameL;i++){
+				placeNameArr[i] =  $('.checkbox:checked').eq(i).parent().children().eq(1).val();
 			}
 			
-			if(placeAddrL == 1){
+			if(placeNameL == 1){
 				$('.checkbox:checked').eq(0).parent().parent().parent().remove();
 			}
 			else{
 				
-				for(var i=0;i<placeAddrL;i++){
+				for(var i=0;i<placeNameL;i++){
 					
 					$('.checkbox:checked').eq(i).parent().parent().parent().remove();
 					i--
 					if($('.checkbox:checked').eq(i).parent().children().eq(1).val()==''||$('.checkbox:checked').eq(i).parent().children().eq(1).val()==null){
 						
-						i=placeAddrL;
+						i=placeNameL;
 					}
 				}
+				
 			}
 			
 			$.ajax({
 				url: '/course/deleteCheckCourseAjax', //요청경로
 				type: 'post',
 				data:{'memberId':memberId,
-					  'placeAddrArr':placeAddrArr}, //필요한 데이터
+					  'placeNameArr':placeNameArr}, //필요한 데이터
 				success: function(result) {
 					//ajax 실행 성공 후 실행할 코드 작성
 					alert('삭제성공')

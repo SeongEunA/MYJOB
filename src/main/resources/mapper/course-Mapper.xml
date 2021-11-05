@@ -251,7 +251,7 @@
 	<delete id="deleteCheck">
 		DELETE TEMP_SAVE_COURSE
 		WHERE MEMBER_ID = #{memberId}
-		AND PLACE_ADDR = #{placeAddr}
+		AND PLACE_NAME = #{placeName}
 	</delete>
 </mapper>
 

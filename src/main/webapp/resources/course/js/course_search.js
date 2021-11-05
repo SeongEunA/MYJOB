@@ -60,7 +60,7 @@ $(document).ready(function(){
 		       	'   <div class="resultPlaceName" style="font-size:18px;">' + placeName + '<input type="button" value="X" id="deleteResBtn"></div>';
 		placeStr += '   <div class="resultPlaceAddr">' + placeAddr + '</div>';
 		placeStr += '   <input type="hidden" id="cateCode" class="cateCode" value="CATE_003">';
-		placeStr += '	<input type="hidden" value="'+placeX+'" class="kakaoPlaceX">';	
+		placeStr += '	<input type="hidden" value="' + placeX + '" class="kakaoPlaceX">';	
 		placeStr += '	<input type="hidden" value="'+placeY+'" class="kakaoPlaceY">';	
 		
 		if(placeTel!=null ||placeTel!=''){
@@ -97,7 +97,7 @@ $(document).ready(function(){
 	   placeStr += '<div class="resInfoDiv">';
 	   placeStr += '	<div class="resultPlaceName" style="font-size:18px;">' + placeName + '<input type="button" value="X" id="deleteResBtn"></div>';
 	   placeStr += '	<div class="resultPlaceAddr">' + placeAddr + '</div>';
-	   placeStr += '	<input type="hidden" class="cateCode" value='+cateCode+'>';
+	   placeStr += '	<input type="hidden" class="cateCode" value="'+cateCode+'">';
 	  
 	   if(placeTel!=null ||placeTel!=''){
 	   placeStr += '   <div class="resultTel" class="resultPlaceTel">' + placeTel + '</div>'
@@ -176,6 +176,7 @@ $(document).ready(function(){
 						
 						for(var i = 0; i < placeXLen; i++){
 							kakaoPlaceX[i] = $('.kakaoPlaceX').eq(i).val();
+							console.log('코스등록 버튼 클릭시 x : '+$('.kakaoPlaceX').eq(i).val());
 						}
 						
 						for(var i = 0; i < placeXLen; i++){
@@ -329,8 +330,8 @@ $(document).ready(function(){
                
      		  
                $(result.selectPlaceList).each(function(index,element){
-            	  
-               	str += '<div class="placeInfo">'
+            	  console.log('검색버튼 클릭시 x값 : ' + element.x);
+               	str += '<div class="placeInfo">';
                	str += '	<input type="hidden" value="' + element.x + '" name="x" class="kakaoPlaceX">';
                	str += '	<input type="hidden" value="' + element.y + '" name="y" class="kakaoPlaceY">';
                		

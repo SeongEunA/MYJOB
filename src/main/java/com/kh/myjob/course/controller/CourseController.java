@@ -87,7 +87,7 @@ public class CourseController {
 	//내 코스 페이지로 이동
 	@GetMapping("/myCourseList")
 	public String goMyCourse(CourseVO courseVO,Model model, TempSaveCourseVO tempSaveCourseVO) {
-	      
+	    
 		model.addAttribute("courseList", courseService.selectCoursePlaceList(courseVO));
 		
 		model.addAttribute("tempSaveCourseList", courseService.selectTempSaveCourse(tempSaveCourseVO));
@@ -138,9 +138,9 @@ public class CourseController {
 	@ResponseBody
 	@PostMapping("/deletePlaceInCourseAjax")
 	public List<CourseVO> deletePlaceInCourse(CourseRegVO courseRegVO, CourseVO courseVO) {
-		System.out.println("id:"+courseVO.getMemberId());
-		courseService.deletePlaceInCourse(courseRegVO);
+		System.out.println("!!!!cateCode : " + courseRegVO.getCateCode());
 		courseService.insertTempSaveCourse(courseRegVO);
+		courseService.deletePlaceInCourse(courseRegVO);
 		return courseService.selectCoursePlaceList(courseVO);
 	}
 	
@@ -169,10 +169,10 @@ public class CourseController {
 	
 	@ResponseBody
 	@PostMapping("/deleteCheckCourseAjax")
-	public int deleteCheckCourse(CourseRegVO courseRegVO, @RequestParam(value="placeAddrArr[]") List<String> addr) {
+	public int deleteCheckCourse(CourseRegVO courseRegVO, @RequestParam(value="placeNameArr[]") List<String> name) {
 
-		for(int i = 0; i < addr.size(); i++) {
-			courseRegVO.setPlaceAddr(addr.get(i));
+		for(int i = 0; i < name.size(); i++) {
+			courseRegVO.setPlaceName(name.get(i));
 			
 			courseService.deleteCheck(courseRegVO);
 		}
