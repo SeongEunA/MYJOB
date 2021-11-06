@@ -6,11 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/resources/common/reset.css">
 <style type="text/css">
 .noticeTitleDiv{
+	border:1px solid black;
 	padding-top: 30px;
 	padding-bottom: 30px;
 	margin:0 auto;
+	margin-top:100px;
 }
 .noticeTitle{
 	border-bottom: 3px solid #AFDDFA;
@@ -113,11 +116,16 @@ td{
 	margin:0 auto;
 	font-size: 10px;
 }
+.bodyContainer{
+	border:1px solid black;
+	min-height:1800px;
+	height:auto;
+}
 </style>
 </head>
 <body>
 <div class="row">
-	<div class="col12">
+	<div class="col12 bodyContainer">
 		<div class="col-8 noticeTitleDiv">
 			<div class="col-12 noticeTitle">공지사항 페이지입니다.</div>
 		</div>
@@ -218,7 +226,7 @@ td{
 				</div>
 			</div>
 		</div>
-	</div>
+	</div><!-- bodyContainer -->
 </div>
 </body>
 </html>

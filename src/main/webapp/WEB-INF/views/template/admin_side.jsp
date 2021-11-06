@@ -35,10 +35,10 @@
 <body>
 	<div class="row">
 		<div class="col-9 adminSideDiv">
-			<div class="col-12 memberManageDiv">
+			<div class="col-10 memberManageDiv">
 				<div class="memberManage"><a href="/admin/memberManage" style="color: black; text-decoration-line: none;">회원 관리</a></div>
 			</div>
-			<div class="col-12 replyManageDiv">
+			<div class="col-10 replyManageDiv">
 				<div class="replyManage"><a href="/admin/replyManage" style="color: black; text-decoration-line: none;">댓글 관리</a></div>
 			</div>
 		</div>

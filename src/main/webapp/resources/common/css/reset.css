@@ -52,16 +52,45 @@ a {
 }
 
 
+.bodyContainer{
+	border:1px solid black;
+	min-height:1800px;
+	height:auto;
+}
+
+
+
+.containerDiv{
+	border:1px solid red;
+	height: 900px;
+	background-color: #EAEAEA;
+	margin: 0 auto;
+	padding: 20px;
+	margin-top:100px;
+}
+
+
+.container{
+	border:1px solid black;
+	width: 500px;
+	background-color: #eaeaea;
+	margin-top:200px;
+	padding: 30px;
+}
+
+.noticePagingDiv{
+	border: 1px solid blue;
+	margin:0 auto;
+	position:relative;top:40px;
+	margin-bottom: 20px;
+	font-size: 13px;
+}
+.noticePaging{
+	border: 1px solid black;
+	margin:0 auto;
+	font-size: 10px;
 	
-
-
-
-
-
-
-
-
-
+}
 
 
 

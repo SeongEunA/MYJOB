@@ -5,12 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/reset.css">
 <script type="text/javascript" src="/resources/member/js/login_page.js?ver=29"></script>
 <style type="text/css">
 .container{
+	border:1px solid black;
 	width: 500px;
 	background-color: #eaeaea;
-	margin-top: 30px;
+	margin-top:200px;
 	padding: 30px;
 }
 .loginDiv{
@@ -46,27 +48,38 @@
 	font-size: 12px;
 	padding-left:  10px;
 }
+
 </style>
 </head>
 <body>
-<div class="container">
-	<div class="loginDiv">
-		<form action="/member/login" method="post" id="loginInfoForm">
-			<input type="hidden" name="prevRequestUrl" value="${prevRequestUrl }">
-			<div class="checkIdDiv" id="checkIdDiv">
-				<div>ID</div>
-				<div><input type="text" id="memberId" name="memberId"></div>
+	<div class="row">
+		<div class="col12 bodyContainer">
+			<div class="container">
+				<div class="loginDiv">
+					<form action="/member/login" method="post" id="loginInfoForm">
+						<input type="hidden" name="prevRequestUrl"
+							value="${prevRequestUrl }">
+						<div class="checkIdDiv" id="checkIdDiv">
+							<div>ID</div>
+							<div>
+								<input type="text" id="memberId" name="memberId">
+							</div>
+						</div>
+						<div class="checkPwDiv" id="checkPwDiv">
+							<div>PASSWORD</div>
+							<div>
+								<input type="password" id="memberPw" name="memberPw">
+							</div>
+						</div>
+						<div id="noticeLogin">&nbsp;</div>
+						<div class="loginBtnDiv">
+							<input type="button" class="loginBtn" value="L o g i n"
+								onclick="loginCheck();">
+						</div>
+					</form>
+				</div>
 			</div>
-			<div class="checkPwDiv" id="checkPwDiv">
-				<div>PASSWORD</div>
-				<div><input type="password" id="memberPw" name="memberPw"></div>
-			</div>
-			<div id="noticeLogin">&nbsp;</div>
-			<div class="loginBtnDiv">
-				<input type="button" class="loginBtn" value="L o g i n" onclick="loginCheck();">
-			</div>
-		</form>
-	</div>
-</div>
+		</div><!-- bodyContainer -->
+	</div><!-- row -->
 </body>
 </html>

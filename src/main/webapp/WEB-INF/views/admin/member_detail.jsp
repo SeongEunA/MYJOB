@@ -34,48 +34,55 @@ td{
 </style>
 </head>
 <body>
-회원 관리 상세페이지입니다.
-	<div class="container">
-		<div>
-			<table>
-			<colgroup>
-				<col width="10%">
-				<col width="40%">
-				<col width="10%">
-				<col width="40%">
-			</colgroup>
-				<tr>
-					<td>회원코드</td>
-					<td>${detailMember.memberCode }</td>
-					<td>회원주소</td>
-					<td>${detailMember.memberAddr }</td>
-				</tr>
-				<tr>
-					<td>회원아이디</td>
-					<td>${detailMember.memberId }</td>
-					<td>회원이메일</td>
-					<td>${detailMember.memberEmail }</td>
-				</tr>
-				<tr>
-					<td>회원이름</td>
-					<td>${detailMember.memberName }</td>
-					<td>관리자여부</td>
-					<td>${detailMember.memberIsAdmin }</td>
-				</tr>
-				<tr>
-					<td>회원비밀번호</td>
-					<td>${detailMember.memberPw }</td>
-					<td>성별</td>
-					<td>${detailMember.memberGender }</td>
-				</tr>
-				<tr>
-					<td>회원연락처</td>
-					<td>${detailMember.memberTel }</td>
-					<td>가입일</td>
-					<td>${detailMember.memberJoinDate }</td>
-				</tr>
-			</table>
-			<div class="deleteMemberBtnDiv"><input type="button" id="deleteMemberBtn" value="삭제" onclick="deleteMember('${detailMember.memberCode }');"></div>
+	회원 관리 상세페이지입니다.
+	<div class="col-12 bodyContainer">
+		<div class="col-8 containerDiv">
+			<div class="container">
+				<div>
+					<table>
+						<colgroup>
+							<col width="10%">
+							<col width="40%">
+							<col width="10%">
+							<col width="40%">
+						</colgroup>
+						<tr>
+							<td>회원코드</td>
+							<td>${detailMember.memberCode }</td>
+							<td>회원주소</td>
+							<td>${detailMember.memberAddr }</td>
+						</tr>
+						<tr>
+							<td>회원아이디</td>
+							<td>${detailMember.memberId }</td>
+							<td>회원이메일</td>
+							<td>${detailMember.memberEmail }</td>
+						</tr>
+						<tr>
+							<td>회원이름</td>
+							<td>${detailMember.memberName }</td>
+							<td>관리자여부</td>
+							<td>${detailMember.memberIsAdmin }</td>
+						</tr>
+						<tr>
+							<td>회원비밀번호</td>
+							<td>${detailMember.memberPw }</td>
+							<td>성별</td>
+							<td>${detailMember.memberGender }</td>
+						</tr>
+						<tr>
+							<td>회원연락처</td>
+							<td>${detailMember.memberTel }</td>
+							<td>가입일</td>
+							<td>${detailMember.memberJoinDate }</td>
+						</tr>
+					</table>
+					<div class="deleteMemberBtnDiv">
+						<input type="button" id="deleteMemberBtn" value="삭제"
+							onclick="deleteMember('${detailMember.memberCode }');">
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

@@ -5,15 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/reset.css">
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <style type="text/css">
 .containerDiv{
-	width: 700px;
-	height: 750px;
+	border:1px solid red;
+	height: 900px;
 	background-color: #EAEAEA;
 	margin: 0 auto;
-	margin-top: 30px;
 	padding: 20px;
 }
 
@@ -173,12 +173,35 @@
 	margin-bottom: 7px;
 	font-size: 12px;
 }
+
+.loginLayout{
+	border:1px solid orange;
+	height:100%;
+	margin:0 auto;
+}
+.noticeTitleDiv{
+	border:1px solid black;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	margin:0 auto;
+	margin-top:100px;
+}
+.noticeTitle{
+	border-bottom: 3px solid #AFDDFA;
+	padding: 20px;
+	margin: 0 auto;
+	font-size: 20pt;
+}
 </style>
 <script type="text/javascript" src="/resources/member/js/join_page.js?ver=17"></script>
 </head>
 <body>
-	<div>
-		<div class="containerDiv">
+	<div class="col-12 bodyContainer">
+		<div class="col-8 noticeTitleDiv">
+			<div class="col-12 noticeTitle">Join.</div>
+		</div>
+		<div class="col-8 containerDiv">
+			<div class="col-6 loginLayout">
 			<div class="requiredDiv">
 				<span class="required">*</span>필수입력
 			</div>
@@ -262,9 +285,10 @@
 						<input type="submit" id="joinBtn" value="회 원 가 입" onclick="goInsertMember();">
 					</div>
 				</form>
+				</div>
 			</div>
 		</div>
-	</div>
+	</div><!-- bodyContainer -->
 </body>
 </html>
 
