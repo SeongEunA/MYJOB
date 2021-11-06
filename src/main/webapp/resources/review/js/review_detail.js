@@ -129,7 +129,7 @@ for (var i = 0; i < positions.length; i++) {
 			}
 		
 	}
-	//관리자가 삭제버튼을 누르면 얼럿창
+	//관리자만 볼 수 있는 삭제버튼(클릭시 컨펌창)
 	deleteReviewBoard = function() {
 		var reviewBoardCode = $('.reviewBoardCode').val();
 		var result = confirm('정말로 삭제하시겠습니까?');
