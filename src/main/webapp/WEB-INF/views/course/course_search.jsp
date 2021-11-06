@@ -53,25 +53,31 @@
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 /* 장소목록 관련 style 적용 */
 .placeInfo{
-width: 900px;
-border: 1px solid gray;
+min-width: 600px;
+width:auto;
+border: 2px solid transparent;
 margin-top: 20px;
+min-height:40px;
+margin-left:20px;
+background-image: linear-gradient(#fff, #fff), linear-gradient(to right, red 0%, orange 100%);
+background-origin: border-box;
+background-clip: content-box, border-box;
+border-radius:5px;
 }
 
 .placeName{
 cursor: pointer;
 }
 .weatherContainer{
-border:1px solid white;
+border:1px solid black;
 width:200px;
-height:400px;
-display:flex;
-flex-direction:row;
+height:360px;
+margin-top:30px;
 }
 
 .weatherBox{
 border:1px solid white;
-width:400px;
+width:200px;
 height:400px;
 display:flex;
 }
@@ -226,6 +232,44 @@ height:100px;
 .submitCourseBtn{
 visibility: hidden;
 }
+.searchBox{
+border:1px solid black;
+display:flex;
+margin:0 auto;
+}
+.searchLayout{
+border:1px solid orange;
+}
+
+.searchDiv{
+border:1px solid black;
+margin:0 20px;
+}
+
+.searchBtn{
+
+width:70%;
+height:100%;
+border: 3px solid #1F50B5;
+border-radius: 5px;
+color: #fff;
+background:#1F50B5;
+text-transform: uppercase;
+font-size: 1em;
+line-height: 1.7em;
+font-weight: bold;
+letter-spacing: .1em;
+font-family: "Roboto Condensed", sans-serif;
+cursor: pointer;
+transition: all .5s;
+text-align:center;
+box-shadow:inset 0 0 0 0 gray;
+
+}
+.searchBtn:hover{
+box-shadow:inset -15em 0 0 0 #fff;
+color: #1F50B5;
+}
 </style>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	3d45ea450bf493fb0fea992bed62c07e&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d45ea450bf493fb0fea992bed62c07e&libraries=services"></script>
@@ -235,29 +279,33 @@ visibility: hidden;
 <div class="courseContainer">
 	<div class="courseHalfLayout">
 		<div class="row">
-			<div class="col-2">
-				<select class="form-select" aria-label="Default select example" id="highLocation" name="locationLandCode">
-					<option selected>지역</option>
-					<c:forEach items="${highLocationList }" var="highLocationInfo">
-						<option value="${highLocationInfo.locationLandCode }">${highLocationInfo.highLocationName }</option>
-					</c:forEach>
-				</select>
-			</div>
-			<div class="col-2">
-				<select class="form-select" aria-label="Default select example" id="lowLocation" name="locationTempCode">
-					<option selected>하위지역</option>
-				</select>
-			</div>
-			<div class="col-2">
-				<select class="form-select" aria-label="Default select example" id="cateCode">
-					<option value="CATE_001">숙박</option>
-					<option value="CATE_002">관광지</option>
-				</select>
-			</div>
-			<div class="col-2">
-				<input type="button" value="검색" onclick="clickSearch(1);" id="clickSearch">
-			</div>
-		</div>
+			<div class="searchLayout col-12">
+				<div class="searchBox col-12">
+					<div class="col-2 searchDiv">
+						<select class="form-select" aria-label="Default select example" id="highLocation" name="locationLandCode">
+							<option selected>지역</option>
+							<c:forEach items="${highLocationList }" var="highLocationInfo">
+								<option value="${highLocationInfo.locationLandCode }">${highLocationInfo.highLocationName }</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="col-2 searchDiv">
+						<select class="form-select" aria-label="Default select example" id="lowLocation" name="locationTempCode">
+							<option selected>하위지역</option>
+						</select>
+					</div>
+					<div class="col-2 searchDiv">
+						<select class="form-select" aria-label="Default select example" id="cateCode">
+							<option value="CATE_001">숙박</option>
+							<option value="CATE_002">관광지</option>
+						</select>
+					</div>
+					<div class="col-2 searchDiv">
+						<div class="searchBtn" onclick="clickSearch(1);" id="clickSearch">검색</div>
+					</div>
+				</div><!-- searchBox -->
+			</div><!-- searchLayout -->
+		</div><!-- row -->
 	
 <!-- 날씨영역 -->
 <!-- 날씨영역 -->

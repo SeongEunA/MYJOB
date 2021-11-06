@@ -12,7 +12,7 @@
 	border:1px solid black;
 	width: 500px;
 	background-color: #eaeaea;
-	margin-top:200px;
+	margin-top:100px;
 	padding: 30px;
 }
 .loginDiv{
