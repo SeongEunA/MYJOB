@@ -8,19 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/common/reset.css">
 <style type="text/css">
-.noticeTitleDiv{
-	border:1px solid black;
-	padding-top: 30px;
-	padding-bottom: 30px;
-	margin:0 auto;
-	margin-top:100px;
-}
-.noticeTitle{
-	border-bottom: 3px solid #AFDDFA;
-	padding: 20px;
-	margin: 0 auto;
-	font-size: 20pt;
-}
+
 .noticeSearchDiv{
 	border: 1px solid blue;
 	margin: 0 auto;

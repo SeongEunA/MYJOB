@@ -10,13 +10,10 @@ $(document).ready(function(){
 	    $(document).on('change', '[id^="img"]', function() {
 	        var reader = new FileReader;
 	    //이미지 파일 정보와 화면출력을 위해 <img> 태그를 변수로 만듦
-	        var str = "<img id='img_"+(img_count)+"' src=''/  style='margin-left:20px'>";
+	        var str = "<img id='img_"+(img_count)+"' src=''/  style='margin-left:20px;margin-bottom:20px;'>";
 	    //파일 경로에 넣기 위해 String으로 변환시켜줌
 	        var img_count_string = img_count.toString();
 	        
-	        
-	        alert(img_count);
-	        alert(img_count_string);
 	    //jQuery append 메서드를 사용해 <div id="pr_img"> 안에 <img> 태그 변수를 추가해줌
 	        $("#pr_img").append(str);
 	    //<img src=""> 사용자가 업로드한 이미지 파일 경로를 src로 저장해줌(data.target.result) 
@@ -24,7 +21,7 @@ $(document).ready(function(){
 	    //onload는 파일이 업로드 완료된 시점에 function을 발생시키는 메서드
 	        reader.onload = function(data) {
 	    //태그 안의 속성을 입력할 수 있는 jQuery attr 메서드를 사용 
-           $('#img_' + img_count_string).attr('src', data.target.result).width(150).height(150);
+           $('#img_' + img_count_string).attr('src', data.target.result).width(300).height(300);
 	       };
 	      
 	   //    $('#img_' + img_count).attr('src', data.target.result).width(150).height(150);
@@ -40,7 +37,7 @@ $(document).ready(function(){
 	        
 //	        $(this).attr('display', 'none');
 	        $(this).hide();
-	        $('#pr_img').prepend('<input type="file" value="새로운" id="img' + img_count + '" name="file' + img_count + '">');
+	        $('#pr_img_text').append('<input type="file" value="새로운" id="img' + img_count + '" name="file' + img_count + '">');
 	    });
 
 	

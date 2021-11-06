@@ -16,6 +16,7 @@ span{
    cursor: pointer;
 }
 li{
+	border:1px solid blue;
 	display:inline-block;
 	width:250px;
 }

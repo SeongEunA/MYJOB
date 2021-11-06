@@ -56,11 +56,43 @@
 	width:100%;
 	margin:0 auto;
 }
+.regTagContainer{
+	border:1px solid black;
+	height:50px;
+	margin:0 auto;
+}
+.regReviewText{
+	border:1px solid red;
+	height:auto;
+	margin:0 auto;
+}
+.reviewPhotoContainer{
+	border:1px solid black;
+	min-height:300px;
+	margin:0 auto;
+	text-align: center;
+}
+.reviewPhotoLayout{
+	border:1px solid red;
+	height:300px;
+	display:flex;
+	flex-direction: row;
+	margin:0 auto;
+	text-align: center;
+}
+.reviewPhotoDiv{
+	border:1px solid black;
+	width:30%;
+	height:100%;
+	border-radius:10px;
+	margin:0 20px;
+}
+
 </style>
 </head>
 <body>
-	<div class="row  totalContain">
-		<div class="col-12">
+	<div class="row">
+		<div class="col-12 bodyContainer">
 			<div class="reviewTitleContanier col-8">
 				<div class="mainTitle">울산대공원</div>
 			    <div class="subTitle">
@@ -83,14 +115,35 @@
 					</div>
 				</div><!-- subtitle -->  
 			</div>
-		</div>
- 		<div class="row">
+			<!-- 태그시작 -->
+			<div class="regTagContainer col-6">
+				태그좌
+			</div>
+			<div class="regReviewText col-7">
+			야야야 야야야 리뷰글쓰기 얍
+			</div>
+ 		<div class="row"><!-- 지도 -->
 			<div class="col-12 mainContainderLayout">
 				<div class ="map_wrap" id="map"></div>
 				<div></div>
 			</div>
 		</div> 
-			<div class="col-12">
+			<!-- 사진3개영역 -->
+			<div class="reviewPhotoContainer col-8">
+				<div class="reviewPhotoLayout col-9">
+					<div class="reviewPhotoDiv">
+						사진1
+					</div>
+					<div class="reviewPhotoDiv">
+						사진2
+					</div>
+					<div class="reviewPhotoDiv">
+						사진3
+					</div>
+				</div>
+			</div>
+		
+			<div class="col-12"><!-- 댓글 -->
 				<div class="replyContainer col-8">
 					<div class="replyformDiv">
 						<div>
@@ -180,6 +233,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 </html>
