@@ -8,13 +8,21 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/common/reset.css">
 <style type="text/css">
-
-.noticeSearchDiv{
-	border: 1px solid blue;
+.noticeTitleDiv{
+	margin:0 auto;
+	margin-top:80px;
+}
+.noticeTitle{
+	border-bottom: 5px solid #f3f5f6;
+	padding: 5px;
 	margin: 0 auto;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	
+	font-size: 20pt;
+}
+.noticeSearchDiv{
+	margin: 0 auto;
+	margin-top: 80px;
+	background-color: #f3f5f6;
+	padding: 20px;
 }
 .noticeSearch{
 	border: 1px solid black;
@@ -104,20 +112,15 @@ td{
 	margin:0 auto;
 	font-size: 10px;
 }
-.bodyContainer{
-	border:1px solid black;
-	min-height:1800px;
-	height:auto;
-}
 </style>
 </head>
 <body>
 <div class="row">
 	<div class="col12 bodyContainer">
 		<div class="col-8 noticeTitleDiv">
-			<div class="col-12 noticeTitle">공지사항 페이지입니다.</div>
+			<div class="col-12 noticeTitle">공지사항</div>
 		</div>
-		<div class="col-8 noticeSearchDiv">
+		<div class="col-7 noticeSearchDiv">
 			<div class="col-11 noticeSearch">
 				<form action="/common/noticeBoard" method="post">
 					<table class="searchTable">
@@ -146,7 +149,7 @@ td{
 			</div>
 		</div>
 		
-		<div class="col-8 noticeTableDiv">
+		<div class="col-7 noticeTableDiv">
 			<div class="col-11 noticeTable">
 				<div class="col-12 regNoticeBtnDiv">
 					<div class="col-12 regNoticeBtn">
@@ -189,7 +192,7 @@ td{
 			</div>
 		</div>
 
-		<div class="col-8 noticePagingDiv">
+		<div class="col-7 noticePagingDiv">
 			<div class="col-2 noticePaging">
 				<div class="row">
 					<div class="col text-center">

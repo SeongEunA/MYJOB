@@ -1,6 +1,6 @@
 //화면 로딩 후 바로 실행 이벤트처리
 $(document).ready(function(){
-	$('insertId').focus();
+	$('#memberId').focus();
 	//이벤트발생조건, ID, 함수호출
 	//$(document).on('focus', '#memberName', function() {
 		

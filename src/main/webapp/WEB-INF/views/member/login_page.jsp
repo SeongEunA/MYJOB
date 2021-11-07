@@ -6,47 +6,77 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/resources/common/css/reset.css">
-<script type="text/javascript" src="/resources/member/js/login_page.js?ver=29"></script>
+<script type="text/javascript" src="/resources/member/js/login_page.js?ver=31"></script>
 <style type="text/css">
-.container{
-	border:1px solid black;
-	width: 500px;
-	background-color: #eaeaea;
-	margin-top:100px;
-	padding: 30px;
+.loginTitleDiv{
+	margin:0 auto;
+	margin-top: 80px;
 }
-.loginDiv{
-	width: 440px;
+.loginTitle{
+	border-bottom: 5px solid #f3f5f6;
+	padding: 5px;
 	margin: 0 auto;
-	background-color: #dddddd;
+	font-size: 20pt;
 }
-.checkIdDiv{
-	padding: 10px;
+.loginInfoDiv{
+	margin: 0 auto;
+	margin-top: 80px;
 }
-.checkIdDiv input[type="text"]{
-	width: 100%;
+.loginInfo{
+	background-color: #f3f5f6;
 }
-.checkPwDiv{
-	padding: 10px;
+.memberIdDiv div:first-child{
+	padding-top: 30px;
+	padding-bottom: 10px;
+	width: 30%;
+	margin: 0 auto;
 }
-.checkPwDiv input[type="password"]{
-	width: 100%;
-}
-.loginDiv{
-	padding: 10px;
-}
-.loginBtnDiv{
-	padding: 10px;
+.memberIdDiv div:last-child{
 	text-align: center;
 }
+.memberIdDiv div:last-child input[type="text"]{
+	width: 30%;
+	height: 40px;
+	font-size: 20px;
+	border: white;
+}
+.memberPwDiv div:first-child{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 30%;
+	margin: 0 auto;
+}
+.memberPwDiv div:last-child{
+	text-align: center;
+}
+.memberPwDiv div:last-child input[type="password"]{
+	width: 30%;
+	height: 40px;
+	font-size: 20px;
+	border: white;
+}
+.loginBtnDiv{
+	padding-bottom: 30px;
+}
 .loginBtn{
+	width: 30%;
+	margin: 0 auto;
+}
+.loginBtn input[type="button"]{
 	width: 100%;
+	height: 50px;
+	color: #ffffff;
+	background-color: #000080;
+	border: 3px solid white;
+	outline-color: black;
+	
 }
 #noticeLogin{
-	margin-top: 7px;
-	margin-bottom: 7px;
-	font-size: 12px;
-	padding-left:  10px;
+	width: 30%;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 15px;
 }
 
 </style>
@@ -54,27 +84,24 @@
 <body>
 	<div class="row">
 		<div class="col12 bodyContainer">
-			<div class="container">
-				<div class="loginDiv">
+			<div class="col-5 loginTitleDiv">
+				<div class="col-12 loginTitle">로그인</div>
+			</div>
+			<div class="col-12 loginInfoDiv">
+				<div class="col-12 loginInfo">
 					<form action="/member/login" method="post" id="loginInfoForm">
-						<input type="hidden" name="prevRequestUrl"
-							value="${prevRequestUrl }">
-						<div class="checkIdDiv" id="checkIdDiv">
-							<div>ID</div>
-							<div>
-								<input type="text" id="memberId" name="memberId">
-							</div>
+						<input type="hidden" name="prevRequestUrl" value="${prevRequestUrl }">
+						<div class="memberIdDiv">
+							<div>아이디</div>
+							<div><input type="text" id="memberId" name="memberId"></div>
 						</div>
-						<div class="checkPwDiv" id="checkPwDiv">
-							<div>PASSWORD</div>
-							<div>
-								<input type="password" id="memberPw" name="memberPw">
-							</div>
+						<div class="memberPwDiv">
+							<div>비밀번호</div>
+							<div><input type="password" id="memberPw" name="memberPw"></div>
 						</div>
 						<div id="noticeLogin">&nbsp;</div>
 						<div class="loginBtnDiv">
-							<input type="button" class="loginBtn" value="L o g i n"
-								onclick="loginCheck();">
+							<div class="loginBtn" ><input type="button" value="놀 러 가 기" onclick="loginCheck();"></div>
 						</div>
 					</form>
 				</div>

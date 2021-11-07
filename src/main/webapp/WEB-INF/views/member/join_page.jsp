@@ -7,120 +7,112 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/resources/common/css/reset.css">
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
 <style type="text/css">
-.containerDiv{
-	border:1px solid red;
-	height: 900px;
-	background-color: #EAEAEA;
+.joinTitleDiv{
+	margin:0 auto;
+	margin-top:80px;
+}
+.joinTitle{
+	border-bottom: 5px solid #f3f5f6;
+	padding: 5px;
 	margin: 0 auto;
+	font-size: 20pt;
+}
+.joinInfoDiv{
+	margin: 0 auto;
+	margin-top: 80px;
+	background-color: #f3f5f6;
 	padding: 20px;
 }
-
-.containerDiv input[type="text"]{
-	width: 70%;
-}
-
-.containerDiv input[type="password"]{
-	width: 70%;
-}
-
 .requiredDiv{
-	margin-bottom: 30px;
-	font-weight: bold;
+	padding-bottom: 20px;
 }
-
-.memberIdDiv{
-	width: 100%;
+.required{
+	color: red;
 }
-
 .memberId{
-	width: 70%;
+	display: inline-block;
+	margin-right: 8px;
+}
+.idCheck{
 	display: inline-block;
 }
-
-.memberId input[type="text"]{
-	width: 100%
+.joinInfoDiv input[type="text"]{
+	width: 300px;
 }
-
-.idCheckDiv{
-	width: 25%;
-	display: inline-block;
+.memberIdDiv input[type="text"]{
+	width: 300px;
 }
-
-.memberTelDiv{
-	width: 100%;
+.memberPwDiv input[type="password"]{
+	width: 300px;
 }
-
-.memberTel1Div{
-	width: 15%;
-	display: inline-block;
-	margin-right: 40px;
+.confirmPwDiv input[type="password"]{
+	width: 300px;
 }
-
-.memberTelDiv select{
-	width: 100%;
+.totalTel input[type="text"]{
+	width: 100px;
 }
-
 .totalTel{
-	width: 70%;
+	width: 300px;
 }
-
-.memberTel2Div{
-	width: 30%;
+.memberTel1Div{
+	width: 24%;
 	display: inline-block;
-	margin-right: 40px;
+	margin-right: 8px;
 }
-
-.memberTel2Div input[type="text"]{
-	width: 100%
-}
-
-.memberTel3Div{
-	width: 35%;
-	display: inline-block;
-}
-
-.memberTel3Div input[type="text"]{
-	width: 100%
-}
-
-.memberAddresDiv{
+.memberTel1Div select{
 	width: 100%;
 }
-
+.memberTel2Div{
+	display: inline-block;
+	margin-right: 8px;
+}
+.memberTel3Div{
+	display: inline-block;
+}
+.memberIdDiv div:first-child{
+	padding-bottom: 10px;
+}
+.memberNameDiv div:first-child{
+	padding-bottom: 10px;
+}
+.memberPwDiv div:first-child{
+	padding-bottom: 10px;
+}
+.confirmPwDiv div:first-child{
+	padding-bottom: 10px;
+}
+.memberTelDiv div:first-child{
+	padding-bottom: 10px;
+}
+.memberAddresDiv div:first-child{
+	padding-bottom: 10px;
+}
+.memberEmailDiv div:first-child{
+	padding-bottom: 10px;
+}
+.memberGenderDiv div:first-child{
+	padding-bottom: 10px;
+}
 .memberAddr1Div{
-	width: 70%;
 	display: inline-block;
+	margin-bottom: 20px;
+	margin-right: 8px;
 }
-
-.memberAddr1Div input[type="text"]{
-	width: 100%
-}
-
 .searchAddrDiv{
-	width: 25%;
 	display: inline-block;
 }
-
-.memberAddr2Div{
-	margin-top: 10px;
-}
-
 .memberEmailDiv{
-	width: 70%;
+	width: 300px;
 }
-
 .memberEmail1Div{
 	width: 50%;
+	margin-right: 8px;
 	display: inline-block;
-	margin-right: 15px;
 }
-
 .memberEmail1Div input[type="text"]{
 	width: 100%;
 }
-
 .memberEmail2Div{
 	width: 45%;
 	display: inline-block;
@@ -128,14 +120,13 @@
 .memberEmail2Div select{
 	width: 100%;
 }
-.join{
-	width: 100px;
-	margin: 0 auto;
-	margin-top: 30px;
-	margin-bottom: 30px;
+.joinBtnDiv{
+	margin-top: 20px;
+	padding: 10px;
 }
-.required{
-	color: red;
+.joinBtn{
+	margin: 0 auto;
+	text-align: center;
 }
 
 #noticeId{
@@ -173,71 +164,50 @@
 	margin-bottom: 7px;
 	font-size: 12px;
 }
-
-.loginLayout{
-	border:1px solid orange;
-	height:100%;
-	margin:0 auto;
-}
-.noticeTitleDiv{
-	border:1px solid black;
-	padding-top: 30px;
-	padding-bottom: 30px;
-	margin:0 auto;
-	margin-top:100px;
-}
-.noticeTitle{
-	border-bottom: 3px solid #AFDDFA;
-	padding: 20px;
-	margin: 0 auto;
-	font-size: 20pt;
-}
 </style>
-<script type="text/javascript" src="/resources/member/js/join_page.js?ver=17"></script>
+<script type="text/javascript" src="/resources/member/js/join_page.js?ver=25"></script>
 </head>
 <body>
+<div class="row">
 	<div class="col-12 bodyContainer">
-		<div class="col-8 noticeTitleDiv">
-			<div class="col-12 noticeTitle">Join.</div>
+		<div class="col-5 joinTitleDiv">
+			<div class="col-12 joinTitle">회원가입</div>
 		</div>
-		<div class="col-8 containerDiv">
-			<div class="col-6 loginLayout">
-			<div class="requiredDiv">
-				<span class="required">*</span>필수입력
-			</div>
-			<div class="joinDiv">
+		<div class="col-4 joinInfoDiv">
+			<div class="col-12 joinInfo">
+				<div class="requiredDiv">
+					<span class="required">*</span>&nbsp;는 필수입력입니다.
+				</div>
 				<form action="/member/join" method="post" id="joinForm">
 					<div class="memberIdDiv">
-						<div><span class="required">*</span>아이디</div>
-						<div>
-							<div class="memberId"><input type="text" id="memberId" name="memberId" required></div>
-							<div class="idCheckDiv"><input type="button" id="idCheckbtn" value="중복확인" onclick="idCheck();"></div>
-						</div>
+						<div><span class="required">*</span>&nbsp;아이디</div>
+						<div class="memberId"><input type="text" id="memberId" name="memberId" required></div>
+						<div class="idCheck"><input type="button" id="idCheckbtn" value="중복확인" onclick="idCheck();"></div>
 						<div id="noticeId">&nbsp;</div>
 					</div>
 					<div class="memberNameDiv">
-						<div><span class="required">*</span>이름</div>
+						<div><span class="required">*</span>&nbsp;이름</div>
 						<div>
 							<input type="text" id="memberName" name="memberName" required>
 						</div>
 						<div id="noticeName">&nbsp;</div>
 					</div>
 					<div class="memberPwDiv">
-						<div><span class="required">*</span>비밀번호</div>
+						<div><span class="required">*</span>&nbsp;비밀번호</div>
 						<div>
 							<input type="password" id="memberPw" name="memberPw" required>
 						</div>
 						<div id="noticePw">&nbsp;</div>
 					</div>
 					<div class="confirmPwDiv">
-						<div><span class="required">*</span>비밀번호 확인</div>
+						<div><span class="required">*</span>&nbsp;비밀번호 확인</div>
 						<div>
 							<input type="password" id="confirmPw" required>
 						</div>
 						<div id="noticeCpw">&nbsp;</div>
 					</div>
 					<div class="memberTelDiv">
-						<div><span class="required">*</span>연락처</div>
+						<div><span class="required">*</span>&nbsp;연락처</div>
 						<div class="totalTel">
 							<div class="memberTel1Div">
 								<select id="memberTel1" name="memberTels">
@@ -262,7 +232,7 @@
 						<div id="noticeAddres">&nbsp;</div>
 					</div>
 					<div class="memberEmailDiv">
-						<div>EMAIL</div>
+						<div>이메일</div>
 						<div class="memberEmail1Div"><input type="text" id="memberEmail1" name="memberEmails"></div>
 						<div class="memberEmail2Div">
 							<select id="memberEmail2" name="memberEmails">
@@ -274,21 +244,21 @@
 						</div>
 						<div id="noticeEmail">&nbsp;</div>
 					</div>
-					<div class="genderDiv">
-						<div>GENDER</div>
+					<div class="memberGenderDiv">
+						<div>성별</div>
 						<div>
 							<input type="radio" name="memberGender" id="gender1" value="male" checked> 남자
 							<input type="radio" name="memberGender" id="gender2" value="female"> 여자
 						</div>
 					</div>
-					<div class="join">
-						<input type="submit" id="joinBtn" value="회 원 가 입" onclick="goInsertMember();">
+					<div class="joinBtnDiv">
+						<div class="joinBtn"><input type="button" id="joinBtn" value="회 원 가 입" onclick="goInsertMember();"></div>
 					</div>
 				</form>
-				</div>
 			</div>
 		</div>
 	</div><!-- bodyContainer -->
+</div>
 </body>
 </html>
 

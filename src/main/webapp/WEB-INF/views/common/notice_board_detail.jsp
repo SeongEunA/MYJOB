@@ -32,10 +32,13 @@ td{
 	padding: 10px;
 	
 }
+#boardSubject{
+	padding: 0px;
+}
 
 .contentTr td {
 	height: 200px;
-	vertical-align: middle;
+	text-align: left;
 }
 
 .manageBtnDiv{

@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="/resources/admin/js/reg_notice_board.js?ver=1"></script>
+<link rel="stylesheet" href="/resources/common/reset.css">
 <style type="text/css">
 .regNoticeTitleDiv{
 	padding-top: 30px;
@@ -53,6 +54,9 @@ table td:first-child{
 	border: white;
 	outline-color: white;
 }
+.boardSubject input[type="text"]{
+	width: 100%;
+}
 .regNoticeBtnDiv{
 	border: 1px solid red;
 	margin-top: 20px;
@@ -72,40 +76,41 @@ table td:first-child{
 </head>
 <body>
 <div class="row">
-	<div class="col-10 regNoticeTitleDiv">
-		<div class="col-12 regNoticeTitle">공지사항 등록페이지</div>
-	</div>
-	<div class="col-10 regNoticeWriteDiv">
-		<div class="col-11 regNoticeWrite">
-			<form action="/admin/regNoticeBoard" method="post" id="regNoticeBoardForm">
-				<table>
-					<tr>
-						<td>작성자</td>
-						<td class="boardWriter"><input type="text" name="boardWriter" value="${sessionScope.loginInfo.memberId }" readonly></td>
-					</tr>
-					<tr>
-						<td>등록일</td>
-						<td class="regDate"><input type="text" name="regDate" value="${nowDate }" readonly></td>
-					</tr>
-					<tr>
-						<td>제목</td>
-						<td><input type="text" name="boardSubject" required></td>
-					</tr>
-					<tr>
-						<td>내용</td>
-						<td><textarea cols="80%" rows="15" name="boardContent" style="resize: none;"></textarea></td>
-					</tr>
-				</table>
-				<div class="regNoticeBtnDiv">
-					<div class="regNoticeBtn">
-						<input type="button" value="등록" onclick="regNoticeBoard();">
+	<div class="col-12 bodyContainer">
+		<div class="col-10 regNoticeTitleDiv">
+			<div class="col-12 regNoticeTitle">공지사항 등록페이지</div>
+		</div>
+		<div class="col-10 regNoticeWriteDiv">
+			<div class="col-11 regNoticeWrite">
+				<form action="/admin/regNoticeBoard" method="post" id="regNoticeBoardForm">
+					<table>
+						<tr>
+							<td>작성자</td>
+							<td class="boardWriter"><input type="text" name="boardWriter" value="${sessionScope.loginInfo.memberId }" readonly></td>
+						</tr>
+						<tr>
+							<td>등록일</td>
+							<td class="regDate"><input type="text" name="regDate" value="${nowDate }" readonly></td>
+						</tr>
+						<tr>
+							<td>제목</td>
+							<td class="boardSubject"><input type="text" name="boardSubject" required></td>
+						</tr>
+						<tr>
+							<td>내용</td>
+							<td><textarea cols="120%" rows="15" name="boardContent" style="resize: none;"></textarea></td>
+						</tr>
+					</table>
+					<div class="regNoticeBtnDiv">
+						<div class="regNoticeBtn">
+							<input type="button" value="등록" onclick="regNoticeBoard();">
+						</div>
 					</div>
-				</div>
-			</form>
+				</form>
+			</div>
 		</div>
 	</div>
 </div>
-
 
 </body>
 </html>

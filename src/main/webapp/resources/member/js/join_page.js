@@ -322,7 +322,7 @@ $(document).ready(function(){
 	//모든 정보가 제대로 입력됬을 경우에만 submit
 	goInsertMember = function(){
 		if(okId == 1 && okName == 1 && okPw == 1 && okCPw == 1 && okTel == 1 && (okEmail == 0 || okEmail == 1)){
-			$('#joinForm').submit
+			$('#joinForm').submit();
 		}
 		else{
 			alert('회원정보가 올바르게 입력되지 않았습니다.')
