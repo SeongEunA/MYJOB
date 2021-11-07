@@ -509,6 +509,7 @@ color: #1F50B5;
 	<div class="weatherBox" id="weatherBox">
 		<div class="weatherDiv">
 		<c:forEach items="${weatherList}" var="totalWeatherVO" varStatus="cnt">
+		<c:if test="${cnt.count <= 10 }">
 			<div class="weatherDay">
 				<div class="weatherDayHeader">
 					<div class="weatherDayNum">
@@ -539,7 +540,7 @@ color: #1F50B5;
 					</div>
 				</div>
 				</c:if>
-				<c:if test="${cnt.count >= 4}">
+				<c:if test="${cnt.count >= 4 and cnt.count <= 10}">
 				<div class="weatherContent">
 					<div class="weatherSkyStatus2">
 						<div class="weatherSkyStatusImg2">
@@ -579,6 +580,7 @@ color: #1F50B5;
 				</div>
 				</c:if>
 			</div>
+			</c:if>
 			</c:forEach>
 		</div><!-- weatherDiv1 -->
 	</div>
