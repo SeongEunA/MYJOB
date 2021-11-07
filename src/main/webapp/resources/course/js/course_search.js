@@ -89,9 +89,9 @@ $(document).ready(function(){
 	   var placeAddr =  $(this).parent().children().eq(3).text();
 	   var cateCode =  $(this).parent().children().eq(4).val();
 	   var placeTel =  $(this).parent().children().eq(5).text();
-	   
-//	   var cateCode = [];
-//	   var cateCodeL = $('.cateCode').length;
+//course_search.jsp에서 담기버튼 누를때
+//div 디자인	   
+
 	   
 	   var placeStr = '';
 	   placeStr += '<div class="resInfoDiv">';

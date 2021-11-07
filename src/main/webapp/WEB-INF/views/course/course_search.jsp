@@ -270,6 +270,201 @@ box-shadow:inset 0 0 0 0 gray;
 box-shadow:inset -15em 0 0 0 #fff;
 color: #1F50B5;
 }
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+@font-face {
+    font-family: 'KyoboHand';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/KyoboHand.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SBAggroB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.ticketContainer{
+
+    border:1px solid white;
+    width:90%;
+    height:200px;
+    display:flex;
+    flex-direction: row;
+    margin:0 auto;
+
+}
+.ticketLayout1{
+
+    border:1px solid black;
+    border-right:1px solid white;
+    width:65%;
+    height:80%;
+    margin-top:4%;
+   	position:relative;
+
+}
+.ticketLayout2{
+
+    border:1px solid black;
+    border-left:1px dotted black;
+    width:28%;
+    height:80%;
+    position:relative;
+    font-family: 'KyoboHand';
+    margin-top:4%;
+    
+}
+.ticketLayout2 > span{
+	border:1px solid white;
+	display:inline-block;
+	margin-top:16px;
+}
+
+.ticketMark{
+	border:1px solid white;
+	width:50px;
+	height:50px;
+	margin:0 auto;
+	margin-top:5px;
+}
+.ticketDiv{
+	border:1px solid white;
+	width:100%;
+	height:80%;
+	position: relative;
+    top: 16px;
+    
+}
+.ticketBlock{
+    border:1px solid #B5B2FF;
+    background-color:#B5B2FF;
+    width:90%;
+    height:100%;
+    font-family: 'KyoboHand';
+    margin: 0 auto;
+}
+.travelTicket{
+	border:none;
+	position:absolute;
+	bottom:0;
+	font-size:30px;
+	font-family: 'SBAggroB';
+	letter-spacing: -1px;
+	margin-left:5px;
+	color:#333333;
+	text-shadow: 4px 2px 0 white;
+}
+
+.custom-kontakt .barcode-box { 
+  border:1px solid white;
+  width:90px;
+  min-width: 90px; 
+  height: 27px; 
+  padding-right: 5px;
+  margin-left:10px; 
+  margin-right:auto; 
+  position:absolute;
+  bottom:0;
+}
+.custom-kontakt .barcode-box .barcode-stripes .stripe-1 { 
+  display: block; 
+  height: 27px; 
+  width: 3px; 
+  float: left; 
+  border-right: thin solid #333;
+  border-left: thin solid #333; 
+  border-top-color: #fff; 
+  border-bottom-color: #fff; 
+  
+}
+.custom-kontakt .barcode-box .barcode-stripes .stripe-2 { 
+  display: block; 
+  height: 26px; 
+  width: 5px; 
+  float: left; 
+  margin-left: 1px; 
+  margin-right: 1px; 
+  border-right: thick solid #333;
+  border-left: thick solid #333; 
+  border-top-color: #fff; 
+  border-bottom-color: #fff; 
+}
+.custom-kontakt .barcode-box .barcode-stripes .stripe-3 { 
+  display: block; 
+  height: 26px; 
+  width: 5px; 
+  float: left; 
+  margin-left: 1px; 
+  margin-right: 1px; 
+  border-right: thick solid #333;
+  border-left: thin solid #333; 
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig1, .custom-kontakt .barcode-box .barcode-stripes span.sig2, .custom-kontakt .barcode-box .barcode-stripes span.sig3, .custom-kontakt .barcode-box .barcode-stripes span.sig4, .custom-kontakt .barcode-box .barcode-stripes span.sig5, .custom-kontakt .barcode-box .barcode-stripes span.sig6, .custom-kontakt .barcode-box .barcode-stripes span.sig7, .custom-kontakt .barcode-box .barcode-stripes span.sig8, .custom-kontakt .barcode-box .barcode-stripes span.sig9 { 
+  color: #000; 
+  font-size: 12px;
+  font-family:'Quicksand', sans-serif;
+  float: left; 
+  margin-top: -10px;
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig1 { 
+  margin-right: 20px; 
+  margin-left: 7px; 
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig2 { 
+  margin-right: 20px; 
+  margin-left: 7px; 
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig3 { 
+  margin-right: 13px; 
+  margin-left: 5px; 
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig4 { 
+  margin-right: 5px; 
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig5 { 
+  margin-right: 15px; 
+  margin-left: 5px; 
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig6 { 
+  margin-right: 15px; 
+  margin-left: 2px; 
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig7 { 
+  margin-right: 15px; 
+  margin-left: 10px; 
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig8 { 
+  margin-right: 15px; 
+  margin-left: 5px; 
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig9 { 
+  margin-left: 12px; 
+}
+.resultPlaceName{
+    font-family: 'KyoboHand';
+	border:none;
+	position:relative;
+	padding: 5px; 5px;
+}
+.resultPlaceAddr,.resultTel{
+	border:none;
+	padding: 5px; 5px;
+}
+
+.close {
+	border:none;
+	position:absolute;
+	right:0;
+	display:inline-block;
+	width:20px;
+	height:100%;
+	text-align:right;
+	margin-right:10px;
+	cursor:pointer;
+}
+
+
+.close1:after {content: "\00d7"; font-size:18pt;}
 </style>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	3d45ea450bf493fb0fea992bed62c07e&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d45ea450bf493fb0fea992bed62c07e&libraries=services"></script>
@@ -420,7 +615,59 @@ color: #1F50B5;
 	<div class="courseHalfLayout">
 		<form id="regCourseForm" method="post">
 		 <div id="resInfoList" class="resInfoList">
-		   
+		   	 <div class="ticketContainer"><!-- 티켓부분 -->
+        <div class="ticketLayout1">
+			<div class="ticketDiv">
+				<div class="ticketBlock">
+					<div class="resultPlaceName">
+										장소:이거이거
+						<div class="close close1" id="deleteResBtn"></div>
+					</div>
+						<div class="resultPlaceAddr">주소:여기</div>
+						<div class="resultTel" class="resultPlaceTel">Tel:000-0000</div>
+						<div class="travelTicket">Travel Ticket</div>
+				</div>
+			</div>
+		</div>
+        <div class="ticketLayout2">
+               	<span>숙박지,관광지,맛집구분하기</span>
+               	<div class="ticketMark">
+               		<img src="/resources/images/free-icon-aeroplane-5639813.png"width="100%" height="100%">
+               	</div>
+            <section class="custom-kontakt">
+                <div class="barcode-box">
+                 <div class="barcode-stripes"><span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-3"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-1"></span> <span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-1"></span><span class="stripe-1"></span><span class="sig5"></span> <span class="sig6"></span> <span class="sig7"></span></div>
+                </div>
+              </section>
+        </div>
+    </div><!-- 티켓끝 -->
+		 <div class="ticketContainer"><!-- 티켓부분 -->
+        <div class="ticketLayout1">
+			<div class="ticketDiv">
+				<div class="ticketBlock">
+					<div class="resultPlaceName">
+										장소:이거이거
+						<div class="close close1" id="deleteResBtn"></div>
+					</div>
+						<div class="resultPlaceAddr">주소:여기</div>
+						<div class="resultTel" class="resultPlaceTel">Tel:000-0000</div>
+						<div class="travelTicket">Travel Ticket</div>
+				</div>
+			</div>
+		</div>
+        <div class="ticketLayout2">
+               	<span>숙박지,관광지,맛집구분하기</span>
+               	<div class="ticketMark">
+               		<img src="/resources/images/free-icon-aeroplane-5639813.png"width="100%" height="100%">
+               	</div>
+            <section class="custom-kontakt">
+                <div class="barcode-box">
+                 
+                  <div class="barcode-stripes"><span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-3"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-1"></span> <span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-1"></span><span class="stripe-1"></span><span class="sig5"></span> <span class="sig6"></span> <span class="sig7"></span></div>
+                </div>
+              </section>
+        </div>
+    </div><!-- 티켓끝 -->
 		  </div>
 		 <div class="submitCourseBtn"  id="submitCourse">
 		 	코스이름 입력:<input type="text" name="courseName" id="courseName">
