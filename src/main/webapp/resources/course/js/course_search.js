@@ -412,8 +412,9 @@ $(document).ready(function(){
               var str = ""; 
               
            	  str +='<div class="weatherBox" id="weatherBox">';
-           	  str +='<div class="weatherDiv">';
            		$(result).each(function(index,element){
+           		if(index+1<=10){
+           			
            		
  str +='      			<div class="weatherDay">';
  str +='  				<div class="weatherDayHeader">';
@@ -427,14 +428,17 @@ $(document).ready(function(){
  str +='  					<div class="weatherSkyStatus2">';
  str +='  						<div class="weatherSkyStatusImg2">';
  						if(element.skyStatus=='맑음'){
- str +='  								<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt1.svg" width="80%" height="100%">';
+ str +='  								<span><img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt1.svg" width="80%" height="100%"></span>';
  						}
 						else if(element.skyStatus=='구름많음'||element.skyStatus=='흐림'){
  str +='  							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt5.svg" width="80%" height="100%">';
  						}	
-	 					else if(element.skyStatus=='흐리고 비'||element.skyStatus=='비'||element.skyStatus == '구름많고 비'||element.skyStatus == '구름많고 한때 비'){
+	 					else if(element.skyStatus.includes('비')){
  str +='  							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg" width="80%" height="100%">';
-	 					}		
+	 					}	
+	 					else if(element.skyStatus.includes('눈')){
+ str +='	 						<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt13.svg" width="80%" height="100%">';
+	 					}
  str +='  						</div>';
  str +='  						<div class="weatherSkyStatusText2">';
  str +=									element.skyStatus
@@ -446,7 +450,7 @@ $(document).ready(function(){
  str +='  				</div>';
  				
 	 					}
-	 					else if((index+1)>=4){
+	 					else if((index+1)>=4&&(index+1)<=10){
  str +='  				<div class="weatherContent">';
  str +='  					<div class="weatherSkyStatus2">';
  str +='  						<div class="weatherSkyStatusImg2">';
@@ -456,9 +460,12 @@ $(document).ready(function(){
  								else if(element.skyStatusAm == '구름많음'||element.skyStatusAm=='흐림'){
  str +='  							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt5.svg" width="80%" height="100%">';
  								}
- 								else if(element.skyStatusAm == '흐리고 비'||element.skyStatusAm == '비'||element.skyStatusAm == '구름많고 비'||element.skyStatusAm == '구름많고 한때 비'){
+ 								else if(element.skyStatusAm.includes('비')){
  str +='  							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg" width="80%" height="100%">';
  								}
+ 								else if(element.skyStatusAm.includes('눈')){
+ str +='	 						<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt13.svg" width="80%" height="100%">';
+ 										 					}
  str +='  						</div>';
  str +='  						<div class="weatherSkyStatusText2">';
  str += 								element.skyStatusAm
@@ -472,9 +479,12 @@ $(document).ready(function(){
  								else if(element.skyStatusPm == '구름많음'||element.skyStatusPm == '흐림'){
  str +='  							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt7.svg" width="80%" height="100%">';
  								}
- 								else if(element.skyStatusPm == '흐리고 비'||element.skyStatusPm == '비'||element.skyStatusPm == '구름많고 비'||element.skyStatusPm == '구름많고 한때 비'){
+ 								else if(element.skyStatusPm.includes('비')){
  str +='  							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg" width="80%" height="100%">';
  								}
+ 								else if(element.skyStatusPm.includes('눈')){
+ str +='	 						<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt13.svg" width="80%" height="100%">';
+ 										 					}
  str +='  						</div>';
  str +='  						<div class="weatherSkyStatusText2">';
  str += 								element.skyStatusPm
@@ -488,10 +498,9 @@ $(document).ready(function(){
 	 					}
  str +='  			</div>';
      			
-           		})
+           		}//날짜10일만뽑는 조건 
+           		})//result 끝나는부분
       
- str +='      		</div><!-- weatherDiv1 -->';
-     		
      	
  str +='      	</div>';
  

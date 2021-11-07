@@ -116,7 +116,7 @@ public class WeatherUtil {
 				    //root엘리먼트에서 item태그인 엘리먼트만 추출하기
 				    NodeList itemTagList1 = root1.getElementsByTagName("item");
 				    
-			  //단기예보
+			  //단기예보 
 				     StringBuilder urlBuilder2 = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstMsgService/getLandFcst"); /*URL*/
 				     urlBuilder2.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=zsiVIlbNLa0CmGU%2B1vLHgsJLlm6mK5D4yDti4V6WoxJoG%2BBTONY2L9D6KxlCxvOlyZrywmoppXYhj2%2FJW%2FYEDA%3D%3D"); /*Service Key*/
 				     urlBuilder2.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
@@ -154,10 +154,11 @@ public class WeatherUtil {
 				     //root엘리먼트에서 item태그인 엘리먼트만 추출하기
 				     NodeList itemTagList2 = root2.getElementsByTagName("item");
 			      
+				     //단기기상
 				     for(int i=0;i<itemTagList2.getLength();i++) {
 				    	 Node nNode2 = itemTagList2.item(i);
 				  		 Element eElement2 = (Element) nNode2;
-				  		if(i%2==0&&i<5) {
+				  		if((i%2==0&&i<5&&i!=0)||i==1) {
 				  			
 				  		TotalWeatherVO totalWeatherVO = new TotalWeatherVO();
 				       
@@ -165,9 +166,15 @@ public class WeatherUtil {
 				  		totalWeatherVO.setTemp(getTagValue("ta",eElement2));
 				  		
 				        weatherList.add(totalWeatherVO);
+				        
+				      
 				  		}
+				  		
 				     } 
-			     
+				     for(int i=0; i<weatherList.size();i++) {
+				    	 System.out.println("리스트 i :" + i + "값 : "+ weatherList.get(i).getTemp());
+				    	 
+				     }
 				     for(int i=0;i<itemTagList.getLength();i++) {
 				    	 //중기기상
 				    	 Node nNode = itemTagList.item(i);

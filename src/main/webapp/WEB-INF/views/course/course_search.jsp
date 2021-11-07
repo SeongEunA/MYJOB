@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,34 +71,38 @@ cursor: pointer;
 }
 .weatherContainer{
 border:1px solid black;
-width:200px;
-height:360px;
+width:400px;
+height:400px;
 margin-top:30px;
+
 }
 
 .weatherBox{
-border:1px solid white;
-width:200px;
-height:400px;
+border:1px solid red;
+width:inherit;
+height:inherit;
 display:flex;
+flex-flow:column wrap;
+
+
 }
 
- .weatherDiv{
-border:1px solid white;
+/*  .weatherDiv{
+border:1px solid blue;
 width:100%;
 height:100%;
 display:flex;
 flex-flow:row wrap;
 flex-direction:column;
 text-align:center;
-} 
+}  */
 .weatherDay{
 border:1px solid #eeeeee;
-width:100%;
-height:15%;
+width:50%;
+height:18%;
 border-radius:5px;
 display:flex;
-
+flex-direction: row;
 
 }
 .weatherDayHeader{
@@ -145,9 +150,8 @@ width:40%;
 height:100%;
 flex-direction:row;
 border:1px solid white;
-
-
 }
+
 .weatherSkyStatusImg{
 border:1px solid white;
 width:40%;
@@ -161,7 +165,7 @@ border:1px solid white;
 width:90%;
 height:70%;
 margin:0 auto;
-border-radius: 50%;
+text-align: center;
 }
 .weatherSkyStatusText{
 border:1px solid white;
@@ -179,7 +183,12 @@ height:30%;
 margin:0 auto;
 font-size:9px;
 font-family: 'NanumBarunpen';
+text-align: center;
 }
+.weatherSkyStatusText2 > span{
+border:1px solid white;
+
+} 
 .weatherTemp{
 border:1px solid white;
 width:35%;
@@ -507,7 +516,6 @@ color: #1F50B5;
 <!-- 은아 10/23 테이블 작업 -->
 	<div class="weatherContainer" id="weatherArea">
 	<div class="weatherBox" id="weatherBox">
-		<div class="weatherDiv">
 		<c:forEach items="${weatherList}" var="totalWeatherVO" varStatus="cnt">
 		<c:if test="${cnt.count <= 10 }">
 			<div class="weatherDay">
@@ -521,18 +529,22 @@ color: #1F50B5;
 				<div class="weatherContent">
 					<div class="weatherSkyStatus2">
 						<div class="weatherSkyStatusImg2">
-							<c:if test="${totalWeatherVO.skyStatus eq '맑음' }">
-								<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt1.svg" width="80%" height="100%">
+							<c:set var ="skyStatus" value="${totalWeatherVO.skyStatus}"></c:set>
+							<c:if test="${fn:contains(skyStatus,'맑음')}">
+								<span><img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt1.svg" width="80%" height="100%"></span>
 							</c:if>
 							<c:if test="${totalWeatherVO.skyStatus eq '구름많음' or totalWeatherVO.skyStatus eq '흐림'}">
 							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt5.svg" width="80%" height="100%">
 							</c:if>
-							<c:if test="${totalWeatherVO.skyStatus eq '흐리고 비' or totalWeatherVO.skyStatus eq '비' or totalWeatherVO.skyStatus eq '구름많고 비' or totalWeatherVO.skyStatus eq '구름많고 한때 비' }">
+							<c:if test="${fn:contains(skyStatus,'비')}">
 							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg" width="80%" height="100%">
+							</c:if>
+							<c:if test="${fn:contains(skyStatus,'눈')}">
+							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt13.svg" width="80%" height="100%">
 							</c:if>
 						</div>
 						<div class="weatherSkyStatusText2">
-							${totalWeatherVO.skyStatus }
+							<span>${totalWeatherVO.skyStatus }</span>
 						</div>
 					</div>
 					<div class="weatherTemp">
@@ -544,34 +556,42 @@ color: #1F50B5;
 				<div class="weatherContent">
 					<div class="weatherSkyStatus2">
 						<div class="weatherSkyStatusImg2">
+						<c:set var ="skyStatusAm" value="${totalWeatherVO.skyStatusAm}"></c:set>
 						<c:if test="${totalWeatherVO.skyStatusAm eq '맑음' }">
 							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt1.svg" width="80%" height="100%">
 						</c:if>
 						<c:if test="${totalWeatherVO.skyStatusAm eq '구름많음' or totalWeatherVO.skyStatusAm eq '흐림'}">
 							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt5.svg" width="80%" height="100%">
 						</c:if>
-						<c:if test="${totalWeatherVO.skyStatusAm eq '흐리고 비' or totalWeatherVO.skyStatusAm eq '비' or totalWeatherVO.skyStatusAm eq '구름많고 비' or totalWeatherVO.skyStatusAm eq '구름많고 한때 비' }">
+						<c:if test="${fn:contains(skyStatusAm,'비')}">
 							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg" width="80%" height="100%">
-							</c:if>
+						</c:if>
+						<c:if test="${fn:contains(skyStatusAm,'눈')}">
+							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt13.svg" width="80%" height="100%">
+						</c:if>
 						</div>
 						<div class="weatherSkyStatusText2">
-							${totalWeatherVO.skyStatusAm }
+							<span>${totalWeatherVO.skyStatusAm }</span>
 						</div>					
 					</div>
 					<div class="weatherSkyStatus2">
 						<div class="weatherSkyStatusImg2">
+						<c:set var ="skyStatusPm" value="${totalWeatherVO.skyStatusPm}"></c:set>
 							<c:if test="${totalWeatherVO.skyStatusPm eq '맑음'}">
 								<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt1.svg" width="80%" height="100%">
 							</c:if>
 							<c:if test="${totalWeatherVO.skyStatusPm eq '구름많음' or totalWeatherVO.skyStatusPm eq '흐림' }">
 							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt7.svg" width="80%" height="100%">
 							</c:if>
-							<c:if test="${totalWeatherVO.skyStatusPm eq '흐리고 비' or totalWeatherVO.skyStatusPm eq '비' or totalWeatherVO.skyStatusPm eq '구름많고 비' or totalWeatherVO.skyStatusPm eq '구름많고 한때 비' }">
+							<c:if test="${fn:contains(skyStatusPm,'비')}">
 							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg" width="80%" height="100%">
+							</c:if>
+							<c:if test="${fn:contains(skyStatusPm,'눈')}">
+							<img src="https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt13.svg" width="80%" height="100%">
 							</c:if>
 						</div>
 						<div class="weatherSkyStatusText2">
-							${totalWeatherVO.skyStatusPm}
+							<span>${totalWeatherVO.skyStatusPm}</span>
 						</div>
 					</div>
 					<div class="weatherTemp">
@@ -579,11 +599,10 @@ color: #1F50B5;
 					</div>
 				</div>
 				</c:if>
-			</div>
+			</div><!-- weatherDay -->
 			</c:if>
 			</c:forEach>
-		</div><!-- weatherDiv1 -->
-	</div>
+	</div><!-- weatherBox -->
 </div><!--weatherContainer-->
 				
 				
@@ -608,7 +627,7 @@ color: #1F50B5;
 		</div>
 	
 	<!-- 검색 장소 리스트 영역 -->
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=10"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=15"></script>
 		<div class="row">
 		   <div class="col-6" id="placeList">
 		   </div>
