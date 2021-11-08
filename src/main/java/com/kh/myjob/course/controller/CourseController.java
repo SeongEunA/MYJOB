@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.myjob.common.util.WeatherUtil;
 import com.kh.myjob.common.vo.TotalWeatherVO;
@@ -86,13 +87,13 @@ public class CourseController {
 	
 	//내 코스 페이지로 이동
 	@GetMapping("/myCourseList")
-	public String goMyCourse(CourseVO courseVO,Model model, TempSaveCourseVO tempSaveCourseVO) {
+	public String goMyCourse(CourseVO courseVO, Model model, TempSaveCourseVO tempSaveCourseVO) {
 	    
 		model.addAttribute("courseList", courseService.selectCoursePlaceList(courseVO));
 		
 		model.addAttribute("tempSaveCourseList", courseService.selectTempSaveCourse(tempSaveCourseVO));
 		
-	return "course/mycourse_list";
+		return "course/mycourse_list";
 	}
 	
 	//코스네임이 중복인지 검사하는 ajax
@@ -144,11 +145,15 @@ public class CourseController {
 		return courseService.selectCoursePlaceList(courseVO);
 	}
 	
-	//코스삭제 버튼 클릭시 실행 ajax
-	@ResponseBody
-	@PostMapping("/deleteCourseAjax")
-	public int deleteCourseAjax(CourseVO courseVO) {
-		return courseService.deleteCourse(courseVO);
+	//코스삭제 버튼 클릭시 실행
+	@GetMapping("/deleteCourse")
+	public String deleteCourse(CourseVO courseVO, RedirectAttributes redirect) {
+		
+		courseService.deleteCourse(courseVO);
+		
+		redirect.addAttribute("memberId", courseVO.getMemberId());
+		
+		return "redirect:/course/myCourseList";
 	}
 
 	

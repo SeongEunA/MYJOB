@@ -30,7 +30,7 @@ $(document).ready(function(){
 				
 				deleteStr += '<div class="deletePlaceDiv row">';
 				deleteStr += '	<div class="checkbox">';
-				deleteStr += '		<div class="deletePlace col-11" style="border:1px solid red"><input type="checkbox" class="checkbox">' + placeName;
+				deleteStr += '		<div class="deletePlace col-11" style="border:1px solid red"><input type="checkbox" class="checkbox">코스이름 : ' + placeName;
 				deleteStr += '			<input type="hidden" class="placeName" value="' + placeName + '">';
 				deleteStr += '			<input type="hidden" class="placeAddr" value="' + placeAddr + '">';
 				deleteStr += '			<input type="hidden" class="cateCode" value="' + cateCode + '">';
@@ -47,7 +47,7 @@ $(document).ready(function(){
 				
 				$(result).each(function(index,element){
 					listStr += '<div class="courseBox">';
-					listStr += '	<div class="courseName"><input type="radio" name="courseCode" value="'+element.courseCode+'">코스이름:' + element.courseName + '</div>';
+					listStr += '	<div class="courseName"><input type="radio" name="courseCode" value="'+element.courseCode+'">코스이름 : ' + element.courseName + '</div>';
 					
 					$(element.coursePlaceList).each(function(i,placeInfo){
 						if(element.coursePlaceList.length == (i+1)){
@@ -85,6 +85,7 @@ $(document).ready(function(){
 				listStr += '<div>'
 				listStr += '	<span>'
 				listStr += '		<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn">'
+				listStr += '		<input type="button" value="코스삭제" class="deleteCourseBtn" onclick="deleteCourse();">'
 				listStr += '	</span>'
 				listStr += '</div>'
 				listStr += '</form>'
@@ -166,7 +167,7 @@ $(document).ready(function(){
 				
 				$(result).each(function(index,element){
 					listStr += '<div class="courseBox">';
-					listStr += '	<div class="courseName"><input type="radio" name="courseCode" value="'+element.courseCode+'">코스이름:' + element.courseName + '</div>';
+					listStr += '	<div class="courseName"><input type="radio" name="courseCode" value="'+element.courseCode+'">코스이름 : ' + element.courseName + '</div>';
 					
 					$(element.coursePlaceList).each(function(i,placeInfo){
 						if(element.coursePlaceList.length == (i+1)){
@@ -205,6 +206,7 @@ $(document).ready(function(){
 				listStr += '<div>';
 				listStr += '	<span>';
 				listStr += '		<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn">';
+				listStr += '		<input type="button" value="코스삭제" class="deleteCourseBtn" onclick="deleteCourse();">';
 				listStr += '	</span>';
 				listStr += '</div>';
 				listStr += '</form>';
@@ -277,29 +279,15 @@ $(document).ready(function(){
 
 //함수 선언 영역
 (function($){
-	deleteCourse = function(courseCode,courseName){
+	deleteCourse = function(){
+		var courseCode = $('input[name=courseCode]:checked').val();
+		var courseName = $('label[for="' + courseCode + '"]').text();
+		var memberId = $('#memberId').val();
+
 		var result = confirm(courseName + ' 코스를 삭제 하시겠습니까?');
 		
 		if(result){
-			$.ajax({
-				url: '/course/deleteCourseAjax', //요청경로
-				type: 'post',
-				data:{'courseCode':courseCode}, //필요한 데이터
-				success: function(result) {
-					//ajax 실행 성공 후 실행할 코드 작성
-					if(result == 1){
-						alert(courseName + ' 이 정상적으로 삭제 되었습니다.');
-					}
-					else{
-						alert('삭제를 실패하였습니다.');
-					}
-					
-				},
-				error: function(){
-					//ajax 실행 실패 시 실행되는 구간
-					alert('실패');
-				}
-			});
+			location.href = '/course/deleteCourse?courseCode=' + courseCode + '&memberId=' + memberId;
 		}
 	};
 

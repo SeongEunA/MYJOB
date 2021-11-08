@@ -89,7 +89,7 @@ display: inline-block;
 margin-bottom: 10px;
 }
 </style>
-<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=11"></script>
+<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=2"></script>
  <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script type="text/javascript">
@@ -134,8 +134,7 @@ $.ajax({
 		<c:forEach items="${courseList }" var="courseInfo">
 			<div class="courseBox" id="courseBox">
 				<div class="courseName">
-					<input type="radio" name="courseCode" value="${courseInfo.courseCode }">코스이름:${courseInfo.courseName }
-					<input type="button" value="코스삭제" class="deleteCourseBtn" onclick="deleteCourse(${courseInfo.courseCode },${courseInfo.courseName });">
+					<input type="radio" name="courseCode" value="${courseInfo.courseCode }">코스이름 : <label for="${courseInfo.courseCode }">${courseInfo.courseName }</label>
 				</div>
 				<c:forEach items="${courseInfo.coursePlaceList}" var="placeInfo" varStatus="cnt">
 					<c:choose>
@@ -169,11 +168,10 @@ $.ajax({
 				</c:forEach>
 			</div>
 	     </c:forEach>
-	     <c:if test="${courseList eq null }">
+	     <c:if test="${courseList ne null }">
 			<div>
-				<span>
-					<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn">
-				</span>
+				<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn">
+				<input type="button" value="코스삭제" class="deleteCourseBtn" onclick="deleteCourse();">
 			</div>
 	     </c:if>
 	</form>
