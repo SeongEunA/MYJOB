@@ -5,275 +5,137 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="/resources/member/js/my_page.js?ver=32"></script>
 <style type="text/css">
-.joinTitleDiv{
+.myPageTitleDiv{
+	padding-top: 30px;
+	padding-bottom: 30px;
 	margin:0 auto;
-	margin-top:80px;
 }
-.joinTitle{
-	border-bottom: 5px solid #f3f5f6;
-	padding: 5px;
+.myPageTitle{
+	border-bottom: 3px solid #AFDDFA;
+	padding: 20px;
 	margin: 0 auto;
 	font-size: 20pt;
 }
-.joinInfoDiv{
+.myPageTableDiv{
+	border: 1px solid blue;
 	margin: 0 auto;
-	margin-top: 80px;
-	background-color: #f3f5f6;
-	padding: 20px;
-}
-.requiredDiv{
-	padding-bottom: 20px;
-}
-.required{
-	color: red;
-}
-.memberId{
-	display: inline-block;
-	margin-right: 8px;
-}
-.idCheck{
-	display: inline-block;
-}
-.idCheck input[type="button"]{
-	width: 100px;
-	height: 25px;
-	color: #ffffff;
-	background-color: #000080;
-	border: white;
-}
-.joinInfoDiv input[type="text"]{
-	width: 300px;
-}
-.memberIdDiv input[type="text"]{
-	width: 300px;
-}
-.memberPwDiv input[type="password"]{
-	width: 300px;
-}
-.confirmPwDiv input[type="password"]{
-	width: 300px;
-}
-.totalTel input[type="text"]{
-	width: 100px;
-}
-.totalTel{
-	width: 300px;
-}
-.memberTel1Div{
-	width: 24%;
-	display: inline-block;
-	margin-right: 8px;
-}
-.memberTel1Div select{
-	width: 100%;
-}
-.memberTel2Div{
-	display: inline-block;
-	margin-right: 8px;
-}
-.memberTel3Div{
-	display: inline-block;
-}
-.memberIdDiv div:first-child{
-	padding-bottom: 10px;
-}
-.memberNameDiv div:first-child{
-	padding-bottom: 10px;
-}
-.memberPwDiv div:first-child{
-	padding-bottom: 10px;
-}
-.confirmPwDiv div:first-child{
-	padding-bottom: 10px;
-}
-.memberTelDiv div:first-child{
-	padding-bottom: 10px;
-}
-.memberAddresDiv div:first-child{
-	padding-bottom: 10px;
-}
-.memberEmailDiv div:first-child{
-	padding-bottom: 10px;
-}
-.memberGenderDiv div:first-child{
-	padding-bottom: 10px;
-}
-.memberAddr1Div{
-	display: inline-block;
-	margin-bottom: 20px;
-	margin-right: 8px;
-}
-.searchAddrDiv{
-	display: inline-block;
-}
-.searchAddrDiv input[type="button"]{
-	width: 100px;
-	height: 25px;
-	color: #ffffff;
-	background-color: #000080;
-	border: white;
-}
-.memberEmailDiv{
-	width: 300px;
-}
-.memberEmail1Div{
-	width: 50%;
-	margin-right: 8px;
-	display: inline-block;
-}
-.memberEmail1Div input[type="text"]{
-	width: 100%;
-}
-.memberEmail2Div{
-	width: 45%;
-	display: inline-block;
-}
-.memberEmail2Div select{
-	width: 100%;
-}
-.joinBtnDiv{
 	margin-top: 20px;
+	margin-bottom: 20px;
 }
-.joinBtn{
+.myPageTable{
+	border: 1px solid black;
+	margin:0 auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	padding: 20px;
+	font-size: 13px;
+}
+table{
+	width: 100%;
 	margin: 0 auto;
 	text-align: center;
 }
-.joinBtn input[type="button"]{
-	width: 100%;
-	height: 50px;
-	color: #ffffff;
-	background-color: #000080;
-	border: white;
-	
+tr{
+	border: 1px solid black;
 }
-#noticeId{
-	margin-top: 7px;
-	margin-bottom: 7px;
-	font-size: 12px;
+
+td{
+	border: 1px solid black;
+ 	padding: 20px;
 }
-#noticeName{
-	margin-top: 7px;
-	margin-bottom: 7px;
-	font-size: 12px;
+.deleteMemberBtnDiv{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border: 1px solid purple;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
-#noticePw{
-	margin-top: 7px;
-	margin-bottom: 7px;
-	font-size: 12px;
+.deleteMemberBtn{
+	border: 1px solid red;
+	text-align: right;
 }
-#noticeCpw{
-	margin-top: 7px;
-	margin-bottom: 7px;
-	font-size: 12px;
+.deleteMemberBtn input[type="button"]{
+	width: 100px;
+	height: 30px;
 }
-#noticeTel{
-	margin-top: 7px;
-	margin-bottom: 7px;
-	font-size: 12px;
+.updateMyInfoBtnDiv{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border: 1px solid purple;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
-#noticeAddres{
-	margin-top: 7px;
-	margin-bottom: 7px;
-	font-size: 12px;
+.updateMyInfoBtn{
+	border: 1px solid red;
+	text-align: right;
 }
-#noticeEmail{
-	margin-top: 7px;
-	margin-bottom: 7px;
-	font-size: 12px;
+.updateMyInfoBtn input[type="button"]{
+	width: 100px;
+	height: 30px;
 }
 </style>
-<script type="text/javascript" src="/resources/member/js/join_page.js?ver=9"></script>
 </head>
 <body>
 <div class="row">
-	<div class="col-12 bodyContainer">
-		<div class="col-5 joinTitleDiv">
-			<div class="col-12 joinTitle">내 정보</div>
+	<div class="col-12">
+		<div class="col-8 myPageTitleDiv">
+			<div class="col-12 myPageTitle">마이페이지입니다.</div>
 		</div>
-		<div class="col-4 joinInfoDiv">
-			<div class="col-12 joinInfo">
-				<form action="/member/join" method="post" id="joinForm">
-					<div class="memberIdDiv">
-						<div>아이디</div>
-						<div class="memberId">
-							${detailMyInfo.memberId }
+		<div class="col-8 myPageTableDiv">
+			<div class="col-10 myPageTable">
+				<div class="col-12 deleteMemberBtnDiv">
+					<div class="deleteMemberBtn"><input type="button" id="deleteMember" value="회원탈퇴" onclick="deleteMember('${detailMyInfo.memberCode }');"></div>
+				</div>
+				<div id="detailMyInfo">
+					<table>
+						<colgroup>
+							<col width="10%">
+							<col width="40%">
+							<col width="10%">
+							<col width="40%">
+						</colgroup>
+						<tr>
+							<td>회원아이디</td>
+							<td>${detailMyInfo.memberId }</td>
+							<td>가입일</td>
+							<td>${detailMyInfo.memberJoinDate }</td>
+						</tr>
+						<tr>
+							<td>회원이름</td>
+							<td>${detailMyInfo.memberName }</td>
+							<td>성별</td>
+							<td>${detailMyInfo.memberGender }</td>
+						</tr>
+						<tr>
+							<td>회원비밀번호</td>
+							<td id="memberPw">${detailMyInfo.memberPw }</td>
+							<td>회원이메일</td>
+							<td id="memberEmail">${detailMyInfo.memberEmail }</td>
+						</tr>
+						<tr>
+							<td>회원연락처</td>
+							<td id="memberTel">${detailMyInfo.memberTel }</td>
+							<td>회원주소</td>
+							<td id="memberAddr">${detailMyInfo.memberAddr }</td>
+						</tr>
+					</table>
+					<div class="updateMyInfoBtnDiv">
+						<div class="updateMyInfoBtn">
+							<input type="button" id="updateMyInfo" value="수정" onclick="updateMyInfo('${detailMyInfo.memberCode }');">
 						</div>
 					</div>
-					<div class="memberNameDiv">
-						<div>이름</div>
-						<div>
-							${detailMyInfo.memberName }
-						</div>
-					</div>
-					<div class="memberPwDiv">
-						<div><span class="required">*</span>&nbsp;비밀번호</div>
-						<div>
-							<input type="password" id="memberPw" name="memberPw" value="${detailMyInfo.memberPw }" required>
-						</div>
-						<div id="noticePw">&nbsp;</div>
-					</div>
-					<div class="confirmPwDiv">
-						<div><span class="required">*</span>&nbsp;비밀번호 확인</div>
-						<div>
-							<input type="password" id="confirmPw" required>
-						</div>
-						<div id="noticeCpw">&nbsp;</div>
-					</div>
-					<div class="memberTelDiv">
-						<div><span class="required">*</span>&nbsp;연락처</div>
-						<div class="totalTel">
-							<div class="memberTel1Div">
-								<select id="memberTel1" name="memberTels">
-									<option value="010" selected>010</option>
-									<option value="011">011</option>
-									<option value="016">016</option>
-									<option value="017">017</option>
-									<option value="018">018</option>
-									<option value="019">019</option>
-								</select>
-							</div>
-							<div class="memberTel2Div"><input type="text" id="memberTel2" name="memberTels" required></div>
-							<div class="memberTel3Div"><input type="text" id="memberTel3" name="memberTels" required></div>
-						</div>
-							<div id="noticeTel">&nbsp;</div>
-					</div>
-					<div class="memberAddresDiv">
-						<div>주소</div>
-						<div class="memberAddr1Div"><input type="text" id=memberAddr1 name="memberAddres" readonly placeholder="도로명/지번 주소"></div>
-						<div class="searchAddrDiv"><input type="button" id="memberAddrBtn" onclick="openPostCode();" value="주소검색"></div>
-						<div class="memberAddr2Div"><input type="text" id="memberAddr2" name="memberAddres" placeholder="상세 주소"></div>
-						<div id="noticeAddres">&nbsp;</div>
-					</div>
-					<div class="memberEmailDiv">
-						<div>이메일</div>
-						<div class="memberEmail1Div"><input type="text" id="memberEmail1" name="memberEmails"></div>
-						<div class="memberEmail2Div">
-							<select id="memberEmail2" name="memberEmails">
-								<option value="naver.com">naver.com</option>
-								<option value="daum.net">daum.net</option>
-								<option value="gmail.com">gmail.com</option>
-								<option value="nate.com">nate.com</option>
-							</select>
-						</div>
-						<div id="noticeEmail">&nbsp;</div>
-					</div>
-					<div class="memberGenderDiv">
-						<div>성별</div>
-						<div>
-							<input type="radio" name="memberGender" id="gender1" value="male" checked> 남자
-							<input type="radio" name="memberGender" id="gender2" value="female"> 여자
-						</div>
-					</div>
-					<div class="joinBtnDiv">
-						<div class="joinBtn"><input type="button" id="joinBtn" value="회 원 가 입" onclick="goInsertMember();"></div>
-					</div>
-				</form>
+				</div>
 			</div>
 		</div>
-	</div><!-- bodyContainer -->
+	</div>
 </div>
 </body>
 </html>
+
+
+
+
+
 
