@@ -259,6 +259,31 @@ height:100px;
 }
 .submitCourseBtn{
 visibility: hidden;
+border:1px solid white;
+height:40px;
+width:100%;
+font-family: 'KyoboHand';
+text-align:center;
+}
+.submitCourseBtn > span{
+border:1px solid white;
+height:42px;
+display:inline-block;
+
+}
+.regCourseBtn{
+border:1px solid #BDBDBD;
+width:auto;
+height:30px;
+background-color:white;
+border-radius:5px;
+}
+.regCourseBtn:hover{
+border:1px solid #BCE55C;
+width:auto;
+height:30px;
+background-color:#BCE55C;
+border-radius:5px;
 }
 .searchBox{
 border:1px solid black;
@@ -375,6 +400,22 @@ color: #1F50B5;
 .ticketBlock{
     border:1px solid #B5B2FF;
     background-color:#B5B2FF;
+    width:90%;
+    height:100%;
+    font-family: 'KyoboHand';
+    margin: 0 auto;
+}
+.ticketBlock2{
+	 border:1px solid #FFBB00;
+    background-color: #FFBB00;
+    width:90%;
+    height:100%;
+    font-family: 'KyoboHand';
+    margin: 0 auto;
+}
+.ticketBlock3{
+	 border:1px solid #BCE55C;
+    background-color: #BCE55C;
     width:90%;
     height:100%;
     font-family: 'KyoboHand';
@@ -707,7 +748,7 @@ flex-flow:column wrap;
 		</div>
 	
 	<!-- 검색 장소 리스트 영역 -->
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=16"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=24"></script>
 		<div class="row">
 		   <div class="col-6 placeListOrder" id="placeList"><!--장소리스트 나오는곳 -->
 		   </div>
@@ -719,9 +760,9 @@ flex-flow:column wrap;
 		
 		  </div><!-- resInfoList -->
 		 <div class="submitCourseBtn"  id="submitCourse">
-		 	코스이름 입력:<input type="text" name="courseName" id="courseName">
+		 	<span>코스이름 입력:<input type="text" name="courseName" id="courseName">
 		  <input type="hidden" id="memberId" value="${sessionScope.loginInfo.memberId }">
-		  <input type="button" value="코스등록하러가기" id="regCourseBtn">
+		  <input type="button" value="코스담기" id="regCourseBtn" class="regCourseBtn"></span>
 		  </div> 
 		</form>
 	</div><!-- courseHalfLayout -->

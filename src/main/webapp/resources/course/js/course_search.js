@@ -46,7 +46,7 @@ $(document).ready(function(){
 		showResInfo(x,y);
 	});
 	
-	//지도에서 목록에 있는 장소명 클릭
+	//지도에서 목록에 있는 장소명 클릭 맛집임!!
 	$(document).on('click', '#resName', function() {
 		var placeName = $(this).text();
 		var placeAddr = $(this).next().text();
@@ -54,21 +54,43 @@ $(document).ready(function(){
 		var placeX = $(this).prev().val();
 		var placeY = $(this).prev().prev().val();
 			
-		placeStr = '';
+		var placeStr = '';
 		
-		placeStr = '<div class="resInfoDiv">' +
-		       	'   <div class="resultPlaceName" style="font-size:18px;">' + placeName + '<input type="button" value="X" id="deleteResBtn"></div>';
-		placeStr += '   <div class="resultPlaceAddr">' + placeAddr + '</div>';
-		placeStr += '   <input type="hidden" id="cateCode" class="cateCode" value="CATE_003">';
+		placeStr +='	   <div class="ticketContainer">';
+		placeStr +='		<div class="ticketMainLayout">';
+		placeStr +='			<div class="ticketLayout1">';
+		placeStr +='				<div class="ticketDiv">';
+		placeStr +='					<div class="ticketBlock2">';
+		placeStr +='						<div class="resultPlaceName">'+placeName+'<div class="close close1" id="deleteResBtn"></div>';
+		placeStr +='						</div>';
+		placeStr +='						<div class="resultPlaceAddr">'+placeAddr+'</div>';
+		placeStr +='						<input type="hidden" class="cateCode" value="CATE_003">';
 		placeStr += '	<input type="hidden" value="' + placeX + '" class="kakaoPlaceX">';	
-		placeStr += '	<input type="hidden" value="'+placeY+'" class="kakaoPlaceY">';	
-		
-		if(placeTel!=null ||placeTel!=''){
-		placeStr += '   <div class="resultTel" class="resultPlaceTel">' + placeTel + '</div>' +
-					'</div>';
-		}
+		placeStr += '	<input type="hidden" value="'+placeY+'" class="kakaoPlaceY">';
+								if(placeTel!=null||placeTel!=''){
+								
+		placeStr +='						<div class="resultTel" class="resultPlaceTel">'+placeTel+'</div>';
+							
+							}
+		placeStr +='						<div class="travelTicket">Travel Ticket</div>';
+		placeStr +='					</div>';
+		placeStr +='				</div>';
+		placeStr +='			</div>';
+		placeStr +='		<div class="ticketLayout2">';
+		placeStr +='	      	<span>맛집</span>';
+		placeStr +='	    <div class="ticketMark">';
+		placeStr +='	      		<img src="/resources/images/free-icon-aeroplane-5639813.png"width="100%" height="100%">';
+		placeStr +='	      	</div>';
+		placeStr +='	   <section class="custom-kontakt">';
+		placeStr +='	       <div class="barcode-box">';
+		placeStr +='	       		<div class="barcode-stripes"><span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-3"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-1"></span> <span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-1"></span><span class="stripe-1"></span><span class="sig5"></span> <span class="sig6"></span> <span class="sig7"></span></div>';
+		placeStr +='	       </div>';
+		placeStr +='	     </section>';
+		placeStr +='	     	</div>';
+		placeStr +='	     	</div>';
+		placeStr +='	</div>';
 
-		$('#resInfoList').append(placeStr);
+		$('.resInfoList').append(placeStr);
 		document.getElementById('submitCourse').style="visibility:visible";
 	});
    
@@ -99,7 +121,12 @@ placeStr +='	   <div class="ticketContainer">';
 placeStr +='		<div class="ticketMainLayout">';
 placeStr +='			<div class="ticketLayout1">';
 placeStr +='				<div class="ticketDiv">';
-placeStr +='					<div class="ticketBlock">';
+if(cateCode=='CATE_001'){
+placeStr +='					<div class="ticketBlock3">';
+}
+else if(cateCode=='CATE_002'){
+	placeStr +='					<div class="ticketBlock">';
+	}
 placeStr +='						<div class="resultPlaceName">'+placeName+'<div class="close close1" id="deleteResBtn"></div>';
 placeStr +='						</div>';
 placeStr +='						<div class="resultPlaceAddr">'+placeAddr+'</div>';
@@ -114,7 +141,13 @@ placeStr +='					</div>';
 placeStr +='				</div>';
 placeStr +='			</div>';
 placeStr +='		<div class="ticketLayout2">';
+if(cateCode=='CATE_001'){
 placeStr +='	      	<span>숙박지</span>';
+}
+else if(cateCode=='CATE_002'){
+	placeStr +='	      	<span>관광지</span>';
+	}
+
 placeStr +='	    <div class="ticketMark">';
 placeStr +='	      		<img src="/resources/images/free-icon-aeroplane-5639813.png"width="100%" height="100%">';
 placeStr +='	      	</div>';
