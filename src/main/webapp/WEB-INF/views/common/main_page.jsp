@@ -6,6 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+@font-face {
+    font-family: 'Cafe24Oneprettynight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 .mainPhotoContainer{
 border:1px solid white;
 width:auto;
@@ -97,33 +103,31 @@ text-align: center;
 margin-top:100px;
 }
 .noticeEventLayout{
-border:1px solid blue;
+border:1px solid white;
 height:100%;
 margin:0 auto;
 display:flex;
 flex-direction:row;
 }
 .eventBannerLayout{
-border:1px solid blue;
-background-color:orange;
+border:1px solid white;
 height:50%;
 display:flex;
 flex-direction:row;
 }
 .noticeBoardLayout{
-border:1px solid blue;
-background-color:pink;
+border:1px solid white;
 height:50%;
 }
 
 .noticeEventDiv{
-border:1px solid red;
+border:1px solid white;
 height:100%;
 
 }
 
 .noticeBanner{
-border:1px solid blue;
+border:1px solid white;
 background-color:white;
 height:50%;
 display:flex;
@@ -131,7 +135,8 @@ flex-direction:row;
 }
 
 .eventDiv{
-border:1px solid red;
+border:1px solid white;
+cursor:pointer;
 }
 .healingTripContainer{
 border:1px solid white;
@@ -185,6 +190,39 @@ filter: brightness(70%);
 .bannerBox{
 border:1px solid black;
 height:90px;
+}
+.noticeTable{
+border:1px solid #BDBDBD;
+width:100%;
+height:100%;
+font-family: 'Cafe24Oneprettynight';
+}
+.noticeTable > thead{
+border:1px solid #F29661;
+background-color:#F29661;
+color:#747474;
+height:15%;
+font-weight:bold;
+}
+.noticeTable > thead > tr >td{
+vertical-align: middle;
+}
+
+.noticeTable > tbody > tr{
+border-bottom:1px solid #BDBDBD;
+vertical-align: middle;
+padding-top:10px;
+
+}
+.noticeTable > tbody > tr > td{
+border-bottom:1px solid #BDBDBD;
+vertical-align: middle;
+padding-top:5px;
+}
+.bannerStyle{
+border-radius:10px;
+width:100%;
+height:100%;
 }
 </style>
 </head>
@@ -262,30 +300,53 @@ height:90px;
 		</div>
 		<div class="row">
 			<div class="col-12 noticeEventContainer">
-				<div class="col-8 noticeEventLayout">
+				<div class="col-7 noticeEventLayout">
 					<div class="col-6 noticeEventDiv">
 						<div class="col-12 noticeBanner">
-							공지사항배너
+							<img src="/resources/images/timeToTravel.jpg" class="bannerStyle">
 						</div>
 						<div class="col-12 noticeBanner">
-						공지사항테이블
+							<table class="noticeTable">
+								<colgroup>
+									<col width="5%">
+									<col width="50%">
+									<col width="20%">
+									<col width="25%">
+								</colgroup>
+								<thead>
+								<tr>
+									<td>No</td>
+									<td>제목</td>
+									<td>작성자</td>
+									<td>등록일</td>
+								</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>공지사항제목란</td>
+										<td>공지사항작성자</td>
+										<td>2021-11-08</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 					</div>
 					<div class="col-6 noticeEventDiv">
 							<div class="col-12 noticeBanner">
 								<div class="col-6 eventDiv">
-								<img src="/resources/images/배너1.jpg" width="100%" height="100%">
+								<img src="/resources/images/배너1.jpg" class="bannerStyle">
 								</div>
 								<div class="col-6 eventDiv">
-								<img src="/resources/images/배너2.png" width="100%" height="100%">
+								<img src="/resources/images/배너2.png" class="bannerStyle">
 								</div>
 							</div>
 							<div class="col-12 noticeBanner">
 								<div class="col-6 eventDiv">
-								이벤트3
+								<img src="/resources/images/0a6021a7-57ae-49eb-a52e-822e5b03567b.png" class="bannerStyle">
 								</div>
 								<div class="col-6 eventDiv">
-								이벤트4
+								<img src="/resources/images/fa837cab-3363-42d0-b819-585abc0b4c0b.png" class="bannerStyle">
 								</div>
 						</div>
 					</div>

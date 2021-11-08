@@ -16,6 +16,12 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Daughter_handwriting';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_03@1.0/Daughter_handwriting.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;width:100%;height:500px;}
@@ -73,7 +79,6 @@ cursor: pointer;
 border:1px solid black;
 width:400px;
 height:400px;
-margin-top:30px;
 
 }
 
@@ -203,7 +208,20 @@ margin-top:5px;
 font-size:12px;
 color:#2a74f8;
 }
+.howToSeachCourseBox{
+border:1px solid black;
+width:500px;
+height:400px;
+margin-left:100px;
 
+
+}
+.weatherHowToContainer{
+border:1px solid black;
+display:flex;
+flex-direction: row;
+margin-top:30px;
+}
 .courseContainer{
 border:1px solid black;
 width:1700px;
@@ -215,6 +233,7 @@ margin: 0 auto;
 .courseHalfLayout:first-child{
 border:1px solid blue;
 width:70%;
+min-height:2000px;
 height:auto;
 
 
@@ -302,30 +321,39 @@ color: #1F50B5;
     margin:0 auto;
 
 }
+.ticketMainLayout{
+	border:0.5px solid #dddddd;
+	width:100%;
+	height:80%;
+	display:flex;
+	flex-direction: row;
+	margin-top:4%;
+	box-shadow: 2px 2.5px 4px gray;
+}
 .ticketLayout1{
 
-    border:1px solid black;
+    border:1px solid white;
     border-right:1px solid white;
-    width:65%;
-    height:80%;
-    margin-top:4%;
+    width:70%;
+    height:100%;
    	position:relative;
+   	
 
 }
 .ticketLayout2{
 
-    border:1px solid black;
+    border:1px solid white;
     border-left:1px dotted black;
-    width:28%;
-    height:80%;
+    width:30%;
+    height:100%;
     position:relative;
     font-family: 'KyoboHand';
-    margin-top:4%;
-    
+    text-align:center;
 }
 .ticketLayout2 > span{
 	border:1px solid white;
 	display:inline-block;
+	margin:0 auto;
 	margin-top:16px;
 }
 
@@ -367,11 +395,10 @@ color: #1F50B5;
 .custom-kontakt .barcode-box { 
   border:1px solid white;
   width:90px;
-  min-width: 90px; 
+  min-width: 89px; 
   height: 27px; 
   padding-right: 5px;
-  margin-left:10px; 
-  margin-right:auto; 
+  margin-left:20px;
   position:absolute;
   bottom:0;
 }
@@ -474,6 +501,47 @@ color: #1F50B5;
 
 
 .close1:after {content: "\00d7"; font-size:18pt;}
+
+.placeLayout{
+border:1px solid #fff9a3;
+width:500px;
+height:150px;
+margin-top:20px;
+background-color:#fff9a3;
+box-shadow: 2px 2px 4px gray;
+font-family: 'Daughter_handwriting';
+font-weight:bold;
+font-size:20px;
+letter-spacing: 1px;
+}
+
+.placeLayout > span{
+border-bottom:1px solid #F15F5F;
+padding:5px; 5px;
+display:block;
+width:80%;
+margin-left:20px;
+}
+
+.placeLayout > ul > li{
+border:none;
+display:inline-block;
+width:auto;
+height:100%;
+cursor:pointer;
+position:relative;
+margin-top:10px;
+}
+
+.placeLayout > ul > li:hover{
+border:1px solid #FFC19E;
+background-color:#FFC19E;
+opacity: 90%;
+border-radius:10px;
+
+
+}
+
 </style>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	3d45ea450bf493fb0fea992bed62c07e&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d45ea450bf493fb0fea992bed62c07e&libraries=services"></script>
@@ -514,6 +582,7 @@ color: #1F50B5;
 <!-- 날씨영역 -->
 <!-- 날씨영역 -->
 <!-- 은아 10/23 테이블 작업 -->
+<div class="weatherHowToContainer col-12">
 	<div class="weatherContainer" id="weatherArea">
 	<div class="weatherBox" id="weatherBox">
 		<c:forEach items="${weatherList}" var="totalWeatherVO" varStatus="cnt">
@@ -604,8 +673,11 @@ color: #1F50B5;
 			</c:forEach>
 	</div><!-- weatherBox -->
 </div><!--weatherContainer-->
-				
-				
+
+			<div class="howToSeachCourseBox">
+				뭔가들어오긴할꺼임
+			</div>	
+</div><!-- weatherHowToContainer -->
 	
 	
 	<!-- 지도영역 -->
@@ -630,6 +702,18 @@ color: #1F50B5;
 <script type="text/javascript"src="/resources/course/js/course_search.js?ver=15"></script>
 		<div class="row">
 		   <div class="col-6" id="placeList">
+		    	<div class="placeLayout">
+		    		 <span>해나무</span>
+					<span>주소:부산광역시기장군일광면삼성3길1-12</span>
+					<span>연락처:051-722-788</span>
+					<ul>
+						 <li>담기</li>
+						 <li>맛집보기</li>
+					 </ul>
+		    	</div>
+		    	<div class="placeLayout">
+		    		포스트잇 영역
+		    	</div>
 		   </div>
 		</div>
 	</div><!-- courseHalfLayout -->
@@ -637,21 +721,22 @@ color: #1F50B5;
 		<form id="regCourseForm" method="post">
 		 <div id="resInfoList" class="resInfoList">
 		   	 <div class="ticketContainer"><!-- 티켓부분 -->
-        <div class="ticketLayout1">
-			<div class="ticketDiv">
-				<div class="ticketBlock">
-					<div class="resultPlaceName">
-										장소:이거이거
-						<div class="close close1" id="deleteResBtn"></div>
+				<div class="ticketMainLayout">
+					<div class="ticketLayout1">
+						<div class="ticketDiv">
+							<div class="ticketBlock">
+								<div class="resultPlaceName">
+									장소:이거이거
+									<div class="close close1" id="deleteResBtn"></div>
+								</div>
+								<div class="resultPlaceAddr">주소:여기</div>
+								<div class="resultTel" class="resultPlaceTel">Tel:000-0000</div>
+								<div class="travelTicket">Travel Ticket</div>
+							</div>
+						</div>
 					</div>
-						<div class="resultPlaceAddr">주소:여기</div>
-						<div class="resultTel" class="resultPlaceTel">Tel:000-0000</div>
-						<div class="travelTicket">Travel Ticket</div>
-				</div>
-			</div>
-		</div>
         <div class="ticketLayout2">
-               	<span>숙박지,관광지,맛집구분하기</span>
+               	<span>숙박지</span>
                	<div class="ticketMark">
                		<img src="/resources/images/free-icon-aeroplane-5639813.png"width="100%" height="100%">
                	</div>
@@ -661,35 +746,10 @@ color: #1F50B5;
                 </div>
               </section>
         </div>
+        </div><!-- ticketMainLayout -->
     </div><!-- 티켓끝 -->
-		 <div class="ticketContainer"><!-- 티켓부분 -->
-        <div class="ticketLayout1">
-			<div class="ticketDiv">
-				<div class="ticketBlock">
-					<div class="resultPlaceName">
-										장소:이거이거
-						<div class="close close1" id="deleteResBtn"></div>
-					</div>
-						<div class="resultPlaceAddr">주소:여기</div>
-						<div class="resultTel" class="resultPlaceTel">Tel:000-0000</div>
-						<div class="travelTicket">Travel Ticket</div>
-				</div>
-			</div>
-		</div>
-        <div class="ticketLayout2">
-               	<span>숙박지,관광지,맛집구분하기</span>
-               	<div class="ticketMark">
-               		<img src="/resources/images/free-icon-aeroplane-5639813.png"width="100%" height="100%">
-               	</div>
-            <section class="custom-kontakt">
-                <div class="barcode-box">
-                 
-                  <div class="barcode-stripes"><span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-3"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-1"></span> <span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-1"></span><span class="stripe-1"></span><span class="sig5"></span> <span class="sig6"></span> <span class="sig7"></span></div>
-                </div>
-              </section>
-        </div>
-    </div><!-- 티켓끝 -->
-		  </div>
+		
+		  </div><!-- resInfoList -->
 		 <div class="submitCourseBtn"  id="submitCourse">
 		 	코스이름 입력:<input type="text" name="courseName" id="courseName">
 		  <input type="hidden" id="memberId" value="${sessionScope.loginInfo.memberId }">
