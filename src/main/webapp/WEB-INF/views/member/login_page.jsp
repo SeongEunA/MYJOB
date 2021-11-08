@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/resources/common/css/reset.css">
 <script type="text/javascript" src="/resources/member/js/login_page.js?ver=31"></script>
 <style type="text/css">
 .loginTitleDiv{

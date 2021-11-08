@@ -56,10 +56,6 @@ td {
 	border: 1px solid black;
 	padding: 10px;
 }
-
-/* .row{
-	margin-top: 30px;
-} */
 </style>
 </head>
 <body>

@@ -6,11 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/common/reset.css">
 <style type="text/css">
 .noticeTitleDiv{
 	margin:0 auto;
-	margin-top:80px;
+	padding:0px;
+	border: 1px solid white;
+	margin-top: 80px;
 }
 .noticeTitle{
 	border-bottom: 5px solid #f3f5f6;
@@ -20,114 +21,91 @@
 }
 .noticeSearchDiv{
 	margin: 0 auto;
-	margin-top: 80px;
-	background-color: #f3f5f6;
-	padding: 20px;
-}
-.noticeSearch{
-	border: 1px solid black;
-	margin:0 auto;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	padding: 20px;
-	font-size: 13px;
-}
-.searchTable td{
-	height: 30px;
-}
-
-.searchTable select{
-	width: 100%;
-	height: 100%;
-}
-
-.searchTable input[type="text"]{
-	width: 100%;
-	height: 100%;
-}
-
-.searchTable input[type="submit"]{
-	width: 100%;
-	height: 100%;
-}
-.noticeTableDiv{
-	border: 1px solid blue;
-	margin:0 auto;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	font-size: 13px;
-}
-.noticeTable{
-	border: 1px solid black;
-	margin:0 auto;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	padding: 20px;
-	font-size: 13px;
-}
-.regNoticeBtnDiv{
-	border: 1px solid purple;
-	margin-bottom: 20px;
-	margin-left: 0px;
-	padding-left: 0px;
-	text-align: right;
-}
-.regNoticeBtn{
-	height: 30px;
-	border: 1px solid red;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	margin-left: 0px;
-	padding-left: 0px;
-	
-}
-.regNoticeBtn input[type="button"]{
-	width: 10%;
-	height: 100%;
-}
-table{
-	width: 100%;
-	margin: 0 auto;
 	margin-top: 10px;
-	text-align: center;
-}
-
-tr{
-	border: 1px solid black;
-}
-
-td{
-	border: 1px solid black;
 	padding: 10px;
 }
+.noticeSearchDiv input[type="text"]{
+	width: 100%;
+}
+.noticeListDiv{
+	margin: 0 auto;
+	margin-top: 10px;
+}
+.noticeList{
+	border: 2px solid #f3f5f6;
+	padding: 20px;
+	text-align: center;
+}
+thead{
+	background-color: #f3f5f6;
+	border-top: 2px solid #61616d;
+}
+.totalCnt{
+	text-align: left;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.searchTable select{
+	width: 100%;
+}
+.searchTable input[type="submit"]{
+	margin: 0 auto;
+	width: 100px;
+	height: 30px;
+}
+.noticeSubject{
+	text-align: left;
+}
+.noticeContentList tr:hover{
+	background-color: #f3f5f6;
+}
+td{
+	padding: 10px;
+}
+.regNoticeBtnDiv{
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 0px;
+	text-align: center;
+	padding-right: 10px;
+}
+.regNoticeBtn [type="button"]{
+	margin: 0 auto;
+	margin-left: 0px;
+	margin-bottom: 0px;
+	text-align: center;
+	width: 100px;
+	height: 30px;
+}
 .noticePagingDiv{
-	border: 1px solid blue;
+	border: 1px solid white;
 	margin:0 auto;
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 0px;
 	font-size: 13px;
 }
 .noticePaging{
-	border: 1px solid black;
 	margin:0 auto;
 	font-size: 10px;
+}
+.text-center{
+	border: 1px solid white;
 }
 </style>
 </head>
 <body>
 <div class="row">
 	<div class="col12 bodyContainer">
-		<div class="col-8 noticeTitleDiv">
+		<div class="col-6 noticeTitleDiv">
 			<div class="col-12 noticeTitle">공지사항</div>
 		</div>
-		<div class="col-7 noticeSearchDiv">
-			<div class="col-11 noticeSearch">
+		<div class="col-6 noticeSearchDiv">
+			<div class="col-12 noticeSearch">
 				<form action="/common/noticeBoard" method="post">
 					<table class="searchTable">
 					<colgroup>
-						<col width="20%">
-						<col width="*%">
-						<col width="20%">
+						<col width="15%">
+						<col width="75%">
+						<col width="5%">
 					</colgroup>
 						<tr>
 							<td>
@@ -149,18 +127,9 @@ td{
 			</div>
 		</div>
 		
-		<div class="col-7 noticeTableDiv">
-			<div class="col-11 noticeTable">
-				<div class="col-12 regNoticeBtnDiv">
-					<div class="col-12 regNoticeBtn">
-					&nbsp;
-						<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' }">
-							<a href="/admin/goRegNoticeBoard"><input type="button" value="등록"></a>
-						</c:if>
-					</div>
-				</div>
-				
-				총 ${noticeBoardList.size() } 건
+		<div class="col-6 noticeListDiv">
+			<div class="col-12 noticeList">
+				<div class="totalCnt">총 ${noticeBoardList.size() } 건</div>
 				<div class="tableDiv">
 					<table>
 					<colgroup>
@@ -177,11 +146,11 @@ td{
 								<td>등록일</td>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody class="noticeContentList">
 							  <c:forEach items="${noticeBoardList }" var="noticeBoardInfo" varStatus="i">
 								    <tr>
 								      	<td><a  style="color: black; text-decoration-line: none;">${noticeBoardList.size() - i.index }</a></td>
-								      	<td><a  style="color: black; text-decoration-line: none;" href="/common/detailNoticeBoard?noticeBoardCode=${noticeBoardInfo.noticeBoardCode }">${noticeBoardInfo.boardSubject }</a></td>
+								      	<td class="noticeSubject"><a  style="color: black; text-decoration-line: none;" href="/common/detailNoticeBoard?noticeBoardCode=${noticeBoardInfo.noticeBoardCode }">${noticeBoardInfo.boardSubject }</a></td>
 								      	<td><a  style="color: black; text-decoration-line: none;">${noticeBoardInfo.boardWriter }</a></td>
 								      	<td><a  style="color: black; text-decoration-line: none;">${noticeBoardInfo.regDate }</a></td>
 								    </tr>  
@@ -191,8 +160,17 @@ td{
 				</div>
 			</div>
 		</div>
+		
+		<div class="col-6 regNoticeBtnDiv">
+			<div class="col-12 regNoticeBtn">
+			&nbsp;
+				<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' }">
+					<a href="/admin/goRegNoticeBoard"><input type="button" value="등록"></a>
+				</c:if>
+			</div>
+		</div>
 
-		<div class="col-7 noticePagingDiv">
+		<div class="col-6 noticePagingDiv">
 			<div class="col-2 noticePaging">
 				<div class="row">
 					<div class="col text-center">

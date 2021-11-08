@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/resources/common/css/reset.css">
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style type="text/css">
 .joinTitleDiv{
@@ -36,6 +35,13 @@
 }
 .idCheck{
 	display: inline-block;
+}
+.idCheck input[type="button"]{
+	width: 100px;
+	height: 25px;
+	color: #ffffff;
+	background-color: #000080;
+	border: white;
 }
 .joinInfoDiv input[type="text"]{
 	width: 300px;
@@ -102,6 +108,13 @@
 .searchAddrDiv{
 	display: inline-block;
 }
+.searchAddrDiv input[type="button"]{
+	width: 100px;
+	height: 25px;
+	color: #ffffff;
+	background-color: #000080;
+	border: white;
+}
 .memberEmailDiv{
 	width: 300px;
 }
@@ -122,13 +135,19 @@
 }
 .joinBtnDiv{
 	margin-top: 20px;
-	padding: 10px;
 }
 .joinBtn{
 	margin: 0 auto;
 	text-align: center;
 }
-
+.joinBtn input[type="button"]{
+	width: 100%;
+	height: 50px;
+	color: #ffffff;
+	background-color: #000080;
+	border: white;
+	
+}
 #noticeId{
 	margin-top: 7px;
 	margin-bottom: 7px;
@@ -227,7 +246,7 @@
 					<div class="memberAddresDiv">
 						<div>주소</div>
 						<div class="memberAddr1Div"><input type="text" id=memberAddr1 name="memberAddres" readonly placeholder="도로명/지번 주소"></div>
-						<div class="searchAddrDiv"><button type="button" onclick="openPostCode();" id="memberAddrBtn">주소검색</button></div>
+						<div class="searchAddrDiv"><input type="button" id="memberAddrBtn" onclick="openPostCode();" value="주소검색"></div>
 						<div class="memberAddr2Div"><input type="text" id="memberAddr2" name="memberAddres" placeholder="상세 주소"></div>
 						<div id="noticeAddres">&nbsp;</div>
 					</div>

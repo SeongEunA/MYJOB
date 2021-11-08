@@ -6,36 +6,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/resources/common/css/reset.css?ver=1">
 <script type="text/javascript" src="/resources/common/js/notice_board_detail.js?ver=4"></script>
 <style type="text/css">
-.container{
-	width: 1000px;
-	background-color: #eaeaea;
-	margin-top: 100px;
-	padding: 30px;
-	font-size: 12px;
+.noticeDetailTitleDiv{
+	margin:0 auto;
+	padding:0px;
+	border: 1px solid white;
+	margin-top: 80px;
 }
-
-table{
-	width: 940px;
+.noticeDetailTitle{
+	border-bottom: 5px solid #f3f5f6;
+	padding: 5px;
 	margin: 0 auto;
+	font-size: 20pt;
+}
+.noticeContentDiv{
+	border: 1px solid red;
+	margin-top: 80px;
+	padding: 20px;
+}
+.noticeContentDiv td{
+	padding-top: 16px;
+	padding-bottom: 16px;
+}
+.noticeContent{
 	text-align: center;
+	padding-left: 0px;
+	padding-right: 0px;
 }
-
-tr{
-	border: 1px solid black;
-}
-
-td{
-	border: 1px solid black;
-	padding: 10px;
-	
-}
-#boardSubject{
-	padding: 0px;
-}
-
 .contentTr td {
 	height: 200px;
 	text-align: left;
@@ -57,10 +55,12 @@ td{
 </style>
 </head>
 <body>
-공지사항 상세페이지 입니다.
+<div class="row">
 	<div class="bodyContainer col-12">
-		<div class="containerDiv col-8">
-			<div id="detailNoticeBoard" class="container">
+		<div class="col-6 noticeDetailTitleDiv">
+			<div class="col-12 noticeDetailTitle">공지사항 상세페이지</div>
+		<div class="col-12 noticeContentDiv">
+			<div class="col-12 noticeContent">
 				<table>
 					<colgroup>
 						<col width="85%">
@@ -102,7 +102,9 @@ td{
 				</c:if>
 			</div>
 		</div>
+		</div>
 	</div>
+</div>
 </body>
 </html>
 

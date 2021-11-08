@@ -49,10 +49,20 @@ $(document).ready(function(){
 		});
 		
 	};
+	
+	
 
 
 
 })(jQuery);
+
+
+//로그인 엔터키
+$(document).on('keypress', '#loginInfoForm', function(e) {
+	if (e.keyCode === 13) {
+    	loginCheck();
+    }
+});
 
 
 

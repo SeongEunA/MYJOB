@@ -34,7 +34,7 @@ $(document).ready(function(){
 			var boardContent = $('#boardContent').text();
 			
 			$('#boardSubject').html('<input type="text" value="' + boardSubject + '">');
-			$('#boardContent').html('<textarea cols="150" rows="11" name="boardContent" style="resize: none;">' + boardContent + '</textarea>');
+			$('#boardContent').html('<textarea cols="85%" rows="9" name="boardContent" style="resize: none;">' + boardContent + '</textarea>');
 			
 			
 			//버튼의 글자를 변경
@@ -94,7 +94,7 @@ $(document).ready(function(){
 						    str += '			<td>작성일</td>';
 						    str += '		</tr>';
 						    str += '		<tr>';
-						    str += '			<td id="boardSubject">' + result.boardSubject + '</td>';
+						    str += '			<td>' + result.boardSubject + '</td>';
 						    str += '			<td>' + result.boardWriter + '</td>';
 						    str += '			<td>' + result.regDate + '</td>';
 						    str += '		</tr>';
