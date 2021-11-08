@@ -11,6 +11,7 @@
 		<result column="REVIEW_BOARD_REG_DATE"          property="reviewBoardRegDate"/>
 		<result column="REVIEW_BOARD_READ_CNT" 		    property="reviewBoardReadCnt"/>
 		<result column="REVIEW_BOARD_RECOMMEND_CNT" 	property="reviewBoardRecommendCnt"/>
+		<result column="COURSE_CODE" 					property="courseCode"/>
 		<collection property="reviewImgList" 			resultMap="reviewImg"></collection>
 	</resultMap>
 	<!-- REVIEW_IMG Table -->
@@ -36,7 +37,7 @@
 		<result column="REVIEW_BOARD_CODE" 	   		 property="reviewBoardCode"/>
 		<result column="IS_RECOMMEND"	 		     property="isRecommend"/>
 	</resultMap>
-	
+
 	
 	<!--후기등록  -->
 	<insert id="insertReview">
@@ -45,11 +46,13 @@
 			, REVIEW_BOARD_TITLE
 			, REVIEW_BOARD_CONTENT
 			, REVIEW_BOARD_WRITER
+			, COURSE_CODE
 		) VALUES(
 			#{reviewBoardCode}
 			, #{reviewBoardTitle}
 			, #{reviewBoardContent}
 			, #{reviewBoardWriter}
+			, #{courseCode}
 		)
 	</insert>
 	<!--후기코드를 조회(이미지에 후기코드를 활용하기위해)  -->

@@ -15,8 +15,20 @@ public class ReviewVO extends PageVO {
 	private int reviewBoardReadCnt;
 	private List<ReviewImgVO> reviewImgList;
 	private String orderByReadCnt;
+	private String courseCode;
 	
 	
+	
+	
+	
+
+	public String getCourseCode() {
+		return courseCode;
+	}
+
+	public void setCourseCode(String courseCode) {
+		this.courseCode = courseCode;
+	}
 
 	public String getOrderByReadCnt() {
 		return orderByReadCnt;
