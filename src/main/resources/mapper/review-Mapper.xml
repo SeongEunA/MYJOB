@@ -122,9 +122,12 @@
 		<if test="searchValue != null and !searchValue.equals('')">
 			AND	${searchKeyword} LIKE '%'||#{searchValue}||'%'
 		</if>     
-        
-        ORDER BY REVIEW_BOARD_RECOMMEND_CNT DESC, REVIEW_BOARD_CODE 	
-	)
+        ORDER BY 
+         <if test="orderByReadCnt != null and !orderByReadCnt.equals('Y')">
+        	REVIEW_BOARD_READ_CNT DESC, REVIEW_BOARD_RECOMMEND_CNT DESC, 	
+        </if>
+        	REVIEW_BOARD_CODE DESC 	
+	   )
 	)
 	WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 	</select>

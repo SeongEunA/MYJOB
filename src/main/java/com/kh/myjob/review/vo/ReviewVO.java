@@ -14,7 +14,17 @@ public class ReviewVO extends PageVO {
 	private int reviewBoardRecommendCnt;
 	private int reviewBoardReadCnt;
 	private List<ReviewImgVO> reviewImgList;
+	private String orderByReadCnt;
 	
+	
+
+	public String getOrderByReadCnt() {
+		return orderByReadCnt;
+	}
+
+	public void setOrderByReadCnt(String orderByReadCnt) {
+		this.orderByReadCnt = orderByReadCnt;
+	}
 
 	public String getReviewBoardRegDate() {
 		return reviewBoardRegDate;

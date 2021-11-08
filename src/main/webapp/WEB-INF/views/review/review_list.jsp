@@ -71,7 +71,7 @@
 			<div class="col-12 selectOrderBy">
 				<span>
 					<a href="/review/selectReviewList">최신순</a>/
-					<a href="/review/selectReviewList">인기순</a>
+					<a href="/review/selectReviewList?orderByReadCnt='Y'">인기순</a>
 				</span>
 			</div>
 			총${reviewList.size()}건
