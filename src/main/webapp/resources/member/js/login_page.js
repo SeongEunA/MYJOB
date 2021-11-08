@@ -31,12 +31,14 @@ $(document).ready(function(){
 				//로그인체크
 				if(!result){
 //					alert('확인');
+//					alert(result);
 					$('#noticeLogin').text('아이디 또는 비밀번호를 확인해주세요.');
 					$('#noticeLogin').css('color', 'red');
 					$('#memberId').focus();
 				}
 				else{
 //					alert('확인');
+//					alert(result);
 					$('#loginInfoForm').submit();
 				}
 				

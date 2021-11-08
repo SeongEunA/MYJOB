@@ -15,14 +15,14 @@
 	letter-spacing: 6.0px;
 }
 .memberManageDiv{
-	border: 1px solid blue;
+	width: 100%;
 	height: 30px;
 	background-color: #efefef;
 	margin-top: 60px;
 	margin-bottom: 30px;
 }
 .replyManageDiv{
-	border: 1px solid blue;
+	width: 100%;
 	height: 30px;
 	background-color: #efefef;
 	margin-top: 30px;

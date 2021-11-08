@@ -42,6 +42,7 @@ body {
 }
 .col-2{
 	padding: 0px;
+	background-color: #ffffff;
 }
 .col-10{
 	padding: 0px;

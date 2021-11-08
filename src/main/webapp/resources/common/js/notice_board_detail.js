@@ -34,7 +34,7 @@ $(document).ready(function(){
 			var boardContent = $('#boardContent').text();
 			
 			$('#boardSubject').html('<input type="text" value="' + boardSubject + '">');
-			$('#boardContent').html('<textarea cols="85%" rows="9" name="boardContent" style="resize: none;">' + boardContent + '</textarea>');
+			$('#boardContent').html('<textarea cols="83%" rows="8" name="boardContent" style="resize: none;">' + boardContent + '</textarea>');
 			
 			
 			//버튼의 글자를 변경
@@ -84,8 +84,8 @@ $(document).ready(function(){
 						    var str = '';
 						    str += ' 	<table>';
 						    str += ' 		<colgroup>';
-						    str += '			<col width="85%">';
-						    str += '			<col width="5%">';
+						    str += '			<col width="*%">';
+						    str += '			<col width="10%">';
 						    str += '			<col width="10%">';
 						    str += ' 		</colgroup>';
 						    str += ' 		<tr>';

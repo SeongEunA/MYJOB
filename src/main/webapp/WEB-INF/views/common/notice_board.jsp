@@ -53,18 +53,18 @@ thead{
 	width: 100px;
 	height: 30px;
 }
-.noticeSubject{
+/* .noticeSubject{
 	text-align: left;
-}
+} */
 .noticeContentList tr:hover{
-	background-color: #f3f5f6;
+	background-color: #f8f8f8;
 }
 td{
 	padding: 10px;
 }
 .regNoticeBtnDiv{
 	margin: 0 auto;
-	margin-top: 10px;
+	margin-top: 30px;
 	margin-bottom: 0px;
 	text-align: center;
 	padding-right: 10px;
@@ -110,8 +110,8 @@ td{
 						<tr>
 							<td>
 								<select name="searchKeyword">
-									<option value="BOARD_SUBJECT" <c:if test="${noticeBoardVO.searchKeyword eq 'BOARD_SUBJECT'}">selected</c:if>>제&nbsp;&nbsp;&nbsp;목</option>
-									<option value="BOARD_CONTENT" <c:if test="${noticeBoardVO.searchKeyword eq 'BOARD_CONTENT'}">selected</c:if>>내&nbsp;&nbsp;&nbsp;용</option>
+									<option value="BOARD_SUBJECT" <c:if test="${noticeBoardVO.searchKeyword eq 'BOARD_SUBJECT'}">selected</c:if>>제&nbsp;&nbsp;&nbsp;&nbsp;목</option>
+									<option value="BOARD_CONTENT" <c:if test="${noticeBoardVO.searchKeyword eq 'BOARD_CONTENT'}">selected</c:if>>내&nbsp;&nbsp;&nbsp;&nbsp;용</option>
 									<option value="BOARD_WRITER" <c:if test="${noticeBoardVO.searchKeyword eq 'BOARD_WRITER'}">selected</c:if>>작성자</option>
 								</select>
 							</td>
@@ -197,6 +197,7 @@ td{
 		</div>
 	</div><!-- bodyContainer -->
 </div>
+
 </body>
 </html>
 

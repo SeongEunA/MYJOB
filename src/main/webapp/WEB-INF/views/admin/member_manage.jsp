@@ -7,94 +7,109 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.container {
-	width: 100%;
-	background-color: #eaeaea;
-	margin-top: 30px;
-	padding: 30px;
-	font-size: 12px;
+.memberManageTitleDiv{
+	padding:0px;
+	margin-top: 80px;
 }
-
-.searchDiv {
-	margin-bottom: 30px;
+.memberManageTitle{
+	border-bottom: 5px solid #f3f5f6;
+	padding: 5px;
+	font-size: 20pt;
 }
-
-.tableDiv {
+.memberSearchDiv{
 	margin-top: 10px;
-}
-
-.searchTable td {
-	height: 30px;
-}
-
-.searchTable select {
-	width: 100%;
-	height: 100%;
-}
-
-.searchTable input[type="text"] {
-	width: 100%;
-	height: 100%;
-}
-
-.searchTable button[type="button"] {
-	width: 100%;
-	height: 100%;
-}
-
-table {
-	width: 100%;
-	margin: 0 auto;
-	text-align: center;
-}
-
-tr {
-	border: 1px solid black;
-}
-
-td {
-	border: 1px solid black;
 	padding: 10px;
 }
+.memberSearch input[type="text"]{
+	width: 100%;
+}
+.memberListDiv{
+	margin-top: 10px;
+}
+.memberList{
+	border: 2px solid #f3f5f6;
+	padding: 20px;
+	text-align: center;
+}
+thead{
+	background-color: #f3f5f6;
+	border-top: 2px solid #61616d;
+}
+.totalCnt{
+	text-align: left;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.searchTable select{
+	width: 100%;
+}
+.searchTable input[type="submit"]{
+	width: 100px;
+	height: 30px;
+}
+.memberContentList tr:hover{
+	background-color: #f8f8f8;
+}
+td{
+	padding: 10px;
+}
+.memberPagingDiv{
+	border: 1px solid white;
+	margin-top: 30px;
+	font-size: 13px;
+}
+.memberPaging{
+	font-size: 10px;
+}
+.text-center{
+	border: 1px solid white;
+}
+
 </style>
 </head>
 <body>
-	회원 관리 페이지입니다.
+<div class="row">
 	<div class="col-12 bodyContainer">
-		<div class="col-8 containerDiv">
-			<div class="container">
-				<div class="searchDiv">
-					<form action="/admin/memberManage" method="post">
-						<table class="searchTable">
-							<colgroup>
-								<col width="20%">
-								<col width="*%">
-								<col width="20%">
-							</colgroup>
-							<tr>
-								<td><select name="searchKeyword">
-										<option value="MEMBER_ID"
-											<c:if test="${memberVO.searchKeyword eq 'MEMBER_ID'}">selected</c:if>>아이디</option>
-										<option value="MEMBER_NAME"
-											<c:if test="${memberVO.searchKeyword eq 'MEMBER_NAME'}">selected</c:if>>이&nbsp;&nbsp;&nbsp;름</option>
-								</select></td>
-								<td><input type="text" name="searchValue"
-									value="${memberVO.searchValue }"></td>
-								<td>
-									<button type="submit">검색</button>
-								</td>
-							</tr>
-						</table>
-					</form>
-				</div>
-				총 ${memberList.size() } 건
+		<div class="col-7 memberManageTitleDiv">
+			<div class="col-12 memberManageTitle">회원관리</div>
+		</div>
+		<div class="col-7 memberSearchDiv">
+			<div class="col-12 memberSearch">
+				<form action="/admin/memberManage" method="post">
+					<table class="searchTable">
+					<colgroup>
+						<col width="15%">
+						<col width="75%">
+						<col width="*%">
+					</colgroup>
+						<tr>
+							<td><select name="searchKeyword">
+									<option value="MEMBER_ID"
+										<c:if test="${memberVO.searchKeyword eq 'MEMBER_ID'}">selected</c:if>>아이디</option>
+									<option value="MEMBER_NAME"
+										<c:if test="${memberVO.searchKeyword eq 'MEMBER_NAME'}">selected</c:if>>이&nbsp;&nbsp;&nbsp;&nbsp;름</option>
+							</select></td>
+							<td><input type="text" name="searchValue"
+								value="${memberVO.searchValue }"></td>
+							<td>
+								<button type="submit">검색</button>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+		
+		<div class="col-7 memberListDiv">
+			<div class="col-12 memberList">
+				<div class="totalCnt">총 ${memberList.size() } 건</div>
 				<div class="tableDiv">
 					<table>
 						<colgroup>
 							<col width="5%">
 							<col width="*">
-							<col width="10%">
-							<col width="10%">
+							<col width="12%">
+							<col width="12%">
 						</colgroup>
 						<thead>
 							<tr>
@@ -104,9 +119,8 @@ td {
 								<td>가입일</td>
 							</tr>
 						</thead>
-						<tbody>
-							<c:forEach items="${memberList }" var="memberListInfo"
-								varStatus="i">
+						<tbody class="memberContentList">
+							<c:forEach items="${memberList }" var="memberListInfo" varStatus="i">
 								<tr>
 									<td><a style="color: black; text-decoration-line: none;">${memberList.size() - i.index }</a></td>
 									<td><a style="color: black; text-decoration-line: none;"
@@ -119,43 +133,42 @@ td {
 					</table>
 				</div>
 			</div>
-
-
-			<div class="row">
-				<div class="col-8 noticePagingDiv">
-				<div class="col-4 noticePaging">
-				<div class="col text-center">
-					<nav aria-label="...">
-						<ul class="pagination justify-content-center">
-							<li
-								class="page-item <c:if test="${!memberVO.prev }">disabled</c:if>">
-								<a class="page-link"
-								href="/admin/memberManage?nowPage=${memberVO.beginPage - 1 }">Prev</a>
-							</li>
-
-							<c:forEach begin="${memberVO.beginPage }"
-								end="${memberVO.endPage }" var="pageNumber">
+		</div>
+		
+		<div class="col-7 memberPagingDiv">
+			<div class="col-4 memberPaging">
+				<div class="row">
+					<div class="col text-center">
+						<nav aria-label="...">
+							<ul class="pagination justify-content-center">
 								<li
-									class="page-item <c:if test="${memberVO.nowPage eq pageNumber }">active</c:if>">
+									class="page-item <c:if test="${!memberVO.prev }">disabled</c:if>">
 									<a class="page-link"
-									href="/admin/memberManage?nowPage=${pageNumber }&searchKeyword=${memberVO.searchKeyword}&searchValue=${memberVO.searchValue}">${pageNumber }</a>
+									href="/admin/memberManage?nowPage=${memberVO.beginPage - 1 }">Prev</a>
 								</li>
-							</c:forEach>
-
-							<li
-								class="page-item <c:if test="${!memberVO.next }">disabled</c:if>">
-								<a class="page-link"
-								href="/admin/memberManage?nowPage=${memberVO.endPage + 1 }">Next</a>
-							</li>
-						</ul>
-					</nav>
+	
+								<c:forEach begin="${memberVO.beginPage }"
+									end="${memberVO.endPage }" var="pageNumber">
+									<li
+										class="page-item <c:if test="${memberVO.nowPage eq pageNumber }">active</c:if>">
+										<a class="page-link"
+										href="/admin/memberManage?nowPage=${pageNumber }&searchKeyword=${memberVO.searchKeyword}&searchValue=${memberVO.searchValue}">${pageNumber }</a>
+									</li>
+								</c:forEach>
+	
+								<li
+									class="page-item <c:if test="${!memberVO.next }">disabled</c:if>">
+									<a class="page-link"
+									href="/admin/memberManage?nowPage=${memberVO.endPage + 1 }">Next</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
 				</div>
 			</div>
 		</div>
-		</div>
-		</div>
-	</div>
-	<!-- bodyContainer -->
+	</div><!-- bodyContainer -->
+</div>
 
 </body>
 </html>

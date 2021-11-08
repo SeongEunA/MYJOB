@@ -21,18 +21,35 @@
 	font-size: 20pt;
 }
 .noticeContentDiv{
-	border: 1px solid red;
+	border: 2px solid #f3f5f6;
 	margin-top: 80px;
 	padding: 20px;
 }
 .noticeContentDiv td{
 	padding-top: 16px;
 	padding-bottom: 16px;
+	background-color: #ffffff;
 }
 .noticeContent{
 	text-align: center;
 	padding-left: 0px;
 	padding-right: 0px;
+}
+.firstLine td{
+	background-color: #f8f8f8;
+}
+.thirdLine td{
+	background-color: #f8f8f8;
+}
+#boardSubject{
+	padding: 5px;
+}
+#boardContent{
+	padding-left: 10px;
+}
+table td{
+	border: 2px solid #b4b4bc;
+	padding: 10px;
 }
 .contentTr td {
 	height: 200px;
@@ -62,12 +79,12 @@
 		<div class="col-12 noticeContentDiv">
 			<div class="col-12 noticeContent">
 				<table>
-					<colgroup>
-						<col width="85%">
-						<col width="5%">
-						<col width="10%">
-					</colgroup>
-					<tr>
+				<colgroup>
+					<col width="*%">
+					<col width="10%">
+					<col width="10%">
+				</colgroup>
+					<tr class="firstLine">
 						<td>제 목</td>
 						<td>작성자</td>
 						<td>작성일</td>
@@ -77,7 +94,7 @@
 						<td>${detailNoticeBoard.boardWriter }</td>
 						<td>${detailNoticeBoard.regDate }</td>
 					</tr>
-					<tr>
+					<tr class="thirdLine">
 						<td colspan="3">내 용</td>
 					</tr>
 					<tr class="contentTr">
