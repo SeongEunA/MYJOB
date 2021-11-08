@@ -68,6 +68,11 @@ $(document).ready(function(){
 		}
 		//PW입력값이 양식에 맞을 때
 		else{
+			if(memberPw != $('#confirmPw').val()){
+				$('#noticeCpw').text('비밀번호가 일치하지 않습니다.');
+				$('#noticeCpw').css('color', 'red');
+				okPw = 0;
+			}
 			//PW와 ID중복 체크 여부
 			if(memberPw == $('#memberId').val()){
 				$('#noticePw').text('비밀번호는 아이디와 일치할 수 없습니다.');
