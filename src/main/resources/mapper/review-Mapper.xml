@@ -122,6 +122,7 @@
 		<if test="searchValue != null and !searchValue.equals('')">
 			AND	${searchKeyword} LIKE '%'||#{searchValue}||'%'
 		</if>     
+        
         ORDER BY REVIEW_BOARD_RECOMMEND_CNT DESC, REVIEW_BOARD_CODE 	
 	)
 	)

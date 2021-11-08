@@ -12,7 +12,6 @@
 <style type="text/css">
 .reviewContainer{
 
-
 }
 
 .container{
@@ -110,7 +109,6 @@
 							placeholder="코스에 대한 간략한 설명을 기재할 수 있습니다."></textarea>
 					</div>
 
-
 				<div>
 					<section class="pr_img">
 						<p>
@@ -126,27 +124,9 @@
 				</div>
 
 
-
-
-
-
-
-
-
-
-
-					<!--  <div>
-           <label for="formFile" class="form-label">등록하실 이미지를 선택해주세요</label>
-             <input name="file1" class="form-control" type="file" id="formFile" required>
-        </div>
-         <div>
-           <label for="formFileMultiple" class="form-label">등록하실 이미지를 선택해주세요</label>
-             <input name="file2" class="form-control" type="file" id="formFileMultiple" multiple>
-        </div> -->
 					<div class="btn_center">
-						<input type="button" value="취소" class="reg_back_btn"
-							onclick="location.href='/review/SelectReviewList'"> <input
-							type="submit" value="등록" class="reg_btn">
+						<input type="button" value="취소" class="reg_back_btn" onclick="location.href='/review/SelectReviewList'"> 
+						<input type="submit" value="등록" class="reg_btn">
 					</div>
 				</form>
 			</div>
