@@ -9,7 +9,7 @@
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=70d7b169893841eb187f9823a06d83f4"></script>
 <script type="text/javascript"
-	src="/resources/review/js/review_detail.js?ver=26"></script>
+	src="/resources/review/js/review_detail.js?ver=27"></script>
 <style type="text/css">
 .totalContain {
 	border: 1px solid red;
@@ -62,6 +62,7 @@
 	margin:0 auto;
 }
 .regReviewText{
+	text-align: center;	
 	border:1px solid red;
 	height:auto;
 	margin:0 auto;
@@ -71,6 +72,7 @@
 	min-height:300px;
 	margin:0 auto;
 	text-align: center;
+	margin-top: 25px;
 }
 .reviewPhotoLayout{
 	border:1px solid red;
@@ -86,6 +88,23 @@
 	height:100%;
 	border-radius:10px;
 	margin:0 20px;
+	display: block;
+}
+.recommendLayout{
+	text-align: left;
+	padding: 12px;
+}
+.recommendLayout div:last-child{
+	text-align: right;
+	color: #707070;
+}
+.recommendLayout span{
+	margin-left: 3px;
+}
+
+
+.recommendLayout img{
+	height: 28px;
 }
 
 </style>
@@ -103,15 +122,23 @@
 							</div>
 						</div>
 					</c:if>
-					<div class="recommendLayout" id="appendRecommendCnt">
-						<c:choose>
-							<c:when test="${reviewRecom.isRecommend eq 'Y'}">
-								<img id="recomBtn" src="/resources/images/updateRecommend.PNG">${review.reviewBoardRecommendCnt }
-						</c:when>
-							<c:otherwise>
-								<img id="recomBtn" onclick="updateRecommend();"src="/resources/images/nomalRecommend.PNG">${review.reviewBoardRecommendCnt }
-						</c:otherwise>
-						</c:choose>
+					<div class="recommendLayout">
+						<span id="appendRecommendCnt">
+							<c:choose>
+								<c:when test="${reviewRecom.isRecommend eq 'Y'}">
+									<img id="recomBtn" src="/resources/images/updateRecommend.PNG">${review.reviewBoardRecommendCnt }
+								</c:when>
+								<c:otherwise>
+									<img id="recomBtn" onclick="updateRecommend();"src="/resources/images/nomalRecommend.PNG">${review.reviewBoardRecommendCnt }
+								</c:otherwise>
+							</c:choose>
+						</span>
+						<span>
+							조회수${review.reviewBoardReadCnt }
+						</span>
+						<div>
+							작성일&nbsp;${review.reviewBoardRegDate }
+						</div>
 					</div>
 				</div><!-- subtitle -->  
 			</div>
@@ -120,7 +147,7 @@
 				태그좌
 			</div>
 			<div class="regReviewText col-7">
-			야야야 야야야 리뷰글쓰기 얍
+				${review.reviewBoardContent }
 			</div>
  		<div class="row"><!-- 지도 -->
 			<div class="col-12 mainContainderLayout">
@@ -130,16 +157,12 @@
 		</div> 
 			<!-- 사진3개영역 -->
 			<div class="reviewPhotoContainer col-8">
-				<div class="reviewPhotoLayout col-9">
-					<div class="reviewPhotoDiv">
-						사진1
-					</div>
-					<div class="reviewPhotoDiv">
-						사진2
-					</div>
-					<div class="reviewPhotoDiv">
-						사진3
-					</div>
+				<div class="reviewPhotoLayout col-12">
+					<c:forEach items="${review.reviewImgList}" var="reviewImgVO">
+						<div class="reviewPhotoDiv">
+							<img src="/resources/images/${reviewImgVO.reviewImgAttachedName }" width="250" height="250">
+						</div>					
+					</c:forEach>
 				</div>
 			</div>
 		

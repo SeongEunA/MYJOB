@@ -132,7 +132,7 @@
 								<label for="img"></label>
 							</p>
 							<div id="pr_img" class="fileImgBox" >
-								<input type="file" id="img" name="file" class="fileImgDiv"/>
+								<input type="file" id="img" name="file" class="fileImgDiv" required/>
 							</div>
 							<div id="pr_img_text"></div>
 						</section>

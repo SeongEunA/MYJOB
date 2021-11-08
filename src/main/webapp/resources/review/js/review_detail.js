@@ -154,9 +154,7 @@ for (var i = 0; i < positions.length; i++) {
 		            success: function(result) {
 		            	$('#appendRecommendCnt').empty();
 		            	var str ='';
-		            	str +='<div>';
 		            	str +='<img id="recomBtn" src="/resources/images/updateRecommend.PNG">'+ result.reviewBoardRecommendCnt  +'';
-		            	str +='</div>';
 	 	
 		            	$('#appendRecommendCnt').append(str);	
 		            	

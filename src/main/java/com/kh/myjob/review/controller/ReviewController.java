@@ -175,7 +175,6 @@ public class ReviewController {
 		
 		model.addAttribute("reviewRecom", reviewService.selectRecomMember(reviewRecomVO));
 		model.addAttribute("review", reviewService.selectReviewDetail(reviewVO));
-		model.addAttribute("reviewReplyList", reviewService.selectReviewReplyList(reviewReplyVO));
 		return "review/review_detail";
 	}
 
