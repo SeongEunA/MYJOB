@@ -20,7 +20,18 @@ public class CommonController {
 	
 	//메인페이지로 이동
 	@GetMapping("/main")
-	public String goMain() {
+	public String goMain(Model model, NoticeBoardVO noticeBoardVO) {
+		
+		//전체 데이터 수
+		int dataCnt = commonService.selectNoticeBoardCnt(noticeBoardVO);
+		noticeBoardVO.setTotalCnt(dataCnt);
+			
+		//페이징 처리
+		noticeBoardVO.setPageInfo();
+		
+		
+		model.addAttribute("noticeBoardList", commonService.selectNoticeBoardList(noticeBoardVO));
+		
 		return "common/main_page";
 	}
 	

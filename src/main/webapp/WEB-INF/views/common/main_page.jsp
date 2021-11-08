@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -322,12 +323,14 @@ height:100%;
 								</tr>
 								</thead>
 								<tbody>
+									<c:forEach begin="0" end="4" items="${noticeBoardList }" var="noticeBoardVO" varStatus="cnt">
 									<tr>
-										<td>1</td>
-										<td>공지사항제목란</td>
-										<td>공지사항작성자</td>
-										<td>2021-11-08</td>
+										<td>${(cnt.end+1)-cnt.index }</td>
+										<td><a href="/common/detailNoticeBoard?noticeBoardCode=${noticeBoardVO.noticeBoardCode }">${noticeBoardVO.boardSubject }</a></td>
+										<td>${noticeBoardVO.boardWriter }</td>
+										<td>${noticeBoardVO.regDate }</td>
 									</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>
