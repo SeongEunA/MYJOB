@@ -176,7 +176,6 @@ $(document).ready(function(){
 						
 						for(var i = 0; i < placeXLen; i++){
 							kakaoPlaceX[i] = $('.kakaoPlaceX').eq(i).val();
-							console.log('코스등록 버튼 클릭시 x : '+$('.kakaoPlaceX').eq(i).val());
 						}
 						
 						for(var i = 0; i < placeXLen; i++){

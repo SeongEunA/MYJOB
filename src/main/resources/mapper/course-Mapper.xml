@@ -208,6 +208,12 @@
 		ORDER BY P.SAVE_PLACE_CODE
 	</select>
 	
+	<!-- 코스코드로 코스삭제 -->
+	<delete id="deleteCourse">
+		DELETE COURSE
+		WHERE COURSE_CODE = #{courseCode}
+	</delete>
+	
 	<!-- 코스에 등록된 장소 삭제 -->
 	<delete id="deletePlaceInCourse">
 		DELETE COURSE_REG_PLACE

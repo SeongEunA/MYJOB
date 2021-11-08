@@ -69,6 +69,11 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
+	public int deleteCourse(CourseVO courseVO) {
+		return sqlSession.delete("courseMapper.deleteCourse", courseVO);
+	}
+	
+	@Override
 	public int deletePlaceInCourse(CourseRegVO courseRegVO) {
 		return sqlSession.delete("courseMapper.deletePlaceInCourse", courseRegVO);
 	}
@@ -92,7 +97,7 @@ public class CourseServiceImpl implements CourseService {
 	public void deleteCheck(CourseRegVO courseRegVO) {
 		sqlSession.delete("courseMapper.deleteCheck", courseRegVO);
 	}
-	
+
 	
 
 }

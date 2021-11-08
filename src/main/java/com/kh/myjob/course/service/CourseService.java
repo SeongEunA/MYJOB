@@ -39,6 +39,9 @@ public interface CourseService {
 	//코스코드로 코스정보 조회하는 쿼리
 	List<CourseVO> selectCoursePlaceListByCourseCode(CourseVO courseVO); 
 	
+	//코스코드로 코스정보 삭제
+	int deleteCourse(CourseVO courseVO);
+	
 	//코스에 등록된 장소 삭제
 	int deletePlaceInCourse(CourseRegVO courseRegVO);
 	

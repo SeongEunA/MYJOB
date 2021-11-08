@@ -277,8 +277,30 @@ $(document).ready(function(){
 
 //함수 선언 영역
 (function($){
-	clickBtnX = function(savePlaceCode){
+	deleteCourse = function(courseCode,courseName){
+		var result = confirm(courseName + ' 코스를 삭제 하시겠습니까?');
 		
-	}
+		if(result){
+			$.ajax({
+				url: '/course/deleteCourseAjax', //요청경로
+				type: 'post',
+				data:{'courseCode':courseCode}, //필요한 데이터
+				success: function(result) {
+					//ajax 실행 성공 후 실행할 코드 작성
+					if(result == 1){
+						alert(courseName + ' 이 정상적으로 삭제 되었습니다.');
+					}
+					else{
+						alert('삭제를 실패하였습니다.');
+					}
+					
+				},
+				error: function(){
+					//ajax 실행 실패 시 실행되는 구간
+					alert('실패');
+				}
+			});
+		}
+	};
 
 })(jQuery);

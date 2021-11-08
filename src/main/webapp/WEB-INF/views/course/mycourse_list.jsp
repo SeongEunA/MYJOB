@@ -81,8 +81,15 @@ border: 1px solid #FF8000;;
 .deletePlace{
 width: auto;
 }
+.recommendCourse{
+border: 1px solid blue;
+}
+.resultCourse{
+display: inline-block;
+margin-bottom: 10px;
+}
 </style>
-<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=8"></script>
+<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=11"></script>
  <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script type="text/javascript">
@@ -128,6 +135,7 @@ $.ajax({
 			<div class="courseBox" id="courseBox">
 				<div class="courseName">
 					<input type="radio" name="courseCode" value="${courseInfo.courseCode }">코스이름:${courseInfo.courseName }
+					<input type="button" value="코스삭제" class="deleteCourseBtn" onclick="deleteCourse(${courseInfo.courseCode },${courseInfo.courseName });">
 				</div>
 				<c:forEach items="${courseInfo.coursePlaceList}" var="placeInfo" varStatus="cnt">
 					<c:choose>
@@ -161,12 +169,33 @@ $.ajax({
 				</c:forEach>
 			</div>
 	     </c:forEach>
-		<div>
-			<span>
-				<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn">
-			</span>
-		</div>
+	     <c:if test="${courseList eq null }">
+			<div>
+				<span>
+					<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn">
+				</span>
+			</div>
+	     </c:if>
 	</form>
+	<!-- 추천코스 출력 DIV -->
+		<c:if test="${resultCourseList ne null}">
+		<div class="recommendCourse">
+			<c:forEach items="${resultCourseList}" var="resultCourseInfo" varStatus="cnt">
+				<c:choose>
+					<c:when test="${cnt.last }">
+		      	 		<div class="resultCourse">
+		      	 			${resultCourseInfo }
+		      	 		</div>
+					</c:when>
+		      	 	<c:otherwise>
+						<div class="resultCourse">
+							${resultCourseInfo }
+						</div> &#10140;
+		      	 	</c:otherwise>
+				</c:choose>
+			</c:forEach>
+		</div>
+		</c:if>
 	</div>
 	<div class="courseLayoutRight" id="courseLayoutRight">
 		<select id="selectCourseCode">
@@ -196,26 +225,7 @@ $.ajax({
 		</c:forEach>
 		<div id="testOne"></div>
 	</div>
-	<c:if test="${resultCourseList ne null}">
-	<div class="courseLayoutBottom">
-		<div class="recommendCourse">
-			<c:forEach items="${resultCourseList}" var="resultCourseInfo" varStatus="cnt">
-				<c:choose>
-					<c:when test="${cnt.last }">
-		      	 		<div class="resultCourse">
-		      	 			${resultCourseInfo }
-		      	 		</div>
-					</c:when>
-		      	 	<c:otherwise>
-						<div class="resultCourse">
-							${resultCourseInfo }
-						</div> &#10140;
-		      	 	</c:otherwise>
-				</c:choose>
-			</c:forEach>
-		</div>
-	</div>
-	</c:if>
+	
 </div>
 
 

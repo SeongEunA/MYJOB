@@ -144,6 +144,14 @@ public class CourseController {
 		return courseService.selectCoursePlaceList(courseVO);
 	}
 	
+	//코스삭제 버튼 클릭시 실행 ajax
+	@ResponseBody
+	@PostMapping("/deleteCourseAjax")
+	public int deleteCourseAjax(CourseVO courseVO) {
+		return courseService.deleteCourse(courseVO);
+	}
+
+	
 	//삭제된 장소들을 원하는 코스에 다시 insert
 	@ResponseBody
 	@PostMapping("/insertPlaceByDeleteAjax")
@@ -167,6 +175,7 @@ public class CourseController {
 		return courseService.selectCoursePlaceList(courseVO);
 	}
 	
+	//임시저장 테이블에 있는 체크된 장소들 삭제
 	@ResponseBody
 	@PostMapping("/deleteCheckCourseAjax")
 	public int deleteCheckCourse(CourseRegVO courseRegVO, @RequestParam(value="placeNameArr[]") List<String> name) {
