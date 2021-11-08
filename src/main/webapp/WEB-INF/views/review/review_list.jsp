@@ -24,36 +24,73 @@
 	margin:0 auto;
 }
 
+.reviewTitle{
+	border-bottom: 3px solid #eeeeee;
+	padding: 20px;
+	margin: 0 auto;
+	font-size: 20pt;
+}
+
+
 .reviewMargin{
 	margin-top:10px;
 }
 .selectOrderBy{
-	border:1px solid black;
 	margin:0 auto;
 	height:100px;
 	text-align:right;
 }
 .selectOrderBy > span{
-	border:1px solid red;
+	font-size: 17px;
 	display:inline-block;
 	margin-top:10px;
-}
-.tableDiv{
-	border:1px solid red;
-	width:80%;
-}
-.tableDiv > tbody >tr > td{
-	border:1px solid black;
-}
-.tableDiv > tbody > tr > td:last-child {
-	width:70%;
 	
+}
+.reviewTableDiv{
+	width:80%;
+	margin-left: 18px;
+	border-bottom: 2.5px solid #eeeeee;
+	margin-bottom: 20px;
+}
+.totalCnt{
+ 	text-align: left;
+	margin-left: 15px;
+	margin-top: 40px;
+}
+
+
+.reviewTableDiv > tbody > tr > td:last-child {
+	width:70%;
+}
+
+.reviewTableDiv > tbody > tr:last-child{
+	margin-bottom: 15px;
+}
+
+.selectOrderBy > span{
+	margin-right: 8px;
+}
+
+
+.paddingTitle{
+	font-size: 24px;
+	vertical-align: top;
+	padding: 20px;
+}
+.paddingReg{
+	padding: 12px;
+	padding-left: 18px;
+	color: #707070;
 }
 .searchContainer{
 	border:1px solid black;
 	height:40px;
 	margin:0 auto;
 	margin-top:40px;
+}
+.reviewlist{
+	margin-bottom: 10px;
+	border-bottom: 3px solid #707070;
 }
 </style>
 </head>
@@ -66,46 +103,47 @@
 		</div>
 
 		<div class="col-8 noticeTitleDiv reviewMargin">
-			<div class="col-12 noticeTitle">후기 게시판</div>
+			<div class="col-12 reviewTitle">후기 게시판</div>
 			<!-- 추천수 인기순 -->
 			<div class="col-12 selectOrderBy">
-				<span>
-					<a href="/review/selectReviewList">최신순</a>/
+			<span>
+					<a href="/review/selectReviewList">최신순</a> |
 					<a href="/review/selectReviewList?orderByReadCnt='Y'">인기순</a>
-				</span>
+			</span>
+			<div class="col-12 totalCnt">
+				<strong>총<span style="color: #0a97cd; text-align:left;">${reviewList.size()}</span>건</strong>
 			</div>
-			총${reviewList.size()}건
-			<div class="col-12 container">
-
-				<div>
-					<table class="tableDiv">
-					
+			
+			</div>
+			<div class="col-12">
+				<div class="reviewlist">
+						<c:forEach items="${reviewList }" var="reviewVO">
+					<table class="reviewTableDiv">
 							<colgroup>
 								<col width=25%>
 								<col width=30%>
 								<col width=*>
 							</colgroup>
 						<tbody>
-						<c:forEach items="${reviewList }" var="reviewVO">
-							<tr>
+							<tr class="ttl">
 								<td rowspan="2">
 									<a href="/review/detailReview?reviewBoardCode=${reviewVO.reviewBoardCode }&memberId=${sessionScope.loginInfo.memberId}">
 										<img src="/resources/images/${reviewVO.reviewImgList[0].reviewImgAttachedName }" width="250" height="250">
 									</a>
 								</td>
-								<td colspan="2">
-									<a href="/review/detailReview?reviewBoardCode=${reviewVO.reviewBoardCode }&&memberId=${sessionScope.loginInfo.memberId}">
+								<td colspan="2" class="paddingTitle">
+									<a href="/review/detailReview?reviewBoardCode=${reviewVO.reviewBoardCode }&memberId=${sessionScope.loginInfo.memberId}">
 										${reviewVO.reviewBoardTitle }
 									</a>
 								</td>
 							</tr>
 							<tr>
-								<td>작성일</td>
-								<td>태그란</td>
+								<td class="paddingReg">${reviewVO.reviewBoardRegDate }</td>
+								<td class="paddingTag">#태그1 #태그2 #태그3 #태그4</td>
 							</tr>
-						</c:forEach>
 						</tbody>
 					</table>
+						</c:forEach>
 				</div>
 
 				<div class="row">

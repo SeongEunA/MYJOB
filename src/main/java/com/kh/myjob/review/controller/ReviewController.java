@@ -102,7 +102,7 @@ public class ReviewController {
 			// 이제 첨부
 			try {
 				// 다중첨부
-				if (inputName.equals("file")) {
+			/*	if (inputName.equals("file")) {
 					List<MultipartFile> filList = multi.getFiles(inputName);
 					for (MultipartFile file : filList) {
 						String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename();
@@ -119,9 +119,9 @@ public class ReviewController {
 						imgList.add(img);
 
 					}
-				}
+				}*/
 				// 단일첨부
-				else {
+		/*		else {*/
 					MultipartFile file = multi.getFile(inputName);
 					String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename();
 					String uploadFile = uploadPath + attachedFileName;
@@ -135,7 +135,7 @@ public class ReviewController {
 					img.setIsMain("Y");
 
 					imgList.add(img);
-				}
+				/* } */
 
 			} catch (IllegalStateException e) { // 비논리적, 문법적 오류를 잡아준다
 				e.printStackTrace(); // 원래 처리를 해야하나 그냥 이유만 띄워준다
