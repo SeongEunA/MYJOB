@@ -36,9 +36,9 @@ $(document).ready(function(){
 	
 	//장소 리스트에서 장소명 클릭시
 	$(document).on('click', '#showResInfo', function() { 
-		var placeAddr = $(this).prev().val();
-		var x = $(this).parent().children().eq(0).val();
-		var y = $(this).parent().children().eq(1).val();
+		var placeAddr = $(this).parent().prev().val();
+		var x = $(this).parent().parent().children().eq(0).val();
+		var y = $(this).parent().parent().children().eq(1).val();
 		$('#keyword').val(placeAddr + ' 주변 맛집');
 		
 		$('#keywordForm').submit();
@@ -72,11 +72,11 @@ $(document).ready(function(){
 		document.getElementById('submitCourse').style="visibility:visible";
 	});
    
-	//선택한 식당 목록에서 삭제
+	//선택한 장소 목록에서 삭제
 	$(document).on('click', '#deleteResBtn', function(){
-	   $(this).parent().parent().remove();
+	   $(this).parent().parent().parent().parent().parent().parent().remove();
 
-	   if($('.resInfoDiv').length==0){
+	   if($('.ticketContainer').length==0){
 		   document.getElementById('submitCourse').style="visibility:hidden";
 	   }
    });
@@ -85,25 +85,48 @@ $(document).ready(function(){
 	//placeList에서 담기버튼을 눌렀을 때
 	$(document).on('click', '#saveCourseInfo', function(){
 		   
-	   var placeName = $(this).parent().children().eq(2).text();
-	   var placeAddr =  $(this).parent().children().eq(3).text();
-	   var cateCode =  $(this).parent().children().eq(4).val();
-	   var placeTel =  $(this).parent().children().eq(5).text();
+	   var placeName = $(this).parent().parent().children().eq(2).text();
+	   var placeAddr =  $(this).parent().parent().children().eq(3).text();
+	   var cateCode =  $(this).parent().parent().children().eq(4).val();
+	   var placeTel =  $(this).parent().parent().children().eq(5).text();
 //course_search.jsp에서 담기버튼 누를때
 //div 디자인	   
 
 	   
 	   var placeStr = '';
-	   placeStr += '<div class="resInfoDiv">';
-	   placeStr += '	<div class="resultPlaceName" style="font-size:18px;">' + placeName + '<input type="button" value="X" id="deleteResBtn"></div>';
-	   placeStr += '	<div class="resultPlaceAddr">' + placeAddr + '</div>';
-	   placeStr += '	<input type="hidden" class="cateCode" value="'+cateCode+'">';
+	   
+placeStr +='	   <div class="ticketContainer">';
+placeStr +='		<div class="ticketMainLayout">';
+placeStr +='			<div class="ticketLayout1">';
+placeStr +='				<div class="ticketDiv">';
+placeStr +='					<div class="ticketBlock">';
+placeStr +='						<div class="resultPlaceName">'+placeName+'<div class="close close1" id="deleteResBtn"></div>';
+placeStr +='						</div>';
+placeStr +='						<div class="resultPlaceAddr">'+placeAddr+'</div>';
+placeStr +='						<input type="hidden" class="cateCode" value="'+cateCode+'">';
+						if(placeTel!=null||placeTel!=''){
+						
+placeStr +='						<div class="resultTel" class="resultPlaceTel">'+placeTel+'</div>';
+					
+					}
+placeStr +='						<div class="travelTicket">Travel Ticket</div>';
+placeStr +='					</div>';
+placeStr +='				</div>';
+placeStr +='			</div>';
+placeStr +='		<div class="ticketLayout2">';
+placeStr +='	      	<span>숙박지</span>';
+placeStr +='	    <div class="ticketMark">';
+placeStr +='	      		<img src="/resources/images/free-icon-aeroplane-5639813.png"width="100%" height="100%">';
+placeStr +='	      	</div>';
+placeStr +='	   <section class="custom-kontakt">';
+placeStr +='	       <div class="barcode-box">';
+placeStr +='	       		<div class="barcode-stripes"><span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-3"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-1"></span> <span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-1"></span><span class="stripe-1"></span><span class="sig5"></span> <span class="sig6"></span> <span class="sig7"></span></div>';
+placeStr +='	       </div>';
+placeStr +='	     </section>';
+placeStr +='	     	</div>';
+placeStr +='	     	</div>';
+placeStr +='	</div>';
 	  
-	   if(placeTel!=null ||placeTel!=''){
-	   placeStr += '   <div class="resultTel" class="resultPlaceTel">' + placeTel + '</div>'
-	   }
-	  
-	   placeStr += '</div>';
 	   	
 	   $('#resInfoList').append(placeStr);
 	   document.getElementById('submitCourse').style="visibility:visible";
@@ -176,6 +199,7 @@ $(document).ready(function(){
 						
 						for(var i = 0; i < placeXLen; i++){
 							kakaoPlaceX[i] = $('.kakaoPlaceX').eq(i).val();
+							console.log('코스등록 버튼 클릭시 x : '+$('.kakaoPlaceX').eq(i).val());
 						}
 						
 						for(var i = 0; i < placeXLen; i++){
@@ -330,63 +354,64 @@ $(document).ready(function(){
      		  
                $(result.selectPlaceList).each(function(index,element){
             	  console.log('검색버튼 클릭시 x값 : ' + element.x);
-               	str += '<div class="placeInfo">';
+                str +='		<div class="placeLayout">';	
                	str += '	<input type="hidden" value="' + element.x + '" name="x" class="kakaoPlaceX">';
                	str += '	<input type="hidden" value="' + element.y + '" name="y" class="kakaoPlaceY">';
-               		
-               	str += '	<div class="placeName">' + element.placeName + '</div>';
-               	str += '	<div class="placeAddr" data-placeAddr="' + element.placeAddr + '">주소 : ' + element.placeAddr + '</div>';
+               	
+               	
+               	str += '	<div class="placeName"><span>' + element.placeName + '</span></div>';
+               	str += '	<div class="placeAddr" data-placeAddr="' + element.placeAddr + '"><span>주소 : ' + element.placeAddr + '</span></div>';
                	str += '	<input type="hidden" id="cateCode" value="'+element.cateCode+'">';
                	
 	            if(element.placeTel != null){
-	               		str += '	<div class="placeTel">연락처 : ' + element.placeTel + '</div>';
+	               		str += '	<div class="placeTel"><span>연락처 : ' + element.placeTel + '</span></div>';
 	               	}
-               	str += '	<input type="button" value="담기" id="saveCourseInfo">';
-               	str += '	<input type="hidden" value="'+element.placeAddr+'">';
-               	str += '	<input type="button" value="맛집보기" id="showResInfo">';
-               	
+	            str +='<div></div>';
+	            str +='<input type="hidden" value="'+element.placeAddr+'" name="placeAddr">';
+	            str +='<ul>';
+               	str += '	<li id="saveCourseInfo">담기</li>';
+               	str += '	<li id="showResInfo">맛집보기</li>';
+               	str +='</ul>';
                	str += '</div>';
                	
                 });
                  
                 
                 str += '<div class="row">';
-   	          	str += '	<div class="col text-center">';
-   	          	str += '		<nav aria-label="...">';
-   	          	str += '			<ul class="pagination justify-content-center">';
-   	          	str += '				<li class="page-item">';
-   	          	str += '					<a class="page-link" onclick="clickSearch(' + (totalPage-(totalPage-1)) + ')">&lt;&lt;</a>';
+   	          	str += '	<div class="col-6 text-center">';
+   	          	str += '			<ul>';
+   	          	str += '				<li>';
+   	          	str += '					<a onclick="clickSearch(' + (totalPage-(totalPage-1)) + ')">&lt;&lt;</a>';
    	          	str += '				</li>';
-   	          	str += '				<li class="page-item';
+   	          	str += '				<li';
    	          							if(result.pageVO.prev == false){
    	          								str += ' disabled';
    	          							};
    	          	str += '">';
-   	          	str += '					<a class="page-link" onclick="clickSearch(' + (result.pageVO.beginPage - 1) +')">이전</a>';
+   	          	str += '					<a onclick="clickSearch(' + (result.pageVO.beginPage - 1) +')">이전</a>';
    	          	str += '				</li>';
    	          			    for(var i = result.pageVO.beginPage; i <= result.pageVO.endPage; i++){
-   	          			    	str += '<li class="page-item';
+   	          			    	str += '<li';
    	          			    	
    	          			    	if(result.pageVO.nowPage == i){
    	          			    		str += ' active';
    	          			    	}
-   	          			    	str += '" aria-current="page">';
-   	          			    	str += '	<a class="page-link" onclick="clickSearch(' + i + ')">' + i + '</a>';
+   	          			    	str += '>';
+   	          			    	str += '	<a  onclick="clickSearch(' + i + ')">' + i + '</a>';
    	          			    	str += '</li>'
    	          			    	
    	          			    };
-   	          	str += '				<li class="page-item';
+   	          	str += '				<li';
    	          							if(result.pageVO.next == false){
    	          								str += ' disabled';
    	          							};
    	          	str += '">';					
-   	          	str += '					<a class="page-link" onclick="clickSearch(' + (result.pageVO.endPage + 1) +')">다음</a>';
+   	          	str += '					<a onclick="clickSearch(' + (result.pageVO.endPage + 1) +')">다음</a>';
    	          	str += '				</li>';
-   	          	str += '				<li class="page-item">';
-   	          	str += '					<a class="page-link" onclick="clickSearch(' + totalPage + ')">&gt;&gt;</a>';
+   	          	str += '				<li>';
+   	          	str += '					<a onclick="clickSearch(' + totalPage + ')">&gt;&gt;</a>';
    	          	str += '				</li>';
    	          	str += '			</ul>';
-   	          	str += '		</nav>';
    	          	str += '	</div>';
    	          	str += '</div>';
                

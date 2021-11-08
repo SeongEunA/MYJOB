@@ -233,8 +233,8 @@ margin: 0 auto;
 .courseHalfLayout:first-child{
 border:1px solid blue;
 width:70%;
-min-height:2000px;
-height:auto;
+min-height:1800px;
+
 
 
 }
@@ -384,7 +384,7 @@ color: #1F50B5;
 	border:none;
 	position:absolute;
 	bottom:0;
-	font-size:30px;
+	font-size:25px;
 	font-family: 'SBAggroB';
 	letter-spacing: -1px;
 	margin-left:5px;
@@ -513,9 +513,10 @@ font-family: 'Daughter_handwriting';
 font-weight:bold;
 font-size:20px;
 letter-spacing: 1px;
+margin-right:30px;
 }
 
-.placeLayout > span{
+.placeLayout span{
 border-bottom:1px solid #F15F5F;
 padding:5px; 5px;
 display:block;
@@ -541,7 +542,14 @@ border-radius:10px;
 
 
 }
-
+.placeListOrder{
+border:1px solid white;
+background-color:white;
+width:100%;
+height:1000px;
+display:flex;
+flex-flow:column wrap;
+}
 </style>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	3d45ea450bf493fb0fea992bed62c07e&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d45ea450bf493fb0fea992bed62c07e&libraries=services"></script>
@@ -699,55 +707,15 @@ border-radius:10px;
 		</div>
 	
 	<!-- 검색 장소 리스트 영역 -->
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=15"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=16"></script>
 		<div class="row">
-		   <div class="col-6" id="placeList">
-		    	<div class="placeLayout">
-		    		 <span>해나무</span>
-					<span>주소:부산광역시기장군일광면삼성3길1-12</span>
-					<span>연락처:051-722-788</span>
-					<ul>
-						 <li>담기</li>
-						 <li>맛집보기</li>
-					 </ul>
-		    	</div>
-		    	<div class="placeLayout">
-		    		포스트잇 영역
-		    	</div>
+		   <div class="col-6 placeListOrder" id="placeList"><!--장소리스트 나오는곳 -->
 		   </div>
 		</div>
 	</div><!-- courseHalfLayout -->
 	<div class="courseHalfLayout">
 		<form id="regCourseForm" method="post">
 		 <div id="resInfoList" class="resInfoList">
-		   	 <div class="ticketContainer"><!-- 티켓부분 -->
-				<div class="ticketMainLayout">
-					<div class="ticketLayout1">
-						<div class="ticketDiv">
-							<div class="ticketBlock">
-								<div class="resultPlaceName">
-									장소:이거이거
-									<div class="close close1" id="deleteResBtn"></div>
-								</div>
-								<div class="resultPlaceAddr">주소:여기</div>
-								<div class="resultTel" class="resultPlaceTel">Tel:000-0000</div>
-								<div class="travelTicket">Travel Ticket</div>
-							</div>
-						</div>
-					</div>
-        <div class="ticketLayout2">
-               	<span>숙박지</span>
-               	<div class="ticketMark">
-               		<img src="/resources/images/free-icon-aeroplane-5639813.png"width="100%" height="100%">
-               	</div>
-            <section class="custom-kontakt">
-                <div class="barcode-box">
-                 <div class="barcode-stripes"><span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-3"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-1"></span> <span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-1"></span><span class="stripe-1"></span><span class="sig5"></span> <span class="sig6"></span> <span class="sig7"></span></div>
-                </div>
-              </section>
-        </div>
-        </div><!-- ticketMainLayout -->
-    </div><!-- 티켓끝 -->
 		
 		  </div><!-- resInfoList -->
 		 <div class="submitCourseBtn"  id="submitCourse">
