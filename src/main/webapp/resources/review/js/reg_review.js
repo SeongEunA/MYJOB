@@ -1,6 +1,5 @@
 //화면 로딩 후 바로 실행
 $(document).ready(function(){
-
 	    
 	    var img_count = 0;
 	        
@@ -35,9 +34,49 @@ $(document).ready(function(){
 	        reader.readAsDataURL(this.files[0]);
 	        img_count++;
 	        
-//	        $(this).attr('display', 'none');
 	        $(this).hide();
 	        $('#pr_img_text').append('<input type="file" value="새로운" id="img' + img_count + '" name="file' + img_count + '">');
+	    });
+	    
+	    
+	    //selectBox 값 변경시 출력되는 코스 변경
+	    $(document).on('change', '#selectCourseCode', function(){
+	    	var courseCode = $('#selectCourseCode').val();
+	    	
+	    	$.ajax({
+				url: '/review/changeSelectBoxAjax', //요청경로
+				type: 'post',
+				data:{'courseCode':courseCode}, //필요한 데이터
+				success: function(result) {
+					$('.selectCourseDiv').empty();
+					
+					var listStr = '';
+					
+					$(result).each(function(index,element){
+						listStr += '<div class="courseBox">';
+						
+						$(element.coursePlaceList).each(function(i,placeInfo){
+							if(element.coursePlaceList.length == (i+1)){
+								listStr += '<div class="placeName">' + placeInfo.placeName;
+								listStr += '</div>';
+							}
+							else{
+								listStr += '<div class="placeName">' + placeInfo.placeName;
+								listStr += '</div> &#10140;';
+							}
+						});
+						
+						listStr += '	</div>';
+						
+					});
+					
+					$('.selectCourseDiv').append(listStr);
+	               
+	            },
+	            error: function(){
+	            	alert('실패');
+	            }
+			});
 	    });
 
 	
@@ -46,9 +85,7 @@ $(document).ready(function(){
 
 //함수 선언 영역
 (function($){
-	//aaa = function(){
-	//};
-   //
+	
 	
 	
 	

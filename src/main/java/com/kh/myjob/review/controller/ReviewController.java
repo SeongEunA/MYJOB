@@ -21,6 +21,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.myjob.common.util.FileUploadUtil;
+import com.kh.myjob.course.service.CourseService;
+import com.kh.myjob.course.vo.CourseVO;
 import com.kh.myjob.member.vo.MemberVO;
 import com.kh.myjob.review.service.ReviewService;
 import com.kh.myjob.review.vo.ReviewImgVO;
@@ -33,7 +35,10 @@ import com.kh.myjob.review.vo.ReviewVO;
 public class ReviewController {
 	@Resource(name = "reviewService")
 	private ReviewService reviewService;
-
+	
+	@Resource(name = "courseService")
+	private CourseService courseService;
+	
 	// 리뷰목록화면
 	@RequestMapping("/selectReviewList")
 	public String SelectReviewList(Model model, ReviewVO reviewVO) {
@@ -56,8 +61,26 @@ public class ReviewController {
 
 	// 리뷰등록화면으로 이동
 	@GetMapping("/regReview")
-	public String goRegReview() {
+	public String goRegReview(CourseVO courseVO, Model model) {
+		
+		//아이디별 코스리스트 조회
+		model.addAttribute("courseList", courseService.selectCoursePlaceList(courseVO));
+		
+		//처음 선택된 코스코드로 코스 조회(최초로 코스등록 페이지 진입했을때)
+		String firstCourseCode = (courseService.selectCoursePlaceList(courseVO)).get(0).getCourseCode();
+		
+		courseVO.setCourseCode(firstCourseCode);
+		model.addAttribute("courseListBycourseCode", courseService.selectCoursePlaceListByCourseCode(courseVO));
+		
 		return "review/reg_review";
+	}
+
+	//리뷰등록화면에서 셀렉트값 변경시 출력되는 코스 변경 ajax
+	@ResponseBody
+	@PostMapping("/changeSelectBoxAjax")
+	public List<CourseVO> changeSelectBoxAjax(CourseVO courseVO) {
+	
+		return courseService.selectCoursePlaceListByCourseCode(courseVO);
 	}
 
 	// 리뷰등록

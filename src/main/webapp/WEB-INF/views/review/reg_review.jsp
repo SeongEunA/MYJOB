@@ -6,9 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=6"></script>
-
-
+<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=10"></script>
 <style type="text/css">
 .reviewContainer{
 
@@ -78,8 +76,9 @@
 	flex-direction: row;
 	flex-wrap: wrap;
 }
-.fileImgDiv{
-	
+.placeName{
+	display: inline-block;
+	margin-bottom: 10px;
 }
 </style>
 </head>
@@ -93,39 +92,53 @@
 		</div>
 		<div class="col-9 containerDiv">
 			<div class="contentDiv">
-				<form action="/review/regReview" method="post"
-					enctype="multipart/form-data">
-					<input type="hidden" name="reviewBoardWriter"
-						value="${sessionScope.loginInfo.memberId }">
-					<div class="headerDiv">
-						코스선택 <select>
-							<option></option>
+				<form action="/review/regReview" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="reviewBoardWriter" value="${sessionScope.loginInfo.memberId }">
+					<div class="headerDiv">코스선택
+						<select id="selectCourseCode" name="courseCode">
+						<c:forEach items="${courseList }" var="courseInfo">
+							<option value="${courseInfo.courseCode }">${courseInfo.courseName }</option>
+						</c:forEach>
 						</select> 제목 <input type="text" name="reviewBoardTitle" required>
 					</div>
-					<div class="tableDiv"></div>
+					<div class="selectCourseDiv">
+						<c:forEach items="${courseListBycourseCode }" var="courseInfo">
+							<div class="courseBox" id="courseBox">
+								<c:forEach items="${courseInfo.coursePlaceList}" var="placeInfo" varStatus="cnt">
+									<c:choose>
+										<c:when test="${cnt.last }">
+							      	 		<div class="placeName">
+							      	 			${placeInfo.placeName  }
+							      	 		</div>
+										</c:when>
+							      	 	<c:otherwise>
+											<div class="placeName">
+												${placeInfo.placeName  }
+											</div> &#10140;
+							      	 	</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</div>
+					     </c:forEach>
+					</div>
 					<div class="introCourseDiv">
 						<textarea name="reviewBoardContent" id="csdesc" maxlength="2000"
 							class="comment_textarea" title="코스 소개" style="resize: none;"
 							placeholder="코스에 대한 간략한 설명을 기재할 수 있습니다."></textarea>
 					</div>
-
-				<div>
-					<section class="pr_img">
-						<p>
-							<label for="img"></label>
-						</p>
-						<div id="pr_img" class="fileImgBox" >
-							<input type="file" id="img" name="file" class="fileImgDiv"/>
-							
-
-						</div>
-						<div id="pr_img_text"></div>
-					</section>
-				</div>
-
-
+					<div>
+						<section class="pr_img">
+							<p>
+								<label for="img"></label>
+							</p>
+							<div id="pr_img" class="fileImgBox" >
+								<input type="file" id="img" name="file" class="fileImgDiv"/>
+							</div>
+							<div id="pr_img_text"></div>
+						</section>
+					</div>
 					<div class="btn_center">
-						<input type="button" value="취소" class="reg_back_btn" onclick="location.href='/review/SelectReviewList'"> 
+						<input type="button" value="취소" class="reg_back_btn" onclick="location.href='/review/selectReviewList'"> 
 						<input type="submit" value="등록" class="reg_btn">
 					</div>
 				</form>
