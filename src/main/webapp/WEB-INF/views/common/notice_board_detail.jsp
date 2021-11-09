@@ -11,7 +11,6 @@
 .noticeDetailTitleDiv{
 	margin:0 auto;
 	padding:0px;
-	border: 1px solid white;
 	margin-top: 80px;
 }
 .noticeDetailTitle{
@@ -22,6 +21,7 @@
 }
 .noticeContentDiv{
 	border: 2px solid #f3f5f6;
+	margin: 0 auto;
 	margin-top: 80px;
 	padding: 20px;
 }
@@ -63,6 +63,7 @@ table td{
 
 .updateNoticeBoardBtnDiv{
 	display: inline-block;
+	margin-right: 5px;
 }
 
 .deleteNoticeBoardBtnDiv{
@@ -76,7 +77,8 @@ table td{
 	<div class="bodyContainer col-12">
 		<div class="col-6 noticeDetailTitleDiv">
 			<div class="col-12 noticeDetailTitle">공지사항 상세페이지</div>
-		<div class="col-12 noticeContentDiv">
+		</div>
+		<div class="col-6 noticeContentDiv">
 			<div class="col-12 noticeContent">
 				<table>
 				<colgroup>
@@ -104,21 +106,17 @@ table td{
 				<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' }">
 					<div class="manageBtnDiv">
 						<div class="updateNoticeBoardBtnDiv">
-							<input type="button" id="updateNoticeBoard" value="수정"
-								onclick="updateNoticeBoard('${detailNoticeBoard.noticeBoardCode }');">
+							<input type="button" id="updateNoticeBoard" value="수정" onclick="updateNoticeBoard('${detailNoticeBoard.noticeBoardCode }');">
 						</div>
 						<div class="deleteNoticeBoardBtnDiv">
-							<input type="button" id="deleteNoticeBoard" value="삭제"
-								onclick="deleteNoticeBoard('${detailNoticeBoard.noticeBoardCode }');">
+							<input type="button" id="deleteNoticeBoard" value="삭제" onclick="deleteNoticeBoard('${detailNoticeBoard.noticeBoardCode }');">
 						</div>
 						<div>
-							<input id="memberIsAdmin" type="hidden"
-								value="${sessionScope.loginInfo.memberIsAdmin}">
+							<input id="memberIsAdmin" type="hidden" value="${sessionScope.loginInfo.memberIsAdmin}">
 						</div>
 					</div>
 				</c:if>
 			</div>
-		</div>
 		</div>
 	</div>
 </div>

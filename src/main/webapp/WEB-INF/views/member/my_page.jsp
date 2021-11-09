@@ -8,52 +8,60 @@
 <script type="text/javascript" src="/resources/member/js/my_page.js?ver=32"></script>
 <style type="text/css">
 .myPageTitleDiv{
-	padding-top: 30px;
-	padding-bottom: 30px;
-	margin:0 auto;
+	padding:0px;
+	margin: 0 auto;
+	margin-top: 80px;
 }
 .myPageTitle{
-	border-bottom: 3px solid #AFDDFA;
-	padding: 20px;
-	margin: 0 auto;
+	border-bottom: 5px solid #f3f5f6;
+	padding: 5px;
 	font-size: 20pt;
 }
 .myPageTableDiv{
-	border: 1px solid blue;
+	border: 2px solid #f3f5f6;
 	margin: 0 auto;
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 80px;
+	padding: 20px;
+}
+.myPageTableDiv td{
+	padding-top: 16px;
+	padding-bottom: 16px;
+	background-color: #ffffff;
 }
 .myPageTable{
-	border: 1px solid black;
-	margin:0 auto;
-	margin-top: 50px;
-	margin-bottom: 50px;
-	padding: 20px;
-	font-size: 13px;
+	text-align: center;
+	padding-left: 0px;
+	padding-right: 0px;
 }
 table{
 	width: 100%;
 	margin: 0 auto;
 	text-align: center;
 }
-tr{
-	border: 1px solid black;
+table td:nth-child(odd){
+	background-color: #f8f8f8;
 }
-
-td{
-	border: 1px solid black;
- 	padding: 20px;
+#memberPw{
+	padding: 5px;
+}
+#memberEmail{
+	padding: 5px;
+}
+#memberTel{
+	padding: 5px;
+}
+#memberAddr{
+	padding: 5px;
+}
+table td{
+	border: 2px solid #b4b4bc;
+	padding: 10px;
 }
 .deleteMemberBtnDiv{
-	padding-top: 20px;
-	padding-bottom: 20px;
-	border: 1px solid purple;
-	margin-top: 20px;
+	margin: 0 auto;
 	margin-bottom: 20px;
 }
 .deleteMemberBtn{
-	border: 1px solid red;
 	text-align: right;
 }
 .deleteMemberBtn input[type="button"]{
@@ -61,14 +69,9 @@ td{
 	height: 30px;
 }
 .updateMyInfoBtnDiv{
-	padding-top: 20px;
-	padding-bottom: 20px;
-	border: 1px solid purple;
 	margin-top: 20px;
-	margin-bottom: 20px;
 }
 .updateMyInfoBtn{
-	border: 1px solid red;
 	text-align: right;
 }
 .updateMyInfoBtn input[type="button"]{
@@ -79,22 +82,24 @@ td{
 </head>
 <body>
 <div class="row">
-	<div class="col-12">
-		<div class="col-8 myPageTitleDiv">
+	<div class="col-12 bodyContainer">
+		<div class="col-6 myPageTitleDiv">
 			<div class="col-12 myPageTitle">마이페이지입니다.</div>
 		</div>
-		<div class="col-8 myPageTableDiv">
-			<div class="col-10 myPageTable">
-				<div class="col-12 deleteMemberBtnDiv">
-					<div class="deleteMemberBtn"><input type="button" id="deleteMember" value="회원탈퇴" onclick="deleteMember('${detailMyInfo.memberCode }');"></div>
+		<div class="col-6 myPageTableDiv">
+			<div class="col-12 myPageTable">
+			<div class="col-12 deleteMemberBtnDiv">
+				<div class="col-12 deleteMemberBtn">
+					<input type="button" id="deleteMember" value="회원탈퇴" onclick="deleteMember('${detailMyInfo.memberCode }');">
 				</div>
+			</div>
 				<div id="detailMyInfo">
 					<table>
 						<colgroup>
-							<col width="10%">
-							<col width="40%">
-							<col width="10%">
-							<col width="40%">
+							<col width="14%">
+							<col width="36%">
+							<col width="14%">
+							<col width="36%">
 						</colgroup>
 						<tr>
 							<td>회원아이디</td>

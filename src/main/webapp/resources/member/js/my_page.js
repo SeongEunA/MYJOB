@@ -1,14 +1,10 @@
-var okPw = 0;
-var okCPw = 0;
-var okTel = 0;
-var okEmail = 0;
 //이벤트처리
 //화면 로딩 후 바로 실행 이벤트처리
-$(document).ready(function(){
+//$(document).ready(function(){
 	
 	
 
-});
+//});
 
 
 //함수선언영역
@@ -99,10 +95,10 @@ $(document).ready(function(){
 				var str = '';
 				str += '	<table>';
 				str += '		<colgroup>';
-				str += '			<col width="10%">';
-				str += '			<col width="40%">';
-				str += '			<col width="10%">';
-				str += '			<col width="40%">';
+				str += '			<col width="14%">';
+				str += '			<col width="36%">';
+				str += '			<col width="14%">';
+				str += '			<col width="36%">';
 				str += '		</colgroup>';
 				str += '		<tr>';
 				str += '			<td>회원아이디</td>';

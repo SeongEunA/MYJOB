@@ -64,7 +64,7 @@ td{
 }
 .regNoticeBtnDiv{
 	margin: 0 auto;
-	margin-top: 30px;
+	margin-top: 20px;
 	margin-bottom: 0px;
 	text-align: center;
 	padding-right: 10px;
@@ -80,15 +80,12 @@ td{
 .noticePagingDiv{
 	border: 1px solid white;
 	margin:0 auto;
-	margin-top: 0px;
+	margin-top: 20px;
 	font-size: 13px;
 }
 .noticePaging{
 	margin:0 auto;
 	font-size: 10px;
-}
-.text-center{
-	border: 1px solid white;
 }
 </style>
 </head>
@@ -147,14 +144,23 @@ td{
 							</tr>
 						</thead>
 						<tbody class="noticeContentList">
-							  <c:forEach items="${noticeBoardList }" var="noticeBoardInfo" varStatus="i">
-								    <tr>
-								      	<td><a  style="color: black; text-decoration-line: none;">${noticeBoardList.size() - i.index }</a></td>
-								      	<td class="noticeSubject"><a  style="color: black; text-decoration-line: none;" href="/common/detailNoticeBoard?noticeBoardCode=${noticeBoardInfo.noticeBoardCode }">${noticeBoardInfo.boardSubject }</a></td>
-								      	<td><a  style="color: black; text-decoration-line: none;">${noticeBoardInfo.boardWriter }</a></td>
-								      	<td><a  style="color: black; text-decoration-line: none;">${noticeBoardInfo.regDate }</a></td>
-								    </tr>  
-							  </c:forEach>
+							<c:choose>
+								<c:when test="${empty noticeBoardList }">
+									<tr>
+										<td colspan="4">등록된 공지사항 게시물이 없습니다.</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<c:forEach items="${noticeBoardList }" var="noticeBoardInfo" varStatus="i">
+							   			<tr>
+									     	<td><a  style="color: black; text-decoration-line: none;">${noticeBoardList.size() - i.index }</a></td>
+									     	<td class="noticeSubject"><a  style="color: black; text-decoration-line: none;" href="/common/detailNoticeBoard?noticeBoardCode=${noticeBoardInfo.noticeBoardCode }">${noticeBoardInfo.boardSubject }</a></td>
+									     	<td><a  style="color: black; text-decoration-line: none;">${noticeBoardInfo.boardWriter }</a></td>
+									     	<td><a  style="color: black; text-decoration-line: none;">${noticeBoardInfo.regDate }</a></td>
+							  			 </tr>  
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 					  	</tbody>
 					</table>
 				</div>

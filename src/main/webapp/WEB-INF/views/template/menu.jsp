@@ -72,8 +72,8 @@ a{
 				</div>
 			</c:when>
 			<c:otherwise>
-				<a href="/member/join" class="loginLayout">Join</a> |
-				<a href="/member/login" class="loginLayout">Login</a>
+				<a href="/member/join" class="loginLayout">회 원 가 입</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+				<a href="/member/login" class="loginLayout">로 그 인</a>
 			</c:otherwise>
 		</c:choose>
 	</div>

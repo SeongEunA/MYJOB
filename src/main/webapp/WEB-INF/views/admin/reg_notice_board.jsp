@@ -9,37 +9,43 @@
 <link rel="stylesheet" href="/resources/common/reset.css">
 <style type="text/css">
 .regNoticeTitleDiv{
-	padding-top: 30px;
-	padding-bottom: 30px;
+	padding:0px;
+	margin-top: 80px;
+	margin-left: 200px;
 }
-.regNoticeTitle{
-	border-bottom: 3px solid #AFDDFA;
-	padding: 20px;
+.regNoticeTitleDiv{
+	border-bottom: 5px solid #f3f5f6;
+	padding: 5px;
 	font-size: 20pt;
 }
 .regNoticeWriteDiv{
-	border: 1px solid blue;
-	margin-top: 20px;
-	margin-bottom: 20px;
+	border: 2px solid #f3f5f6;
+	margin-top: 80px;
+	padding: 20px;
+	padding-bottom: 20px;
+	margin-left: 200px;
+}
+.regNoticeWriteDiv td{
+	padding-top: 16px;
+	padding-bottom: 16px;
+	background-color: #ffffff;
+	margin-left: 200px;
 }
 .regNoticeWrite{
-	border: 1px solid black;
-	margin:0 auto;
-	margin-top: 50px;
-	margin-bottom: 50px;
-	padding: 20px;
-	font-size: 13px;
+	text-align: center;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+table td:nth-child(odd){
+	background-color: #f8f8f8;
 }
 table{
 	width: 100%;
 	margin: 0 auto;
 	padding-left: 20px;
 }
-tr{
-	border: 1px solid black;
-}
-td{
-	border: 1px solid black;
+table td{
+	border: 2px solid #b4b4bc;
 	padding: 15px;
 }
 
@@ -54,15 +60,22 @@ table td:first-child{
 	border: white;
 	outline-color: white;
 }
+.boardWriter{
+	text-align: left;
+}
+.regDate{
+	text-align: left;
+}
 .boardSubject input[type="text"]{
 	width: 100%;
 }
+textarea{
+	width: 100%;
+}
 .regNoticeBtnDiv{
-	border: 1px solid red;
 	margin-top: 20px;
 }
 .regNoticeBtn{
-	border: 1px solid green;
 	margin: 0 auto;
 	text-align: center;
 	width: 100px;
@@ -77,11 +90,11 @@ table td:first-child{
 <body>
 <div class="row">
 	<div class="col-12 bodyContainer">
-		<div class="col-10 regNoticeTitleDiv">
+		<div class="col-7 regNoticeTitleDiv">
 			<div class="col-12 regNoticeTitle">공지사항 등록페이지</div>
 		</div>
-		<div class="col-10 regNoticeWriteDiv">
-			<div class="col-11 regNoticeWrite">
+		<div class="col-7 regNoticeWriteDiv">
+			<div class="col-12 regNoticeWrite">
 				<form action="/admin/regNoticeBoard" method="post" id="regNoticeBoardForm">
 					<table>
 						<tr>
@@ -94,11 +107,11 @@ table td:first-child{
 						</tr>
 						<tr>
 							<td>제목</td>
-							<td class="boardSubject"><input type="text" name="boardSubject" required></td>
+							<td class="boardSubject"><input id="boardSubject" type="text" name="boardSubject" required></td>
 						</tr>
 						<tr>
-							<td>내용</td>
-							<td><textarea cols="120%" rows="15" name="boardContent" style="resize: none;"></textarea></td>
+							<td style="vertical-align: top;">내용</td>
+							<td><textarea cols="70" rows="10" name="boardContent" style="resize: none;"></textarea></td>
 						</tr>
 					</table>
 					<div class="regNoticeBtnDiv">
