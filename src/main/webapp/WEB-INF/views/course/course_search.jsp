@@ -768,7 +768,7 @@ text-align: center;
 		</div>
 	
 	<!-- 검색 장소 리스트 영역 -->
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=11"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=32"></script>
 		<div class="row">
 		   <div class="col-6 placeListOrder" id="placeList"><!--장소리스트 나오는곳 -->
 		   </div>

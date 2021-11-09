@@ -9,28 +9,39 @@
 <style>
 .courseContainer{
 
-border:1px solid black;
+border:1px solid white;
+border-radius:20px;
 width:1500px;
 height:auto;
+min-height:1200px;
 margin:0 auto;
+margin-top:30px;
 display: flex;
 flex-direction: row;
 padding: 30px;
+background-image: url("/resources/images/3557b1c3aa0869f17f06b2691ef0900c.jpg");
+background-repeat: no-repeat;
+background-size: contain;
+background-position: right top;
+background-color:#8FBAE5;
 }
 
 .courseLayoutLeft{
 
-border:1px solid black;
+border:1px solid red;
+background-color:white;
 width:800px;
 height:auto;
 display:flex;
 flex-direction:column;
 margin:0 auto;
+margin-top:100px;
 
 }
 .courseLayoutRight{
 
 border:1px solid black;
+background-color:white;
 width:500px;
 height:500px;
 margin:0 auto;

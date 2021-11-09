@@ -2,6 +2,9 @@
 	var arrXY2 = [];//관광지X,Y
 	var positions = [];//숙박지 배열
 	var positions2 = []; //관광지 배열
+	var marker2;
+	var marker3;
+	var merkerNow;
 //화면 로딩 후 바로 실행
 $(document).ready(function(){
 	//상위 지역 셀렉트 박스의 값이 변경 되면..
@@ -204,6 +207,9 @@ placeStr +='	</div>';
 						
 						var placeXLen = $('.kakaoPlaceX').length;
 						var placeYLen = $('.kakaoPlaceY').length;
+						console.log(placeXLen);
+						console.log(placeYLen);
+						
 						
 						for(var i = 0; i < placeNameL; i++){
 							placeName[i] = $('.resultPlaceName').eq(i).text();
@@ -590,6 +596,9 @@ placeStr +='	</div>';
 
 ////////////////////
 var markers = [];
+var markers2 = [];
+var markers3 = [];
+var markersNow = [];
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
@@ -750,14 +759,14 @@ function getListItem(index, places) {
 
 // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 function addMarker(position, idx, title) {
-    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-        imageSize = new kakao.maps.Size(36, 37),  // 마커 이미지의 크기
-        imgOptions =  {
-            spriteSize : new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
-            spriteOrigin : new kakao.maps.Point(0, (idx*46)+10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-            offset: new kakao.maps.Point(13, 37) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
-        },
-        markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+    var imageSrc = '/resources/images/ico_marker6_def.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+        imageSize = new kakao.maps.Size(26, 36),  // 마커 이미지의 크기
+//        imgOptions =  {
+//            spriteSize : new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
+//            spriteOrigin : new kakao.maps.Point(0, (idx*46)+10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+//            offset: new kakao.maps.Point(13, 37) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+//        },
+        markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize),
             marker = new kakao.maps.Marker({
             position: position, // 마커의 위치
             image: markerImage 
@@ -769,15 +778,54 @@ function addMarker(position, idx, title) {
     return marker;
 }
 
+
+
 // 지도 위에 표시되고 있는 마커를 모두 제거합니다
 function removeMarker() {
     for ( var i = 0; i < markers.length; i++ ) {
-    
+    	
         markers[i].setMap(null);
+        positions2 =[];
+        positions=[];
     }   
+    
+//    for(var i = 0; i<markers3.length;i++){
+//    	markers3[i].setMap(null);
+//    }
     markers = [];
+   
+//    markers3 = [];
+}
+function removeMarker2(){
+	
+	if(markers2.length!=0){
+	    for(var i = 0; i< markers2.length;i++){
+	    	 markers2[i].setMap(null);
+	    	
+	    }
+	    }
+	    markers2 = [];
 }
 
+function removeMarker3(){
+	if(markers3.length!=0){
+	    for(var i = 0; i< markers3.length;i++){
+	    	 markers3[i].setMap(null);
+	    	
+	    }
+	    }
+		markers3 = [];
+}
+function removeMarkerNow(){
+	if(markersNow.length!=0){
+	    for(var i = 0; i< markersNow.length;i++){
+	    	 markersNow[i].setMap(null);
+	    	
+	    }
+	    }
+		markersNow = [];
+	
+}
 // 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
 function displayPagination(pagination) {
     var paginationEl = document.getElementById('pagination'),
@@ -849,13 +897,14 @@ function removeAllChildNods(el) {
  //관광지보기 누르는함수
 // function showPlaceInfo(x,y,arrXY){
 	 function showPlaceInfo(){
-		console.log(positions2.length);
-		 positions2=[];
+		
 		 
+		removeMarker2();
+	
 	 for(var e =0;e<arrXY2.length;e++){
 
 	 positions2.push({title:arrXY2[e].placeName,latlng:new kakao.maps.LatLng(arrXY2[e].x,arrXY2[e].y)})
-		 
+		 console.log(arrXY2[e].x);
 	 }
 	
 	    
@@ -865,28 +914,32 @@ function removeAllChildNods(el) {
 	   
 	 
 	
-		 var imageSrc = "../resources/images/premium-icon-tourism-3307738.png"; 
+		 var imageSrc = "../resources/images/ico_marker1_hover.png"; 
 	 
 	   for (var i = 0; i < positions2.length; i ++) {
 	       
 	       // 마커 이미지의 이미지 크기 입니다
-	       var imageSize = new kakao.maps.Size(35, 35); 
+	       var imageSize = new kakao.maps.Size(26, 36); 
 	       
 	       // 마커 이미지를 생성합니다    
 	       var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
 	       
-	       // 마커를 생성합니다
-	       var marker = new kakao.maps.Marker({
+	       // 마커를 생성합니다	
+	       	  marker2 = new kakao.maps.Marker({
 	           map: map, // 마커를 표시할 지도
 	           position: positions2[i].latlng, // 마커를 표시할 위치
 	           title : positions2[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 	           image : markerImage // 마커 이미지 
 	       });
+	       	  marker2.setMap(map);
+	       	  markers2.push(marker2);
 	   }
 	 
  }
 	 
 	   function showResInfo(x,y){
+		   
+		   removeMarkerNow();
 		   mapOption = { 
 			        center: new kakao.maps.LatLng(x,y), // 지도의 중심좌표
 			        level: 3 // 지도의 확대 레벨
@@ -906,13 +959,16 @@ function removeAllChildNods(el) {
 			    	map: map,
 			    	position: new kakao.maps.LatLng(x,y),
 			    	title:"현재 위치",
-			    	image:markerImageNow
+			    	image:markerImageNow,
+			    	zIndex: 4
 			    });
+			      markerNow.setMap(map);
+		       	  markersNow.push(markerNow);
 	   }
 	   
 	   function showHouseInfo(){
 		   
-			 positions=[];
+			 removeMarker3();
 			
 			 for(var e =0;e<arrXY.length;e++){
 
@@ -923,23 +979,25 @@ function removeAllChildNods(el) {
 			  //숙박지
 			// 마커 이미지의 이미지 주소입니다
 			
-				 var imageSrc = "../resources/images/free-icon-home-insurance-1456946.png"; 
+				 var imageSrc = "../resources/images/ico_marker2_def.png"; 
 			 
 			   for (var i = 0; i < positions.length; i ++) {
 			       
 			       // 마커 이미지의 이미지 크기 입니다
-			       var imageSize = new kakao.maps.Size(35, 35); 
+			       var imageSize = new kakao.maps.Size(26, 36); 
 			       
 			       // 마커 이미지를 생성합니다    
 			       var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
 			       
 			       // 마커를 생성합니다
-			       var marker = new kakao.maps.Marker({
+			        marker3 = new kakao.maps.Marker({
 			           map: map, // 마커를 표시할 지도
 			           position: positions[i].latlng, // 마커를 표시할 위치
 			           title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 			           image : markerImage // 마커 이미지 
 			       });
+			          marker3.setMap(map);
+			       	  markers3.push(marker3);
 			   }
 	   }
 	 
