@@ -200,12 +200,14 @@ mmendLayout{
 						<span id="appendRecommendCnt">
 							<c:choose>
 								<c:when test="${reviewRecom.isRecommend eq 'Y'}">
-									<img id="recomBtn" src="/resources/images/updateRecommend.PNG">${review.reviewBoardRecommendCnt }
+									<img class="recomBtn" src="/resources/images/updateRecommend.PNG">${review.reviewBoardRecommendCnt }
 								</c:when>
 								<c:otherwise>
-									<img id="recomBtn" onclick="updateRecommend();"src="/resources/images/nomalRecommend.PNG">${review.reviewBoardRecommendCnt }
+									<img class="recomBtn" onclick="updateRecommend();"src="/resources/images/nomalRecommend.PNG">${review.reviewBoardRecommendCnt }
 								</c:otherwise>
 							</c:choose>
+						</span>
+						<span>
 							조회수${review.reviewBoardReadCnt }
 						</span>
 						<div>
