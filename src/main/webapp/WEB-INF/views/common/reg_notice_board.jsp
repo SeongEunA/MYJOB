@@ -10,20 +10,20 @@
 <style type="text/css">
 .regNoticeTitleDiv{
 	padding:0px;
+	margin: 0 auto;
 	margin-top: 80px;
-	margin-left: 200px;
 }
-.regNoticeTitleDiv{
+.regNoticeTitle{
 	border-bottom: 5px solid #f3f5f6;
 	padding: 5px;
 	font-size: 20pt;
 }
 .regNoticeWriteDiv{
 	border: 2px solid #f3f5f6;
+	margin: 0 auto;
 	margin-top: 80px;
 	padding: 20px;
 	padding-bottom: 20px;
-	margin-left: 200px;
 }
 .regNoticeWriteDiv td{
 	padding-top: 16px;
@@ -72,16 +72,28 @@ table td:first-child{
 textarea{
 	width: 100%;
 }
-.regNoticeBtnDiv{
+.manageNoticeBtnDiv{
 	margin-top: 20px;
+	text-align: center;
 }
 .regNoticeBtn{
 	margin: 0 auto;
-	text-align: center;
+	display: inline-block;
+	margin-right: 5px;
 	width: 100px;
 	height: 30px;
 }
 .regNoticeBtn input[type="button"]{
+	width: 100%;
+	height: 100%;
+}
+.cencelNoticeBtn{
+	margin: 0 auto;
+	display: inline-block;
+	width: 100px;
+	height: 30px;
+}
+.cencelNoticeBtn input[type="button"]{
 	width: 100%;
 	height: 100%;
 }
@@ -90,12 +102,12 @@ textarea{
 <body>
 <div class="row">
 	<div class="col-12 bodyContainer">
-		<div class="col-7 regNoticeTitleDiv">
+		<div class="col-6 regNoticeTitleDiv">
 			<div class="col-12 regNoticeTitle">공지사항 등록페이지</div>
 		</div>
-		<div class="col-7 regNoticeWriteDiv">
+		<div class="col-6 regNoticeWriteDiv">
 			<div class="col-12 regNoticeWrite">
-				<form action="/admin/regNoticeBoard" method="post" id="regNoticeBoardForm">
+				<form action="/common/regNoticeBoard" method="post" id="regNoticeBoardForm">
 					<table>
 						<tr>
 							<td>작성자</td>
@@ -111,12 +123,15 @@ textarea{
 						</tr>
 						<tr>
 							<td style="vertical-align: top;">내용</td>
-							<td><textarea cols="70" rows="10" name="boardContent" style="resize: none;"></textarea></td>
+							<td><textarea cols="70" rows="10" id="boardContent" name="boardContent" style="resize: none;"></textarea></td>
 						</tr>
 					</table>
-					<div class="regNoticeBtnDiv">
+					<div class="manageNoticeBtnDiv">
 						<div class="regNoticeBtn">
 							<input type="button" value="등록" onclick="regNoticeBoard();">
+						</div>
+						<div class="cencelNoticeBtn">
+							<input type="button" value="취소" onclick="cencelNoticeBoard();">
 						</div>
 					</div>
 				</form>

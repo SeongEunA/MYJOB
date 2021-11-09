@@ -70,6 +70,10 @@ table td{
 	display: inline-block;
 }
 
+.cancelNoticeBoardBtnDiv{
+	display: inline-block;
+}
+
 </style>
 </head>
 <body>
@@ -105,15 +109,9 @@ table td{
 				</table>
 				<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' }">
 					<div class="manageBtnDiv">
-						<div class="updateNoticeBoardBtnDiv">
-							<input type="button" id="updateNoticeBoard" value="수정" onclick="updateNoticeBoard('${detailNoticeBoard.noticeBoardCode }');">
-						</div>
-						<div class="deleteNoticeBoardBtnDiv">
-							<input type="button" id="deleteNoticeBoard" value="삭제" onclick="deleteNoticeBoard('${detailNoticeBoard.noticeBoardCode }');">
-						</div>
-						<div>
-							<input id="memberIsAdmin" type="hidden" value="${sessionScope.loginInfo.memberIsAdmin}">
-						</div>
+						<div class="updateNoticeBoardBtnDiv"><input type="button" id="updateNoticeBoard" value="수정" onclick="updateNoticeBoard('${detailNoticeBoard.noticeBoardCode }');"></div>
+						<div class="deleteNoticeBoardBtnDiv"><input type="button" id="deleteNoticeBoard" value="삭제" onclick="deleteNoticeBoard('${detailNoticeBoard.noticeBoardCode }');"></div>
+						<div><input id="memberIsAdmin" type="hidden" value="${sessionScope.loginInfo.memberIsAdmin}"></div>
 					</div>
 				</c:if>
 			</div>

@@ -10,7 +10,6 @@
 .noticeTitleDiv{
 	margin:0 auto;
 	padding:0px;
-	border: 1px solid white;
 	margin-top: 80px;
 }
 .noticeTitle{
@@ -171,7 +170,7 @@ td{
 			<div class="col-12 regNoticeBtn">
 			&nbsp;
 				<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' }">
-					<a href="/admin/goRegNoticeBoard"><input type="button" value="등록"></a>
+					<a href="/common/goRegNoticeBoard"><input type="button" value="등록"></a>
 				</c:if>
 			</div>
 		</div>
