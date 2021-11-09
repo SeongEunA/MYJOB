@@ -547,14 +547,14 @@ color: #1F50B5;
 border:1px solid #fff9a3;
 width:500px;
 height:150px;
-margin-top:20px;
 background-color:#fff9a3;
 box-shadow: 2px 2px 4px gray;
 font-family: 'Daughter_handwriting';
 font-weight:bold;
 font-size:20px;
 letter-spacing: 1px;
-margin-right:30px;
+margin: 0 auto;
+margin-top:20px;
 }
 
 .placeLayout span{
@@ -587,9 +587,29 @@ border-radius:10px;
 border:1px solid white;
 background-color:white;
 width:100%;
-height:1000px;
+height:950px;
 display:flex;
 flex-flow:column wrap;
+}
+.pageBtn ul > li{
+border:none;
+display:inline-block;
+width:auto;
+height:100%;
+cursor:pointer;
+position:relative;
+margin-top:10px;
+margin: 0 auto;
+text-align: center;
+}
+.disabled {
+    pointer-events:none;
+    opacity:0.6;
+}
+.pageBtn{
+	width: 50%;
+	margin: 0 auto;
+	text-align: center;
 }
 </style>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	3d45ea450bf493fb0fea992bed62c07e&libraries=services,clusterer,drawing"></script>
@@ -748,10 +768,11 @@ flex-flow:column wrap;
 		</div>
 	
 	<!-- 검색 장소 리스트 영역 -->
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=24"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=11"></script>
 		<div class="row">
 		   <div class="col-6 placeListOrder" id="placeList"><!--장소리스트 나오는곳 -->
 		   </div>
+		   <div class="pageBtnLayout" id="pageBtnLayout"></div>
 		</div>
 	</div><!-- courseHalfLayout -->
 	<div class="courseHalfLayout">

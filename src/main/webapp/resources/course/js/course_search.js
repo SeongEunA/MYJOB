@@ -344,11 +344,9 @@ placeStr +='	</div>';
             		'nowPage':nowPage}, //필요한 데이터
             success: function(result) {
             	
-            	console.log(result);
-            	console.log('test2');
-            	console.log(arrXY2);
                //ajax 실행 성공 후 실행할 코드 작성
                $('#placeList').empty(); //하위태그만 삭제
+               $('#pageBtnLayout').empty(); //하위태그만 삭제
                var totalPage = (Math.ceil(result.pageVO.totalCnt / result.pageVO.displayCnt));
                var str='';
                
@@ -381,13 +379,12 @@ placeStr +='	</div>';
             	   showHouseInfo();
                }
                if(cateCode=='CATE_002'){
-               showPlaceInfo();
+            	   showPlaceInfo();
                }
                
      		  
                $(result.selectPlaceList).each(function(index,element){
-            	  console.log('검색버튼 클릭시 x값 : ' + element.x);
-                str +='		<div class="placeLayout">';	
+                str += '<div class="placeLayout">';	
                	str += '	<input type="hidden" value="' + element.x + '" name="x" class="kakaoPlaceX">';
                	str += '	<input type="hidden" value="' + element.y + '" name="y" class="kakaoPlaceY">';
                	
@@ -399,56 +396,58 @@ placeStr +='	</div>';
 	            if(element.placeTel != null){
 	               		str += '	<div class="placeTel"><span>연락처 : ' + element.placeTel + '</span></div>';
 	               	}
-	            str +='<div></div>';
-	            str +='<input type="hidden" value="'+element.placeAddr+'" name="placeAddr">';
-	            str +='<ul>';
-               	str += '	<li id="saveCourseInfo">담기</li>';
-               	str += '	<li id="showResInfo">맛집보기</li>';
-               	str +='</ul>';
+	            str += '	<div></div>';
+	            str += '	<input type="hidden" value="'+element.placeAddr+'" name="placeAddr">';
+	            str += '	<ul>';
+               	str += '		<li id="saveCourseInfo">담기</li>';
+               	str += '		<li id="showResInfo">맛집보기</li>';
+               	str += '	</ul>';
                	str += '</div>';
                	
                 });
                  
-                
-                str += '<div class="row">';
-   	          	str += '	<div class="col-6 text-center">';
-   	          	str += '			<ul>';
-   	          	str += '				<li>';
-   	          	str += '					<a onclick="clickSearch(' + (totalPage-(totalPage-1)) + ')">&lt;&lt;</a>';
-   	          	str += '				</li>';
-   	          	str += '				<li';
+                var pageStr = ''; 
+               
+                pageStr += '<div class="row pageBtn">';
+                pageStr += '	<div class="col">';
+                pageStr += '			<ul>';
+                pageStr += '				<li>';
+                pageStr += '					<a onclick="clickSearch(' + (totalPage-(totalPage-1)) + ')">&lt;&lt;</a>';
+                pageStr += '				</li>';
+                pageStr += '				<li';
    	          							if(result.pageVO.prev == false){
-   	          								str += ' disabled';
+   	          								pageStr += ' class="disabled"';
    	          							};
-   	          	str += '">';
-   	          	str += '					<a onclick="clickSearch(' + (result.pageVO.beginPage - 1) +')">이전</a>';
-   	          	str += '				</li>';
+   	          	pageStr += '>';
+   	          	pageStr += '					<a onclick="clickSearch(' + (result.pageVO.beginPage - 1) +')">이전</a>';
+   	          	pageStr += '				</li>';
    	          			    for(var i = result.pageVO.beginPage; i <= result.pageVO.endPage; i++){
-   	          			    	str += '<li';
+   	          			    	pageStr += '<li class="';
    	          			    	
    	          			    	if(result.pageVO.nowPage == i){
-   	          			    		str += ' active';
+   	          			    		pageStr += 'active';
    	          			    	}
-   	          			    	str += '>';
-   	          			    	str += '	<a  onclick="clickSearch(' + i + ')">' + i + '</a>';
-   	          			    	str += '</li>'
+   	          			    	pageStr += '">';
+   	          			    	pageStr += '	<a  onclick="clickSearch(' + i + ')">' + i + '</a>';
+   	          			    	pageStr += '</li>'
    	          			    	
    	          			    };
-   	          	str += '				<li';
+   	          	pageStr += '				<li';
    	          							if(result.pageVO.next == false){
-   	          								str += ' disabled';
+   	          								pageStr += ' class="disabled"';
    	          							};
-   	          	str += '">';					
-   	          	str += '					<a onclick="clickSearch(' + (result.pageVO.endPage + 1) +')">다음</a>';
-   	          	str += '				</li>';
-   	          	str += '				<li>';
-   	          	str += '					<a onclick="clickSearch(' + totalPage + ')">&gt;&gt;</a>';
-   	          	str += '				</li>';
-   	          	str += '			</ul>';
-   	          	str += '	</div>';
-   	          	str += '</div>';
+   	          	pageStr += '>';					
+   	          	pageStr += '					<a onclick="clickSearch(' + (result.pageVO.endPage + 1) +')">다음</a>';
+   	          	pageStr += '				</li>';
+   	          	pageStr += '				<li>';
+   	          	pageStr += '					<a onclick="clickSearch(' + totalPage + ')">&gt;&gt;</a>';
+   	          	pageStr += '				</li>';
+   	          	pageStr += '			</ul>';
+   	          	pageStr += '	</div>';
+   	          	pageStr += '</div>';
                
                $('#placeList').prepend(str);
+               $('#pageBtnLayout').prepend(pageStr);
             },
             error: function(){
              //ajax 실행 실패 시 실행되는 구간
