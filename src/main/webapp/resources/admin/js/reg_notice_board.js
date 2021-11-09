@@ -17,11 +17,34 @@ $(document).ready(function(){
 //함수선언영역
 
 (function($){
+	//등록버튼 누르면 등록하러가기
 	regNoticeBoard = function() {
-		var result = confirm('등록하시겠습니까?');
-		if(result){
-			$('#regNoticeBoardForm').submit();
+		var boardSubject = $('#boardSubject').val();
+		var boardContent = $('#boardContent').val();
+		
+		if((boardSubject == '' || boardContent == '') || (boardSubject == '' && boardContent == '')){
+			//alert(boardSubject);
+			//alert(boardContent);
+			alert('내용을 입력해주세요.');
+			$('#boardSubject').focus();
 		}
+		else if((boardSubject == ' ' || boardContent == ' ') || (boardSubject == ' ' && boardContent == ' ')){
+			//alert(boardSubject);
+			//alert(boardContent);
+			alert('빈칸이 입력되었습니다.');
+			$('#boardSubject').focus();
+		}
+		else{
+			var result = confirm('등록하시겠습니까?');
+			if(result){
+				$('#regNoticeBoardForm').submit();
+			}
+		}
+	}
+	
+	//취소버튼 누르면 공지사항리스트 페이지로 이동
+	cencelNoticeBoard = function() {
+		location.href = "/common/noticeBoard"
 	}
 	
 	

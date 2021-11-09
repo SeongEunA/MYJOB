@@ -28,17 +28,23 @@ $(document).ready(function(){
 	updateNoticeBoard = function(noticeBoardCode){
 		//버튼의 글자가 확인이면
 		if($('#updateNoticeBoard').val() == '수정'){
-			
 			//공지사항 상세페이지에서 변경 가능한 값들을 인풋...
 			var boardSubject = $('#boardSubject').text();
 			var boardContent = $('#boardContent').text();
 			
-			$('#boardSubject').html('<input type="text" value="' + boardSubject + '">');
+			$('#boardSubject').html('<input type="text" id="inputSubject" style="width: 99%;" value="' + boardSubject + '">');
 			$('#boardContent').html('<textarea cols="83%" rows="8" name="boardContent" style="resize: none;">' + boardContent + '</textarea>');
+			$('#inputSubject').focus();
 			
 			
 			//버튼의 글자를 변경
 			$('#updateNoticeBoard').val('확인');
+			$('.deleteNoticeBoardBtnDiv').empty();
+			var str = '';
+			str += '	<div class="cancelNoticeBoardBtnDiv"><input type="button" value="취소" onclick="history.go();"></div>';
+			$('.deleteNoticeBoardBtnDiv').append(str);
+			
+			
 		}
 		//확인 버튼을 누르면 변경된 정보를 업데이트
 		else if($('#updateNoticeBoard').val() == '확인'){
@@ -88,17 +94,17 @@ $(document).ready(function(){
 						    str += '			<col width="10%">';
 						    str += '			<col width="10%">';
 						    str += ' 		</colgroup>';
-						    str += ' 		<tr>';
+						    str += ' 		<tr class="firstLine">';
 						    str += '			<td>제목</td>';
 						    str += '			<td>작성자</td>';
 						    str += '			<td>작성일</td>';
 						    str += '		</tr>';
 						    str += '		<tr>';
-						    str += '			<td>' + result.boardSubject + '</td>';
+						    str += '			<td id="boardSubject">' + result.boardSubject + '</td>';
 						    str += '			<td>' + result.boardWriter + '</td>';
 						    str += '			<td>' + result.regDate + '</td>';
 						    str += '		</tr>';
-						    str += '		<tr>';
+						    str += '		<tr class="thirdLine">';
 						    str += '			<td colspan="3">내 용</td>';
 						    str += '		</tr>';
 						    str += '		<tr class="contentTr">';
@@ -109,6 +115,8 @@ $(document).ready(function(){
 			  	   				str += '		<div class="manageBtnDiv">';
 			  	   				str += '			<div class="updateNoticeBoardBtnDiv"><input type="button" id="updateNoticeBoard" value="수정" onclick="updateNoticeBoard(\'' + result.noticeBoardCode + '\');"></div>';
 			  	   				str += '			<div class="deleteNoticeBoardBtnDiv"><input type="button" id="deleteNoticeBoard" value="삭제" onclick="deleteNoticeBoard(\'' + result.noticeBoardCode + '\');"></div>';
+			  	   				str += '			<div><input id="memberIsAdmin" type="hidden" value="' + memberIsAdmin + '"></div>';
+			  	   				str += '		</div>';
 			  	   			}
 						    $('.noticeContent').append(str);
 						    

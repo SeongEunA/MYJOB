@@ -68,7 +68,7 @@ table td{
 	width: 100px;
 	height: 30px;
 }
-.updateMyInfoBtnDiv{
+.manageMyInfoBtnDiv{
 	margin-top: 20px;
 }
 .updateMyInfoBtn{
@@ -77,6 +77,10 @@ table td{
 .updateMyInfoBtn input[type="button"]{
 	width: 100px;
 	height: 30px;
+}
+.cancelMyInfoBtn{
+	display: inline-block;
+	margin-left: 5px;
 }
 </style>
 </head>
@@ -126,7 +130,7 @@ table td{
 							<td id="memberAddr">${detailMyInfo.memberAddr }</td>
 						</tr>
 					</table>
-					<div class="updateMyInfoBtnDiv">
+					<div class="manageMyInfoBtnDiv">
 						<div class="updateMyInfoBtn">
 							<input type="button" id="updateMyInfo" value="수정" onclick="updateMyInfo('${detailMyInfo.memberCode }');">
 						</div>

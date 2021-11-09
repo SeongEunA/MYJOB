@@ -32,14 +32,17 @@
 			var memberTel = $('#memberTel').text();
 			var memberAddr = $('#memberAddr').text();
 			
-			$('#memberPw').html('<input type="text" name="memberPw" value="' + memberPw + '">');
+			$('#memberPw').html('<input type="text" name="memberPw" style="width: 99%;" value="' + memberPw + '">');
 			$('#confirmPw').append('<input type="text" name="confirmPw" value="1">');
-			$('#memberEmail').html('<input type="text" name="memberEmail" value="' + memberEmail + '">');
-			$('#memberTel').html('<input type="text" name="memberTel" value="' + memberTel + '">');
-			$('#memberAddr').html('<input type="text" name="memberAddr" value="' + memberAddr + '">');
+			$('#memberEmail').html('<input type="text" name="memberEmail" style="width: 99%;" value="' + memberEmail + '">');
+			$('#memberTel').html('<input type="text" name="memberTel" style="width: 99%;" value="' + memberTel + '">');
+			$('#memberAddr').html('<input type="text" name="memberAddr" style="width: 99%;" value="' + memberAddr + '">');
 			
 			//버튼의 글자를 변경
 			$('#updateMyInfo').val('확인');
+			var str = '';
+			str += '	<div class="cancelMyInfoBtn"><input type="button" value="취소" onclick="history.go();"></div>';
+			$('.updateMyInfoBtn').append(str);
 		}
 		//확인 버튼을 누르면 수정된 정보를 업데이트
 		else if($('#updateMyInfo').val() == '확인'){
@@ -47,8 +50,6 @@
 			var memberEmail = $('input[name=memberEmail]').val();
 			var memberTel = $('input[name=memberTel]').val();
 			var memberAddr = $('input[name=memberAddr]').val();
-			var confirmPw = $('input[name=confirmPw]').val();
-			var memberId = $('#memberId').text();
 			
 						
 			var result = confirm('정보를 수정하시겠습니까?');
@@ -125,7 +126,7 @@
 				str += '			<td id="memberAddr">' + result.memberAddr + '</td>';
 				str += '		</tr>';
 				str += '	</table>';
-				str += '	<div class="updateMyInfoBtnDiv">';
+				str += '	<div class="manageMyInfoBtnDiv">';
 				str += '		<div class="updateMyInfoBtn">';
 				str += '			<input type="button" id="updateMyInfo" value="수정" onclick="updateMyInfo(\'' + result.memberCode + '\');">';
 				str += '		</div>';

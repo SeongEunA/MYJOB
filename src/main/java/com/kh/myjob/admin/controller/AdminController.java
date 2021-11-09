@@ -1,7 +1,6 @@
 package com.kh.myjob.admin.controller;
 
 
-import java.util.Calendar;
 
 import javax.annotation.Resource;
 
@@ -18,7 +17,6 @@ import com.kh.myjob.member.service.MemberService;
 import com.kh.myjob.member.vo.MemberVO;
 import com.kh.myjob.review.service.ReviewService;
 import com.kh.myjob.review.vo.ReviewReplyVO;
-import com.kh.myjob.review.vo.ReviewVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -63,23 +61,6 @@ public class AdminController {
 		return "admin/delete_member_result";
 	}
 	
-//	//코스후기 관리페이지로 이동
-//	@RequestMapping("/reviewManage")
-//	public String goReviewManage(Model model, ReviewVO reviewVO) {
-//		
-//		
-//		//전체 데이터 수
-//		int dataCnt = reviewService.selectReviewCnt(reviewVO);
-//		reviewVO.setTotalCnt(dataCnt);
-//			
-//		//페이징 처리
-//		reviewVO.setPageInfo();
-//		
-//		
-//		model.addAttribute("reviewList", reviewService.selectReviewList(reviewVO));
-//		return "admin/review_manage";
-//	}
-	
 	//코스후기 삭제
 	@GetMapping("/deleteReviewBoard")
 	public String deleteReviewBoard(String reviewBoardCode, Model model) {
@@ -118,27 +99,6 @@ public class AdminController {
 		return "admin/delete_reply_result";
 	}
 	
-	//공지사항 등록페이지로 이동
-	@GetMapping("/goRegNoticeBoard")
-	public String goRegBoticeBoard(Model model) {
-		
-		//오늘 날짜 세팅
-		String nowDate = getNowDateToString();
-		model.addAttribute("nowDate", nowDate);
-		
-		return "admin/reg_notice_board";
-	}
-	
-	//공지사항 등록
-	@PostMapping("/regNoticeBoard")
-	public String regBoticeBoard(NoticeBoardVO noticeBoardVO, Model model) {
-		//NOTICE_BOARD_CODE 세팅
-		noticeBoardVO.setNoticeBoardCode(commonService.nextNoticeBoardCode());
-		
-		model.addAttribute("regNoticeBoardResult", commonService.regNoticeBoard(noticeBoardVO));
-		return "admin/reg_notice_board_result";
-	}
-	
 	//공지사항 수정
 	@ResponseBody
 	@PostMapping("/updateNoticeBoard")
@@ -160,26 +120,7 @@ public class AdminController {
 		return "admin/delete_notice_board_result";
 	}
 	
-	//오늘날짜 구하는 메소드
-	private String getNowDateToString() {
-		//YYYY-MM-DD
-		Calendar cal = Calendar.getInstance();
-		int year = cal.get(Calendar.YEAR);
-		int month = cal.get(Calendar.MONTH) + 1;
-		int date = cal.get(Calendar.DATE);
-		
-		String strMonth = String.valueOf(month);
-		if(month < 10) {
-			strMonth = "0" + strMonth;
-		}
-		
-		String strDate = String.valueOf(date);
-		if(date < 10) {
-			strDate = "0" + strDate;
-		}
-		
-		return year +  "." + strMonth + "." + strDate;
-	}
+	
 	
 	
 	
