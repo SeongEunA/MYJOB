@@ -95,32 +95,47 @@
 				<form action="/review/regReview" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="reviewBoardWriter" value="${sessionScope.loginInfo.memberId }">
 					<div class="headerDiv">코스선택
-						<select id="selectCourseCode" name="courseCode">
-						<c:forEach items="${courseList }" var="courseInfo">
-							<option value="${courseInfo.courseCode }">${courseInfo.courseName }</option>
-						</c:forEach>
-						</select> 제목 <input type="text" name="reviewBoardTitle" required>
+						<c:choose>
+							<c:when test="${empty courseList }">
+								<div>코스를 추가해주세요!</div>
+							</c:when>
+							<c:otherwise>
+								<select id="selectCourseCode" name="courseCode">
+									<c:forEach items="${courseList }" var="courseInfo">
+										<option value="${courseInfo.courseCode }">${courseInfo.courseName }</option>
+									</c:forEach>
+								</select> 제목 <input type="text" name="reviewBoardTitle" required>
+							</c:otherwise>
+						</c:choose>
 					</div>
-					<div class="selectCourseDiv">
-						<c:forEach items="${courseListBycourseCode }" var="courseInfo">
-							<div class="courseBox" id="courseBox">
-								<c:forEach items="${courseInfo.coursePlaceList}" var="placeInfo" varStatus="cnt">
-									<c:choose>
-										<c:when test="${cnt.last }">
-							      	 		<div class="placeName">
-							      	 			${placeInfo.placeName  }
-							      	 		</div>
-										</c:when>
-							      	 	<c:otherwise>
-											<div class="placeName">
-												${placeInfo.placeName  }
-											</div> &#10140;
-							      	 	</c:otherwise>
-									</c:choose>
-								</c:forEach>
+					<c:choose>
+						<c:when test="${empty courseListBycourseCode }">
+							<div class="selectCourseDiv"></div>
+						</c:when>
+						<c:otherwise>
+							<div class="selectCourseDiv">
+								<c:forEach items="${courseListBycourseCode }" var="courseInfo">
+									<div class="courseBox" id="courseBox">
+										<c:forEach items="${courseInfo.coursePlaceList}" var="placeInfo" varStatus="cnt">
+											<c:choose>
+												<c:when test="${cnt.last }">
+									      	 		<div class="placeName">
+									      	 			${placeInfo.placeName  }
+									      	 		</div>
+												</c:when>
+									      	 	<c:otherwise>
+													<div class="placeName">
+														${placeInfo.placeName  }
+													</div> &#10140;
+									      	 	</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</div>
+							     </c:forEach>
 							</div>
-					     </c:forEach>
-					</div>
+						</c:otherwise>
+					</c:choose>
+					
 					<div class="introCourseDiv">
 						<textarea name="reviewBoardContent" id="csdesc" maxlength="2000"
 							class="comment_textarea" title="코스 소개" style="resize: none;"

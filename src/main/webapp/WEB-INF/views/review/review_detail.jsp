@@ -84,13 +84,18 @@
 }
 .reviewPhotoDiv{
 	border:1px solid black;
-	width:30%;
-	height:100%;
+	width:250px;
+	height:250px;
 	border-radius:10px;
-	margin:0 20px;
-	display: block;
+	margin:0 75px;
 }
-.recommendLayout{
+.reviewPhotoDiv img{
+ 	top:0; 
+ 	left: 0;
+  	width: 100%;
+  	height: 100%;
+}
+mmendLayout{
 	text-align: left;
 	padding: 12px;
 }
@@ -102,15 +107,84 @@
 	margin-left: 3px;
 }
 
-
 .recommendLayout img{
 	height: 28px;
 }
+.totalReply{
+	board: 1px solid red;
+}
+.replyWrap{
+	margin: 0 auto;
+}
+.replyListForm{
+	board: 1px solid blue;
+}
+.replyTitle{
+	margin-top: 22px;
+}
+.replyTitle span{
+	color: #0a97cd;
+}
+.replyTitle strong{
+	font-size: 26px;
+}
+.replyWrap{
+	border: 5px solid pink;
+	margin: 0 auto;
+}
+.write{
+	border: 3px solid red;
+}
 
+.replyWrap .write {
+	height: 150px;
+    position: relative;
+    margin-top: 30px;
+    background: #f7f7f7;
+    border: 1px solid #e5e5e5;
+}
+.writeForm{
+	padding: 20px;
+	border: 3px solid green;
+}
+.regBtn{
+	margin-top: 15px;
+	border: 3px solid white;
+	text-align: right;
+}
+.replyListForm{
+	text-align: left;
+	margin-left: 10px;
+	margin-top: 15px;
+}
+.reviewTable{
+	width: 100%;
+	text-align: left;
+	border-bottom: 2px solid #eeeeee;
+}
+.reviewTable tr, td{
+	padding: 3px;
+}
+.reviewList{
+	border: 3.5px solid black;
+	padding: 15px;
+}
+.reviewTable tr:nth-child(2) td{
+	font-size: 16px;
+}
+.deleteBtn {
+	text-align: right;
+}
+.recommendLayout {
+	text-align: left;
+}
 </style>
 </head>
 <body>
 	<div class="row">
+		<input type="hidden" class="reviewReplyId"      value="${sessionScope.loginInfo.memberId}"> 
+		<input type="hidden" class="reviewReplyWriter"  value="${sessionScope.loginInfo.memberName}"> 
+		<input type="hidden" class="reviewBoardCode"	value="${reviewReplyVO.reviewBoardCode}">
 		<div class="col-12 bodyContainer">
 			<div class="reviewTitleContanier col-8">
 				<div class="mainTitle">울산대공원</div>
@@ -132,8 +206,6 @@
 									<img id="recomBtn" onclick="updateRecommend();"src="/resources/images/nomalRecommend.PNG">${review.reviewBoardRecommendCnt }
 								</c:otherwise>
 							</c:choose>
-						</span>
-						<span>
 							조회수${review.reviewBoardReadCnt }
 						</span>
 						<div>
@@ -160,93 +232,64 @@
 				<div class="reviewPhotoLayout col-12">
 					<c:forEach items="${review.reviewImgList}" var="reviewImgVO">
 						<div class="reviewPhotoDiv">
-							<img src="/resources/images/${reviewImgVO.reviewImgAttachedName }" width="250" height="250">
+							<img src="/resources/images/${reviewImgVO.reviewImgAttachedName }" width="200" height="200">
 						</div>					
 					</c:forEach>
 				</div>
 			</div>
 		
 			<div class="col-12"><!-- 댓글 -->
-				<div class="replyContainer col-8">
-					<div class="replyformDiv">
-						<div>
-							<form action="/review/regRely" method="post">
+				<div class="col-8 replyWrap">
+						<div class="replyTitle">
+							<strong>댓글&nbsp;<span>${replyList.size() }</span></strong>
+						</div>
+						<form action="/review/regRely" method="post">
+							<div class="write">
+								<div class="writeForm">
 									<input type="hidden" name="memberId"          value="${sessionScope.loginInfo.memberId}"> 
 									<input type="hidden" name="reviewReplyWriter" value="${sessionScope.loginInfo.memberName}"> 
 									<input type="hidden" name="reviewBoardCode"   value="${review.reviewBoardCode}"> 
-									<br><br>
-								<div>
-									<strong>댓글</strong>
+									<textarea style="width:100%; resize: none;"class="replyContent" rows="3" cols="30" name="reviewReplyContent" required></textarea> <br>							
+								<div class="regBtn">
+									<input type="submit" value="등록" class="">
 								</div>
-								<table class="replyTable">
-									<tr>
-										<td>
-											<textarea style="width:100%; resize: none;"class="replyContent" rows="3" cols="30"name="reviewReplyContent" required></textarea> <br>
-											<div>
-												<input type="submit" value="등록" class="">
-											</div>
-										</td>
-									</tr>
-								</table>
-							</form>
-						</div>
-						<div class="replyList">
-						
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-	
-		<input type="hidden" class="reviewReplyIsAdmin" value="${sessionScope.loginInfo.memberIsAdmin}"> 
-		<input type="hidden" class="reviewReplyId"      value="${sessionScope.loginInfo.memberId}"> 
-		<input type="hidden" class="reviewReplyWriter"  value="${sessionScope.loginInfo.memberName}"> 
-		<input type="hidden" class="reviewBoardCode"	value="${reviewReplyVO.reviewBoardCode}">
-
-		<div class="container">
-			<form action="/review/regRely" method="post">
-				<input type="hidden" name="memberId"          value="${sessionScope.loginInfo.memberId}"> 
-				<input type="hidden" name="reviewReplyWriter" value="${sessionScope.loginInfo.memberName}"> 
-				<input type="hidden" name="reviewBoardCode"   value="${review.reviewBoardCode}"> 
-				<br><br>
-				<div>
-					<strong>댓글</strong>
-				</div>
-				<div class="replyFormDiv">
-					
-				</div>
-			</form>
-		</div>
-		<div class="container">
-			<div id="replyForm">
-				<div id="replyList">
+								</div>
+							</div>
+						</form>	
+				<div class="col-12">
 					<c:choose>
-						<c:when test="${!empty reviewReplyList}">
-							<c:forEach items="${reviewReplyList }" var="reviewReplyVO">
-								<div>
-									<div>
-										<table class="table">
-												<tr>
-													<td>
-														${reviewReplyVO.reviewReplyWriter }
-														${reviewReplyVO.reviewReplyContent}												
-													</td>
-												</tr>
+						<c:when test="${!empty replyList}">
+							<c:forEach items="${replyList }" var="reviewReplyVO">
+									<div class="col-12 reviewList">
+										<table class="reviewTable">
 											<tr>
 												<td>
-													<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' || sessionScope.loginInfo.memberId eq reviewReplyVO.memberId}">
-														<form action="/review/deleteReply" method="get"id="deleteReply">
-															<input type="hidden" name="reviewBoardCode"value="${reviewReplyVO.reviewBoardCode}"> 
-															<input type="hidden" class="hiddenReviewReplyCode" name="reviewReplyCode"value="${reviewReplyVO.reviewReplyCode }">
-														</form>
-															<input type="button" onclick="deleteReply();" value="삭제">
-														</c:if>
+													${reviewReplyVO.reviewReplyContent}												
+												</td>
+											</tr>
+											<tr>
+												<td>
+													${reviewReplyVO.reviewReplyWriter } | ${reviewReplyVO.reviewReplyRegDate }
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<div>
+													 &nbsp;
+														<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' || sessionScope.loginInfo.memberId eq reviewReplyVO.memberId}">
+															<form action="/review/deleteReply" method="get"id="deleteReply">
+																<input type="hidden" name="reviewBoardCode"value="${reviewReplyVO.reviewBoardCode}"> 
+																<input type="hidden" class="hiddenReviewReplyCode" name="reviewReplyCode"value="${reviewReplyVO.reviewReplyCode }">
+															</form>
+																<div class="deleteBtn">
+																	<input type="button" onclick="deleteReply();" value="삭제">
+																</div>
+														 </c:if>
+													</div>
 												</td>
 											</tr>
 										</table>
 									</div>
-								</div>
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
@@ -254,9 +297,9 @@
 						</c:otherwise>
 					</c:choose>
 				</div>
-			</div>
+			</div>	
 		</div>
-	</div>
-	</div>
+		</div>
+		</div>
 </body>
 </html>

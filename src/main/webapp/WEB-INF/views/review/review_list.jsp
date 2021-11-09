@@ -55,7 +55,6 @@
 	margin-top: 40px;
 }
 
-
 .reviewTableDiv > tbody > tr > td:last-child {
 	width:70%;
 }
@@ -67,7 +66,6 @@
 .selectOrderBy > span{
 	margin-right: 8px;
 }
-
 
 .paddingTitle{
 	font-size: 24px;
@@ -125,8 +123,8 @@
 			<!-- 추천수 인기순 -->
 			<div class="col-12 selectOrderBy">
 			<span>
-					<a href="/review/selectReviewList">최신순</a> |
-					<a href="/review/selectReviewList?orderByReadCnt='Y'">인기순</a>
+				<a href="/review/selectReviewList">최신순</a> |
+				<a href="/review/selectReviewList?orderByReadCnt='Y'">인기순</a>
 			</span>
 			<div class="col-12 totalCnt">
 				<strong>총<span style="color: #0a97cd; text-align:left;">${reviewList.size()}</span>건</strong>
@@ -190,7 +188,7 @@
 							</select>
 						</div>
 						<div class="col-5">
-							<input type="text" name="searchValue" class="form-control"  value="${reviewVO.searchValue }">
+							<input type="text" name="searchValue" class="form-control" value="${reviewVO.searchValue }">
 						</div>
 						<div class="col-3">
 							<button type="submit" class="btn btn-primary" id="">검색</button>
@@ -199,6 +197,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
 </body>
 </html>
