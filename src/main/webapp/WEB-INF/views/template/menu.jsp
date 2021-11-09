@@ -8,7 +8,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
+@font-face {
+    font-family: 'Bareun_hipi';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_01@1.0/Bareun_hipi.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 .userInterface{
 	font-size: 15px;
 }
@@ -29,8 +34,9 @@ ul{
 	margin:0 auto;
 	margin-top:40px;
 	font-size:25px;
-	font-family: 'CookieRun-Regular';
-	letter-spacing:-1.0px;
+	font-weight:bold;
+	font-family: 'Bareun_hipi'; 
+	letter-spacing:1px;
 	color:black;
 	
 }
@@ -46,9 +52,11 @@ a{
 	font-size:70px;
 }
 .loginLayout{
-	color: black; 
+	color: #828282; 
 	text-decoration-line: none;
-	font-size:20px;
+	font-size:17px;
+	font-family: 'Bareun_hipi';
+	font-weight:bold; 
 }
 </style>
 </head>

@@ -314,7 +314,7 @@ height:100%;
 			    <input type="radio" name="slide" id="slide3">
 			    <input type="radio" name="slide" id="slide4">
 			    <ul id="imgholder" class="imgs" >
-			        <li><img src="/resources/images/call.png"></li>
+			        <li><img src="/resources/images/Ej8POrF.jpg"></li>
 			        <li><img src="/resources/images/야경1.png"></li>
 			        <li><img src="/resources/images/야경2.jpg"></li>
 			        <li><img src="/resources/images/call.png"></li> 

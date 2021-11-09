@@ -104,7 +104,6 @@
 	<div class="footerContainer">
 		<div class="col-12 footerViewListContainer">
 			<div class="col-8 footerViewList">
-				footer내용을 입력하세요
 			</div>
 		</div>
 		<div class="col-12 footerInfoContainer">

@@ -229,6 +229,7 @@ height:auto;
 display:flex;
 flex-direction: row;
 margin: 0 auto;
+
 }
 .courseHalfLayout:first-child{
 border:1px solid blue;
@@ -553,8 +554,9 @@ font-family: 'Daughter_handwriting';
 font-weight:bold;
 font-size:20px;
 letter-spacing: 1px;
-margin: 0 auto;
 margin-top:20px;
+margin-left:20px;
+
 }
 
 .placeLayout span{
@@ -585,11 +587,14 @@ border-radius:10px;
 }
 .placeListOrder{
 border:1px solid white;
-background-color:white;
-width:100%;
 height:950px;
 display:flex;
 flex-flow:column wrap;
+margin:0 auto;
+}
+.placeListContainer{
+border:1px solid green;
+height:auto;
 }
 .pageBtn ul > li{
 border:none;
@@ -768,12 +773,13 @@ text-align: center;
 		</div>
 	
 	<!-- 검색 장소 리스트 영역 -->
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=32"></script>
-		<div class="row">
-		   <div class="col-6 placeListOrder" id="placeList"><!--장소리스트 나오는곳 -->
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=36"></script>
+		
+		<div class="col-12 placeListContainer">
+		   <div class="col-11 placeListOrder" id="placeList"><!--장소리스트 나오는곳 -->
 		   </div>
 		   <div class="pageBtnLayout" id="pageBtnLayout"></div>
-		</div>
+		</div><!-- placeListContainer -->
 	</div><!-- courseHalfLayout -->
 	<div class="courseHalfLayout">
 		<form id="regCourseForm" method="post">
@@ -788,5 +794,6 @@ text-align: center;
 		</form>
 	</div><!-- courseHalfLayout -->
 </div><!-- courseContainer -->
+
 </body>
 </html>

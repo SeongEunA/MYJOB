@@ -301,7 +301,7 @@ placeStr +='	</div>';
 		var locationLandCode = $('#highLocation option:selected').val();
 		var locationTempCode = $('#lowLocation option:selected').val();
 		
-	
+		
 		if(locationLandCode=='지역'){
 			locationLandCode='11B00000';
 			locationTempCode='11B10101';
@@ -336,7 +336,7 @@ placeStr +='	</div>';
 			locationName = '대구광역시'
 		}
 		
-		$('#keyword').val(locationName);
+		$('#keyword').val(locationName+'맛집');
 	      
 	      $('#keywordForm').submit();
 		
@@ -796,7 +796,7 @@ function removeMarker() {
    
 //    markers3 = [];
 }
-function removeMarker2(){
+function removeMarker2(){//관광지제거
 	
 	if(markers2.length!=0){
 	    for(var i = 0; i< markers2.length;i++){
@@ -807,7 +807,7 @@ function removeMarker2(){
 	    markers2 = [];
 }
 
-function removeMarker3(){
+function removeMarker3(){//숙박지제거
 	if(markers3.length!=0){
 	    for(var i = 0; i< markers3.length;i++){
 	    	 markers3[i].setMap(null);
@@ -900,7 +900,8 @@ function removeAllChildNods(el) {
 		
 		 
 		removeMarker2();
-	
+		removeMarker3();
+		removeMarker();
 	 for(var e =0;e<arrXY2.length;e++){
 
 	 positions2.push({title:arrXY2[e].placeName,latlng:new kakao.maps.LatLng(arrXY2[e].x,arrXY2[e].y)})
@@ -940,6 +941,7 @@ function removeAllChildNods(el) {
 	   function showResInfo(x,y){
 		   
 		   removeMarkerNow();
+	
 		   mapOption = { 
 			        center: new kakao.maps.LatLng(x,y), // 지도의 중심좌표
 			        level: 3 // 지도의 확대 레벨
@@ -966,10 +968,11 @@ function removeAllChildNods(el) {
 		       	  markersNow.push(markerNow);
 	   }
 	   
-	   function showHouseInfo(){
+	   function showHouseInfo(){//숙박지함수
 		   
 			 removeMarker3();
-			
+			   removeMarker2();
+				removeMarker();
 			 for(var e =0;e<arrXY.length;e++){
 
 			 positions.push({title:arrXY[e].placeName,latlng:new kakao.maps.LatLng(arrXY[e].x,arrXY[e].y)})
