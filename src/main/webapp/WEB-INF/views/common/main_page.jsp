@@ -19,10 +19,87 @@ width:auto;
 height:400px;
 }
 .mainPhoto{
+border:1px solid white;
+height:100%;
+margin:0 auto;
+position:relative;
+overflow: hidden;
+}
+.mainPhoto img {
+min-width: 1800px;
+height: auto;
+display: block;
+}
+.mainPhoto input[type=radio]{
+display: none;
+}
+ul.imgs{
+padding: 0;
+margin: 0;
 width:100%;
 height:100%;
-background-image:url('/resources/images/call.png');
-background-repeat: no-repeat;
+}
+ul.imgs li{
+position: absolute; /* 슬라이드가 겹쳐서 모여야 하므로 absolute 속성으로 배치 */
+opacity: 0;
+list-style: none;
+padding: 0;
+margin: 0;
+}
+.bullets{
+position: absolute;
+left: 50%;
+transform: translateX(-50%);
+bottom: 20px;
+z-index: 2;
+}
+.bullets label{
+display: inline-block; /* 한 줄로 불릿 나열*/
+border-radius: 50%;
+background-color: rgba(0,0,0,0.55);
+width: 20px; /* 불릿 너비 */
+height: 20px; /* 불릿 높이 */
+cursor: pointer;
+}
+.mainPhoto input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(1){
+opacity: 1;
+transition: 1s;
+z-index: 1;
+}
+.mainPhoto input[type=radio]:nth-child(2):checked~ul.imgs>li:nth-child(2){
+opacity: 1;
+transition: 1s;
+z-index: 1;
+}
+.mainPhoto input[type=radio]:nth-child(3):checked~ul.imgs>li:nth-child(3){
+opacity: 1;
+transition: 1s;
+z-index: 1;
+}
+.mainPhoto input[type=radio]:nth-child(4):checked~ul.imgs>li:nth-child(4){
+opacity: 1;
+transition: 1s;
+z-index: 1;
+}
+.mainPhoto input[type=radio]:nth-child(1):checked~.bullets>label:nth-child(1){
+background-color: #fff;
+}
+.mainPhoto input[type=radio]:nth-child(2):checked~.bullets>label:nth-child(2){
+background-color: #fff;
+}
+.mainPhoto input[type=radio]:nth-child(3):checked~.bullets>label:nth-child(3){
+background-color: #fff;
+}
+.mainPhoto input[type=radio]:nth-child(4):checked~.bullets>label:nth-child(4){
+background-color: #fff;
+}
+ul.imgs li{
+position: absolute;
+opacity: 0;
+list-style: none;
+padding: 0;
+margin: 0;
+transition-delay: 0.9s; /* 트랜지션 지연 시간 지정 */
 }
 .tagContainer{
 border:1px solid white;
@@ -231,8 +308,24 @@ height:100%;
 <div class="row justify-content-center">
 	<div class="col-12">
 		<div class="mainPhotoContainer">
-			<div class="mainPhoto col-12">
-				<img src="/resources/images/call.png" width="100%" height="100%">
+			<div class="mainPhoto col-9">
+				<input type="radio" name="slide" id="slide1" checked>
+			    <input type="radio" name="slide" id="slide2">
+			    <input type="radio" name="slide" id="slide3">
+			    <input type="radio" name="slide" id="slide4">
+			    <ul id="imgholder" class="imgs" >
+			        <li><img src="/resources/images/call.png"></li>
+			        <li><img src="/resources/images/야경1.png"></li>
+			        <li><img src="/resources/images/야경2.jpg"></li>
+			        <li><img src="/resources/images/call.png"></li> 
+			     </ul>
+		  		  <div class="bullets">
+			        <label for="slide1">&nbsp;</label>
+			        <label for="slide2">&nbsp;</label>
+			        <label for="slide3">&nbsp;</label>
+			        <label for="slide4">&nbsp;</label>
+   				 </div>
+				
 			</div>
 		</div>
 		<div class="row">
