@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=1"></script>
+<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=3"></script>
 <style type="text/css">
 
 .regCourseDiv{
@@ -30,7 +30,10 @@
 
 
 .reviewMargin{
-	margin-top:10px;
+	margin: 0 auto;	
+	margin-top:80px;
+	padding: 0px;
+	
 }
 .selectOrderBy{
 	margin:0 auto;
@@ -44,9 +47,9 @@
 	
 }
 .reviewTableDiv{
-	width:80%;
+	width:100%;
 	margin-left: 18px;
-	border-bottom: 2.5px solid #eeeeee;
+	border-bottom: 3px solid #eeeeee;
 	margin-bottom: 20px;
 }
 .totalCnt{
@@ -72,6 +75,10 @@
 	vertical-align: top;
 	padding: 20px;
 }
+.paddingTitle:hover{
+	color: black;
+}
+
 .paddingReg{
 	padding: 12px;
 	padding-left: 18px;
@@ -118,7 +125,7 @@
 			</div>
 		</div>
 
-		<div class="col-8 noticeTitleDiv reviewMargin">
+		<div class="col-8 reviewMargin">
 			<div class="col-12 reviewTitle">후기 게시판</div>
 			<!-- 추천수 인기순 -->
 			<div class="col-12 selectOrderBy">
@@ -133,8 +140,8 @@
 			</div>
 			<div class="col-12">
 				<div class="reviewlist">
-						<c:forEach items="${reviewList }" var="reviewVO">
-					<table class="reviewTableDiv">
+					<c:forEach items="${reviewList }" var="reviewVO">
+						<table class="reviewTableDiv">
 							<colgroup>
 								<col width=25%>
 								<col width=30%>
@@ -158,8 +165,8 @@
 								<td class="paddingTag">#태그1 #태그2 #태그3 #태그4</td>
 							</tr>
 						</tbody>
-					</table>
-						</c:forEach>
+						</table>
+					</c:forEach>
 				</div>
 
 					<div class="col-12 pagingDiv">

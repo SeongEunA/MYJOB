@@ -68,14 +68,14 @@
 	margin:0 auto;
 }
 .reviewPhotoContainer{
-	border:1px solid black;
+	border:1px solid white;
 	min-height:300px;
 	margin:0 auto;
 	text-align: center;
 	margin-top: 25px;
 }
 .reviewPhotoLayout{
-	border:1px solid red;
+	border:1px solid white;
 	height:300px;
 	display:flex;
 	flex-direction: row;
@@ -83,11 +83,11 @@
 	text-align: center;
 }
 .reviewPhotoDiv{
-	border:1px solid black;
+	border:1px solid white;
 	width:250px;
 	height:250px;
 	border-radius:10px;
-	margin:0 75px;
+	margin:0 15px;
 }
 .reviewPhotoDiv img{
  	top:0; 
@@ -146,11 +146,34 @@ mmendLayout{
 .writeForm{
 	padding: 20px;
 	border: 3px solid green;
+	margin:0 auto;
+	
+}
+.textAreaLayout{
+	border:2px solid #f7f7f7;
+	display:flex;
+	flex-direction: row;
+	text-align:center; 
+	
+}
+.textAreaDiv{
+	border:1px solid #f7f7f7;
+	width:85%;
+	height:100%;
 }
 .regBtn{
-	margin-top: 15px;
-	border: 3px solid white;
-	text-align: right;
+	border:none;
+	width:100%;
+	height:100%;
+	background-color:green;
+	color:white;
+	
+}
+.regBtnDiv{
+	border:1px solid green;
+	border-radius:5px;
+	margin-left:20px;
+	width:10%;
 }
 .replyListForm{
 	text-align: left;
@@ -231,31 +254,37 @@ mmendLayout{
 		</div> 
 			<!-- 사진3개영역 -->
 			<div class="reviewPhotoContainer col-8">
-				<div class="reviewPhotoLayout col-12">
+				<div class="reviewPhotoLayout col-8">
 					<c:forEach items="${review.reviewImgList}" var="reviewImgVO">
 						<div class="reviewPhotoDiv">
-							<img src="/resources/images/${reviewImgVO.reviewImgAttachedName }" width="200" height="200">
+							<img src="/resources/images/${reviewImgVO.reviewImgAttachedName }" width="200" height="200" style="border-radius: 10px;">
 						</div>					
 					</c:forEach>
 				</div>
 			</div>
 		
 			<div class="col-12"><!-- 댓글 -->
-				<div class="col-8 replyWrap">
+				<div class="col-7 replyWrap">
 						<div class="replyTitle">
 							<strong>댓글&nbsp;<span>${replyList.size() }</span></strong>
 						</div>
 						<form action="/review/regRely" method="post">
-							<div class="write">
-								<div class="writeForm">
-									<input type="hidden" name="memberId"          value="${sessionScope.loginInfo.memberId}"> 
-									<input type="hidden" name="reviewReplyWriter" value="${sessionScope.loginInfo.memberName}"> 
-									<input type="hidden" name="reviewBoardCode"   value="${review.reviewBoardCode}"> 
-									<textarea style="width:100%; resize: none;"class="replyContent" rows="3" cols="30" name="reviewReplyContent" required></textarea> <br>							
-								<div class="regBtn">
-									<input type="submit" value="등록" class="">
+							<div class="write col-12">
+								<div class="writeForm col-12">
+									<div class="textAreaLayout col-11">
+										<div class="textAreaDiv">
+											<input type="hidden" name="memberId"          value="${sessionScope.loginInfo.memberId}"> 
+											<input type="hidden" name="reviewReplyWriter" value="${sessionScope.loginInfo.memberName}"> 
+											<input type="hidden" name="reviewBoardCode"   value="${review.reviewBoardCode}"> 
+											<textarea style="width:100%; resize: none;"class="replyContent" rows="3" cols="30" name="reviewReplyContent" required></textarea>						
+										</div>
+										<div class="regBtnDiv">
+											<input type="submit" value="등록" class="regBtn">
+										</div>
+									</div><!-- textAreaLayout -->
 								</div>
-								</div>
+								
+								
 							</div>
 						</form>	
 				<div class="col-12">
