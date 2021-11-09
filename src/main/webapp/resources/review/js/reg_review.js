@@ -25,19 +25,35 @@ $(document).ready(function(){
 	      
 	   //    $('#img_' + img_count).attr('src', data.target.result).width(150).height(150);
 	   //   };	
-	        	
+	    
 	        
 	    //화면에 이미지를 출력해주는 FileReader 객체 인스턴스 reader.readAsDataURL();
 	    //this.files는 <input type="file">을 통해 업로드한 파일의 정보를 저장하고 있는 배열이다.
 	    //첨부하기 1회당 file 하나만 업로드해서 <img_0,1,2...>에 각각의 파일들을
 	    //할당시켜줄 것이기 때문에 files[0]로 index 고정
 	        reader.readAsDataURL(this.files[0]);
-	        img_count++;
 	        
 	        $(this).hide();
-	        $('#pr_img_text').append('<input type="file" value="새로운" id="img' + img_count + '" name="file' + img_count + '">');
+	        
+	        str1 = '';
+	        str1 += '<input type="file" id="img' + img_count + '" name="file' + img_count + '">';
+	        str1 += '<input type="button" value="x" onclick="deleteImg('+img_count+')" class="img' + img_count + '">';
+	        
+	        $('#pr_img_text').append(str1);
+	        img_count++;
 	    });
 	    
+	    $(document).on('click', '[class^="img"]', function() {
+	    	 var getId = $(this).attr('class');
+	    	 var getRealId = getId.substring(3,4);
+	    	 var count_string = getRealId.toString();
+	    	 $('#img'+ count_string).val("");
+	    	 $('#img_'+ count_string).hide();
+	    	 $(this).hide();
+	    	 
+	    });    
+	    
+	  
 	    
 	    //selectBox 값 변경시 출력되는 코스 변경
 	    $(document).on('change', '#selectCourseCode', function(){
@@ -85,7 +101,13 @@ $(document).ready(function(){
 
 //함수 선언 영역
 (function($){
-	
+	deleteImg = function(img_count){
+		var img_count_string = img_count.toString();
+		
+		var file = $('#img'+ img_count_string +'');
+	     file.replaceWith( file = file.clone( true ) );
+		
+	}
 	
 	
 	

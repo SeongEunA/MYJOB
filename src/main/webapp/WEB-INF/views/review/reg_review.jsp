@@ -8,29 +8,20 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="/resources/review/js/reg_review.js?ver=10"></script>
 <style type="text/css">
-.reviewContainer{
 
-}
-
-.container{
-	width: 1300px;
+.regContainer{
+	height: 800px;
 	margin: 0 auto;
 }
-.tableDiv{
-	width: 100%;
-	height: 80px;
+.mainRegcontain{
+	margin: 0 auto;
 }
-.tableDiv td{
-	padding-top: 50px;
-	padding-bottom: 50px;
-	padding-left: 30px;
-}
-.tableDiv tr{
-	border-top: 1.5px soild #f2f2f2;
-	border-bottom: 1.5px solid #f2f2f2;
-}
+
 .introCourseDiv{
 	width: 100%
+}
+.regContentDiv{
+	margin: 0 auto;
 }
 .introCourseDiv .comment_textarea{
 	width: 100%;
@@ -56,20 +47,17 @@
 	height: 80px;
 }
 .reviewTitleContainer{
-	border:1px solid white;
 	border-bottom:2px solid black;
 	height:50px;
 	margin:0 auto;
 	margin-top:50px;
 }
 .reviewTitleDiv{
-	border:1px solid white;
 	height:99%;
 	font-size:35px;
 	
 }
 .fileImgBox{
-	border:1px solid black;
 	max-width:100%;
 	height:auto;
 	display:flex;
@@ -83,15 +71,16 @@
 </style>
 </head>
 <body>
+
 <div class="row">
-	<div class="col-12 bodyContainer">
-		<div class="col-8 reviewTitleContainer">
+	<div class="col-9 regContainer">
+		<div class="col-9 mainRegcontain">
+		<div class="reviewTitleContainer">
 			<div class="col-6 reviewTitleDiv">
 			후기등록
 			</div>
 		</div>
-		<div class="col-9 containerDiv">
-			<div class="contentDiv">
+			<div class="regContentDiv">
 				<form action="/review/regReview" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="reviewBoardWriter" value="${sessionScope.loginInfo.memberId }">
 					<div class="headerDiv">코스선택
@@ -104,9 +93,10 @@
 									<c:forEach items="${courseList }" var="courseInfo">
 										<option value="${courseInfo.courseCode }">${courseInfo.courseName }</option>
 									</c:forEach>
-								</select> 제목 <input type="text" name="reviewBoardTitle" required>
+								</select> 
 							</c:otherwise>
 						</c:choose>
+					<div>제목 <input type="text" name="reviewBoardTitle" required></div>	
 					</div>
 					<c:choose>
 						<c:when test="${empty courseListBycourseCode }">
@@ -159,8 +149,8 @@
 				</form>
 			</div>
 		</div>
+		</div>
 	</div>
-</div>	
 </body>
 </html>
 
