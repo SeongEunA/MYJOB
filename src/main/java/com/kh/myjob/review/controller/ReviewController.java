@@ -65,11 +65,13 @@ public class ReviewController {
 		//아이디별 코스리스트 조회
 		model.addAttribute("courseList", courseService.selectCoursePlaceList(courseVO));
 		
-		//처음 선택된 코스코드로 코스 조회(최초로 코스등록 페이지 진입했을 때)
-		String firstCourseCode = (courseService.selectCoursePlaceList(courseVO)).get(0).getCourseCode();
+		if(courseService.selectCoursePlaceList(courseVO).size() != 0) {
+			//처음 선택된 코스코드로 코스 조회(최초로 코스등록 페이지 진입했을 때)
+			String firstCourseCode = (courseService.selectCoursePlaceList(courseVO)).get(0).getCourseCode();
+			courseVO.setCourseCode(firstCourseCode);
+			model.addAttribute("courseListBycourseCode", courseService.selectCoursePlaceListByCourseCode(courseVO));
+		}
 		
-		courseVO.setCourseCode(firstCourseCode);
-		model.addAttribute("courseListBycourseCode", courseService.selectCoursePlaceListByCourseCode(courseVO));
 		
 		return "review/reg_review";
 	}
