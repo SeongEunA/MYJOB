@@ -4,7 +4,7 @@ $(document).ready(function(){
 	$(document).on('click', '.deletePlaceBtn', function(){
 		var savePlaceCode = $(this).prev().val();
 		var memberId = $('#memberId').val();
-
+		
 		var placeName = $(this).next().children().eq(0).val();
 		var placeAddr = $(this).next().children().eq(1).val();
 		var cateCode = $(this).next().children().eq(2).val();
@@ -30,7 +30,7 @@ $(document).ready(function(){
 				
 				deleteStr += '<div class="deletePlaceDiv row">';
 				deleteStr += '	<div>';
-				deleteStr += '		<div class="deletePlace col-11"><input type="checkbox" class="checkbox">코스이름 : ' + placeName;
+				deleteStr += '		<div class="deletePlace col-11"><input type="checkbox" class="checkbox">' + placeName;
 				deleteStr += '			<input type="hidden" class="placeName" value="' + placeName + '">';
 				deleteStr += '			<input type="hidden" class="placeAddr" value="' + placeAddr + '">';
 				deleteStr += '			<input type="hidden" class="cateCode" value="' + cateCode + '">';
@@ -84,7 +84,7 @@ $(document).ready(function(){
 				
 				listStr += '<div>'
 				listStr += '	<span>'
-				listStr += '		<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn" class="deleteCourseBtn">'
+				listStr += '		<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn" class="deleteRecommendBtn">'
 				listStr += '		<input type="button" value="코스삭제" class="deleteCourseBtn" onclick="deleteCourse();">'
 				listStr += '	</span>'
 				listStr += '</div>'
@@ -205,7 +205,7 @@ $(document).ready(function(){
 				
 				listStr += '<div>';
 				listStr += '	<span>';
-				listStr += '		<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn">';
+				listStr += '		<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn" class="deleteRecommendBtn">';
 				listStr += '		<input type="button" value="코스삭제" class="deleteCourseBtn" onclick="deleteCourse();">';
 				listStr += '	</span>';
 				listStr += '</div>';

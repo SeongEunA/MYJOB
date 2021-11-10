@@ -14,10 +14,7 @@
     font-style: normal;
 }
 body{
-font-family: 'Mini_handwriting';
-font-size:23px;
-font-weight:bold;
-color:#474747;
+
 }
 .courseContainer{
 
@@ -36,6 +33,11 @@ background-repeat: no-repeat;
 background-size: contain;
 background-position: right top;
 background-color:#8FBAE5;
+font-family: 'Mini_handwriting';
+font-size:23px;
+font-weight:bold;
+color:#474747;
+margin-bottom:300px;
 }
 
 .courseLayoutLeft{
@@ -131,8 +133,16 @@ font-weight:bold;
 padding:5px 10px;
 
 }
+.deleteRecommendBtn{
+border:1px solid #F6F6F6;
+border-radius:5px;
+background-color:#B2CCFF;
+color:#5D5D5D;
+font-weight:bold;
+padding:5px 10px;
+}
 </style>
-<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=6"></script>
+<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=9"></script>
  <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script type="text/javascript">
@@ -213,7 +223,7 @@ $.ajax({
 	     </c:forEach>
 	     <c:if test="${courseList ne null }">
 			<div>
-				<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn" class="deleteCourseBtn">
+				<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn" class="deleteRecommendBtn">
 				<input type="button" value="코스삭제" class="deleteCourseBtn" onclick="deleteCourse();">
 			</div>
 	     </c:if>
@@ -246,8 +256,8 @@ $.ajax({
 		</c:forEach>
 		</select>
 		
-		<input type="button" value="코스저장" id="saveCourseBtn">
-		<input type="button" value="선택삭제" id="deleteCourseBtn">
+		<input type="button" value="코스저장" id="saveCourseBtn" class="deleteRecommendBtn">
+		<input type="button" value="선택삭제" id="deleteCourseBtn" class="deleteRecommendBtn">
       	<!-- 임시저장코스 출력Div -->
 		<c:forEach items="${tempSaveCourseList }" var="tempSaveCourseInfo">
 		<div id="testTwo">
