@@ -201,6 +201,13 @@ mmendLayout{
 .recommendLayout {
 	text-align: left;
 }
+.adminBtn{
+	text-align: right;
+}
+
+.recommendInnerLayout > div{
+	display: inline-block;
+}
 </style>
 </head>
 <body>
@@ -211,28 +218,28 @@ mmendLayout{
 		<div class="col-12 bodyContainer">
 			<div class="reviewTitleContanier col-8">
 				<div class="mainTitle">울산대공원</div>
-			    <div class="subTitle">
-					<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' }">
-						<div class="manageBtnDiv">
-							<div class="deleteReviewBoardBtnDiv">
-								<input type="button" id="deleteReviewBoardBtn" value="삭제" onclick="deleteReviewBoard();">
-							</div>
-						</div>
-					</c:if>
+			    <div class="subTitle">				
 					<div class="recommendLayout">
-						<span id="appendRecommendCnt">
-							<c:choose>
-								<c:when test="${reviewRecom.isRecommend eq 'Y'}">
-									<img class="recomBtn" src="/resources/images/updateRecommend.PNG">${review.reviewBoardRecommendCnt }
-								</c:when>
-								<c:otherwise>
-									<img class="recomBtn" onclick="updateRecommend();"src="/resources/images/nomalRecommend.PNG">${review.reviewBoardRecommendCnt }
-								</c:otherwise>
-							</c:choose>
-						</span>
-						<span>
-							조회수${review.reviewBoardReadCnt }
-						</span>
+						<div class="recommendInnerLayout">
+							<div id="appendRecommendCnt" style="width: 4%">
+								<c:choose>
+									<c:when test="${reviewRecom.isRecommend eq 'Y'}">
+										<img class="recomBtn" src="/resources/images/updateRecommend.PNG">${review.reviewBoardRecommendCnt }
+									</c:when>
+									<c:otherwise>
+										<img class="recomBtn" onclick="updateRecommend();"src="/resources/images/nomalRecommend.PNG">${review.reviewBoardRecommendCnt }
+									</c:otherwise>
+								</c:choose>
+							</div>
+							<div style="width: 7%">
+								조회수${review.reviewBoardReadCnt }
+							</div>
+							<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' }">
+								<div class="adminBtn" style="width: 88%">
+									<input type="button" id="deleteReviewBoardBtn" value="삭제" onclick="deleteReviewBoard();">
+								</div>	
+							</c:if>
+						</div>
 						<div>
 							작성일&nbsp;${review.reviewBoardRegDate }
 						</div>

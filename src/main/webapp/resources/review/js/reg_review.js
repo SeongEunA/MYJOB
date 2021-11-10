@@ -1,15 +1,27 @@
+
+var img_count = 1;
+
 //화면 로딩 후 바로 실행
 $(document).ready(function(){
 	    
-	    var img_count = 0;
 	        
 	    //input 파일첨부 버튼 클릭하면 실행되는 change 메서드
 	    //$("#img").change(function fileadd() {
 	   // $('[id^="img"]').change(function fileadd() {
 	    $(document).on('change', '[id^="img"]', function() {
-	        var reader = new FileReader;
+	    	var inputTagCnt = $('#pr_img').children().length;
+	    	if(inputTagCnt <= 3){
+	    		
+	    	
+	    	var reader = new FileReader;
 	    //이미지 파일 정보와 화면출력을 위해 <img> 태그를 변수로 만듦
-	        var str = "<img id='img_"+(img_count)+"' src=''/  style='margin-left:20px;margin-bottom:20px;'>";
+	        var str = '';
+	        str += '<div class="imgDiv">';
+	        str += "<img id='img"+(img_count)+"' src=''/  style='margin-left:10px; margin-right:10px;'>";
+	        str += '<div class="title">';
+	        str += '<a class="more" onclick="aaaaa(this, ' + img_count + ');">사진 삭제</a>';
+	        str += '</div>';
+	        str += '</div>';
 	    //파일 경로에 넣기 위해 String으로 변환시켜줌
 	        var img_count_string = img_count.toString();
 	        
@@ -20,7 +32,7 @@ $(document).ready(function(){
 	    //onload는 파일이 업로드 완료된 시점에 function을 발생시키는 메서드
 	        reader.onload = function(data) {
 	    //태그 안의 속성을 입력할 수 있는 jQuery attr 메서드를 사용 
-           $('#img_' + img_count_string).attr('src', data.target.result).width(300).height(300);
+           $('#img' + img_count_string).attr('src', data.target.result).width(300).height(300);
 	       };
 	      
 	   //    $('#img_' + img_count).attr('src', data.target.result).width(150).height(150);
@@ -33,25 +45,44 @@ $(document).ready(function(){
 	    //할당시켜줄 것이기 때문에 files[0]로 index 고정
 	        reader.readAsDataURL(this.files[0]);
 	        
-	        $(this).hide();
-	        
+	       
+        	$(this).hide();	        	
 	        str1 = '';
-	        str1 += '<input type="file" id="img' + img_count + '" name="file' + img_count + '">';
-	        str1 += '<input type="button" value="x" onclick="deleteImg('+img_count+')" class="img' + img_count + '">';
+	      //  str1 += '<div >';
+	        str1 += '<input type="file" id="img_file' + img_count + '" name="file' + img_count + '">';
+	     //   str1 += '</div>';
+	        //str1 += '<input type="button" value="x" onclick="deleteImg(' + img_count_string  +');" class="img_btn' + img_count + '">';
 	        
 	        $('#pr_img_text').append(str1);
 	        img_count++;
+	    	}
+	    	else{
+	    		noticeCon();
+	    	}
 	    });
 	    
-	    $(document).on('click', '[class^="img"]', function() {
+	    
+	/*    $(document).on('click', '[class^="img"]', function() {
 	    	 var getId = $(this).attr('class');
-	    	 var getRealId = getId.substring(3,4);
+	    	 alert(getId);
+	    	 var getRealId = getId.substring(7,8);
+	    	 alert(getRealId);
 	    	 var count_string = getRealId.toString();
-	    	 $('#img'+ count_string).val("");
-	    	 $('#img_'+ count_string).hide();
-	    	 $(this).hide();
-	    	 
-	    });    
+	    	 //첨부된 파일 삭제
+		
+				
+		     //이미지 숨기기
+		     $('#img'+ count_string).hide();
+		     
+		     //버튼 숨기기
+		     $(this).hide();
+	    });    */
+	    
+	    $(document).on('change', '#selectCourseCode', function(){
+	  
+	    });
+	    
+	    
 	    
 	  
 	    
@@ -101,14 +132,51 @@ $(document).ready(function(){
 
 //함수 선언 영역
 (function($){
-	deleteImg = function(img_count){
-		var img_count_string = img_count.toString();
+	aaaaa = function(selectedTag, number){
+		$(selectedTag).parent().parent().remove();
 		
-		var file = $('#img'+ img_count_string +'');
-	     file.replaceWith( file = file.clone( true ) );
+		
+		
+		$('#img_file' + number).remove();
+		
+//		var inputTagCnt = $('#pr_img_text').children().length;
+//		if(inputTagCnt == 1){
+//			$('#pr_img_text').children().first().css('display', 'inline');
+//		}
+		/*$('#pr_img_text').children().last().css('display', 'inline');*/
+		var inputTagCnt = $('#pr_img_text').children().length;
+		if(inputTagCnt == 0){
+			/*img_count = 2;*/
+			$('#img').css('display', 'inline')
+			/*$('#pr_img_text').append('<input type="file" id="img_file' + number + '" name="file' + number + '">');*/
+		}
+		
+
 		
 	}
+/*	deleteImg = function(){
+		var img_count_string = img_count.toString();
+		var fileName= '#img_file'+ count_string;
+		alert(fileName);
+		 //첨부된 파일 삭제
+			window.reset = function(e) {
+			  e.wrap('<form>').closest('form').get(0).reset();
+			  e.unwrap();
+			}
+			
+	     //이미지 숨기기
+	     $('#img'+ img_count_string).hide();
+	     
+	     //버튼 숨기기
+	     $('.img_btn'+ img_count_string).hide();
+	     
+		
+	}*/
 	
+	//첨부파일 개수를 초과할 경우 알림창
+	noticeCon= function(){
+		alert('등록하실 수 있는 이미지 파일의 최대 개수는 3개입니다.');
+	}
 	
 	
 })(jQuery);

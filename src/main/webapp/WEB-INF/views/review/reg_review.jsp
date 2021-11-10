@@ -6,11 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=10"></script>
+<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=40"></script>
 <style type="text/css">
 
 .regContainer{
-	height: 800px;
+	height: 950px;
 	margin: 0 auto;
 }
 .mainRegcontain{
@@ -68,6 +68,70 @@
 	display: inline-block;
 	margin-bottom: 10px;
 }
+
+.imgDiv {
+	display: inline-block; 
+	margin:0 auto; 
+	text-align:center; 
+	width:300px;
+}
+/* .title {
+	line-height:1; 
+	color:red; 
+	position:absolute; 
+	left:50%; 
+	transform:translateX(-50%); 
+	top:200px; 
+	height:120px; 
+	transition:0.5s all;
+} */
+.title {
+	line-height:1; 
+	color:red; 
+	position:relative;
+	left:100px;
+	/* transform:translateX(-50%); */
+	top:-170px; 
+	/* height:120px;  */
+	transition:0.5s all;
+}
+.title h3 {
+	font-size:30px;  
+	margin:0;
+}
+.title p {
+	font-size:14px; 
+	margin-top:15px;
+}
+.more {
+	display:block; 
+	font-size:18x; 
+	color:#fff;
+	background-color: transparent;
+	line-height:40px; 
+	width:120px; 
+	/* margin-top:30px; */ 
+	opacity:0; 
+	transition:0.5s all;
+}
+
+/* .imgDiv:hover .more {
+	opacity:0; 
+	top:150px ;
+}
+*/
+ .imgDiv:hover .title {
+	top: -200px ;
+}
+ .imgDiv:hover .more {
+	 opacity:1;
+	 cursor: pointer; 
+	 color:  white;
+}
+ .imgDiv:hover > img {
+	 filter: brightness(50%);   
+}
+
 </style>
 </head>
 <body>
