@@ -9,7 +9,8 @@
 		<result column="MEMBER_NAME" 				property="memberName"/>
 		<result column="MEMBER_PW" 					property="memberPw"/>
 		<result column="MEMBER_TEL" 				property="memberTel"/>
-		<result column="MEMBER_ADDR" 				property="memberAddr"/>
+		<result column="MEMBER_ADDR1" 				property="memberAddr1"/>
+		<result column="MEMBER_ADDR2" 				property="memberAddr2"/>
 		<result column="MEMBER_EMAIL" 				property="memberEmail"/>
 		<result column="MEMBER_IS_ADMIN" 			property="memberIsAdmin"/>
 		<result column="MEMBER_GENDER" 				property="memberGender"/>
@@ -38,7 +39,8 @@
 			  , MEMBER_NAME
 			  , MEMBER_PW
 			  , MEMBER_TEL
-			  , MEMBER_ADDR
+			  , MEMBER_ADDR1
+			  , MEMBER_ADDR2
 			  , MEMBER_EMAIL
 			  , MEMBER_GENDER
 			) VALUES (
@@ -47,7 +49,8 @@
 			  , #{memberName}
 			  , #{memberPw}
 			  , #{memberTel}
-			  , #{memberAddr}
+			  , #{memberAddr1}
+			  , #{memberAddr2}
 			  , #{memberEmail}
 			  , #{memberGender}
 			)
@@ -110,7 +113,8 @@
 			  , MEMBER_NAME
 			  , MEMBER_PW
 			  , MEMBER_TEL
-			  , MEMBER_ADDR
+			  , MEMBER_ADDR1
+			  , MEMBER_ADDR2
 			  , MEMBER_EMAIL
 			  , MEMBER_IS_ADMIN
 			  , MEMBER_GENDER
@@ -126,7 +130,8 @@
 			MEMBER_PW = #{memberPw}
 			, MEMBER_EMAIL = #{memberEmail}
 			, MEMBER_TEL = #{memberTel}
-			, MEMBER_ADDR = #{memberAddr}
+			, MEMBER_ADDR1 = #{memberAddr1}
+			, MEMBER_ADDR2= #{memberAddr2}
 			WHERE MEMBER_CODE = #{memberCode}
 		</update>
 

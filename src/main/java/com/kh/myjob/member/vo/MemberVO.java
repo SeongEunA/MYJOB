@@ -1,7 +1,5 @@
 package com.kh.myjob.member.vo;
 
-import java.util.Arrays;
-
 import com.kh.myjob.common.vo.PageVO;
 
 public class MemberVO extends PageVO{
@@ -10,14 +8,16 @@ public class MemberVO extends PageVO{
 	private String memberName;
 	private String memberPw;
 	private String memberTel;
-	private String memberAddr;
+	private String memberAddr1;
+	private String memberAddr2;
+	//private String[] memberAddress;
 	private String memberEmail;
 	private String memberIsAdmin;
 	private String memberGender;
 	private String memberJoinDate;
 	private String[] memberTels;
-	private String[] memberAddres;
 	private String[] memberEmails;
+	
 	
 	public String getMemberCode() {
 		return memberCode;
@@ -48,12 +48,6 @@ public class MemberVO extends PageVO{
 	}
 	public void setMemberTel(String memberTel) {
 		this.memberTel = memberTel;
-	}
-	public String getMemberAddr() {
-		return memberAddr;
-	}
-	public void setMemberAddr(String memberAddr) {
-		this.memberAddr = memberAddr;
 	}
 	public String getMemberEmail() {
 		return memberEmail;
@@ -86,14 +80,26 @@ public class MemberVO extends PageVO{
 		String memberTel = memberTels[0] + "-" + memberTels[1] + "-" + memberTels[2];
 		setMemberTel(memberTel);
 	}
-	public String[] getMemberAddres() {
-		return memberAddres;
+	public String getMemberAddr1() {
+		return memberAddr1;
 	}
-	public void setMemberAddres(String[] memberAddres) {
-		String memberAddr = memberAddres[0] + " " + memberAddres[1];
-		setMemberAddr(memberAddr);
+	public void setMemberAddr1(String memberAddr1) {
+		this.memberAddr1 = memberAddr1;
 	}
-	
+	public String getMemberAddr2() {
+		return memberAddr2;
+	}
+	public void setMemberAddr2(String memberAddr2) {
+		this.memberAddr2 = memberAddr2;
+	}
+//	public String[] getMemberAddress() {
+//		return memberAddress;
+//	}
+//	public void setMemberAddress(String[] memberAddress) {
+//		String memberAddr = memberAddress[0] + " " + memberAddress[1];
+//		setMemberAddr(memberAddr);
+//	}
+//	
 	public String[] getMemberEmails() {
 		return memberEmails;
 	}
@@ -101,15 +107,7 @@ public class MemberVO extends PageVO{
 		String memberEmail = memberEmails[0] + "@" + memberEmails[1];
 		setMemberEmail(memberEmail);
 	}
-	@Override
-	public String toString() {
-		return "MemberVO [memberCode=" + memberCode + ", memberId=" + memberId + ", memberName=" + memberName
-				+ ", memberPw=" + memberPw + ", memberTel=" + memberTel + ", memberAddr=" + memberAddr
-				+ ", memberEmail=" + memberEmail + ", memberIsAdmin=" + memberIsAdmin + ", memberGender=" + memberGender
-				+ ", memberJoinDate=" + memberJoinDate + ", memberTels=" + Arrays.toString(memberTels)
-				+ ", memberAddres=" + Arrays.toString(memberAddres) + ", memberEmails=" + Arrays.toString(memberEmails)
-				+ "]";
-	}
+	
 	
 	
 	

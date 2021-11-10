@@ -173,18 +173,18 @@
 	margin-bottom: 7px;
 	font-size: 12px;
 }
-#noticeAddres{
-	margin-top: 7px;
-	margin-bottom: 7px;
-	font-size: 12px;
-}
 #noticeEmail{
 	margin-top: 7px;
 	margin-bottom: 7px;
 	font-size: 12px;
 }
+#noticeAddres{
+	margin-top: 7px;
+	margin-bottom: 7px;
+	font-size: 12px;
+}
 </style>
-<script type="text/javascript" src="/resources/member/js/join_page.js?ver=9"></script>
+<script type="text/javascript" src="/resources/member/js/join_page.js?ver=10"></script>
 </head>
 <body>
 <div class="row">
@@ -245,9 +245,9 @@
 					</div>
 					<div class="memberAddresDiv">
 						<div>주소</div>
-						<div class="memberAddr1Div"><input type="text" id=memberAddr1 name="memberAddres" readonly placeholder="도로명/지번 주소"></div>
+						<div class="memberAddr1Div"><input type="text" id="memberAddr1" name="memberAddr1" readonly placeholder="도로명/지번 주소"></div>
 						<div class="searchAddrDiv"><input type="button" id="memberAddrBtn" onclick="openPostCode();" value="주소검색"></div>
-						<div class="memberAddr2Div"><input type="text" id="memberAddr2" name="memberAddres" placeholder="상세 주소"></div>
+						<div class="memberAddr2Div"><input type="text" id="memberAddr2" name="memberAddr2" placeholder="상세 주소"></div>
 						<div id="noticeAddres">&nbsp;</div>
 					</div>
 					<div class="memberEmailDiv">
