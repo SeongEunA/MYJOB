@@ -399,8 +399,8 @@ color: #1F50B5;
     
 }
 .ticketBlock{
-    border:1px solid #B5B2FF;
-    background-color:#B5B2FF;
+    border:1px solid #D7E9F7;
+    background-color:#D7E9F7;
     width:90%;
     height:100%;
     font-family: 'KyoboHand';
