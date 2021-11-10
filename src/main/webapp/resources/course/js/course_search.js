@@ -113,7 +113,7 @@ $(document).ready(function(){
 	//placeList에서 담기버튼을 눌렀을 때
 	$(document).on('click', '#saveCourseInfo', function(){
 		var placeName = $(this).parent().parent().children().eq(2).text();
-		var placeAddr =  $(this).parent().parent().children().eq(3).text();
+		var placeAddr =  $(this).parent().parent().children().eq(3).attr('data-placeAddr');
 		var cateCode =  $(this).parent().parent().children().eq(4).val();
 		var placeTel =  $(this).parent().parent().children().eq(5).text();
 		//course_search.jsp에서 담기버튼 누를때
@@ -898,27 +898,27 @@ function removeAllChildNods(el) {
     }
 }
  //지도 내의 주소목록의 주소이름을 클릭했을때 호출되는 함수입니다.
- function saveAddress(road_address_name,place_name,phone){
-
-		 var el = document.createElement('li'),
-		    itemStr = 
-		                '<div class="info">' +
-		                '   <h5>' + place_name + '</h5>';
-
-		    if (places.road_address_name) {
-		        itemStr += '    <span>' + road_address_name + '</span>';
-		                    
-		    } 
-		                 
-		      itemStr += '  <span class="tel">' + phone  + '</span>' +
-		                '</div>';
-		 
-		 $('#resInfoDiv').append(itemStr);
-	
-	
-	 
-	 
- }
+// function saveAddress(road_address_name,place_name,phone){
+//
+//		 var el = document.createElement('li'),
+//		    itemStr = 
+//		                '<div class="info">' +
+//		                '   <h5>' + place_name + '</h5>';
+//
+//		    if (places.road_address_name) {
+//		        itemStr += '    <span>' + road_address_name + '</span>';
+//		                    
+//		    } 
+//		                 
+//		      itemStr += '  <span class="tel">' + phone  + '</span>' +
+//		                '</div>';
+//		 
+//		 $('#resInfoDiv').append(itemStr);
+//	
+//	
+//	 
+//	 
+// }
  //관광지보기 누르는함수
 // function showPlaceInfo(x,y,arrXY){
 	 function showPlaceInfo(){
