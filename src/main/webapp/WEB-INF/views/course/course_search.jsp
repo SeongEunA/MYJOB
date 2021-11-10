@@ -582,12 +582,10 @@ border:1px solid #FFC19E;
 background-color:#FFC19E;
 opacity: 90%;
 border-radius:10px;
-
-
 }
 .placeListOrder{
 border:1px solid white;
-height:950px;
+height:880px;
 display:flex;
 flex-flow:column wrap;
 margin:0 auto;
@@ -596,25 +594,31 @@ margin:0 auto;
 border:1px solid green;
 height:auto;
 }
-.pageBtn ul > li{
-border:none;
-display:inline-block;
-width:auto;
-height:100%;
-cursor:pointer;
-position:relative;
-margin-top:10px;
+.pageBtn{
+width: 50%;
 margin: 0 auto;
 text-align: center;
+padding-right: 25px;
+}
+.pageBtn ul > li{
+/* display:inline-block; */
+width:30px;
+height:30px;
+cursor:pointer;
+/* position:relative; */
+/* margin: 0 auto; */
+margin-top:10px;
+text-align: center;
+/* border: 1px solid #e0e0e0; */
+line-height: 28px;
+} 
+.activePage, .pageBtn ul > li:hover{
+border: 1px solid #b0b0b0;
+color: #FFBB00;
 }
 .disabled {
-    pointer-events:none;
-    opacity:0.6;
-}
-.pageBtn{
-	width: 50%;
-	margin: 0 auto;
-	text-align: center;
+pointer-events:none;
+opacity:0.6;
 }
 </style>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	3d45ea450bf493fb0fea992bed62c07e&libraries=services,clusterer,drawing"></script>
@@ -773,7 +777,7 @@ text-align: center;
 		</div>
 	
 	<!-- 검색 장소 리스트 영역 -->
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=36"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=3"></script>
 		
 		<div class="col-12 placeListContainer">
 		   <div class="col-11 placeListOrder" id="placeList"><!--장소리스트 나오는곳 -->

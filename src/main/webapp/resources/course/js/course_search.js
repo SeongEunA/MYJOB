@@ -417,35 +417,36 @@ placeStr +='	</div>';
                 pageStr += '<div class="row pageBtn">';
                 pageStr += '	<div class="col">';
                 pageStr += '			<ul>';
-                pageStr += '				<li>';
+                pageStr += '				<li class="btnFrist">';
                 pageStr += '					<a onclick="clickSearch(' + (totalPage-(totalPage-1)) + ')">&lt;&lt;</a>';
                 pageStr += '				</li>';
-                pageStr += '				<li';
+                pageStr += '				<li class="btnPrev';
    	          							if(result.pageVO.prev == false){
-   	          								pageStr += ' class="disabled"';
+   	          								pageStr += ' disabled';
    	          							};
-   	          	pageStr += '>';
-   	          	pageStr += '					<a onclick="clickSearch(' + (result.pageVO.beginPage - 1) +')">이전</a>';
+   	          	pageStr += '">';
+   	          	pageStr += '					<a onclick="clickSearch(' + (result.pageVO.beginPage - 1) +')">&lt;</a>';
    	          	pageStr += '				</li>';
    	          			    for(var i = result.pageVO.beginPage; i <= result.pageVO.endPage; i++){
    	          			    	pageStr += '<li class="';
    	          			    	
    	          			    	if(result.pageVO.nowPage == i){
-   	          			    		pageStr += 'active';
+   	          			    		pageStr += 'activePage';
    	          			    	}
+   	          			    	
    	          			    	pageStr += '">';
    	          			    	pageStr += '	<a  onclick="clickSearch(' + i + ')">' + i + '</a>';
    	          			    	pageStr += '</li>'
    	          			    	
    	          			    };
-   	          	pageStr += '				<li';
+   	          	pageStr += '				<li class="btnNext';
    	          							if(result.pageVO.next == false){
-   	          								pageStr += ' class="disabled"';
+   	          								pageStr += ' disabled';
    	          							};
-   	          	pageStr += '>';					
-   	          	pageStr += '					<a onclick="clickSearch(' + (result.pageVO.endPage + 1) +')">다음</a>';
+   	          	pageStr += '">';					
+   	          	pageStr += '					<a onclick="clickSearch(' + (result.pageVO.endPage + 1) +')">&gt;</a>';
    	          	pageStr += '				</li>';
-   	          	pageStr += '				<li>';
+   	          	pageStr += '				<li class="btnLast">';
    	          	pageStr += '					<a onclick="clickSearch(' + totalPage + ')">&gt;&gt;</a>';
    	          	pageStr += '				</li>';
    	          	pageStr += '			</ul>';
