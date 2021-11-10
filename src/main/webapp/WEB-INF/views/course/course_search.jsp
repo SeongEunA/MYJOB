@@ -399,8 +399,8 @@ color: #1F50B5;
     
 }
 .ticketBlock{
-    border:1px solid #D7E9F7;
-    background-color:#D7E9F7;
+    border:1px solid #B5B2FF;
+    background-color:#B5B2FF;
     width:90%;
     height:100%;
     font-family: 'KyoboHand';
@@ -759,7 +759,7 @@ opacity:0.6;
 	
 	
 	<!-- 지도영역 -->
-		<div class="map_wrap">
+		<div class="map_wrap" id="map_warp">
 		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 		    <div id="menu_wrap" class="bg_white">
 		        <div class="option">
@@ -777,7 +777,7 @@ opacity:0.6;
 		</div>
 	
 	<!-- 검색 장소 리스트 영역 -->
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=20"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=23"></script>
 		
 		<div class="col-12 placeListContainer">
 		   <div class="col-11 placeListOrder" id="placeList"><!--장소리스트 나오는곳 -->

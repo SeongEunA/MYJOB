@@ -123,7 +123,7 @@ $(document).ready(function(){
 
 		//스크롤이동
 		scrollToSaveCourse();
-	   
+		
 		var placeStr = '';
 	   
 		placeStr +='<div class="ticketContainer">';
@@ -180,8 +180,9 @@ $(document).ready(function(){
 		placeStr +='</div>';
 	  
 	   	
-	   $('#resInfoList').append(placeStr);
-	   document.getElementById('submitCourse').style="visibility:visible";
+		$('#resInfoList').append(placeStr);
+		document.getElementById('submitCourse').style="visibility:visible";
+	   
 	});
 
 
@@ -607,7 +608,7 @@ $(document).ready(function(){
 	//지도가 위치한 곳 으로 스크롤 이동
 	scrollToMap = function(){
 		//스크롤이동
-	    var offset = $('#map').offset(); //선택한 태그의 위치를 반환
+	    var offset = $('#map_warp').offset(); //선택한 태그의 위치를 반환
 		
 		//animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
 		$('html').animate({scrollTop : offset.top}, 100);
@@ -616,9 +617,9 @@ $(document).ready(function(){
 	//담겨진 장소 div로 스크롤 이동
 	scrollToSaveCourse = function(){
 		//스크롤이동
-	    var offset = $('#resInfoList').offset(); //선택한 태그의 위치를 반환
+	    var offset = $('#submitCourse').offset(); //선택한 태그의 위치를 반환
 		
-		//animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
+		//animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.1초 동안 부드럽게 해당 위치로 이동함 
 		$('html').animate({scrollTop : offset.top}, 100);
 	};
 	
