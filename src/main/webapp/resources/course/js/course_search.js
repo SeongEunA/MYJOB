@@ -85,7 +85,7 @@ $(document).ready(function(){
 		placeStr +='		<div class="ticketLayout2">';
 		placeStr +='	      	<span>맛집</span>';
 		placeStr +='	    <div class="ticketMark">';
-		placeStr +='	      		<img src="/resources/images/free-icon-aeroplane-5639813.png"width="100%" height="100%">';
+		placeStr +='	      		<img src="/resources/images/forRes.png"width="100%" height="100%">';
 		placeStr +='	      	</div>';
 		placeStr +='	   <section class="custom-kontakt">';
 		placeStr +='	       <div class="barcode-box">';
@@ -163,7 +163,12 @@ $(document).ready(function(){
 		}
 		
 		placeStr +='			<div class="ticketMark">';
+		if(cateCode=='CATE_002'){
 		placeStr +='				<img src="/resources/images/free-icon-aeroplane-5639813.png"width="100%" height="100%">';
+		}
+		else if(cateCode=='CATE_001'){
+			placeStr +='				<img src="/resources/images/forhouse.png"width="100%" height="100%">';
+		}
 		placeStr +='			</div>';
 		placeStr +='			<section class="custom-kontakt">';
 		placeStr +='				<div class="barcode-box">';

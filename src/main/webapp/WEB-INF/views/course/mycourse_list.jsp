@@ -50,7 +50,7 @@ height:auto;
 display:flex;
 flex-direction:column;
 margin:0 auto;
-margin-top:50px;
+margin-top:20px;
 
 }
 .courseLayoutRight{
@@ -61,7 +61,7 @@ background-color:white;
 width:500px;
 height:500px;
 margin:0 auto;
-margin-top:50px;
+margin-top:20px;
 }
 
 .courseBox{
@@ -146,6 +146,19 @@ color:#5D5D5D;
 font-weight:bold;
 padding:5px 10px;
 }
+.leftTitle{
+padding-bottom:10px;
+font-weight:bold;
+font-size:40px;
+}
+.rightTitle{
+padding-bottom:10px;
+font-weight:bold;
+font-size:40px;
+}
+.letftTitleContainer{
+margin-right:30px;
+}
 </style>
 <script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=16"></script>
  <script src="https://code.jquery.com/jquery-3.6.0.js"
@@ -173,6 +186,9 @@ $.ajax({
 </head>
 <body>
 <div class="courseContainer">
+
+<div class="letftTitleContainer">
+	<div class="leftTitle">코스목록</div>
 	<div class="courseLayoutLeft" id="courseLayoutLeft">
 	<form action="/course/theShortestCourse" method="post" onsubmit="return checkCourseCode();">
 		<input type="hidden" name="memberId" id="memberId" value="${sessionScope.loginInfo.memberId }">
@@ -240,6 +256,9 @@ $.ajax({
 		</div>
 		</c:if>
 	</div>
+	</div>
+	<div class="RightTitleContainer">
+		<div class="rightTitle">임시저장목록</div>
 	<div class="courseLayoutRight" id="courseLayoutRight">
 		<select id="selectCourseCode">
 			<option>코스선택</option>
@@ -268,7 +287,7 @@ $.ajax({
 		</c:forEach>
 		<div id="testOne"></div>
 	</div>
-	
+	</div>
 </div>
 
 

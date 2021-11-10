@@ -426,12 +426,12 @@ color: #1F50B5;
 	border:none;
 	position:absolute;
 	bottom:0;
-	font-size:25px;
+	font-size:27px;
 	font-family: 'SBAggroB';
 	letter-spacing: -1px;
 	margin-left:5px;
 	color:#333333;
-	text-shadow: 4px 2px 0 white;
+	text-shadow: 4px 2px 0 #fffdff; 
 }
 
 .custom-kontakt .barcode-box { 
@@ -777,7 +777,7 @@ opacity:0.6;
 		</div>
 	
 	<!-- 검색 장소 리스트 영역 -->
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=17"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=20"></script>
 		
 		<div class="col-12 placeListContainer">
 		   <div class="col-11 placeListOrder" id="placeList"><!--장소리스트 나오는곳 -->
