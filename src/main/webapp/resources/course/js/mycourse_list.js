@@ -82,13 +82,13 @@ $(document).ready(function(){
 					
 				});
 				
-				listStr += '<div>'
-				listStr += '	<span>'
-				listStr += '		<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn" class="deleteRecommendBtn">'
-				listStr += '		<input type="button" value="코스삭제" class="deleteCourseBtn" onclick="deleteCourse();">'
-				listStr += '	</span>'
-				listStr += '</div>'
-				listStr += '</form>'
+				listStr += '<div>';
+				listStr += '	<span>';
+				listStr += '		<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn" class="deleteRecommendBtn">';
+				listStr += '		<input type="button" value="코스삭제" class="deleteCourseBtn" onclick="deleteCourse();">';
+				listStr += '	</span>';
+				listStr += '</div>';
+				listStr += '</form>';
 				
 				$('#testOne').append(deleteStr);
 				$('#courseLayoutLeft').append(listStr);
@@ -112,15 +112,23 @@ $(document).ready(function(){
 		var xArr=[];
 		var yArr=[];
 		
+	
+		
 		
 		var placeNameL = $('.checkbox:checked').length;
-		
+		//코스저장데이터 확인
 		for(var i =0;i<placeNameL;i++){
 			placeNameArr[i] =  $('.checkbox:checked').eq(i).parent().children().eq(1).val();
 			placeAddrArr[i] = $('.checkbox:checked').eq(i).parent().children().eq(2).val();
 			cateCodeArr[i] = $('.checkbox:checked').eq(i).parent().children().eq(3).val();
 			xArr[i] = $('.checkbox:checked').eq(i).parent().children().eq(4).val();
 			yArr[i] = $('.checkbox:checked').eq(i).parent().children().eq(5).val();
+			
+			console.log("장소 이름 :"+placeNameArr[i]);
+			console.log("주소 이름 :"+placeAddrArr[i]);
+			console.log("카테코드 이름 :"+cateCodeArr[i]);
+			console.log("x배열 이름 :"+xArr[i]);
+			console.log("y배열 이름 :"+yArr[i]);
 		}
 		
 		if(placeNameL == 1){

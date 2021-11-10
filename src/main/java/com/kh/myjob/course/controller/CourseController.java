@@ -162,6 +162,7 @@ public class CourseController {
 	@PostMapping("/insertPlaceByDeleteAjax")
 	public List<CourseVO> insertPlaceByDeleteAjax(CourseRegVO courseRegVO, CourseVO courseVO, @RequestParam(value="placeNameArr[]") List<String> name, @RequestParam(value="placeAddrArr[]") List<String> addr,@RequestParam(value="cateCodeArr[]") List<String> cate,@RequestParam(value="xArr[]") List<String> xArr,@RequestParam(value="yArr[]") List<String> yArr) {
 	
+		
 		for(int i = 0; i < name.size(); i++) {
 			courseRegVO.setCourseCode(courseRegVO.getCourseCode());	
 			courseRegVO.setPlaceName(name.get(i));
@@ -172,7 +173,9 @@ public class CourseController {
 			courseRegVO.setY(yArr.get(i));
 			
 			courseService.insertCourseByCourseCode(courseRegVO);
+			System.out.println("나 인서트"+i);
 			courseService.deleteCheck(courseRegVO);
+			System.out.println("나 delete"+i);
 		}
 		
 		

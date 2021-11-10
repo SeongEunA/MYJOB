@@ -257,7 +257,7 @@
 	<delete id="deleteCheck">
 		DELETE TEMP_SAVE_COURSE
 		WHERE MEMBER_ID = #{memberId}
-		AND PLACE_NAME = #{placeName}
+		AND PLACE_NAME LIKE '%'||#{placeName}||'%'
 	</delete>
 </mapper>
 

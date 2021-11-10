@@ -71,7 +71,7 @@ $(document).ready(function(){
 		placeStr +='						</div>';
 		placeStr +='						<div class="resultPlaceAddr">'+placeAddr+'</div>';
 		placeStr +='						<input type="hidden" class="cateCode" value="CATE_003">';
-		placeStr += '	<input type="hidden" value="' + placeX + '" class="kakaoPlaceX">';	
+		placeStr += '	<input type="hidden" value="'+placeX+'" class="kakaoPlaceX">';	
 		placeStr += '	<input type="hidden" value="'+placeY+'" class="kakaoPlaceY">';
 								if(placeTel!=null||placeTel!=''){
 								
