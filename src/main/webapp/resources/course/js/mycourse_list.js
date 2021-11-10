@@ -298,5 +298,17 @@ $(document).ready(function(){
 			location.href = '/course/deleteCourse?courseCode=' + courseCode + '&memberId=' + memberId;
 		}
 	};
+	
+	checkCourseCode = function(){
+		var courseCode = $('input[name=courseCode]:checked').val();
+		
+		if(courseCode == null){
+			alert('코스를 선택 해주세요!');
+			return false;
+		}
+		else{
+			return true;
+		}
+	};
 
 })(jQuery);

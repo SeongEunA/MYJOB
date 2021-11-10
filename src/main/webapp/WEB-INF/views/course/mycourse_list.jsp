@@ -142,7 +142,7 @@ font-weight:bold;
 padding:5px 10px;
 }
 </style>
-<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=10"></script>
+<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=15"></script>
  <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script type="text/javascript">
@@ -182,7 +182,7 @@ $.ajax({
 <body>
 <div class="courseContainer">
 	<div class="courseLayoutLeft" id="courseLayoutLeft">
-	<form action="/course/theShortestCourse" method="post">
+	<form action="/course/theShortestCourse" method="post" onsubmit="return checkCourseCode();">
 		<input type="hidden" name="memberId" id="memberId" value="${sessionScope.loginInfo.memberId }">
 		<c:forEach items="${courseList }" var="courseInfo">
 			<div class="courseBox" id="courseBox">
