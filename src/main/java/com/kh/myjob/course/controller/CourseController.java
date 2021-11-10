@@ -299,7 +299,7 @@ public class CourseController {
 				}
 			}
 			
-			double minDis = 100;
+			double minDis = 100000;
 			
 			int originIndex=0;
 			
@@ -335,7 +335,7 @@ public class CourseController {
 			}
 			
 			
-			
+			System.out.println("여기?");
 			return shortCourse(shortCourseList,startX,startY,resultCourse,courseRegList);
 		}
 	}

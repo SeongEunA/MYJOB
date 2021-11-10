@@ -298,10 +298,9 @@ $(document).ready(function(){
 			location.href = '/course/deleteCourse?courseCode=' + courseCode + '&memberId=' + memberId;
 		}
 	};
-	
+	//라디오박스 아무것도 체크안하고 코스추천누르면 .
 	checkCourseCode = function(){
 		var courseCode = $('input[name=courseCode]:checked').val();
-		
 		if(courseCode == null){
 			alert('코스를 선택 해주세요!');
 			return false;

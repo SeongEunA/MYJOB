@@ -111,7 +111,12 @@ color: #FF8000;
 width: auto;
 }
 .recommendCourse{
-border: 1px solid blue;
+border: 1px solid white;
+padding-top:10px;
+padding-bottom:10px;
+}
+.recommendCourse:before{
+content:'추천코스 : ';
 }
 .resultCourse{
 display: inline-block;
@@ -142,24 +147,11 @@ font-weight:bold;
 padding:5px 10px;
 }
 </style>
-<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=15"></script>
+<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=16"></script>
  <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script type="text/javascript">
-function clickRecommendCourse(btnValue){
-   if(btnValue=='추천코스보기'){
-	   
-      document.getElementById("courseDisplay").style="visibility:visible";
-      document.getElementById("courseRecommendBtn").value="코스추천닫기";
-      
-   }
-   else{
-	   
-      document.getElementById("courseDisplay").style="visibility:hidden";
-      document.getElementById("courseRecommendBtn").value="추천코스보기";
-      
-   }
-}
+
 
 $.ajax({
     method: "GET",

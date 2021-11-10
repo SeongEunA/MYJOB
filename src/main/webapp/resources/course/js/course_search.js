@@ -71,8 +71,8 @@ $(document).ready(function(){
 		placeStr +='						</div>';
 		placeStr +='						<div class="resultPlaceAddr">'+placeAddr+'</div>';
 		placeStr +='						<input type="hidden" class="cateCode" value="CATE_003">';
-		placeStr += '	<input type="hidden" value="'+placeX+'" class="kakaoPlaceX">';	
-		placeStr += '	<input type="hidden" value="'+placeY+'" class="kakaoPlaceY">';
+		placeStr += '	<input type="hidden" value="'+placeX+'" class="resultX">';	
+		placeStr += '	<input type="hidden" value="'+placeY+'" class="resultY">';
 								if(placeTel!=null||placeTel!=''){
 								
 		placeStr +='						<div class="resultTel" class="resultPlaceTel">'+placeTel+'</div>';
@@ -112,6 +112,8 @@ $(document).ready(function(){
 	
 	//placeList에서 담기버튼을 눌렀을 때
 	$(document).on('click', '#saveCourseInfo', function(){
+		var x =$(this).parent().parent().children().eq(0).val();
+		var y =$(this).parent().parent().children().eq(1).val();
 		var placeName = $(this).parent().parent().children().eq(2).text();
 		var placeAddr =  $(this).parent().parent().children().eq(3).attr('data-placeAddr');
 		var cateCode =  $(this).parent().parent().children().eq(4).val();
@@ -136,6 +138,8 @@ $(document).ready(function(){
 			placeStr +='				<div class="ticketBlock">';
 		}
 		
+		placeStr +='						<input type="hidden" class="resultX" value="'+x+'">';
+		placeStr +='						<input type="hidden" class="resultY" value="'+y+'">';
 		placeStr +='						<div class="resultPlaceName">'+placeName+'<div class="close close1" id="deleteResBtn"></div>';
 		placeStr +='					</div>';
 		placeStr +='					<div class="resultPlaceAddr">'+placeAddr+'</div>';
@@ -205,15 +209,17 @@ $(document).ready(function(){
 						var placeAddr = [];
 						var cateCode = [];
 						
-						var kakaoPlaceX = [];
-						var kakaoPlaceY = [];
+						var placeX = [];
+						var placeY = [];
 						
 						var placeNameL = $('.resultPlaceName').length;
 						var placeAddrL = $('.resultPlaceAddr').length;
 						var cateCodeL = $('.cateCode').length;
 						
-						var placeXLen = $('.kakaoPlaceX').length;
-						var placeYLen = $('.kakaoPlaceY').length;
+						var placeXLen = $('.resultX').length;
+						var placeYLen = $('.resultY').length;
+						
+						console.log('배열길이');
 						console.log(placeXLen);
 						console.log(placeYLen);
 						
@@ -244,12 +250,13 @@ $(document).ready(function(){
 						}
 						
 						for(var i = 0; i < placeXLen; i++){
-							kakaoPlaceX[i] = $('.kakaoPlaceX').eq(i).val();
-							console.log('코스등록 버튼 클릭시 x : '+$('.kakaoPlaceX').eq(i).val());
+							placeX[i] = $('.resultX').eq(i).val();
+							console.log(i+'번째 코스등록 버튼 클릭시 x : '+$('.resultX').eq(i).val());
 						}
 						
 						for(var i = 0; i < placeXLen; i++){
-							kakaoPlaceY[i] = $('.kakaoPlaceY').eq(i).val();
+							placeY[i] = $('.resultY').eq(i).val();
+							console.log(i+'번째 코스등록 버튼 클릭시 y : '+$('.resultY').eq(i).val());
 						}
 						
 						//코스코드를 등록한 뒤 코스코드를 조회, 코스를 추가하는 ajax
@@ -261,8 +268,8 @@ $(document).ready(function(){
 									'placeNameArr':placeName,
 									'placeAddrArr':placeAddr,
 									'cateCodeArr':cateCode,
-									'placeXArr':kakaoPlaceX,
-									'placeYArr':kakaoPlaceY
+									'placeXArr':placeX,
+									'placeYArr':placeY
 							}, //필요한 데이터
 							success: function(result) {
 								alert('코스가 등록되었습니다!');
@@ -763,8 +770,8 @@ function getListItem(index, places) {
 	var el = document.createElement('li'),
        itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                    '<div class="info" id="info">' +
-                   '<input type="hidden" value="'+places.x+'" name="y">'+
-                   '<input type="hidden" value="'+places.y+'" name="x">'+
+                   '<input type="hidden" value="'+places.y+'" name="y">'+
+                   '<input type="hidden" value="'+places.x+'" name="x">'+
                    '   <h5 id="resName" name="resName">' + places.place_name + '</h5>';
 
        if (places.road_address_name) {
