@@ -7,6 +7,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+@font-face {
+    font-family: 'Mini_handwriting';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_08@1.0/Mini_handwriting.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+font-family: 'Mini_handwriting';
+font-size:23px;
+font-weight:bold;
+color:#474747;
+}
 .courseContainer{
 
 border:1px solid white;
@@ -28,29 +40,32 @@ background-color:#8FBAE5;
 
 .courseLayoutLeft{
 
-border:1px solid red;
+border:1px solid white;
+border-radius:10px;
 background-color:white;
 width:800px;
 height:auto;
 display:flex;
 flex-direction:column;
 margin:0 auto;
-margin-top:100px;
+margin-top:50px;
 
 }
 .courseLayoutRight{
 
-border:1px solid black;
+border:1px solid white;
+border-radius:10px;
 background-color:white;
 width:500px;
 height:500px;
 margin:0 auto;
-
+margin-top:50px;
 }
 
 .courseBox{
 
-border:1px solid red;
+border:1px solid white;
+border-bottom:2px dashed #e6e5e5;
 width:100%;
 height:auto;
 margin-top: 10px;
@@ -77,17 +92,18 @@ margin-bottom: 10px;
 .deletePlaceBtn{
 display: inline-block;
 cursor: pointer;
-border: 1px solid black;
+border: 1px solid #F6F5F5;
+height:26px;
+background-color:pink;
 }
 
 .deletePlaceBtn:hover {
 color: #FF0000;
-border: 1px solid #FF0000;;
 }
 
 .deletePlaceBtn:active {
 color: #FF8000;
-border: 1px solid #FF8000;;
+
 }
 .deletePlace{
 width: auto;
@@ -99,8 +115,24 @@ border: 1px solid blue;
 display: inline-block;
 margin-bottom: 10px;
 }
+.checkbox{
+padding-top:10px;
+padding-bottom:10px;
+margin-left:10px;
+margin-top:10px;
+margin-bottom:10px;
+}
+.deleteCourseBtn{
+border:1px solid #F6F6F6;
+border-radius:5px;
+background-color:#B2CCFF;
+color:#5D5D5D;
+font-weight:bold;
+padding:5px 10px;
+
+}
 </style>
-<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=2"></script>
+<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=6"></script>
  <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script type="text/javascript">
@@ -181,7 +213,7 @@ $.ajax({
 	     </c:forEach>
 	     <c:if test="${courseList ne null }">
 			<div>
-				<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn">
+				<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn" class="deleteCourseBtn">
 				<input type="button" value="코스삭제" class="deleteCourseBtn" onclick="deleteCourse();">
 			</div>
 	     </c:if>
@@ -220,8 +252,8 @@ $.ajax({
 		<c:forEach items="${tempSaveCourseList }" var="tempSaveCourseInfo">
 		<div id="testTwo">
 			<div class="deletePlaceDiv row">
-				<div class="checkbox">
-					<div class="deletePlace col-11" style="border:1px solid red"><input type="checkbox" class="checkbox">${tempSaveCourseInfo.placeName }
+				<div>
+					<div class="deletePlace col-11"><input type="checkbox" class="checkbox">${tempSaveCourseInfo.placeName }
 						<input type="hidden" class="placeName" value="${tempSaveCourseInfo.placeName }">
 						<input type="hidden" class="placeAddr" value="${tempSaveCourseInfo.placeAddr }">
 						<input type="hidden" class="cateCode" value="${tempSaveCourseInfo.cateCode }">

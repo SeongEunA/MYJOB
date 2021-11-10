@@ -29,8 +29,8 @@ $(document).ready(function(){
 				var deleteStr = '';
 				
 				deleteStr += '<div class="deletePlaceDiv row">';
-				deleteStr += '	<div class="checkbox">';
-				deleteStr += '		<div class="deletePlace col-11" style="border:1px solid red"><input type="checkbox" class="checkbox">코스이름 : ' + placeName;
+				deleteStr += '	<div>';
+				deleteStr += '		<div class="deletePlace col-11"><input type="checkbox" class="checkbox">코스이름 : ' + placeName;
 				deleteStr += '			<input type="hidden" class="placeName" value="' + placeName + '">';
 				deleteStr += '			<input type="hidden" class="placeAddr" value="' + placeAddr + '">';
 				deleteStr += '			<input type="hidden" class="cateCode" value="' + cateCode + '">';
@@ -84,7 +84,7 @@ $(document).ready(function(){
 				
 				listStr += '<div>'
 				listStr += '	<span>'
-				listStr += '		<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn">'
+				listStr += '		<input type="submit" value="추천코스보기" onClick="clickRecommendCourse(this.value);" id="courseRecommendBtn" class="deleteCourseBtn">'
 				listStr += '		<input type="button" value="코스삭제" class="deleteCourseBtn" onclick="deleteCourse();">'
 				listStr += '	</span>'
 				listStr += '</div>'
