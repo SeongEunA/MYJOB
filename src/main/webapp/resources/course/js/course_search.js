@@ -37,7 +37,7 @@ $(document).ready(function(){
 		});
 	});
 	
-	//장소 리스트에서 장소명 클릭시
+	//장소 리스트에서 '맛집보기' 클릭시
 	$(document).on('click', '#showResInfo', function() { 
 		var placeAddr = $(this).parent().prev().val();
 		var x = $(this).parent().parent().children().eq(0).val();
@@ -46,16 +46,19 @@ $(document).ready(function(){
 		
 		$('#keywordForm').submit();
 		
+		//스크롤이동
+		scrollToMap();
+		
 		showResInfo(x,y);
 	});
 	
 	//지도에서 목록에 있는 장소명 클릭 맛집임!!
-	$(document).on('click', '#resName', function() {
-		var placeName = $(this).text();
-		var placeAddr = $(this).next().text();
-		var placeTel = $(this).next().next().text();
-		var placeX = $(this).prev().val();
-		var placeY = $(this).prev().prev().val();
+	$(document).on('click', '#info', function() {
+		var placeX = $(this).children().eq(0).val();
+		var placeY = $(this).children().eq(1).val();
+		var placeName = $(this).children().eq(2).text();
+		var placeAddr = $(this).children().eq(3).text();
+		var placeTel = $(this).children().eq(4).text();
 			
 		var placeStr = '';
 		
@@ -109,59 +112,63 @@ $(document).ready(function(){
 	
 	//placeList에서 담기버튼을 눌렀을 때
 	$(document).on('click', '#saveCourseInfo', function(){
-		   
-	   var placeName = $(this).parent().parent().children().eq(2).text();
-	   var placeAddr =  $(this).parent().parent().children().eq(3).text();
-	   var cateCode =  $(this).parent().parent().children().eq(4).val();
-	   var placeTel =  $(this).parent().parent().children().eq(5).text();
-//course_search.jsp에서 담기버튼 누를때
-//div 디자인	   
+		var placeName = $(this).parent().parent().children().eq(2).text();
+		var placeAddr =  $(this).parent().parent().children().eq(3).text();
+		var cateCode =  $(this).parent().parent().children().eq(4).val();
+		var placeTel =  $(this).parent().parent().children().eq(5).text();
+		//course_search.jsp에서 담기버튼 누를때
+		//div 디자인	   
 
+		//스크롤이동
+		scrollToSaveCourse();
 	   
-	   var placeStr = '';
+		var placeStr = '';
 	   
-placeStr +='	   <div class="ticketContainer">';
-placeStr +='		<div class="ticketMainLayout">';
-placeStr +='			<div class="ticketLayout1">';
-placeStr +='				<div class="ticketDiv">';
-if(cateCode=='CATE_001'){
-placeStr +='					<div class="ticketBlock3">';
-}
-else if(cateCode=='CATE_002'){
-	placeStr +='					<div class="ticketBlock">';
-	}
-placeStr +='						<div class="resultPlaceName">'+placeName+'<div class="close close1" id="deleteResBtn"></div>';
-placeStr +='						</div>';
-placeStr +='						<div class="resultPlaceAddr">'+placeAddr+'</div>';
-placeStr +='						<input type="hidden" class="cateCode" value="'+cateCode+'">';
-						if(placeTel!=null||placeTel!=''){
-						
-placeStr +='						<div class="resultTel" class="resultPlaceTel">'+placeTel+'</div>';
-					
-					}
-placeStr +='						<div class="travelTicket">Travel Ticket</div>';
-placeStr +='					</div>';
-placeStr +='				</div>';
-placeStr +='			</div>';
-placeStr +='		<div class="ticketLayout2">';
-if(cateCode=='CATE_001'){
-placeStr +='	      	<span>숙박지</span>';
-}
-else if(cateCode=='CATE_002'){
-	placeStr +='	      	<span>관광지</span>';
-	}
-
-placeStr +='	    <div class="ticketMark">';
-placeStr +='	      		<img src="/resources/images/free-icon-aeroplane-5639813.png"width="100%" height="100%">';
-placeStr +='	      	</div>';
-placeStr +='	   <section class="custom-kontakt">';
-placeStr +='	       <div class="barcode-box">';
-placeStr +='	       		<div class="barcode-stripes"><span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-3"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-1"></span> <span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-1"></span><span class="stripe-1"></span><span class="sig5"></span> <span class="sig6"></span> <span class="sig7"></span></div>';
-placeStr +='	       </div>';
-placeStr +='	     </section>';
-placeStr +='	     	</div>';
-placeStr +='	     	</div>';
-placeStr +='	</div>';
+		placeStr +='<div class="ticketContainer">';
+		placeStr +='	<div class="ticketMainLayout">';
+		placeStr +='		<div class="ticketLayout1">';
+		placeStr +='			<div class="ticketDiv">';
+		
+		if(cateCode=='CATE_001'){
+			placeStr +='				<div class="ticketBlock3">';
+		}
+		else if(cateCode=='CATE_002'){
+			placeStr +='				<div class="ticketBlock">';
+		}
+		
+		placeStr +='						<div class="resultPlaceName">'+placeName+'<div class="close close1" id="deleteResBtn"></div>';
+		placeStr +='					</div>';
+		placeStr +='					<div class="resultPlaceAddr">'+placeAddr+'</div>';
+		placeStr +='					<input type="hidden" class="cateCode" value="'+cateCode+'">';
+		
+		if(placeTel!=null||placeTel!=''){
+			placeStr +='					<div class="resultTel" class="resultPlaceTel">'+placeTel+'</div>';
+		}
+		
+		placeStr +='						<div class="travelTicket">Travel Ticket</div>';
+		placeStr +='					</div>';
+		placeStr +='				</div>';
+		placeStr +='			</div>';
+		placeStr +='		<div class="ticketLayout2">';
+		
+		if(cateCode=='CATE_001'){
+			placeStr +='	      	<span>숙박지</span>';
+		}
+		else if(cateCode=='CATE_002'){
+			placeStr +='	      	<span>관광지</span>';
+		}
+		
+		placeStr +='			<div class="ticketMark">';
+		placeStr +='				<img src="/resources/images/free-icon-aeroplane-5639813.png"width="100%" height="100%">';
+		placeStr +='			</div>';
+		placeStr +='			<section class="custom-kontakt">';
+		placeStr +='				<div class="barcode-box">';
+		placeStr +='					<div class="barcode-stripes"><span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-3"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-1"></span> <span class="stripe-1"></span><span class="stripe-2"></span><span class="stripe-1"></span><span class="stripe-1"></span><span class="stripe-1"></span><span class="sig5"></span> <span class="sig6"></span> <span class="sig7"></span></div>';
+		placeStr +='				</div>';
+		placeStr +='			</section>';
+		placeStr +='		</div>';
+		placeStr +='	</div>';
+		placeStr +='</div>';
 	  
 	   	
 	   $('#resInfoList').append(placeStr);
@@ -288,6 +295,7 @@ placeStr +='	</div>';
 		
 	});//코스등록버튼 클릭시 end
 	
+	
 });	
 
 
@@ -336,10 +344,13 @@ placeStr +='	</div>';
 			locationName = '대구광역시'
 		}
 		
+		//검색키워드 '지역+맛집'으로 변경
 		$('#keyword').val(locationName+'맛집');
 	      
-	      $('#keywordForm').submit();
-		
+	    $('#keywordForm').submit();
+	    
+	    //스크롤이동
+	    scrollToMap();
 		
 		//장소리스트 ajax 보내기
 		$.ajax({
@@ -580,11 +591,24 @@ placeStr +='	</div>';
 		});
 	};
 
+	//--------스크롤 이동 이벤트 모음--------//
+	//지도가 위치한 곳 으로 스크롤 이동
+	scrollToMap = function(){
+		//스크롤이동
+	    var offset = $('#map').offset(); //선택한 태그의 위치를 반환
+		
+		//animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
+		$('html').animate({scrollTop : offset.top}, 100);
+	};
 	
-	//---------------------------------------------------
-	
-	
-	
+	//담겨진 장소 div로 스크롤 이동
+	scrollToSaveCourse = function(){
+		//스크롤이동
+	    var offset = $('#resInfoList').offset(); //선택한 태그의 위치를 반환
+		
+		//animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
+		$('html').animate({scrollTop : offset.top}, 100);
+	};
 	
 })(jQuery);
 
@@ -595,7 +619,7 @@ placeStr +='	</div>';
 
 
 
-////////////////////
+//지도생성 script
 var markers = [];
 var markers2 = [];
 var markers3 = [];
@@ -738,7 +762,7 @@ function getListItem(index, places) {
 	
 	var el = document.createElement('li'),
        itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
-                   '<div class="info">' +
+                   '<div class="info" id="info">' +
                    '<input type="hidden" value="'+places.x+'" name="y">'+
                    '<input type="hidden" value="'+places.y+'" name="x">'+
                    '   <h5 id="resName" name="resName">' + places.place_name + '</h5>';
@@ -903,6 +927,7 @@ function removeAllChildNods(el) {
 		removeMarker2();
 		removeMarker3();
 		removeMarker();
+		removeMarkerNow()
 	 for(var e =0;e<arrXY2.length;e++){
 
 	 positions2.push({title:arrXY2[e].placeName,latlng:new kakao.maps.LatLng(arrXY2[e].x,arrXY2[e].y)})
@@ -974,6 +999,7 @@ function removeAllChildNods(el) {
 			 removeMarker3();
 			   removeMarker2();
 				removeMarker();
+				 removeMarkerNow()
 			 for(var e =0;e<arrXY.length;e++){
 
 			 positions.push({title:arrXY[e].placeName,latlng:new kakao.maps.LatLng(arrXY[e].x,arrXY[e].y)})
