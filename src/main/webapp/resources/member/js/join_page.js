@@ -154,7 +154,7 @@ $(document).ready(function(){
 		var tel3J = /^([0-9]{4})$/; // - (4자리) - 의 형식으로만 생성.
 		
 		//memberTel2, membertel3 변수 생성
-		var membertel3 = $('#memberTel3').val();
+		var memberTel3 = $('#memberTel3').val();
 		
 		
 		//memberTel입력란 공백 유효성 검사
@@ -165,7 +165,7 @@ $(document).ready(function(){
 			okTel = 0;
 		}
 		//memberTel2,3입력란이 양식에 맞지 않을 때
-		else if(!tel3J.test(membertel3)){
+		else if(!tel3J.test(memberTel3)){
 			$('#noticeTel').text('올바르지 않은 연락처 입니다.');
 			$('#noticeTel').css('color', 'red');
 			$('#memberTel3').focus();
@@ -300,14 +300,14 @@ $(document).ready(function(){
 		            	//기가입 : true, 미가입 : false
 		            	//아이디 중복 일 때.
 		            	if(result){
-		            		alert('중복된 아이디 입니다.')
+		            		//alert('중복된 아이디 입니다.')
 		            		$('#noticeId').text('중복된 아이디 입니다.');
 		    				$('#noticeId').css('color', 'red');
 							$('#memberId').focus();
 							okId = 0;
 						}
 						else{
-							alert('사용 가능한 아이디입니다.')
+							//alert('사용 가능한 아이디입니다.')
 							$('#noticeId').text('사용 가능한 아이디입니다.');
 		    				$('#noticeId').css('color', 'green');
 		    				$('#memberName').focus();

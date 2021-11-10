@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/admin/js/member_detail.js?ver=2"></script>
+<script type="text/javascript" src="/resources/admin/js/member_detail.js?ver=3"></script>
 <style type="text/css">
 .memberDetailTitleDiv{
 	padding:0px;
@@ -73,7 +73,7 @@ table td{
 						<td>회원코드</td>
 						<td>${detailMember.memberCode }</td>
 						<td>회원주소</td>
-						<td>${detailMember.memberAddr }</td>
+						<td>${detailMember.memberAddr1 }&nbsp;${detailMember.memberAddr2 }</td>
 					</tr>
 					<tr>
 						<td>회원아이디</td>
