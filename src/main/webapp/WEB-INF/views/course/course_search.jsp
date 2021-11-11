@@ -76,14 +76,14 @@ border-radius:5px;
 cursor: pointer;
 }
 .weatherContainer{
-border:1px solid #F3F0D7;
+border:1px solid #FEFBF3;
 width:400px;
 height:400px;
 margin-left:20px;
 }
 
 .weatherBox{
-border:1px solid #F3F0D7;
+border:1px solid white;
 width:inherit;
 height:inherit;
 display:flex;
@@ -102,16 +102,16 @@ flex-direction:column;
 text-align:center;
 }  */
 .weatherDay{
-border:1px solid #E3E0D7;
+border:1px solid #eeeeee;
 width:50%;
 height:18%;
 border-radius:5px;
 display:flex;
 flex-direction: row;
-
+background-color:white;
 }
 .weatherDayHeader{
-border:1px solid #F3F0D7;
+border:1px solid white;
 height:100%;
 width:20%;
 display:flex;
@@ -119,7 +119,7 @@ align-items: center;
 
 }
 .weatherContent{
-border:1px solid #F3F0D7;
+border:1px solid white;
 width:80%;
 height:100%;
 flex-direction:row;
@@ -129,7 +129,7 @@ align-items: center;
 }
 .weatherDayNum{
 display:block;
-border:1px solid #F3F0D7;
+border:1px solid white;
 width:100%;
 height:60%;
 font-size:12px;
@@ -147,18 +147,18 @@ font-weight:600;
 width:60%;
 height:100%;
 flex-direction:row;
-border:1px solid #F3F0D7;
+border:1px solid white;
 
 }
 .weatherSkyStatus2{
 width:40%;
 height:100%;
 flex-direction:row;
-border:1px solid #F3F0D7;
+border:1px solid white;
 }
 
 .weatherSkyStatusImg{
-border:1px solid #F3F0D7;
+border:1px solid white;
 width:40%;
 height:50%;
 margin:0 auto;
@@ -166,14 +166,14 @@ margin:0 auto;
 
 }
 .weatherSkyStatusImg2{
-border:1px solid #F3F0D7;
+border:1px solid white;
 width:90%;
 height:70%;
 margin:0 auto;
 text-align: center;
 }
 .weatherSkyStatusText{
-border:1px solid #F3F0D7;
+border:1px solid white;
 flex-direction:column;
 width:40%;
 height:20%;
@@ -181,7 +181,7 @@ font-size:13px;
 margin:0 auto;
 }
 .weatherSkyStatusText2{
-border:1px solid #F3F0D7;
+border:1px solid white;
 flex-direction:column;
 width:100%;
 height:30%;
@@ -191,11 +191,11 @@ font-family: 'NanumBarunpen';
 text-align: center;
 }
 .weatherSkyStatusText2 > span{
-border:1px solid #F3F0D7;
+border:1px solid white;
 
 } 
 .weatherTemp{
-border:1px solid #F3F0D7;
+border:1px solid white;
 width:35%;
 height:40%;
 font-size:13px;
@@ -209,14 +209,14 @@ font-size:12px;
 color:#2a74f8;
 }
 .covidNowBox{
-border:1px solid #F3F0D7;
+border:1px solid #FEFBF3;
 width:500px;
 height:400px;
 margin-left:100px;
 margin-bottom: 5px;
 }
 .covidNowLayout{
-border: 1px solid #F3F0D7;
+border: 1px solid #FEFBF3;
 text-align: center;
 font-size: 12px;
 background-image: url("/resources/images/koreaMap3.png");
@@ -275,13 +275,12 @@ color: #FF2424;
 
 
 .weatherHowToContainer{
-border:1px solid #F3F0D7;
+border:1px solid #FEFBF3;
 display:flex;
 flex-direction: row;
 padding-top:30px;
-background-color:#F3F0D7;
-border-bottom-left-radius: 20px;
-border-bottom-right-radius: 20px;
+background-color:#FEFBF3;
+
 }
 .courseContainer{
 border:1px solid white;
@@ -298,7 +297,8 @@ border:1px solid white;
 width:70%;
 height:auto;
 max-height:2500px;
-
+background-color:#FEFBF3;
+border-radius:20px;
 }
 .courseHalfLayout:last-child{
 border:1px solid white;
@@ -351,19 +351,19 @@ border-radius:5px;
 .searchBox{
 display:flex;
 margin:0 auto;
-background-color:#F3F0D7;
+background-color:#FEFBF3;
 padding-top:15px;
 border-top-left-radius:20px;
 border-top-right-radius:20px;
 }
 .searchLayout{
-border:1px solid #F3F0D7;
+border:1px solid #FEFBF3;
 border-top-left-radius:20px;
 border-top-right-radius:20px;
 }
 
 .searchDiv{
-border:1px solid #F3F0D7;
+border:1px solid #FEFBF3;
 margin:0 20px;
 }
 
@@ -653,7 +653,7 @@ opacity: 90%;
 border-radius:10px;
 }
 .placeListOrder{
-border:1px solid white;
+border:1px solid #FEFBF3;
 height:880px;
 display:flex;
 flex-flow:column wrap;

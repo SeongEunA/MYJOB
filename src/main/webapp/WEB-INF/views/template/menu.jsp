@@ -88,7 +88,7 @@ a{
 </div>
 <div class="row">
    <div class="col-12 text-center">
-      <a href="/common/main" class="mainTitle">놀러가고싶어요</a>
+      <a href="/common/main" class="mainTitle">여행레시피</a>
    </div>
 </div>
 	<div class="row">
