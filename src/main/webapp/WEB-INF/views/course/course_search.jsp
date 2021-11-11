@@ -76,14 +76,14 @@ border-radius:5px;
 cursor: pointer;
 }
 .weatherContainer{
-border:1px solid black;
+border:1px solid #F3F0D7;
 width:400px;
 height:400px;
-
+margin-left:20px;
 }
 
 .weatherBox{
-border:1px solid red;
+border:1px solid #F3F0D7;
 width:inherit;
 height:inherit;
 display:flex;
@@ -102,7 +102,7 @@ flex-direction:column;
 text-align:center;
 }  */
 .weatherDay{
-border:1px solid #eeeeee;
+border:1px solid #E3E0D7;
 width:50%;
 height:18%;
 border-radius:5px;
@@ -111,7 +111,7 @@ flex-direction: row;
 
 }
 .weatherDayHeader{
-border:1px solid white;
+border:1px solid #F3F0D7;
 height:100%;
 width:20%;
 display:flex;
@@ -119,7 +119,7 @@ align-items: center;
 
 }
 .weatherContent{
-border:1px solid white;
+border:1px solid #F3F0D7;
 width:80%;
 height:100%;
 flex-direction:row;
@@ -129,7 +129,7 @@ align-items: center;
 }
 .weatherDayNum{
 display:block;
-border:1px solid white;
+border:1px solid #F3F0D7;
 width:100%;
 height:60%;
 font-size:12px;
@@ -147,18 +147,18 @@ font-weight:600;
 width:60%;
 height:100%;
 flex-direction:row;
-border:1px solid white;
+border:1px solid #F3F0D7;
 
 }
 .weatherSkyStatus2{
 width:40%;
 height:100%;
 flex-direction:row;
-border:1px solid white;
+border:1px solid #F3F0D7;
 }
 
 .weatherSkyStatusImg{
-border:1px solid white;
+border:1px solid #F3F0D7;
 width:40%;
 height:50%;
 margin:0 auto;
@@ -166,14 +166,14 @@ margin:0 auto;
 
 }
 .weatherSkyStatusImg2{
-border:1px solid white;
+border:1px solid #F3F0D7;
 width:90%;
 height:70%;
 margin:0 auto;
 text-align: center;
 }
 .weatherSkyStatusText{
-border:1px solid white;
+border:1px solid #F3F0D7;
 flex-direction:column;
 width:40%;
 height:20%;
@@ -181,7 +181,7 @@ font-size:13px;
 margin:0 auto;
 }
 .weatherSkyStatusText2{
-border:1px solid white;
+border:1px solid #F3F0D7;
 flex-direction:column;
 width:100%;
 height:30%;
@@ -191,11 +191,11 @@ font-family: 'NanumBarunpen';
 text-align: center;
 }
 .weatherSkyStatusText2 > span{
-border:1px solid white;
+border:1px solid #F3F0D7;
 
 } 
 .weatherTemp{
-border:1px solid white;
+border:1px solid #F3F0D7;
 width:35%;
 height:40%;
 font-size:13px;
@@ -208,46 +208,105 @@ margin-top:5px;
 font-size:12px;
 color:#2a74f8;
 }
-.howToSeachCourseBox{
-border:1px solid black;
+.covidNowBox{
+border:1px solid #F3F0D7;
 width:500px;
 height:400px;
 margin-left:100px;
-
+margin-bottom: 5px;
+}
+.covidNowLayout{
+border: 1px solid #F3F0D7;
+text-align: center;
+font-size: 12px;
+background-image: url("/resources/images/koreaMap3.png");
+width: 100%;
+height:100%;
+background-size:contain;
+background-repeat: no-repeat;
+background-position: center;
+}
+.covidDetail{
+border:1px solid #DCF8FF;
+border-radius: 50%;
+width: 60px;
+display: inline-block;
+background-color: white;
+background-color: rgba( 220, 248, 255, 0.8 );
+padding: 5px 5px;
+font-family: 'NanumBarunpen';
+font-weight: bold;
+}
+.stdDay{
+text-align: left;
+}
+.area{
 
 }
+.totalCoronic{
+color: #003399;
+}
+.newCoronic{
+color: #FF2424;
+}
+#검역{position: relative; top: 180px; left: 50px;}
+#제주{position: relative; top: 330px;}
+#경남{position: relative; top: 240px; left: 90px;}
+#경북{position: relative; top: 120px; left: 110px;}
+#전남{position: relative; top: 290px; right: 110px;}
+#전북{position: relative; top: 180px; right: 180px;}
+#충남{position: relative; top: 120px; right: 290px;}
+#충북{position: relative; top: 30px; left: 230px;}
+#강원{position: relative; bottom: 20px; left: 220px;}
+#경기{position: relative; bottom: 30px; left: 90px;}
+#세종{position: relative; top: 55px; right: 35px;}
+#울산{position: relative; top: 170px; left: 60px;}
+#대전{position: relative; top: 80px; right: 95px;}
+#광주{position: relative; top: 190px; right: 250px;}
+#인천{position: relative; bottom: 60px; left: 20px;}
+#대구{position: relative; top: 90px; left: 120px;}
+#부산{position: relative; top: 180px; left: 110px;}
+#서울{position: relative; bottom: 50px; right: 100px;}
+#합계{position: relative; bottom: 80px; right: 330px;}
+
+
+
 .weatherHowToContainer{
-border:1px solid black;
+border:1px solid #F3F0D7;
 display:flex;
 flex-direction: row;
-margin-top:30px;
+padding-top:30px;
+background-color:#F3F0D7;
+border-bottom-left-radius: 20px;
+border-bottom-right-radius: 20px;
 }
 .courseContainer{
-border:1px solid black;
+border:1px solid white;
 width:1700px;
 height:auto;
 display:flex;
 flex-direction: row;
 margin: 0 auto;
+margin-bottom:100px;
 
 }
 .courseHalfLayout:first-child{
-border:1px solid blue;
+border:1px solid white;
 width:70%;
-min-height:1800px;
-
-
+height:auto;
+max-height:2500px;
 
 }
 .courseHalfLayout:last-child{
-border:1px solid blue;
+border:1px solid white;
+border-radius:20px;
 width:30%;
 height:auto;
-
-
+background-color:#EBF7FF;
+margin-left:20px;
 }
 .map_wrap{
-border:2px solid pink;
+border:2px solid white;
 width:100%;
 height:800px;
 }
@@ -260,14 +319,14 @@ height:100px;
 }
 .submitCourseBtn{
 visibility: hidden;
-border:1px solid white;
+border:1px solid #EBF7FF;
 height:40px;
 width:100%;
 font-family: 'KyoboHand';
 text-align:center;
 }
 .submitCourseBtn > span{
-border:1px solid white;
+border:1px solid #EBF7FF;
 height:42px;
 display:inline-block;
 
@@ -287,16 +346,21 @@ background-color:#BCE55C;
 border-radius:5px;
 }
 .searchBox{
-border:1px solid black;
 display:flex;
 margin:0 auto;
+background-color:#F3F0D7;
+padding-top:15px;
+border-top-left-radius:20px;
+border-top-right-radius:20px;
 }
 .searchLayout{
-border:1px solid orange;
+border:1px solid #F3F0D7;
+border-top-left-radius:20px;
+border-top-right-radius:20px;
 }
 
 .searchDiv{
-border:1px solid black;
+border:1px solid #F3F0D7;
 margin:0 20px;
 }
 
@@ -339,7 +403,7 @@ color: #1F50B5;
 }
 .ticketContainer{
 
-    border:1px solid white;
+    border:1px solid #EBF7FF;
     width:90%;
     height:200px;
     display:flex;
@@ -358,23 +422,25 @@ color: #1F50B5;
 }
 .ticketLayout1{
 
-    border:1px solid white;
-    border-right:1px solid white;
+    border:1px solid #EBF7FF;
+    border-right:1px solid #EBF7FF;
     width:70%;
     height:100%;
    	position:relative;
-   	
+   	background-color:white;
 
 }
 .ticketLayout2{
 
-    border:1px solid white;
+    border:1px solid #EBF7FF;
     border-left:1px dotted black;
     width:30%;
     height:100%;
     position:relative;
     font-family: 'KyoboHand';
     text-align:center;
+    background-color:white;
+    
 }
 .ticketLayout2 > span{
 	border:1px solid white;
@@ -399,24 +465,24 @@ color: #1F50B5;
     
 }
 .ticketBlock{
-    border:1px solid #B5B2FF;
-    background-color:#B5B2FF;
+    border:1px solid #FFEBFE;
+    background-color:#FFEBFE;
     width:90%;
     height:100%;
     font-family: 'KyoboHand';
     margin: 0 auto;
 }
 .ticketBlock2{
-	 border:1px solid #FFBB00;
-    background-color: #FFBB00;
+	 border:1px solid #FCFFA6;
+    background-color: #FCFFA6;
     width:90%;
     height:100%;
     font-family: 'KyoboHand';
     margin: 0 auto;
 }
 .ticketBlock3{
-	 border:1px solid #BCE55C;
-    background-color: #BCE55C;
+	 border:1px solid #C1FFD7;
+    background-color: #C1FFD7;
     width:90%;
     height:100%;
     font-family: 'KyoboHand';
@@ -435,7 +501,7 @@ color: #1F50B5;
 }
 
 .custom-kontakt .barcode-box { 
-  border:1px solid white;
+  border:1px solid #EBF7FF;
   width:90px;
   min-width: 89px; 
   height: 27px; 
@@ -591,7 +657,7 @@ flex-flow:column wrap;
 margin:0 auto;
 }
 .placeListContainer{
-border:1px solid green;
+border:1px solid white;
 height:auto;
 }
 .pageBtn{
@@ -628,7 +694,7 @@ opacity:0.6;
 <!-- 검색 영역 -->
 <div class="courseContainer">
 	<div class="courseHalfLayout">
-		<div class="row">
+		<div>
 			<div class="searchLayout col-12">
 				<div class="searchBox col-12">
 					<div class="col-2 searchDiv">
@@ -752,13 +818,26 @@ opacity:0.6;
 	</div><!-- weatherBox -->
 </div><!--weatherContainer-->
 
-			<div class="howToSeachCourseBox">
-				<c:forEach items="${covid19List }" var="covid19Info">
-					기준일자 : ${covid19Info.stdDay }<br>
-					시도명 : ${covid19Info.gubun }<br>
-					누적확진자수 : ${covid19Info.defCnt }<br>
-					신규확진자수 : ${covid19Info.incDec }<br>
-				</c:forEach>
+<%-- 				기준일자 : ${covid19Info.stdDay }
+					시도명 : ${covid19Info.gubun }
+					누적확진자수 : ${covid19Info.defCnt }
+					신규확진자수 : ${covid19Info.incDec } --%>
+			<div class="covidNowBox">
+				<div class="covidNowLayout">
+					<div class="stdDay">${covid19List[0].stdDay } 기준 지역별 확진자 현황</div>
+					<c:forEach items="${covid19List }" var="covid19Info">
+						<div class="covidDetail" id="${covid19Info.gubun }">
+							<div class="area">${covid19Info.gubun }</div>
+							<div class="totalCoronic">${covid19Info.defCnt }</div>
+							<div class="newCoronic">↑${covid19Info.incDec }</div>
+						</div>
+					</c:forEach>
+					<%-- <div class="covidDetail jeju">
+						<div class="area">${covid19List[1].gubun }</div>
+						<div class="totalCoronic">${covid19List[1].defCnt }</div>
+						<div class="newCoronic">↑${covid19List[1].incDec }</div>
+					</div> --%>
+				</div>
 			</div>	
 </div><!-- weatherHowToContainer -->
 	
@@ -782,7 +861,7 @@ opacity:0.6;
 		</div>
 	
 	<!-- 검색 장소 리스트 영역 -->
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=24"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=25"></script>
 		
 		<div class="col-12 placeListContainer">
 		   <div class="col-11 placeListOrder" id="placeList"><!--장소리스트 나오는곳 -->
