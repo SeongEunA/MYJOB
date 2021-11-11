@@ -184,7 +184,7 @@
 	font-size: 12px;
 }
 </style>
-<script type="text/javascript" src="/resources/member/js/join_page.js?ver=10"></script>
+<script type="text/javascript" src="/resources/member/js/join_page.js?ver=26"></script>
 </head>
 <body>
 <div class="row">
@@ -200,28 +200,28 @@
 				<form action="/member/join" method="post" id="joinForm">
 					<div class="memberIdDiv">
 						<div><span class="required">*</span>&nbsp;아이디</div>
-						<div class="memberId"><input type="text" id="memberId" name="memberId" required></div>
+						<div class="memberId"><input type="text" id="memberId" name="memberId" maxlength="12" required></div>
 						<div class="idCheck"><input type="button" id="idCheckbtn" value="중복확인" onclick="idCheck();"></div>
 						<div id="noticeId">&nbsp;</div>
 					</div>
 					<div class="memberNameDiv">
 						<div><span class="required">*</span>&nbsp;이름</div>
 						<div>
-							<input type="text" id="memberName" name="memberName" required>
+							<input type="text" id="memberName" name="memberName" maxlength="7" required>
 						</div>
 						<div id="noticeName">&nbsp;</div>
 					</div>
 					<div class="memberPwDiv">
 						<div><span class="required">*</span>&nbsp;비밀번호</div>
 						<div>
-							<input type="password" id="memberPw" name="memberPw" required>
+							<input type="password" id="memberPw" name="memberPw" maxlength="12" required>
 						</div>
 						<div id="noticePw">&nbsp;</div>
 					</div>
 					<div class="confirmPwDiv">
 						<div><span class="required">*</span>&nbsp;비밀번호 확인</div>
 						<div>
-							<input type="password" id="confirmPw" required>
+							<input type="password" id="confirmPw" maxlength="12" required>
 						</div>
 						<div id="noticeCpw">&nbsp;</div>
 					</div>
@@ -238,8 +238,8 @@
 									<option value="019">019</option>
 								</select>
 							</div>
-							<div class="memberTel2Div"><input type="text" id="memberTel2" name="memberTels" required></div>
-							<div class="memberTel3Div"><input type="text" id="memberTel3" name="memberTels" required></div>
+							<div class="memberTel2Div"><input type="text" id="memberTel2" name="memberTels" maxlength="4" required></div>
+							<div class="memberTel3Div"><input type="text" id="memberTel3" name="memberTels" maxlength="4" required></div>
 						</div>
 							<div id="noticeTel">&nbsp;</div>
 					</div>
@@ -252,7 +252,7 @@
 					</div>
 					<div class="memberEmailDiv">
 						<div>이메일</div>
-						<div class="memberEmail1Div"><input type="text" id="memberEmail1" name="memberEmails"></div>
+						<div class="memberEmail1Div"><input type="text" id="memberEmail1" name="memberEmails" maxlength="12"></div>
 						<div class="memberEmail2Div">
 							<select id="memberEmail2" name="memberEmails">
 								<option value="naver.com">naver.com</option>

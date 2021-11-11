@@ -45,8 +45,14 @@ public class MemberController {
 	//회원가입
 	@PostMapping("/join")
 	public String join(MemberVO memberVO, Model model ) {
-		
-		model.addAttribute("joinResult", memberService.join(memberVO));
+		System.out.println(memberVO.getMemberEmail());
+		if(memberVO.getMemberEmail().equals("@")) {
+			memberVO.setMemberEmail("");
+			model.addAttribute("joinResult", memberService.join(memberVO));
+		}
+		else {
+			model.addAttribute("joinResult", memberService.join(memberVO));
+		}
 		return "member/join_result";
 	}
 	
@@ -95,8 +101,9 @@ public class MemberController {
 	
 	//마이페이지로 이동
 	@GetMapping("/myPage")
-	public String goMyPage(String memberCode, Model model) {
-		model.addAttribute("detailMyInfo", memberService.selectDetailMember(memberCode));
+	public String goMyPage(Model model, HttpSession session) {
+		
+		model.addAttribute("detailMyInfo", memberService.selectDetailMember(((MemberVO) session.getAttribute("loginInfo")).getMemberCode()));
 		return "member/my_page";
 	}
 	

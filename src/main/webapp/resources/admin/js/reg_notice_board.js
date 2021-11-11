@@ -25,7 +25,7 @@ $(document).ready(function(){
 		if((boardSubject == '' || boardContent == '') || (boardSubject == '' && boardContent == '')){
 			//alert(boardSubject);
 			//alert(boardContent);
-			alert('내용을 입력해주세요.');
+			alert('제목 또는 내용을 입력해주세요.');
 			$('#boardSubject').focus();
 		}
 		else if((boardSubject == ' ' || boardContent == ' ') || (boardSubject == ' ' && boardContent == ' ')){

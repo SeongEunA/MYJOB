@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="/resources/member/js/my_page.js?ver=37"></script>
+<script type="text/javascript" src="/resources/member/js/my_page.js?ver=53"></script>
 <style type="text/css">
 .myPageTitleDiv{
 	padding:0px;
@@ -107,22 +107,22 @@ table td{
 #noticePw{
 	margin-top: 7px;
 	margin-bottom: 3px;
-	font-size: 15px;
+	font-size: 14px;
 }
 #noticeCpw{
 	margin-top: 7px;
 	margin-bottom: 3px;
-	font-size: 15px;
+	font-size: 14px;
 }
 #noticeTel{
 	margin-top: 7px;
 	margin-bottom: 3px;
-	font-size: 15px;
+	font-size: 14px;
 }
 #noticeEmail{
 	margin-top: 7px;
 	margin-bottom: 3px;
-	font-size: 15px;
+	font-size: 14px;
 }
 </style>
 </head>
@@ -149,7 +149,7 @@ table td{
 						</colgroup>
 						<tr>
 							<td>회원아이디</td>
-							<td><span>${detailMyInfo.memberId }</span><div>&nbsp;</div></td>
+							<td><span id="memberId">${detailMyInfo.memberId }</span><div>&nbsp;</div></td>
 							<td>가입일</td>
 							<td><span>${detailMyInfo.memberJoinDate }</span><div>&nbsp;</div></td>
 						</tr>
@@ -161,15 +161,15 @@ table td{
 						</tr>
 						<tr>
 							<td>회원연락처</td>
-							<td><span id="memberTel">${detailMyInfo.memberTel}</span><div>&nbsp;</div></td>
+							<td><span id="memberTel">${detailMyInfo.memberTel}</span><div id="noticeTel">&nbsp;</div></td>
 							<td>회원이메일</td>
-							<td><span id="memberEmail">${detailMyInfo.memberEmail }</span><div>&nbsp;</div></td>
+							<td><span id="memberEmail">${detailMyInfo.memberEmail }</span><div id="noticeEmail">&nbsp;</div></td>
 						</tr>
 						<tr id="addTr">
 							<td>회원비밀번호</td>
-							<td><span id="memberPw">${detailMyInfo.memberPw }</span><div>&nbsp;</div></td>
+							<td><span id="memberPw">${detailMyInfo.memberPw }</span><div id="noticePw">&nbsp;</div></td>
 							<td>회원주소</td>
-							<td id="memberAddr"><span id="memberAddr1">${detailMyInfo.memberAddr1 }</span><span id="memberAddr2">&nbsp;${detailMyInfo.memberAddr2 }</span><div>&nbsp;</div></td>
+							<td id="memberAddr"><span id="memberAddr1">${detailMyInfo.memberAddr1 }</span><span id="memberAddr2">${detailMyInfo.memberAddr2 }</span><div>&nbsp;</div></td>
 						</tr>
 					</table>
 					<div class="manageMyInfoBtnDiv">

@@ -95,10 +95,9 @@ $(document).ready(function(){
 		//confirmPw 변수 생성
 		var confirmPw = $('#confirmPw').val();
 
-		if(okPw == 0){
-			$('#noticeCpw').text('비밀번호를 다시 한번 확인 해주세요.');
+		if(confirmPw == ''){
+			$('#noticeCpw').text('비밀번호를 확인해주세요');
 			$('#noticeCpw').css('color', 'red');
-			$('#memberPw').focus();
 			okCPw = 0;
 		}
 		//컨펌창 비밀번호일치
@@ -122,25 +121,18 @@ $(document).ready(function(){
 		// 휴대폰 번호 2번째 정규표현식
 		var tel2J = /^([0-9]{3,4})$/; // - (3~4자리) - 의 형식으로만 생성.
 		
-		//memberTel2, membertel3 변수 생성
+		//memberTel2 변수 생성
 		var memberTel2 = $('#memberTel2').val();
 		
-		
-		//memberTel입력란 공백 유효성 검사
-		if(memberTel2 == ' '){
-			$('#noticeTel').text('연락처를 입력하세요.');
-			$('#noticeTel').css('color', 'red');
-			$('#memberTel2').focus();
-			okTel = 0;
-		}
-		//memberTel2,3입력란이 양식에 맞지 않을 때
-		else if(!tel2J.test(memberTel2)){
+		//memberTel2 입력란이 양식에 맞지 않을 때
+		if(!tel2J.test(memberTel2 || memberTel2 == '')){
 			$('#noticeTel').text('올바르지 않은 연락처 입니다.');
 			$('#noticeTel').css('color', 'red');
 			$('#memberTel2').focus();
-			okTel = 0;
+			okTel = 1;
 		}
-		//memverTel2,3 입력란이 양식에 맞을 때
+
+		//memverTel2 입력란이 양식에 맞을 때
 		else{
 			$('#noticeTel').text('사용 가능한 연락처 입니다.');
 			$('#noticeTel').css('color', 'green');
@@ -153,25 +145,18 @@ $(document).ready(function(){
 		// 휴대폰 번호 3번째 정규표현식
 		var tel3J = /^([0-9]{4})$/; // - (4자리) - 의 형식으로만 생성.
 		
-		//memberTel2, membertel3 변수 생성
+		//membertel3 변수 생성
 		var memberTel3 = $('#memberTel3').val();
-		
-		
-		//memberTel입력란 공백 유효성 검사
-		if(memberTel3 == ' '){
-			$('#noticeTel').text('연락처를 입력하세요.');
-			$('#noticeTel').css('color', 'red');
-			$('#memberTel3').focus();
-			okTel = 0;
-		}
-		//memberTel2,3입력란이 양식에 맞지 않을 때
-		else if(!tel3J.test(memberTel3)){
+
+		//memberTel3 입력란이 양식에 맞지 않을 때
+		if(!tel3J.test(memberTel3) || memberTel3 == ''){
 			$('#noticeTel').text('올바르지 않은 연락처 입니다.');
 			$('#noticeTel').css('color', 'red');
 			$('#memberTel3').focus();
-			okTel = 0;
+			okTel = 1;
 		}
-		//memverTel2,3 입력란이 양식에 맞을 때
+		
+		//memverTel3 입력란이 양식에 맞을 때
 		else{
 			$('#noticeTel').text('사용 가능한 연락처 입니다.');
 			$('#noticeTel').css('color', 'green');
@@ -183,37 +168,61 @@ $(document).ready(function(){
 	//------------------이메일 관련 유효성검사----------------------//
 	//Email의 유효성검사 시작
 	$(document).on('keyup', '#memberEmail1', function() {
+		//이메일 첫번째자리 유효성검사 정규표현식
+		var emailJ = /^[a-z0-9+]{4,12}$/; // 영어소문자 a~z, 숫자 0~9로 시작하는 4~12자리로 생성.
+		
+		//이메일 변수 생성
 		var memberEmail1 = $('#memberEmail1').val();
 		var memberEmail2 = $('#memberEmail2').val();
-		//이메일 중복체크
-		var memberEmail = memberEmail1 + '@' + memberEmail2;
-		$.ajax({
-			url: '/member/emailCheck', //요청경로
-			type: 'post',
-			data:{'memberEmail':memberEmail}, //필요한 데이터
-			success: function(result) {
-				//기가입 : true, 미가입 : false
-				//아이디 중복 일 때.
-				if(result){
-					$('#noticeEmail').text('중복된 이메일입니다.');
-					$('#noticeEmail').css('color', 'red');
-					$('#memberEmail1').focus();
-					okEmail = 2;
+		
+		//memberTel3 입력란 공백 유효성 검사
+		if(memberEmail1 == ''){
+			$('#noticeEmail').text('');
+			$('#memberEmail1').focus();
+			okEmail = 0;
+		}
+		
+		//양식에 맞지 않을 때
+		else if(!emailJ.test(memberEmail1)){
+			$('#noticeEmail').text('영어소문자, 숫자로만 구성된 4~12자리로 입력하세요.');
+			$('#noticeEmail').css('color', 'red');
+			$('#memberEmail1').focus();
+			okEmail = 3;
+		}
+		//양식에 맞으면 중복체크
+		else{
+			//이메일 중복체크 첫번째자리
+			var memberEmail = memberEmail1 + '@' + memberEmail2;
+			$.ajax({
+				url: '/member/emailCheck', //요청경로
+				type: 'post',
+				data:{'memberEmail':memberEmail}, //필요한 데이터
+				success: function(result) {
+					//기가입 : true, 미가입 : false
+					//아이디 중복 일 때.
+					if(result){
+						$('#noticeEmail').text('중복된 이메일입니다.');
+						$('#noticeEmail').css('color', 'red');
+						$('#memberEmail1').focus();
+						okEmail = 2;
+					}
+					else{
+						$('#noticeEmail').text('사용 가능한 이메일입니다.');
+						$('#noticeEmail').css('color', 'green');
+						okEmail = 1;
+					}
+					
+				},
+				error: function(){
+					//ajax 실행 실패 시 실행되는 구간
+					alert('실패');
 				}
-				else{
-					$('#noticeEmail').text('사용 가능한 이메일입니다.');
-					$('#noticeEmail').css('color', 'green');
-					okEmail = 1;
-				}
-				
-			},
-			error: function(){
-				//ajax 실행 실패 시 실행되는 구간
-				alert('실패');
-			}
-		});
+			});
+		}
+		
 		
 	});
+	//이메일 중복체크 두번째자리
 	$(document).on('change', '#memberEmail2', function() {
 		var memberEmail1 = $('#memberEmail1').val();
 		var memberEmail2 = $('#memberEmail2').val();
@@ -233,10 +242,15 @@ $(document).ready(function(){
 				}
 				else{
 					$('#noticeEmail').text('사용 가능한 이메일입니다.');
-	        		$('#noticeEmail').css('color', 'green');
-	        		okEmail = 1;
+					$('#noticeEmail').css('color', 'green');
+					okEmail = 1;
 				}
-	            	
+				//alert($('#memberEmail1').val());
+				if($('#memberEmail1').val() == ''){
+					$('#noticeEmail').text('');
+					$('#memberEmail1').focus();
+					okEmail = 0;
+				}
 			},
 			error: function(){
 				//ajax 실행 실패 시 실행되는 구간
@@ -327,6 +341,13 @@ $(document).ready(function(){
 	//모든 정보가 제대로 입력됬을 경우에만 submit
 	goInsertMember = function(){
 		if(okId == 1 && okName == 1 && okPw == 1 && okCPw == 1 && okTel == 1 && (okEmail == 0 || okEmail == 1)){
+			if(okEmail == 0){
+				$('#memberEmail1').val('');
+				$('#memberEmail2 option').val('');
+			}
+			//alert(okEmail);
+			//alert($('#memberEmail1').val());
+			//alert($('#memberEmail2').val());
 			$('#joinForm').submit();
 		}
 		else{

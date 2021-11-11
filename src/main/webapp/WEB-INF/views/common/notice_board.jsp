@@ -182,7 +182,7 @@ td{
 						<nav aria-label="...">
 							<ul class="pagination justify-content-center">
 								<li class="page-item <c:if test="${!noticeBoardVO.prev }">disabled</c:if>">
-									<a class="page-link" href="/common/noticeBoard?nowPage=${noticeBoardVO.beginPage - 1 }">Prev</a>
+									<a class="page-link" href="/common/noticeBoard?nowPage=${noticeBoardVO.beginPage - 1 }">&lt;&lt;</a>
 								</li>
 								
 								<c:forEach begin="${noticeBoardVO.beginPage }" end="${noticeBoardVO.endPage }" var="pageNumber">
@@ -192,7 +192,7 @@ td{
 								</c:forEach>
 								
 								<li class="page-item <c:if test="${!noticeBoardVO.next }">disabled</c:if>">
-									<a class="page-link" href="/common/noticeBoard?nowPage=${noticeBoardVO.endPage + 1 }">Next</a>
+									<a class="page-link" href="/common/noticeBoard?nowPage=${noticeBoardVO.endPage + 1 }">&gt;&gt;</a>
 								</li>
 							</ul>
 						</nav>

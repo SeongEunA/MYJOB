@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/admin/js/reg_notice_board.js?ver=1"></script>
+<script type="text/javascript" src="/resources/admin/js/reg_notice_board.js?ver=2"></script>
 <link rel="stylesheet" href="/resources/common/reset.css">
 <style type="text/css">
 .regNoticeTitleDiv{
