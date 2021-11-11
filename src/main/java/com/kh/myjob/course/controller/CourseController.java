@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kh.myjob.common.util.Covid19Util;
 import com.kh.myjob.common.util.WeatherUtil;
 import com.kh.myjob.common.vo.TotalWeatherVO;
 import com.kh.myjob.course.service.CourseService;
@@ -38,10 +39,14 @@ public class CourseController {
 	@GetMapping("/courseSearch")
 	public String goCourseSearch(Model model, @RequestParam(required = false, defaultValue = "11B00000") String locationLandCode, @RequestParam(required = false, defaultValue = "11B10101") String locationTempCode) {
 		
-		String date = WeatherUtil.date();
+		String weatherdate = WeatherUtil.date();
+		String covidDate = Covid19Util.date();
 		
 		//날씨정보
-		model.addAttribute("weatherList", WeatherUtil.weatherList(date, locationLandCode, locationTempCode));
+		model.addAttribute("weatherList", WeatherUtil.weatherList(weatherdate, locationLandCode, locationTempCode));
+		
+		//코로나 확진자 현화
+		model.addAttribute("covid19List", Covid19Util.covid19InfoList(covidDate));
 		
 		//상위 지역 리스트
 		model.addAttribute("highLocationList", courseService.selectHighLocationList());

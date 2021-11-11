@@ -753,7 +753,12 @@ opacity:0.6;
 </div><!--weatherContainer-->
 
 			<div class="howToSeachCourseBox">
-				뭔가들어오긴할꺼임
+				<c:forEach items="${covid19List }" var="covid19Info">
+					기준일자 : ${covid19Info.stdDay }<br>
+					시도명 : ${covid19Info.gubun }<br>
+					누적확진자수 : ${covid19Info.defCnt }<br>
+					신규확진자수 : ${covid19Info.incDec }<br>
+				</c:forEach>
 			</div>	
 </div><!-- weatherHowToContainer -->
 	
