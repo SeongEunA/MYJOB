@@ -150,12 +150,12 @@
 						<tbody>
 							<tr class="ttl">
 								<td rowspan="2">
-									<a href="/review/detailReview?reviewBoardCode=${reviewVO.reviewBoardCode }&memberId=${sessionScope.loginInfo.memberId}">
+									<a href="/review/detailReview?reviewBoardCode=${reviewVO.reviewBoardCode }&memberId=${sessionScope.loginInfo.memberId}&courseCode=${reviewVO.courseCode}">
 										<img src="/resources/images/${reviewVO.reviewImgList[0].reviewImgAttachedName }" width="250" height="250">
 									</a>
 								</td>
 								<td colspan="2" class="paddingTitle">
-									<a href="/review/detailReview?reviewBoardCode=${reviewVO.reviewBoardCode }&memberId=${sessionScope.loginInfo.memberId}">
+									<a href="/review/detailReview?reviewBoardCode=${reviewVO.reviewBoardCode }&memberId=${sessionScope.loginInfo.memberId}&courseCode=${reviewVO.courseCode}">
 										${reviewVO.reviewBoardTitle }
 									</a>
 								</td>

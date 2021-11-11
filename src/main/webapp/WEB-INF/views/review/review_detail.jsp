@@ -8,8 +8,7 @@
 <title>Kakao 지도 시작하기</title>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=70d7b169893841eb187f9823a06d83f4"></script>
-<script type="text/javascript"
-	src="/resources/review/js/review_detail.js?ver=27"></script>
+
 <style type="text/css">
 .totalContain {
 	border: 1px solid red;
@@ -217,7 +216,9 @@ mmendLayout{
 		<input type="hidden" class="reviewBoardCode"	value="${reviewReplyVO.reviewBoardCode}">
 		<div class="col-12 bodyContainer">
 			<div class="reviewTitleContanier col-8">
-				<div class="mainTitle">울산대공원</div>
+				<div class="mainTitle">울산대공원
+				
+				</div>
 			    <div class="subTitle">				
 					<div class="recommendLayout">
 						<div class="recommendInnerLayout">
@@ -231,8 +232,14 @@ mmendLayout{
 									</c:otherwise>
 								</c:choose>
 							</div>
-							<div style="width: 7%">
+							<div style="width: 7%" id="markerXY">
 								조회수${review.reviewBoardReadCnt }
+								<c:forEach items="${placeLocaList }" var="place">
+									<c:forEach items="${place.coursePlaceList}" var="placeXY">
+											<input type="hidden" class="markerX" value="${placeXY.x }">
+											<input type="hidden" class="markerY" value="${placeXY.y }">
+									</c:forEach> 
+								</c:forEach>
 							</div>
 							<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' }">
 								<div class="adminBtn" style="width: 88%">
@@ -256,6 +263,8 @@ mmendLayout{
  		<div class="row"><!-- 지도 -->
 			<div class="col-12 mainContainderLayout">
 				<div class ="map_wrap" id="map"></div>
+				<script type="text/javascript"
+	src="/resources/review/js/review_detail.js?ver=10"></script>
 				<div></div>
 			</div>
 		</div> 

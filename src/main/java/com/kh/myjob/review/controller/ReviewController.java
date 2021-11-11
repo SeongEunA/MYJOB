@@ -88,7 +88,7 @@ public class ReviewController {
 		// name 속성 값으로 첨부파일을 가져온다
 		Iterator<String> inpuNames = multi.getFileNames();
 		// 첨부할 경로
-		String uploadPath = "C:\\Users\\CHOE YUSEUNG\\git\\MYJOB\\src\\main\\webapp\\resources\\images\\";
+		String uploadPath = "C:\\Users\\kh202-29\\git\\MYJOB\\src\\main\\webapp\\resources\\images\\";
 		// 첨부파일의 정보를 받을 통
 		List<ReviewImgVO> imgList = new ArrayList<>();
 		// 다음 리뷰코드조회
@@ -170,9 +170,13 @@ public class ReviewController {
 		reviewService.updateReadCnt(reviewVO);
 		int replyCnt =  reviewService.selectReplyCnt(reviewReplyVO);
 		reviewReplyVO.setTotalCnt(replyCnt);
-		  
+		 CourseVO courseVO = new CourseVO();
+		 courseVO.setCourseCode(reviewVO.getCourseCode());
+		 
 		reviewReplyVO.setPageInfo();
 		
+		model.addAttribute("placeLocaList", courseService.selectCoursePlaceListByCourseCode(courseVO));
+		System.out.println("!!!!"+courseVO.getCourseCode());
 		model.addAttribute("reviewRecom", reviewService.selectRecomMember(reviewRecomVO));
 		model.addAttribute("review", reviewService.selectReviewDetail(reviewVO));
 		model.addAttribute("replyList", reviewService.selectReviewReplyList(reviewReplyVO));
