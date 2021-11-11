@@ -48,9 +48,22 @@ thead{
 	width: 100%;
 }
 .searchTable input[type="submit"]{
-	margin: 0 auto;
 	width: 100px;
 	height: 30px;
+	margin: 0 auto;
+	border: 3px solid #1F50B5;
+	border-radius: 5px;
+	color: #fff;
+	background:#1F50B5;
+	text-transform: uppercase;
+	font-size: 1em;
+	font-weight: bold;
+	letter-spacing: .1em;
+	font-family: "Roboto Condensed", sans-serif;
+	cursor: pointer;
+	transition: all .5s;
+	text-align:center;
+	box-shadow:inset 0 0 0 0 gray;
 }
 /* .noticeSubject{
 	text-align: left;
@@ -69,12 +82,25 @@ td{
 	padding-right: 10px;
 }
 .regNoticeBtn [type="button"]{
-	margin: 0 auto;
 	margin-left: 0px;
 	margin-bottom: 0px;
 	text-align: center;
 	width: 100px;
 	height: 30px;
+	margin: 0 auto;
+	border: 3px solid #1F50B5;
+	border-radius: 5px;
+	color: #fff;
+	background:#1F50B5;
+	text-transform: uppercase;
+	font-size: 1em;
+	font-weight: bold;
+	letter-spacing: .1em;
+	font-family: "Roboto Condensed", sans-serif;
+	cursor: pointer;
+	transition: all .5s;
+	text-align:center;
+	box-shadow:inset 0 0 0 0 gray;
 }
 .noticePagingDiv{
 	border: 1px solid white;

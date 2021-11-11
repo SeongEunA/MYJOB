@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="/resources/member/js/my_page.js?ver=53"></script>
+<script type="text/javascript" src="/resources/member/js/my_page.js?ver=54"></script>
 <style type="text/css">
 .myPageTitleDiv{
 	padding:0px;

@@ -177,7 +177,7 @@ $(document).ready(function(){
 		
 		//memberTel3 입력란 공백 유효성 검사
 		if(memberEmail1 == ''){
-			$('#noticeEmail').text('');
+			$('#noticeEmail').text(' ');
 			$('#memberEmail1').focus();
 			okEmail = 0;
 		}

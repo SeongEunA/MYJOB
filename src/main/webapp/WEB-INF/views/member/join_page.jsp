@@ -133,21 +133,69 @@
 .memberEmail2Div select{
 	width: 100%;
 }
+.idCheck input[type="button"]{
+	margin: 0 auto;
+	border: 3px solid #1F50B5;
+	border-radius: 5px;
+	color: #fff;
+	background:#1F50B5;
+	text-transform: uppercase;
+	font-size: 1em;
+	font-weight: bold;
+	letter-spacing: .1em;
+	font-family: "Roboto Condensed", sans-serif;
+	cursor: pointer;
+	transition: all .5s;
+	text-align:center;
+	box-shadow:inset 0 0 0 0 gray;
+}
+.searchAddrDiv input[type="button"]{
+	margin: 0 auto;
+	border: 3px solid #1F50B5;
+	border-radius: 5px;
+	color: #fff;
+	background:#1F50B5;
+	text-transform: uppercase;
+	font-size: 1em;
+	font-weight: bold;
+	letter-spacing: .1em;
+	font-family: "Roboto Condensed", sans-serif;
+	cursor: pointer;
+	transition: all .5s;
+	text-align:center;
+	box-shadow:inset 0 0 0 0 gray;
+}
 .joinBtnDiv{
 	margin-top: 20px;
-}
-.joinBtn{
-	margin: 0 auto;
 	text-align: center;
 }
 .joinBtn input[type="button"]{
+	margin: 0 auto;
+	width: 50%;
+	height:100%;
+	border: 3px solid #1F50B5;
+	border-radius: 5px;
+	color: #fff;
+	background:#1F50B5;
+	text-transform: uppercase;
+	font-size: 1em;
+	line-height: 1.7em;
+	font-weight: bold;
+	letter-spacing: .1em;
+	font-family: "Roboto Condensed", sans-serif;
+	cursor: pointer;
+	transition: all .5s;
+	text-align:center;
+	box-shadow:inset 0 0 0 0 gray;
+}
+/* .joinBtn input[type="button"]{
 	width: 100%;
 	height: 50px;
 	color: #ffffff;
 	background-color: #000080;
 	border: white;
 	
-}
+} */
 #noticeId{
 	margin-top: 7px;
 	margin-bottom: 7px;
@@ -184,7 +232,7 @@
 	font-size: 12px;
 }
 </style>
-<script type="text/javascript" src="/resources/member/js/join_page.js?ver=26"></script>
+<script type="text/javascript" src="/resources/member/js/join_page.js?ver=27"></script>
 </head>
 <body>
 <div class="row">
@@ -248,7 +296,7 @@
 						<div class="memberAddr1Div"><input type="text" id="memberAddr1" name="memberAddr1" readonly placeholder="도로명/지번 주소"></div>
 						<div class="searchAddrDiv"><input type="button" id="memberAddrBtn" onclick="openPostCode();" value="주소검색"></div>
 						<div class="memberAddr2Div"><input type="text" id="memberAddr2" name="memberAddr2" placeholder="상세 주소"></div>
-						<div id="noticeAddres">&nbsp;</div>
+						<div id="noticeAddr">&nbsp;</div>
 					</div>
 					<div class="memberEmailDiv">
 						<div>이메일</div>

@@ -70,7 +70,7 @@ $(document).on('keyup', '#memberEmail1', function() {
 	
 	//memberEmail1 입력란 공백 유효성 검사
 	if(memberEmail1 == ''){
-		$('#noticeEmail').text('');
+		$('#noticeEmail').text(' ');
 		$('#memberEmail1').focus();
 		okEmail = 0;
 	}
@@ -140,7 +140,7 @@ $(document).on('change', '#memberEmail2', function() {
 				okEmail = 0;
 			}
 			if($('#memberEmail1').val() == ''){
-				$('#noticeEmail').text('');
+				$('#noticeEmail').text(' ');
 				$('#memberEmail1').focus();
 				okEmail = 2;
 			}
