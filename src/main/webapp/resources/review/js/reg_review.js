@@ -3,9 +3,7 @@ var img_count = 1;
 
 //화면 로딩 후 바로 실행
 $(document).ready(function(){
-	    
-	        
-	    //input 파일첨부 버튼 클릭하면 실행되는 change 메서드
+    //input 파일첨부 버튼 클릭하면 실행되는 change 메서드
 	    //$("#img").change(function fileadd() {
 	   // $('[id^="img"]').change(function fileadd() {
 	    $(document).on('change', '[id^="img"]', function() {
@@ -18,6 +16,7 @@ $(document).ready(function(){
 	        var str = '';
 	        str += '<div class="imgDiv">';
 	        str += "<img id='img"+(img_count)+"' src=''/  style='margin-left:10px; margin-right:10px;'>";
+/*	        str += '<img id="img'+(img_count)+'" src=""/ class="preImgList">';*/
 	        str += '<div class="title">';
 	        str += '<a class="more" onclick="aaaaa(this, ' + img_count + ');">사진 삭제</a>';
 	        str += '</div>';
@@ -78,13 +77,7 @@ $(document).ready(function(){
 		     $(this).hide();
 	    });    */
 	    
-	    $(document).on('change', '#selectCourseCode', function(){
-	  
-	    });
-	    
-	    
-	    
-	  
+	
 	    
 	    //selectBox 값 변경시 출력되는 코스 변경
 	    $(document).on('change', '#selectCourseCode', function(){
@@ -126,8 +119,8 @@ $(document).ready(function(){
 			});
 	    });
 
-	
-   
+
+	    noticeCod();
 });
 
 //함수 선언 영역
@@ -172,10 +165,20 @@ $(document).ready(function(){
 	     
 		
 	}*/
-	
 	//첨부파일 개수를 초과할 경우 알림창
 	noticeCon= function(){
 		alert('등록하실 수 있는 이미지 파일의 최대 개수는 3개입니다.');
+		var noticeCod = $('#selectCourseCode').children().length;
+		alert(noticeCode);
+	}
+	
+	noticeCod= function(){
+	var noticeCod = $('#selectCourseCode').children().length;
+	if(noticeCod == 0){
+		alert('담은 코스가 없습니다');
+		alert('코스를 담은 후에 후기를 작성해주세요');
+		location.href = '/course/courseSearch' 
+	}
 	}
 	
 	

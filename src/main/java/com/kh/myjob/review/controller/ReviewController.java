@@ -52,9 +52,7 @@ public class ReviewController {
 	
 		
 		model.addAttribute("reviewList", reviewService.selectReviewList(reviewVO));
-		
-		
-		
+			
 		return "review/review_list";
 	}
 

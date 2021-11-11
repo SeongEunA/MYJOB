@@ -6,11 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=40"></script>
+<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=101"></script>
 <style type="text/css">
 
 .regContainer{
-	height: 950px;
+	height: 1000px;
 	margin: 0 auto;
 }
 .mainRegcontain{
@@ -18,7 +18,8 @@
 }
 
 .introCourseDiv{
-	width: 100%
+	width: 100%;
+	margin-top: 35px;
 }
 .regContentDiv{
 	margin: 0 auto;
@@ -66,14 +67,19 @@
 }
 .placeName{
 	display: inline-block;
-	margin-bottom: 10px;
 }
 
 .imgDiv {
 	display: inline-block; 
-	margin:0 auto; 
+/* 	margin:0 auto;  */
 	text-align:center; 
 	width:300px;
+	margin-left:20px;
+	margin-right:15px;
+}
+.headerDiv{
+	/* border: 1px solid black; */
+	margin-top: 35px;
 }
 /* .title {
 	line-height:1; 
@@ -120,17 +126,56 @@
 	top:150px ;
 }
 */
- .imgDiv:hover .title {
+.totalCos{
+	border: 1px solid blue;
+	margin: 0 auto;
+	text-align: center;
+	padding: 15px;	
+}
+
+.selectCourseDiv{
+	border: 1px solid red;
+	font-size: 20px;
+	margin-left: 48px;
+}
+.courseDetail{
+	margin-top: 15px;
+	/* display: inline-block; */
+	/* margin-left: 400px; */
+
+}
+
+.imgDiv:hover .title {
 	top: -200px ;
 }
- .imgDiv:hover .more {
+.imgDiv:hover .more {
 	 opacity:1;
 	 cursor: pointer; 
 	 color:  white;
 }
- .imgDiv:hover > img {
+.imgDiv:hover > img {
 	 filter: brightness(50%);   
 }
+.selCos{
+	/* border: 1px solid blue; */
+	display: inline-block;
+	margin-left: 10px;
+	margin-right: 15px;
+}
+.reviewTitle{
+	padding: 10px;
+	font-size: 22px;
+	margin-bottom: 5px;
+}
+textarea{
+	padding: 10px;
+}
+.preImgList{
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+
 
 </style>
 </head>
@@ -140,60 +185,68 @@
 	<div class="col-9 regContainer">
 		<div class="col-9 mainRegcontain">
 		<div class="reviewTitleContainer">
-			<div class="col-6 reviewTitleDiv">
+			<div class="col-12 reviewTitleDiv">
 			후기등록
 			</div>
 		</div>
 			<div class="regContentDiv">
 				<form action="/review/regReview" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="reviewBoardWriter" value="${sessionScope.loginInfo.memberId }">
-					<div class="headerDiv">코스선택
-						<c:choose>
-							<c:when test="${empty courseList }">
-								<div>코스를 추가해주세요!</div>
-							</c:when>
-							<c:otherwise>
-								<select id="selectCourseCode" name="courseCode">
-									<c:forEach items="${courseList }" var="courseInfo">
-										<option value="${courseInfo.courseCode }">${courseInfo.courseName }</option>
-									</c:forEach>
-								</select> 
-							</c:otherwise>
-						</c:choose>
-					<div>제목 <input type="text" name="reviewBoardTitle" required></div>	
-					</div>
-					<c:choose>
-						<c:when test="${empty courseListBycourseCode }">
-							<div class="selectCourseDiv"></div>
-						</c:when>
-						<c:otherwise>
-							<div class="selectCourseDiv">
-								<c:forEach items="${courseListBycourseCode }" var="courseInfo">
-									<div class="courseBox" id="courseBox">
-										<c:forEach items="${courseInfo.coursePlaceList}" var="placeInfo" varStatus="cnt">
-											<c:choose>
-												<c:when test="${cnt.last }">
-									      	 		<div class="placeName">
-									      	 			${placeInfo.placeName  }
-									      	 		</div>
-												</c:when>
-									      	 	<c:otherwise>
-													<div class="placeName">
-														${placeInfo.placeName  }
-													</div> &#10140;
-									      	 	</c:otherwise>
-											</c:choose>
+					<div class="col-12 headerDiv">
+						<div class="totalCos">
+							<div class="selCos" >코스선택
+							<c:choose>
+								<c:when test="${empty courseList }">
+									<div>코스를 추가해주세요!</div>
+								</c:when>
+								<c:otherwise>
+									<select id="selectCourseCode" name="courseCode">
+										<c:forEach items="${courseList }" var="courseInfo">
+											<option value="${courseInfo.courseCode }">${courseInfo.courseName }</option>
 										</c:forEach>
-									</div>
-							     </c:forEach>
+									</select> 
+								</c:otherwise>
+							</c:choose>
 							</div>
-						</c:otherwise>
-					</c:choose>
+							<div class="courseDetail">
+							<c:choose>
+								<c:when test="${empty courseListBycourseCode }">
+									<div class="selectCourseDiv"></div>
+								</c:when>
+								<c:otherwise>
+									<div class="selectCourseDiv">
+										<c:forEach items="${courseListBycourseCode }" var="courseInfo">
+											<div class="courseBox" id="courseBox">
+												<c:forEach items="${courseInfo.coursePlaceList}" var="placeInfo" varStatus="cnt">
+													<c:choose>
+														<c:when test="${cnt.last }">
+											      	 		<div class="placeName">
+											      	 			${placeInfo.placeName  }
+											      	 		</div>
+														</c:when>
+											      	 	<c:otherwise>
+															<div class="placeName">
+																${placeInfo.placeName  }
+															</div> &#10140;
+											      	 	</c:otherwise>
+													</c:choose>
+												</c:forEach>
+											</div>
+									     </c:forEach>
+									</div>
+								</c:otherwise>
+							</c:choose>
+							</div>
+						</div>
+					</div>
 					
 					<div class="introCourseDiv">
+						<div class="reviewTitle">제목&nbsp;&nbsp;<input type="text" name="reviewBoardTitle" required></div>	
 						<textarea name="reviewBoardContent" id="csdesc" maxlength="2000"
 							class="comment_textarea" title="코스 소개" style="resize: none;"
 							placeholder="코스에 대한 간략한 설명을 기재할 수 있습니다."></textarea>
+					</div>
+					<div>
 					</div>
 					<div>
 						<section class="pr_img">
