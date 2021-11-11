@@ -15,9 +15,8 @@
 	margin-top:50px;
 }
 .regCourseImg{
-	border:1px solid black;
 	width:100%;
-	height:70%;
+	height:185px;
 	margin:0 auto;
 }
 
@@ -114,18 +113,34 @@
     background-color: #13294b;
     color: #ffffff;
 }
+.searchBtn{											
+width:70%;
+height:100%;
+border: 3px solid #1F50B5;
+border-radius: 5px;
+color: #fff;
+background:#1F50B5;
+text-transform: uppercase;
+font-size: 1em;
+line-height: 1.7em;
+font-weight: bold;
+letter-spacing: .1em;
+font-family: "Roboto Condensed", sans-serif;
+cursor: pointer;
+text-align:center;
+}
 
 </style>
 </head>
 <body>
 	<div class="col-12 bodyContainer">
-		<div class="col-6 regCourseDiv">
-			<div class="regCourseImg">
-				<a href="/review/regReview?memberId=${sessionScope.loginInfo.memberId }"><img src="/resources/images/banner_cos_top3.gif" class="regCourseImg"></a>
+		<div class="col-7 regCourseDiv">
+			<div class="col-12 regCourseImg">
+				<a href="/review/regReview?memberId=${sessionScope.loginInfo.memberId }"><img src="/resources/images/파리지앵 컬렉션 엣시 배너 3333.png" class="regCourseImg"></a>
 			</div>
 		</div>
 
-		<div class="col-8 reviewMargin">
+		<div class="col-7 reviewMargin">
 			<div class="col-12 reviewTitle">후기 게시판</div>
 			<!-- 추천수 인기순 -->
 			<div class="col-12 selectOrderBy">
@@ -184,6 +199,7 @@
 						</c:if>
 					</div>
 				</div>
+				
 				<div class="col-6 searchContainer">
 					<form class="row align-items-center" action="/review/selectReviewList" method="post">
 						<div class="col-4">
@@ -198,7 +214,7 @@
 							<input type="text" name="searchValue" class="form-control" value="${reviewVO.searchValue }">
 						</div>
 						<div class="col-3">
-							<button type="submit" class="btn btn-primary" id="">검색</button>
+							<button type="submit" class="searchBtn" id="">검&nbsp;색</button>
 						</div>
 					</form>
 				</div>

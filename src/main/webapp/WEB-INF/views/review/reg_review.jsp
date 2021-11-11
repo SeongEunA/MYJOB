@@ -6,11 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=101"></script>
+<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=102"></script>
 <style type="text/css">
 
 .regContainer{
-	height: 1000px;
+	height: 1300px;
 	margin: 0 auto;
 }
 .mainRegcontain{
@@ -32,7 +32,9 @@
     box-sizing: border-box;
 }
 .btn_center{
+	border: 1px solid pink;
 	text-align: center;
+	margin-top: 18px;
 }
 .btn_center .reg_btn,.reg_back_btn{
 	display: inline-block;
@@ -176,6 +178,46 @@ textarea{
 }
 
 
+.searchBtn{
+   width:12%; 
+   margin: 0 auto;
+   border: 3px solid #1F50B5;
+   border-radius: 5px;
+   color: #fff;
+   background:#1F50B5;
+   text-transform: uppercase;
+   font-size: 1em;
+   font-weight: bold;
+   letter-spacing: .1em;
+   font-family: "Roboto Condensed", sans-serif;
+   cursor: pointer;
+   transition: all .5s;
+   text-align:center;
+   box-shadow:inset 0 0 0 0 gray;
+   padding: 10px;
+   margin-left: 10px;
+}
+.searchBtn1{
+   width:12%; 
+   margin: 0 auto;
+   border: 3px solid #1F50B5;
+   border-radius: 5px;
+   color: #1F50B5;
+   background:#fff;
+   text-transform: uppercase;
+   font-size: 1em;
+   font-weight: bold;
+   letter-spacing: .1em;
+   font-family: "Roboto Condensed", sans-serif;
+   cursor: pointer;
+   transition: all .5s;
+   text-align:center;
+   box-shadow:inset 0 0 0 0 gray;
+   padding: 10px;
+}
+
+
+
 
 </style>
 </head>
@@ -260,8 +302,8 @@ textarea{
 						</section>
 					</div>
 					<div class="btn_center">
-						<input type="button" value="취소" class="reg_back_btn" onclick="location.href='/review/selectReviewList'"> 
-						<input type="submit" value="등록" class="reg_btn">
+						<input type="button" value="취&nbsp;소" class="searchBtn1" onclick="location.href='/review/selectReviewList'"> 
+		              	<input type="submit" value="등&nbsp;록" class="searchBtn">
 					</div>
 				</form>
 			</div>

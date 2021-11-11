@@ -127,9 +127,7 @@ $(document).ready(function(){
 (function($){
 	aaaaa = function(selectedTag, number){
 		$(selectedTag).parent().parent().remove();
-		
-		
-		
+	
 		$('#img_file' + number).remove();
 		
 //		var inputTagCnt = $('#pr_img_text').children().length;
@@ -138,12 +136,11 @@ $(document).ready(function(){
 //		}
 		/*$('#pr_img_text').children().last().css('display', 'inline');*/
 		var inputTagCnt = $('#pr_img_text').children().length;
-		if(inputTagCnt == 0){
+		if(inputTagCnt == 0 || (inputTagCnt + 1) == number){
 			/*img_count = 2;*/
-			$('#img').css('display', 'inline')
-			/*$('#pr_img_text').append('<input type="file" id="img_file' + number + '" name="file' + number + '">');*/
+		/*	$('#img' + number).css('display', 'inline');*/
+			$('#pr_img_text').append('<input type="file" id="img_file' + number + '" name="file' + number + '">');
 		}
-		
 
 		
 	}

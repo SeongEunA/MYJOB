@@ -65,6 +65,8 @@
 	border:1px solid red;
 	height:auto;
 	margin:0 auto;
+	padding: 15px;
+	line-height: 170%;
 }
 .reviewPhotoContainer{
 	border:1px solid white;
@@ -160,14 +162,7 @@ mmendLayout{
 	width:85%;
 	height:100%;
 }
-.regBtn{
-	border:none;
-	width:100%;
-	height:100%;
-	background-color:green;
-	color:white;
-	
-}
+
 .regBtnDiv{
 	border:1px solid green;
 	border-radius:5px;
@@ -203,9 +198,37 @@ mmendLayout{
 .adminBtn{
 	text-align: right;
 }
-
 .recommendInnerLayout > div{
+	margin-top: 5px;
+	border: 1px solid pink;
 	display: inline-block;
+}
+.writerDiv{
+	border: 1px solid green;
+	margin-left: 700px;
+}
+.writer{
+	margin-left: 10px;
+	letter-spacing: 2px;
+}
+.dateDiv{
+	letter-spacing: 2px;
+}
+.searchBtn{											
+	width:100%;
+	height:100%;
+	border: 3px solid #1F50B5;
+	border-radius: 5px;
+	color: #fff;
+	background:#1F50B5;
+	text-transform: uppercase;
+	font-size: 1em;
+	line-height: 1.7em;
+	font-weight: bold;
+	letter-spacing: .1em;
+	font-family: "Roboto Condensed", sans-serif;
+	cursor: pointer;
+	text-align:center;
 }
 </style>
 </head>
@@ -216,8 +239,7 @@ mmendLayout{
 		<input type="hidden" class="reviewBoardCode"	value="${reviewReplyVO.reviewBoardCode}">
 		<div class="col-12 bodyContainer">
 			<div class="reviewTitleContanier col-8">
-				<div class="mainTitle">울산대공원
-				
+				<div class="mainTitle">${review.reviewBoardTitle }
 				</div>
 			    <div class="subTitle">				
 					<div class="recommendLayout">
@@ -232,8 +254,8 @@ mmendLayout{
 									</c:otherwise>
 								</c:choose>
 							</div>
-							<div style="width: 7%" id="markerXY">
 								조회수${review.reviewBoardReadCnt }
+							<div style="width: 7%" id="markerXY">
 								<c:forEach items="${placeLocaList }" var="place">
 									<c:forEach items="${place.coursePlaceList}" var="placeXY">
 											<input type="hidden" class="markerX" value="${placeXY.x }">
@@ -241,14 +263,17 @@ mmendLayout{
 									</c:forEach> 
 								</c:forEach>
 							</div>
+							<div class="col-3 writerDiv">
+								<div class="writer">글쓴이:&nbsp;${review.reviewBoardWriter }</div>														
+							</div>
 							<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' }">
 								<div class="adminBtn" style="width: 88%">
 									<input type="button" id="deleteReviewBoardBtn" value="삭제" onclick="deleteReviewBoard();">
 								</div>	
 							</c:if>
 						</div>
-						<div>
-							작성일&nbsp;${review.reviewBoardRegDate }
+						<div class="dateDiv">
+							작성일:&nbsp;${review.reviewBoardRegDate }
 						</div>
 					</div>
 				</div><!-- subtitle -->  
@@ -263,8 +288,7 @@ mmendLayout{
  		<div class="row"><!-- 지도 -->
 			<div class="col-12 mainContainderLayout">
 				<div class ="map_wrap" id="map"></div>
-				<script type="text/javascript"
-	src="/resources/review/js/review_detail.js?ver=10"></script>
+				<script type="text/javascript"src="/resources/review/js/review_detail.js?ver=10"></script>
 				<div></div>
 			</div>
 		</div> 
@@ -295,7 +319,7 @@ mmendLayout{
 											<textarea style="width:100%; resize: none;"class="replyContent" rows="3" cols="30" name="reviewReplyContent" required></textarea>						
 										</div>
 										<div class="regBtnDiv">
-											<input type="submit" value="등록" class="regBtn">
+											<input type="submit" value="등록" class="searchBtn">
 										</div>
 									</div><!-- textAreaLayout -->
 								</div>
