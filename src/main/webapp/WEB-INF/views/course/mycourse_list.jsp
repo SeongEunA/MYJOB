@@ -51,6 +51,7 @@ display:flex;
 flex-direction:column;
 margin:0 auto;
 margin-top:20px;
+min-height: 1200px;
 
 }
 .courseLayoutRight{

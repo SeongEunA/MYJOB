@@ -235,10 +235,13 @@ background-color: white;
 background-color: rgba( 220, 248, 255, 0.8 );
 padding: 5px 5px;
 font-family: 'NanumBarunpen';
-font-weight: bold;
 }
 .stdDay{
-text-align: left;
+text-align: center;
+position: relative; top:-15px;
+font-size: 15px;
+font-family: 'NanumBarunpen';
+font-weight: bold;
 }
 .area{
 
@@ -818,10 +821,6 @@ opacity:0.6;
 	</div><!-- weatherBox -->
 </div><!--weatherContainer-->
 
-<%-- 				기준일자 : ${covid19Info.stdDay }
-					시도명 : ${covid19Info.gubun }
-					누적확진자수 : ${covid19Info.defCnt }
-					신규확진자수 : ${covid19Info.incDec } --%>
 			<div class="covidNowBox">
 				<div class="covidNowLayout">
 					<div class="stdDay">${covid19List[0].stdDay } 기준 지역별 확진자 현황</div>
@@ -832,11 +831,6 @@ opacity:0.6;
 							<div class="newCoronic">↑${covid19Info.incDec }</div>
 						</div>
 					</c:forEach>
-					<%-- <div class="covidDetail jeju">
-						<div class="area">${covid19List[1].gubun }</div>
-						<div class="totalCoronic">${covid19List[1].defCnt }</div>
-						<div class="newCoronic">↑${covid19List[1].incDec }</div>
-					</div> --%>
 				</div>
 			</div>	
 </div><!-- weatherHowToContainer -->
