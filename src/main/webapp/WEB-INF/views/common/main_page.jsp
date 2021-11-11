@@ -264,16 +264,16 @@ height:100%;
 			    <ul id="imgholder" class="bxslider">
 			        <li>
 			        	<div class="photoText1"  id="text1">
-			        		<h1>서울 한옥 투어</h1>
+			        		<h1>노을이 아름다운 바다 명소</h1>
 			       		 </div>
-			        	<img src="/resources/images/optimize.jpg" width="1800" height="1000">
+			        	<img src="/resources/images/pexels-photo-210205.jpeg" width="1800" height="1000">
 			        </li>
 			        <li>
 				        <div class="photoText1"  id="text2">
 				       	 <h1>두근두근 2021 여행가는 달♡</h1>
 				       	 <p> 모두의 안전을 위해 방역수칙은 준수!</p>
 				       	 </div>
-				       	 <img src="/resources/images/야경1.png">
+				       	 <img src="/resources/images/pexels-photo-620337.jpeg">
 					</li>
 			        <li>
 				        <div class="photoText1"  id="text2">
@@ -288,7 +288,14 @@ height:100%;
 				       	 <p> 자연을 벗삼아 힐링~! 나주 구석구석 숨은 여행지로 비대면 여행 떠나보세요!</p>
 				       	 </div>
 				        <img src="/resources/images/call.png">
-			        </li> 
+			        </li>
+			        <li>
+				        <div class="photoText1"  id="text2">
+				       	 <h1>실험용</h1>
+				       	 <p> 자연을 벗삼아 힐링~! 나주 구석구석 숨은 여행지로 비대면 여행 떠나보세요!</p>
+				       	 </div>
+				        <img src="/resources/images/pexels-photo-2341830.jpeg">
+			        </li>  
 			     </ul>
 			</div>
 		</div>
