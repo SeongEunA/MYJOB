@@ -6,6 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script src="/resources/common/js/main_page.js"></script>
+
+
 <style type="text/css">
 @font-face {
     font-family: 'Cafe24Oneprettynight';
@@ -25,81 +33,23 @@ margin:0 auto;
 position:relative;
 overflow: hidden;
 }
-.mainPhoto img {
-min-width: 1800px;
-height: auto;
-display: block;
+.photoText1{
+position:absolute;
+top:60%;
+color:white;
+margin-left:20px;
+
 }
-.mainPhoto input[type=radio]{
-display: none;
+.bxslider > li > img {
+width:1800px;
+height:500px;
 }
-ul.imgs{
-padding: 0;
-margin: 0;
-width:100%;
-height:100%;
-}
-ul.imgs li{
-position: absolute; /* 슬라이드가 겹쳐서 모여야 하므로 absolute 속성으로 배치 */
-opacity: 0;
-list-style: none;
-padding: 0;
-margin: 0;
-}
-.bullets{
-position: absolute;
-left: 50%;
-transform: translateX(-50%);
-bottom: 20px;
-z-index: 2;
-}
-.bullets label{
-display: inline-block; /* 한 줄로 불릿 나열*/
-border-radius: 50%;
-background-color: rgba(0,0,0,0.55);
-width: 20px; /* 불릿 너비 */
-height: 20px; /* 불릿 높이 */
-cursor: pointer;
-}
-.mainPhoto input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(1){
+.bxslider > li > .photoText1 > h1{
 opacity: 1;
-transition: 1s;
-z-index: 1;
-}
-.mainPhoto input[type=radio]:nth-child(2):checked~ul.imgs>li:nth-child(2){
-opacity: 1;
-transition: 1s;
-z-index: 1;
-}
-.mainPhoto input[type=radio]:nth-child(3):checked~ul.imgs>li:nth-child(3){
-opacity: 1;
-transition: 1s;
-z-index: 1;
-}
-.mainPhoto input[type=radio]:nth-child(4):checked~ul.imgs>li:nth-child(4){
-opacity: 1;
-transition: 1s;
-z-index: 1;
-}
-.mainPhoto input[type=radio]:nth-child(1):checked~.bullets>label:nth-child(1){
-background-color: #fff;
-}
-.mainPhoto input[type=radio]:nth-child(2):checked~.bullets>label:nth-child(2){
-background-color: #fff;
-}
-.mainPhoto input[type=radio]:nth-child(3):checked~.bullets>label:nth-child(3){
-background-color: #fff;
-}
-.mainPhoto input[type=radio]:nth-child(4):checked~.bullets>label:nth-child(4){
-background-color: #fff;
-}
-ul.imgs li{
-position: absolute;
-opacity: 0;
-list-style: none;
-padding: 0;
-margin: 0;
-transition-delay: 0.9s; /* 트랜지션 지연 시간 지정 */
+transform: translateY(0);
+transition: 0.8s;
+transition-delay: .7s;
+color:white;
 }
 .tagContainer{
 border:1px solid white;
@@ -302,6 +252,7 @@ border-radius:10px;
 width:100%;
 height:100%;
 }
+
 </style>
 </head>
 <body>
@@ -309,23 +260,36 @@ height:100%;
 	<div class="col-12">
 		<div class="mainPhotoContainer">
 			<div class="mainPhoto col-9">
-				<input type="radio" name="slide" id="slide1" checked>
-			    <input type="radio" name="slide" id="slide2">
-			    <input type="radio" name="slide" id="slide3">
-			    <input type="radio" name="slide" id="slide4">
-			    <ul id="imgholder" class="imgs" >
-			        <li><img src="/resources/images/Ej8POrF.jpg"></li>
-			        <li><img src="/resources/images/야경1.png"></li>
-			        <li><img src="/resources/images/야경2.jpg"></li>
-			        <li><img src="/resources/images/call.png"></li> 
+	 			
+			    <ul id="imgholder" class="bxslider">
+			        <li>
+			        	<div class="photoText1"  id="text1">
+			        		<h1>서울 한옥 투어</h1>
+			       		 </div>
+			        	<img src="/resources/images/optimize.jpg" width="1800" height="1000">
+			        </li>
+			        <li>
+				        <div class="photoText1"  id="text2">
+				       	 <h1>두근두근 2021 여행가는 달♡</h1>
+				       	 <p> 모두의 안전을 위해 방역수칙은 준수!</p>
+				       	 </div>
+				       	 <img src="/resources/images/야경1.png">
+					</li>
+			        <li>
+				        <div class="photoText1"  id="text2">
+				       	 <h1>강릉 한옥 마을</h1>
+				       	 <p> 다양한 축제를 만나보세요.</p>
+				       	 </div>
+				        <img src="/resources/images/41741_73542_3717.jpg">
+			        </li>
+			        <li>
+				        <div class="photoText1"  id="text2">
+				       	 <h1>나주 비대면 여행코스</h1>
+				       	 <p> 자연을 벗삼아 힐링~! 나주 구석구석 숨은 여행지로 비대면 여행 떠나보세요!</p>
+				       	 </div>
+				        <img src="/resources/images/call.png">
+			        </li> 
 			     </ul>
-		  		  <div class="bullets">
-			        <label for="slide1">&nbsp;</label>
-			        <label for="slide2">&nbsp;</label>
-			        <label for="slide3">&nbsp;</label>
-			        <label for="slide4">&nbsp;</label>
-   				 </div>
-				
 			</div>
 		</div>
 		<div class="row">
