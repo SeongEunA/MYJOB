@@ -59,6 +59,8 @@ $(document).ready(function(){
 		var placeName = $(this).children().eq(2).text();
 		var placeAddr = $(this).children().eq(3).text();
 		var placeTel = $(this).children().eq(4).text();
+		
+		scrollToSaveCourse();
 			
 		var placeStr = '';
 		
