@@ -9,7 +9,7 @@
 	<c:if test="${deleteReviewBoardResult }">
 		<script type="text/javascript">
 			alert('해당 리뷰게시물이 삭제되었습니다.')
-			location.href='/admin/reviewManage';
+			location.href='/review/selectReviewList';
 		</script>
 	</c:if>
 </head>
