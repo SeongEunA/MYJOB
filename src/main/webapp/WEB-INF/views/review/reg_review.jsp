@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=102"></script>
+<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=5"></script>
 <style type="text/css">
 
 .regContainer{
@@ -215,10 +215,9 @@ textarea{
    box-shadow:inset 0 0 0 0 gray;
    padding: 10px;
 }
-
-
-
-
+.textareaInfo{
+	text-align: right;	
+}
 </style>
 </head>
 <body>
@@ -284,9 +283,8 @@ textarea{
 					
 					<div class="introCourseDiv">
 						<div class="reviewTitle">제목&nbsp;&nbsp;<input type="text" name="reviewBoardTitle" required></div>	
-						<textarea name="reviewBoardContent" id="csdesc" maxlength="2000"
-							class="comment_textarea" title="코스 소개" style="resize: none;"
-							placeholder="코스에 대한 간략한 설명을 기재할 수 있습니다."></textarea>
+						<textarea name="reviewBoardContent" id="test" maxlength="2000" class="comment_textarea" title="코스 소개" style="resize: none;"placeholder="코스에 대한 간략한 설명을 기재할 수 있습니다."></textarea>
+						 <div id="test_cnt" class="textareaInfo">(0 / 1000)</div>
 					</div>
 					<div>
 					</div>
@@ -295,10 +293,10 @@ textarea{
 							<p>
 								<label for="img"></label>
 							</p>
-							<div id="pr_img" class="fileImgBox" >
-								<input type="file" id="img" name="file" class="fileImgDiv" required/>
+							<div id="pr_img" class="fileImgBox" ></div>
+							<div id="pr_img_input">
+								<input type="file" id="img_file1" name="file" value="1" class="fileImgDiv" required/>
 							</div>
-							<div id="pr_img_text"></div>
 						</section>
 					</div>
 					<div class="btn_center">

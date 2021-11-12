@@ -205,7 +205,7 @@ mmendLayout{
 }
 .writerDiv{
 	border: 1px solid green;
-	margin-left: 700px;
+	margin-left: 688px;
 }
 .writer{
 	margin-left: 10px;

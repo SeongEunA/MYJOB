@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/review/js/review_list.js?ver=10"></script>
+<script type="text/javascript" src="/resources/review/js/review_list.js?ver=13"></script>
 <style type="text/css">
 
 .regCourseDiv{

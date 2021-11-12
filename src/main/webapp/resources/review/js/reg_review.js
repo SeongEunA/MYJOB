@@ -7,7 +7,7 @@ $(document).ready(function(){
 	    //$("#img").change(function fileadd() {
 	   // $('[id^="img"]').change(function fileadd() {
 	    $(document).on('change', '[id^="img"]', function() {
-	    	var inputTagCnt = $('#pr_img').children().length;
+	    	var inputTagCnt = $('#pr_img_input').children().length;
 	    	if(inputTagCnt <= 3){
 	    		
 	    	
@@ -18,7 +18,7 @@ $(document).ready(function(){
 	        str += "<img id='img"+(img_count)+"' src=''/  style='margin-left:10px; margin-right:10px;'>";
 /*	        str += '<img id="img'+(img_count)+'" src=""/ class="preImgList">';*/
 	        str += '<div class="title">';
-	        str += '<a class="more" onclick="aaaaa(this, ' + img_count + ');">사진 삭제</a>';
+	        str += '<a class="more" onclick="deleteImg(this, ' + img_count + ');">사진 삭제</a>';
 	        str += '</div>';
 	        str += '</div>';
 	    //파일 경로에 넣기 위해 String으로 변환시켜줌
@@ -48,11 +48,11 @@ $(document).ready(function(){
         	$(this).hide();	        	
 	        str1 = '';
 	      //  str1 += '<div >';
-	        str1 += '<input type="file" id="img_file' + img_count + '" name="file' + img_count + '">';
+	        str1 += '<input type="file" id="img_file' + (img_count+1) + '" name="file' + (img_count+1) + '"	>';
 	     //   str1 += '</div>';
 	        //str1 += '<input type="button" value="x" onclick="deleteImg(' + img_count_string  +');" class="img_btn' + img_count + '">';
 	        
-	        $('#pr_img_text').append(str1);
+	        $('#pr_img_input').append(str1);
 	        img_count++;
 	    	}
 	    	else{
@@ -121,11 +121,31 @@ $(document).ready(function(){
 
 
 	    noticeCod();
+	    
+	    //textarea 글자수 표시
+	    $('#test').on('keyup', function() {
+            $('#test_cnt').html("("+$(this).val().length+" / 1000)");
+ 
+            if($(this).val().length > 1000) {
+                $(this).val($(this).val().substring(0, 1000));
+                $('#test_cnt').html("(1000 / 1000)");
+            }
+        });
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 });
 
 //함수 선언 영역
 (function($){
-	aaaaa = function(selectedTag, number){
+	deleteImg = function(selectedTag, number){
 		$(selectedTag).parent().parent().remove();
 	
 		$('#img_file' + number).remove();
@@ -135,13 +155,19 @@ $(document).ready(function(){
 //			$('#pr_img_text').children().first().css('display', 'inline');
 //		}
 		/*$('#pr_img_text').children().last().css('display', 'inline');*/
-		var inputTagCnt = $('#pr_img_text').children().length;
-		if(inputTagCnt == 0 || (inputTagCnt + 1) == number){
-			/*img_count = 2;*/
-		/*	$('#img' + number).css('display', 'inline');*/
-			$('#pr_img_text').append('<input type="file" id="img_file' + number + '" name="file' + number + '">');
-		}
+		var imgCnt = $('#pr_img').children().length;
 
+		if(imgCnt == 0){
+			/*img_count = 2;*/
+			$('#pr_img_input').empty();
+			$('#pr_img_input').append('<input type="file" id="img_file1" name="file" class="fileImgDiv" required/>');
+			/*$('#pr_img_text').append('<input type="file" id="img_file' + number + '" name="file' + number + '">');*/
+			img_count = 1;
+		}
+		
+//		if((inputTagCnt+1) == number){
+//			$('#pr_img_text').append('<input type="file" id="img_file' + number + '" name="file' + number + '">');
+//		}
 		
 	}
 /*	deleteImg = function(){
@@ -165,17 +191,17 @@ $(document).ready(function(){
 	//첨부파일 개수를 초과할 경우 알림창
 	noticeCon= function(){
 		alert('등록하실 수 있는 이미지 파일의 최대 개수는 3개입니다.');
-		var noticeCod = $('#selectCourseCode').children().length;
+		var noticeCod = $('#pr_img_input').children().length;
 		alert(noticeCode);
 	}
 	
 	noticeCod= function(){
 	var noticeCod = $('#selectCourseCode').children().length;
-	if(noticeCod == 0){
-		alert('담은 코스가 없습니다');
-		alert('코스를 담은 후에 후기를 작성해주세요');
-		location.href = '/course/courseSearch' 
-	}
+		if(noticeCod == 0){
+			alert('담은 코스가 없습니다');
+			alert('코스를 담은 후에 후기를 작성해주세요');
+			location.href = '/course/courseSearch' 
+		}
 	}
 	
 	
