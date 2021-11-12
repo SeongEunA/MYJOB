@@ -88,7 +88,7 @@ public class ReviewController {
 		// name 속성 값으로 첨부파일을 가져온다
 		Iterator<String> inpuNames = multi.getFileNames();
 		// 첨부할 경로
-		String uploadPath = "C:\\Users\\kh202-25\\git\\MYJOB\\src\\main\\webapp\\resources\\images\\";
+		String uploadPath = "C:\\Users\\CHOE YUSEUNG\\git\\MYJOB\\src\\main\\webapp\\resources\\images\\";
 		// 첨부파일의 정보를 받을 통
 		List<ReviewImgVO> imgList = new ArrayList<>();
 		// 다음 리뷰코드조회
@@ -96,6 +96,8 @@ public class ReviewController {
 		// 다음 이미지코드조회
 		int nextImgCode = reviewService.selectNextReviewNumber();
 		
+		//첫번째 파일만 메인이미지로 설정
+		int isMainImg = 0;
 		// 반복자로 반복문을 돌린다
 		while (inpuNames.hasNext()) {
 			String inputName = inpuNames.next();
@@ -132,11 +134,15 @@ public class ReviewController {
 					img.setReviewImgOriginName(file.getOriginalFilename());
 					img.setReviewImgAttachedName(attachedFileName);
 					img.setReviewBoardCode(reviewBoardCode);
-					img.setIsMain("Y");
-
+					if(isMainImg == 0) {
+						img.setIsMain("Y");						
+					}
+					else{
+						img.setIsMain("N");							
+					}
 					imgList.add(img);
+					isMainImg++;	
 				/* } */
-
 			} catch (IllegalStateException e) { // 비논리적, 문법적 오류를 잡아준다
 				e.printStackTrace(); // 원래 처리를 해야하나 그냥 이유만 띄워준다
 			} catch (IOException e) {// 입출력관련한 오류를 잡아준다
