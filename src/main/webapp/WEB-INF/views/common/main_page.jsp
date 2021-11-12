@@ -359,7 +359,7 @@ height:100%;
 				 	<c:forEach items="${reviewList}" var="reviewVO">			
 						<div class="mainReviewDiv">
 							<div class="mainReviewPhoto">
-								<a href="/review/detailReview?reviewBoardCode=${reviewVO.reviewBoardCode }"><img src="/resources/images/${reviewVO.reviewImgList[0].reviewImgAttachedName }" style="border-top-left-radius:10px;border-top-right-radius:10px;" width="100%" height="100%"></a>
+								<a href="/review/detailReview?reviewBoardCode=${reviewVO.reviewBoardCode }&courseCode=${reviewVO.courseCode}"><img src="/resources/images/${reviewVO.reviewImgList[0].reviewImgAttachedName }" style="border-top-left-radius:10px;border-top-right-radius:10px;" width="100%" height="100%"></a>
 							</div>
 							 <div class="mainReviewText"><span>${reviewVO.reviewBoardContent }</span></div>
 						</div>

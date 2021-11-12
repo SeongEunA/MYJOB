@@ -11,25 +11,22 @@
 
 <style type="text/css">
 .totalContain {
-	border: 1px solid red;
 
 }
 
 .reviewTitleContanier {
-	border: 1px solid blue;
 	margin: 0 auto;
 
 }
 
 .mainTitle {
-	border: 1px solid black;
 	margin: 0 auto;
 	text-align:center; 
+	margin-top: 10px;
 }
 
 .subTitle {
 	margin-top: 15px;
-	border: 1px solid black;
 	margin: 0 auto;
 	text-align: right;
 }
@@ -40,7 +37,6 @@
 	text-align:center;
 }
 .mainContainderLayout{
-	border:2px solid pink;
 	width:1200px;
 	margin:0 auto;
 }
@@ -50,7 +46,6 @@
 	margin-top: 30px;
 }
 .map_wrap{
-	background-color:blue;
 	height:350px;
 	width:100%;
 	margin:0 auto;
@@ -59,10 +54,10 @@
 	border:1px solid black;
 	height:50px;
 	margin:0 auto;
+	margin-top: 15px;
 }
 .regReviewText{
 	text-align: center;	
-	border:1px solid red;
 	height:auto;
 	margin:0 auto;
 	padding: 15px;
@@ -112,7 +107,6 @@ mmendLayout{
 	height: 28px;
 }
 .totalReply{
-	board: 1px solid red;
 }
 .replyWrap{
 	margin: 0 auto;
@@ -122,6 +116,8 @@ mmendLayout{
 }
 .replyTitle{
 	margin-top: 22px;
+	border-bottom: 4px solid #e5e5e5;
+	padding: 12px;
 }
 .replyTitle span{
 	color: #0a97cd;
@@ -130,11 +126,9 @@ mmendLayout{
 	font-size: 26px;
 }
 .replyWrap{
-	border: 5px solid pink;
 	margin: 0 auto;
 }
 .write{
-	border: 3px solid red;
 }
 
 .replyWrap .write {
@@ -146,7 +140,6 @@ mmendLayout{
 }
 .writeForm{
 	padding: 20px;
-	border: 3px solid green;
 	margin:0 auto;
 	
 }
@@ -164,7 +157,6 @@ mmendLayout{
 }
 
 .regBtnDiv{
-	border:1px solid green;
 	border-radius:5px;
 	margin-left:20px;
 	width:10%;
@@ -183,7 +175,6 @@ mmendLayout{
 	padding: 3px;
 }
 .reviewList{
-	border: 3.5px solid black;
 	padding: 15px;
 }
 .reviewTable tr:nth-child(2) td{
@@ -200,12 +191,10 @@ mmendLayout{
 }
 .recommendInnerLayout > div{
 	margin-top: 5px;
-	border: 1px solid pink;
 	display: inline-block;
 }
 .writerDiv{
-	border: 1px solid green;
-	margin-left: 688px;
+	margin-left: 678px;
 }
 .writer{
 	margin-left: 10px;
@@ -316,7 +305,7 @@ mmendLayout{
 											<input type="hidden" name="memberId"          value="${sessionScope.loginInfo.memberId}"> 
 											<input type="hidden" name="reviewReplyWriter" value="${sessionScope.loginInfo.memberName}"> 
 											<input type="hidden" name="reviewBoardCode"   value="${review.reviewBoardCode}"> 
-											<input type="hidden" name="courseCode" value="${review.courseCode }">
+											<input type="hidden" name="courseCode" 		  value="${review.courseCode }">
 											<textarea style="width:100%; resize: none;"class="replyContent" rows="3" cols="30" name="reviewReplyContent" required></textarea>						
 										</div>
 										<div class="regBtnDiv">
@@ -349,8 +338,8 @@ mmendLayout{
 													<div>
 													 &nbsp;
 														<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' || sessionScope.loginInfo.memberId eq reviewReplyVO.memberId}">
-															<form action="/review/deleteReply" method="get"id="deleteReply">
-																<input type="hidden" name="reviewBoardCode"value="${reviewReplyVO.reviewBoardCode}"> 
+															<form action="/review/deleteReply" method="get" 	id="deleteReply">
+																<input type="hidden" name="reviewBoardCode" value="${reviewReplyVO.reviewBoardCode}"> 
 																<input type="hidden" class="hiddenReviewReplyCode" name="reviewReplyCode"value="${reviewReplyVO.reviewReplyCode }">
 															</form>
 																<div class="deleteBtn">

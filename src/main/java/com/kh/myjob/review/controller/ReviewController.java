@@ -154,7 +154,7 @@ public class ReviewController {
 		reviewVO.setReviewBoardCode(reviewBoardCode);
 		reviewService.insertReview(reviewVO);
 		
-		
+		//필요없는 이미지파일 자르기
 		for(int i = 0; i < imgList.size(); i++) {
 			if(i == (imgList.size()-1) && i != 0) {
 				imgList.remove(i);
