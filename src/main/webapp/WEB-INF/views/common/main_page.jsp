@@ -21,6 +21,12 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Mini_handwriting';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_08@1.0/Mini_handwriting.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 .mainPhotoContainer{
 border:1px solid white;
 width:auto;
@@ -123,7 +129,24 @@ border-bottom-left-radius:10px;
 border-bottom-right-radius:10px;
 width:100%;
 height:20%;
+
+
 }
+.mainReviewText > span {
+border:1px solid white;
+display:inline-block;
+width:90%;
+height:30px;
+font-family: 'Mini_handwriting';
+font-weight:bold;
+font-size:18px;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+margin:0 auto;
+}
+
+
 .noticeEventContainer{
 border:1px solid white;
 height:500px;
@@ -333,40 +356,14 @@ height:100%;
 		<div class="row">
 			<div class="col-12 mainReviewContainer">
 				<div class="col-10 mainReviewLayout">
-					<div class="mainReviewDiv">
-						 <div class="mainReviewPhoto">
-							 <img src="/resources/images/리뷰1.jpg" style="border-top-left-radius:10px;border-top-right-radius:10px;" width="100%" height="100%">
-						 </div>
-						 <div class="mainReviewText">캠핑여행을갔다왔..</div>
-					</div>
-					<div class="mainReviewDiv">
-						<div class="mainReviewPhoto">
-						<img src="/resources/images/리뷰2.jpg" style="border-top-left-radius:10px;border-top-right-radius:10px;" width="100%" height="100%">
-						</div>
-						 <div class="mainReviewText">리뷰텍스트</div>
-					</div>
-					<div class="mainReviewDiv">
-						<div class="mainReviewPhoto">
-						<img src="/resources/images/리뷰3.jpeg" style="border-top-left-radius:10px;border-top-right-radius:10px;" width="100%" height="100%">
-						</div>
-						 <div class="mainReviewText">리뷰텍스트</div>
-					</div>
-					<div class="mainReviewDiv">
-						<div class="mainReviewPhoto"></div>
-						 <div class="mainReviewText">리뷰텍스트</div>
-					</div>
-					<div class="mainReviewDiv">
-						<div class="mainReviewPhoto"></div>
-						 <div class="mainReviewText">리뷰텍스트</div>
-					</div>
-				<%-- 	<c:forEach items="${reviewList.reviewImgList }" var="reviewImgVO">					
+				 	<c:forEach items="${reviewList}" var="reviewVO">			
 						<div class="mainReviewDiv">
 							<div class="mainReviewPhoto">
-								<img src="/resources/images/${reviewImgVO.reviewImgAttachedName }" style="border-top-left-radius:10px;border-top-right-radius:10px;" width="100%" height="100%">
+								<a href="/review/detailReview?reviewBoardCode=${reviewVO.reviewBoardCode }"><img src="/resources/images/${reviewVO.reviewImgList[0].reviewImgAttachedName }" style="border-top-left-radius:10px;border-top-right-radius:10px;" width="100%" height="100%"></a>
 							</div>
-							 <div class="mainReviewText">리뷰텍스트</div>
+							 <div class="mainReviewText"><span>${reviewVO.reviewBoardContent }</span></div>
 						</div>
-					</c:forEach> --%>
+					</c:forEach> 
 				</div>
 			</div>
 		</div>
