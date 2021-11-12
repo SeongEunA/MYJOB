@@ -114,12 +114,12 @@ public class MemberController {
 		return memberService.updateMyInfo(memberVO);
 	}
 	
-	//수정된 회원정보 상세페이지 가져오기
-	@ResponseBody
-	@PostMapping("/updatedDetailMember")
-	public MemberVO updatedDetailMember(String memberCode) {
-		return memberService.selectDetailMember(memberCode);
-	}
+//	//수정된 회원정보 상세페이지 가져오기
+//	@ResponseBody
+//	@PostMapping("/updatedDetailMember")
+//	public MemberVO updatedDetailMember(String memberCode) {
+//		return memberService.selectDetailMember(memberCode);
+//	}
 	
 	//회원 탈퇴
 	@GetMapping("/deleteMember")

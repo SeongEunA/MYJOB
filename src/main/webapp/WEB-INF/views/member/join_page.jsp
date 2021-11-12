@@ -232,7 +232,7 @@
 	font-size: 12px;
 }
 </style>
-<script type="text/javascript" src="/resources/member/js/join_page.js?ver=27"></script>
+<script type="text/javascript" src="/resources/member/js/join_page.js?ver=31"></script>
 </head>
 <body>
 <div class="row">
@@ -295,7 +295,7 @@
 						<div>주소</div>
 						<div class="memberAddr1Div"><input type="text" id="memberAddr1" name="memberAddr1" readonly placeholder="도로명/지번 주소"></div>
 						<div class="searchAddrDiv"><input type="button" id="memberAddrBtn" onclick="openPostCode();" value="주소검색"></div>
-						<div class="memberAddr2Div"><input type="text" id="memberAddr2" name="memberAddr2" placeholder="상세 주소"></div>
+						<div class="memberAddr2Div"><input type="text" id="memberAddr2" name="memberAddr2" maxlength="12" placeholder="상세 주소"></div>
 						<div id="noticeAddr">&nbsp;</div>
 					</div>
 					<div class="memberEmailDiv">

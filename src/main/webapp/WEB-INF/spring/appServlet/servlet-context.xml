@@ -43,18 +43,17 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/review/regReview"/>
+			<mapping path="/common/goRegNoticeBoard"/>
+			<mapping path="/common/regNoticeBoard"/>
+			<mapping path="/admin/deleteNoticeBoard"/>
+			<mapping path="/member/myPage"/>
 			<mapping path="/member/deleteMember"/>
 			<mapping path="/admin/memberManage"/>
 			<mapping path="/admin/detailMember"/>
-			<mapping path="/admin/detailMember"/>
-			<mapping path="/admin/reviewManage "/>
 			<mapping path="/admin/deleteReviewBoard"/>
 			<mapping path="/admin/replyManage"/>
 			<mapping path="/admin/detailReply"/>
 			<mapping path="/admin/deleteReviewReply"/>
-			<mapping path="/admin/goRegNoticeBoard"/>
-			<mapping path="/admin/regNoticeBoard"/>
-			<mapping path="/admin/deleteNoticeBoard"/>
 			<mapping path="/course/myCourseList"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>		

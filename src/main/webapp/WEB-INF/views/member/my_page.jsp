@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="/resources/member/js/my_page.js?ver=54"></script>
+<script type="text/javascript" src="/resources/member/js/my_page.js?ver=57"></script>
 <style type="text/css">
 .myPageTitleDiv{
 	padding:0px;
@@ -58,6 +58,20 @@ table td{
 .deleteMemberBtn input[type="button"]{
 	width: 100px;
 	height: 30px;
+	margin: 0 auto;
+	border: 3px solid #1F50B5;
+	border-radius: 5px;
+	color: #fff;
+	background:#1F50B5;
+	text-transform: uppercase;
+	font-size: 1em;
+	font-weight: bold;
+	letter-spacing: .1em;
+	font-family: "Roboto Condensed", sans-serif;
+	cursor: pointer;
+	transition: all .5s;
+	text-align:center;
+	box-shadow:inset 0 0 0 0 gray;
 }
 .manageMyInfoBtnDiv{
 	margin-top: 20px;
@@ -68,10 +82,60 @@ table td{
 .updateMyInfoBtn input[type="button"]{
 	width: 100px;
 	height: 30px;
+	margin: 0 auto;
+	border: 3px solid #1F50B5;
+	border-radius: 5px;
+	color: #fff;
+	background:#1F50B5;
+	text-transform: uppercase;
+	font-size: 1em;
+	font-weight: bold;
+	letter-spacing: .1em;
+	font-family: "Roboto Condensed", sans-serif;
+	cursor: pointer;
+	transition: all .5s;
+	text-align:center;
+	box-shadow:inset 0 0 0 0 gray;
 }
 .cancelMyInfoBtn{
 	display: inline-block;
 	margin-left: 5px;
+}
+.cancelMyInfoBtn input[type="button"]{
+	width: 100px;
+	height: 30px;
+	margin: 0 auto;
+	border: 3px solid #1F50B5;
+	border-radius: 5px;
+	color: #fff;
+	background:#1F50B5;
+	text-transform: uppercase;
+	font-size: 1em;
+	font-weight: bold;
+	letter-spacing: .1em;
+	font-family: "Roboto Condensed", sans-serif;
+	cursor: pointer;
+	transition: all .5s;
+	text-align:center;
+	box-shadow:inset 0 0 0 0 gray;
+}
+#memberAddr input[type="button"]{
+	width: 100px;
+	height: 30px;
+	margin: 0 auto;
+	border: 3px solid #1F50B5;
+	border-radius: 5px;
+	color: #fff;
+	background:#1F50B5;
+	text-transform: uppercase;
+	font-size: 1em;
+	font-weight: bold;
+	letter-spacing: .1em;
+	font-family: "Roboto Condensed", sans-serif;
+	cursor: pointer;
+	transition: all .5s;
+	text-align:center;
+	box-shadow:inset 0 0 0 0 gray;
 }
 #memberTel1{
 	width: 20%;
@@ -99,7 +163,7 @@ table td{
 	width: 40%;
 }
 #memberAddr1{
-	width: 68%;
+	width: 69%;
 }
 #memberAddr2{
 	width: 95%;

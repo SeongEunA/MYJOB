@@ -4,6 +4,7 @@ var okPw = 0;
 var okCPw = 0;
 var okTel = 0;
 var okEmail = 0;
+
 //화면 로딩 후 바로 실행 이벤트처리
 $(document).ready(function(){
 	//회원가입 화면으로 오면 ID입력란에 자동포커스
@@ -53,6 +54,7 @@ $(document).ready(function(){
 		
 		//PW입력란 공백 유효성 검사
 		if(memberPw == ' '){
+			alert('확인');
 			$('#noticePw').text('비밀번호를 입력하세요');
 			$('#noticePw').css('color', 'red');
 			$('#memberPw').focus();
@@ -60,7 +62,7 @@ $(document).ready(function(){
 		
 		}
 		//PW입력값 양식에 맞지 않을 때
-		if(!pwJ.test(memberPw)){
+		else if(!pwJ.test(memberPw)){
 			$('#noticePw').text('영어 대소문자, 숫자로 구성된 4~12자리로 다시 입력해주세요.');
 			$('#noticePw').css('color', 'red');
 			$('#memberPw').focus();
@@ -68,11 +70,6 @@ $(document).ready(function(){
 		}
 		//PW입력값이 양식에 맞을 때
 		else{
-			if(memberPw != $('#confirmPw').val()){
-				$('#noticeCpw').text('비밀번호가 일치하지 않습니다.');
-				$('#noticeCpw').css('color', 'red');
-				okPw = 0;
-			}
 			//PW와 ID중복 체크 여부
 			if(memberPw == $('#memberId').val()){
 				$('#noticePw').text('비밀번호는 아이디와 일치할 수 없습니다.');
@@ -96,7 +93,7 @@ $(document).ready(function(){
 		var confirmPw = $('#confirmPw').val();
 
 		if(confirmPw == ''){
-			$('#noticeCpw').text('비밀번호를 확인해주세요');
+			$('#noticeCpw').text('비밀번호를 확인해주세요.');
 			$('#noticeCpw').css('color', 'red');
 			okCPw = 0;
 		}
@@ -278,6 +275,13 @@ $(document).ready(function(){
 	    }).open();
 	}
 	
+//	//kcode 32가 스페이스바 입니다. returnValue를 이용하여 입력을 금지합니다.
+//	checkSpacebar = function(){
+//		alert('확인');
+//		var kcode = event.keyCode;
+//		if(kcode == 32) event.returnValue = false;
+//	}
+	
 	idCheck = function(){
 		//모든 공백 체크 정규표현식
 		var empJ = /\s/;
@@ -287,7 +291,7 @@ $(document).ready(function(){
 		var memberId = $('#memberId').val();
 		
 		//ID입력란 공백 및 ID사이 공백여부 유효성 검사
-		if(memberId == ' '){
+		if(empJ.test(memberId)){
 			$('#noticeId').text('아이디를 입력하세요.');
 			$('#noticeId').css('color', 'red');
 			$('#memberId').focus();

@@ -163,6 +163,11 @@ $(document).on('keyup', '#memberPw', function() {
 	//memberPw 변수 생성
 	var memberPw = $('#memberPw input[type="text"]').val();
 	
+	//PW입력란 접근시 PW확인란 문구 띄워주기
+	$('#noticeCpw').text('비밀번호를 확인해주세요');
+	$('#noticeCpw').css('color', 'red');
+	okCPw = 1;
+	
 	//PW입력란 공백 유효성 검사
 	if(memberPw == ''){
 		$('#noticePw').text('비밀번호를 입력하세요');
@@ -296,7 +301,7 @@ $(document).on('keyup', '#confirmPw', function() {
 			//이메일 데이터 삽입
 			$('#memberEmail').empty();
 			var str = '';
-			str += '<input type="text" id="memberEmail1" name="memberEmails" value="' + memberEmails[0] + '">';
+			str += '<input type="text" id="memberEmail1" name="memberEmails" maxlength="12" value="' + memberEmails[0] + '">';
 			str += '<select id="memberEmail2" name="memberEmails">';
 			str += '	<option value="naver.com">naver.com</option>';
 			str += '	<option value="daum.net">daum.net</option>';
@@ -326,7 +331,7 @@ $(document).on('keyup', '#confirmPw', function() {
 			
 			//주소 데이터 삽입
 			$('#detailMyInfo tr:nth-child(4) td:nth-child(3)').text('도로명/지번주소');
-			$('#memberAddr').html('<input type="text" id="memberAddr1" name="memberAddr1" value="' + memberAddr1 + '"readonly>&nbsp;&nbsp;<input type="button" id="memberAddrBtn" onclick="openPostCode();" value="주소검색">');
+			$('#memberAddr').html('<input type="text" id="memberAddr1" name="memberAddr1" value="' + memberAddr1 + '"readonly>&nbsp;&nbsp;<input type="button" id="searchAddrBtn" onclick="openPostCode();" value="주소검색">');
 			
 			//비밀번호확인창, 상세주소창 삽입
 			var str = '';
@@ -334,7 +339,7 @@ $(document).on('keyup', '#confirmPw', function() {
 			str += '		<td>비밀번호확인</td>';
 			str += '		<td><input type="text" id="confirmPw" maxlength="12"><div id="noticeCpw">&nbsp;</div></td>';
 			str += '		<td>상세주소</td>';
-			str += '		<td><input type="text" id="memberAddr2" name="memberAddr2" value="' + memberAddr2 + '"></td>';
+			str += '		<td><input type="text" id="memberAddr2" name="memberAddr2" maxlength="12" value="' + memberAddr2 + '"></td>';
 			str += '	</tr>';
 			$('#addTr').after(str);
 			
