@@ -219,7 +219,7 @@ margin-bottom: 5px;
 border: 1px solid #FEFBF3;
 text-align: center;
 font-size: 12px;
-background-image: url("/resources/images/koreaMap3.png");
+background-image: url("/resources/images/koreaMap4.png");
 width: 100%;
 height:100%;
 background-size:contain;
@@ -232,9 +232,10 @@ border-radius: 50%;
 width: 60px;
 display: inline-block;
 background-color: white;
-background-color: rgba( 220, 248, 255, 0.8 );
+background-color: rgba( 254, 255, 255, 0.9 );
 padding: 5px 5px;
 font-family: 'NanumBarunpen';
+box-shadow: 2px 2px 2px gray;
 }
 .stdDay{
 text-align: center;
@@ -252,25 +253,25 @@ color: #003399;
 .newCoronic{
 color: #FF2424;
 }
-#검역{position: relative; top: 180px; left: 50px;}
+#검역{position: relative; top: 300px; left: 220px;}
 #제주{position: relative; top: 330px;}
 #경남{position: relative; top: 240px; left: 90px;}
 #경북{position: relative; top: 120px; left: 110px;}
 #전남{position: relative; top: 290px; right: 110px;}
-#전북{position: relative; top: 180px; right: 180px;}
+#전북{position: relative; top: 180px; right: 170px;}
 #충남{position: relative; top: 120px; right: 290px;}
 #충북{position: relative; top: 30px; left: 230px;}
 #강원{position: relative; bottom: 20px; left: 220px;}
 #경기{position: relative; bottom: 30px; left: 90px;}
 #세종{position: relative; top: 55px; right: 35px;}
-#울산{position: relative; top: 170px; left: 60px;}
-#대전{position: relative; top: 80px; right: 95px;}
+#울산{position: relative; top: 160px; left: 60px;}
+#대전{position: relative; top: 90px; right: 105px;}
 #광주{position: relative; top: 190px; right: 250px;}
 #인천{position: relative; bottom: 60px; left: 20px;}
 #대구{position: relative; top: 90px; left: 120px;}
-#부산{position: relative; top: 180px; left: 110px;}
+#부산{position: relative; top: 155px; left: 90px;}
 #서울{position: relative; bottom: 50px; right: 100px;}
-#합계{position: relative; bottom: 80px; right: 330px;}
+#합계{position: relative; top: 220px; right: 10px; background-color: rgba( 255, 183, 64, 0.7 );}
 
 
 

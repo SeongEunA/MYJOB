@@ -288,10 +288,10 @@ mmendLayout{
  		<div class="row"><!-- 지도 -->
 			<div class="col-12 mainContainderLayout">
 				<div class ="map_wrap" id="map"></div>
-				<script type="text/javascript"src="/resources/review/js/review_detail.js?ver=10"></script>
 				<div></div>
 			</div>
 		</div> 
+		<script type="text/javascript"src="/resources/review/js/review_detail.js?ver=18"></script>
 			<!-- 사진3개영역 -->
 			<div class="reviewPhotoContainer col-8">
 				<div class="reviewPhotoLayout col-8">
@@ -316,6 +316,7 @@ mmendLayout{
 											<input type="hidden" name="memberId"          value="${sessionScope.loginInfo.memberId}"> 
 											<input type="hidden" name="reviewReplyWriter" value="${sessionScope.loginInfo.memberName}"> 
 											<input type="hidden" name="reviewBoardCode"   value="${review.reviewBoardCode}"> 
+											<input type="hidden" name="courseCode" value="${review.courseCode }">
 											<textarea style="width:100%; resize: none;"class="replyContent" rows="3" cols="30" name="reviewReplyContent" required></textarea>						
 										</div>
 										<div class="regBtnDiv">

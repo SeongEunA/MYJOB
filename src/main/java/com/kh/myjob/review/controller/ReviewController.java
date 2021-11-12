@@ -88,7 +88,7 @@ public class ReviewController {
 		// name 속성 값으로 첨부파일을 가져온다
 		Iterator<String> inpuNames = multi.getFileNames();
 		// 첨부할 경로
-		String uploadPath = "C:\\Users\\CHOE YUSEUNG\\git\\MYJOB\\src\\main\\webapp\\resources\\images\\";
+		String uploadPath = "C:\\Users\\kh202-25\\git\\MYJOB\\src\\main\\webapp\\resources\\images\\";
 		// 첨부파일의 정보를 받을 통
 		List<ReviewImgVO> imgList = new ArrayList<>();
 		// 다음 리뷰코드조회
@@ -170,8 +170,9 @@ public class ReviewController {
 		reviewService.updateReadCnt(reviewVO);
 		int replyCnt =  reviewService.selectReplyCnt(reviewReplyVO);
 		reviewReplyVO.setTotalCnt(replyCnt);
-		 CourseVO courseVO = new CourseVO();
-		 courseVO.setCourseCode(reviewVO.getCourseCode());
+		
+		CourseVO courseVO = new CourseVO();
+		courseVO.setCourseCode(reviewVO.getCourseCode());
 		 
 		reviewReplyVO.setPageInfo();
 		
@@ -186,9 +187,10 @@ public class ReviewController {
 
 	// 리뷰에 댓글 등록
 	@PostMapping("/regRely")
-	public String regReply(ReviewReplyVO reviewReplyVO, RedirectAttributes redirect) {
+	public String regReply(ReviewReplyVO reviewReplyVO, RedirectAttributes redirect, ReviewVO reviewVO) {
 		reviewService.regReply(reviewReplyVO);
 		redirect.addAttribute("reviewBoardCode", reviewReplyVO.getReviewBoardCode());
+		redirect.addAttribute("courseCode", reviewVO.getCourseCode());
 		return "redirect:/review/detailReview";
 	}
 

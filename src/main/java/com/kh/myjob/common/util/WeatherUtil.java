@@ -36,6 +36,7 @@ public class WeatherUtil {
 			List<TotalWeatherVO> weatherList = new ArrayList<>();
 			
 			try {
+				 HttpURLConnection.setFollowRedirects(false); 
 				
 				 StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst"); /*URL*/
 			     urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=zsiVIlbNLa0CmGU%2B1vLHgsJLlm6mK5D4yDti4V6WoxJoG%2BBTONY2L9D6KxlCxvOlyZrywmoppXYhj2%2FJW%2FYEDA%3D%3D"); /*Service Key*/

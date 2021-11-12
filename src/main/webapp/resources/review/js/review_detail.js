@@ -117,14 +117,32 @@ var markerCnt = $('.markerX').length;
 var markerArrX = [];
 var markerArrY = [];
 //var markers = [];
+var centerX;
+var centerY;
+var centerCnt = 0;
 
+var k=0;
 for(var i = 0; i < markerCnt; i++){
-markerArrX[i] = $('.markerX').eq(i).val();
-markerArrY[i] = $('.markerY').eq(i).val();
+	
+	if($('.markerX').eq(i).val() !=0 && $('.markerY').eq(i).val() != 0){
+		
+		markerArrX[k] = $('.markerX').eq(i).val();
+		markerArrY[k] = $('.markerY').eq(i).val();
+		k++;
+	}
 
-console.log(markerArrX[i]);
-console.log(markerArrY[i]);
+//	if(centerCnt == 0 && markerArrX[i] != 0 && markerArrY[i] != 0){
+//		centerX = markerArrX[i];
+//		centerY = markerArrY[i];
+//		centerCnt = 1;
+//	}
+
+	console.log(markerArrX[k]);
+	console.log(markerArrY[k]);
 }
+
+
+
 var positions=[];
 var linePath = [];
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
@@ -135,8 +153,8 @@ mapOption = {
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-
-for(var e =0;e<markerCnt;e++){
+var markerArrLength = markerArrX.length;
+for(var e =0;e<markerArrLength;e++){
  positions.push({latlng:new kakao.maps.LatLng(markerArrX[e],markerArrY[e])})
 	 
  }
@@ -191,7 +209,7 @@ console.log(marker);
 // new kakao.maps.LatLng(35.564249, 129.457218) 
 //];
 
-for(var e =0;e<markerCnt;e++){
+for(var e =0;e<markerArrLength;e++){
 
  linePath.push(new kakao.maps.LatLng(markerArrX[e],markerArrY[e]));
 	 
