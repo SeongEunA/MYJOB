@@ -227,7 +227,7 @@ textarea{
 		<div class="col-9 mainRegcontain">
 		<div class="reviewTitleContainer">
 			<div class="col-12 reviewTitleDiv">
-			후기등록
+				후기등록
 			</div>
 		</div>
 			<div class="regContentDiv">

@@ -255,11 +255,11 @@ mmendLayout{
 							<div class="col-3 writerDiv">
 								<div class="writer">글쓴이:&nbsp;${review.reviewBoardWriter }</div>														
 							</div>
-							<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' }">
+							 <c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' || sessionScope.loginInfo.memberId eq reviewVO.reviewBoardWriter}">
 								<div class="adminBtn" style="width: 88%">
 									<input type="button" id="deleteReviewBoardBtn" value="삭제" onclick="deleteReviewBoard();">
 								</div>	
-							</c:if>
+							</c:if> 
 						</div>
 						<div class="dateDiv">
 							작성일:&nbsp;${review.reviewBoardRegDate }

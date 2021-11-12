@@ -219,5 +219,12 @@ public class ReviewController {
 		return reviewService.selectReviewDetail(reviewVO);			
 	}
 	
+	//코스후기 삭제
+	@GetMapping("/deleteReviewBoard")
+	public String deleteReviewBoard(ReviewVO reviewVO, Model model) {
+		model.addAttribute("deleteReviewBoardResult", reviewService.deleteReviewBoard(reviewVO));
+		return "review/delete_review_board_result";
+	}
+	
 	
 }

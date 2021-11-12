@@ -17,6 +17,7 @@ import com.kh.myjob.member.service.MemberService;
 import com.kh.myjob.member.vo.MemberVO;
 import com.kh.myjob.review.service.ReviewService;
 import com.kh.myjob.review.vo.ReviewReplyVO;
+import com.kh.myjob.review.vo.ReviewVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -61,12 +62,6 @@ public class AdminController {
 		return "admin/delete_member_result";
 	}
 	
-	//코스후기 삭제
-	@GetMapping("/deleteReviewBoard")
-	public String deleteReviewBoard(String reviewBoardCode, Model model) {
-		model.addAttribute("deleteReviewBoardResult", reviewService.deleteReviewBoard(reviewBoardCode));
-		return "admin/delete_review_board_result";
-		}
 	
 	//댓글 관리 페이지로 이동
 	@RequestMapping("/replyManage")

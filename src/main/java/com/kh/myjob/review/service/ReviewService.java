@@ -32,7 +32,7 @@ public interface ReviewService {
 	void updateReadCnt(ReviewVO reviewVO);
 	
 	//후기게시글 삭제
-	boolean deleteReviewBoard(String reviewBoardCode);
+	boolean deleteReviewBoard(ReviewVO reviewVO);
 	
 	//후기에 댓글등록
 	int regReply(ReviewReplyVO reviewReplyVO);
