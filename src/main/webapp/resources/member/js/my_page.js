@@ -331,7 +331,7 @@ $(document).on('keyup', '#confirmPw', function() {
 			
 			//주소 데이터 삽입
 			$('#detailMyInfo tr:nth-child(4) td:nth-child(3)').text('도로명/지번주소');
-			$('#memberAddr').html('<input type="text" id="memberAddr1" name="memberAddr1" value="' + memberAddr1 + '"readonly>&nbsp;&nbsp;<input type="button" id="searchAddrBtn" onclick="openPostCode();" value="주소검색">');
+			$('#memberAddr').html('<input type="text" id="memberAddr1" name="memberAddr1" value="' + memberAddr1 + '"readonly><input type="button" id="searchAddrBtn" onclick="openPostCode();" value="주소검색">');
 			
 			//비밀번호확인창, 상세주소창 삽입
 			var str = '';

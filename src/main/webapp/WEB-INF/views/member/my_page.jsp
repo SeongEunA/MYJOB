@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="/resources/member/js/my_page.js?ver=57"></script>
+<script type="text/javascript" src="/resources/member/js/my_page.js?ver=59"></script>
 <style type="text/css">
 .myPageTitleDiv{
 	padding:0px;
@@ -137,6 +137,12 @@ table td{
 	text-align:center;
 	box-shadow:inset 0 0 0 0 gray;
 }
+#memberTel select{
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
 #memberTel1{
 	width: 20%;
 	margin-right: 10px;
@@ -149,12 +155,18 @@ table td{
 	width: 20%;
 }
 #memberEmail1{
-	width: 40%;
+	width: 45%;
 	margin-right: 10px;
 }
 #memberEmail2{
-	width: 40%;
-	margin-right: 10px;
+	width: 47%;
+}
+#memberEmail select{
+	width: 47%;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-left: 2px;
+	padding-right: 2px;
 }
 #memberPw{
 	width: 40%;
@@ -163,7 +175,8 @@ table td{
 	width: 40%;
 }
 #memberAddr1{
-	width: 69%;
+	width: 66%;
+	margin-right: 10px;
 }
 #memberAddr2{
 	width: 95%;
@@ -194,7 +207,7 @@ table td{
 <div class="row">
 	<div class="col-12 bodyContainer">
 		<div class="col-7 myPageTitleDiv">
-			<div class="col-12 myPageTitle">마이페이지입니다.</div>
+			<div class="col-12 myPageTitle">마이페이지</div>
 		</div>
 		<div class="col-7 myPageTableDiv">
 			<div class="col-12 myPageTable">
