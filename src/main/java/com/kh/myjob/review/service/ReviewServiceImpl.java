@@ -109,6 +109,10 @@ public class ReviewServiceImpl implements ReviewService {
 	public ReviewRecomVO selectRecomMember(ReviewRecomVO reviewRecomVO) {
 		return sqlSession.selectOne("reviewMapper.selectRecomMember", reviewRecomVO);
 	}
+	@Override
+	public List<ReviewVO> selectMainImgName() {
+		return sqlSession.selectList("reviewMapper.selectMainImgName");
+	}
 	
 	
 	

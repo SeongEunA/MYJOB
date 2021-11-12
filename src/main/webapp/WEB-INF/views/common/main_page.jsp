@@ -260,7 +260,6 @@ height:100%;
 	<div class="col-12">
 		<div class="mainPhotoContainer">
 			<div class="mainPhoto col-9">
-	 			
 			    <ul id="imgholder" class="bxslider">
 			        <li>
 			        	<div class="photoText1"  id="text1">
@@ -360,6 +359,14 @@ height:100%;
 						<div class="mainReviewPhoto"></div>
 						 <div class="mainReviewText">리뷰텍스트</div>
 					</div>
+				<%-- 	<c:forEach items="${reviewList.reviewImgList }" var="reviewImgVO">					
+						<div class="mainReviewDiv">
+							<div class="mainReviewPhoto">
+								<img src="/resources/images/${reviewImgVO.reviewImgAttachedName }" style="border-top-left-radius:10px;border-top-right-radius:10px;" width="100%" height="100%">
+							</div>
+							 <div class="mainReviewText">리뷰텍스트</div>
+						</div>
+					</c:forEach> --%>
 				</div>
 			</div>
 		</div>

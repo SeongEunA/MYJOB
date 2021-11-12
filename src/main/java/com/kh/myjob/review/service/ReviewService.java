@@ -58,6 +58,9 @@ public interface ReviewService {
 	//후기 게시판 멤버 조회
 	ReviewRecomVO selectRecomMember(ReviewRecomVO reviewRecomVO);
 	
+	//메인페이지에 대표사진 5장 등록
+	List<ReviewVO> selectMainImgName();
+	
 	//---------------아래는 관리자기능----------------//
 	
 	//총 댓글수

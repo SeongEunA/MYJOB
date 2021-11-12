@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.myjob.common.service.CommonService;
 import com.kh.myjob.common.vo.NoticeBoardVO;
+import com.kh.myjob.review.service.ReviewService;
+import com.kh.myjob.review.vo.ReviewVO;
 
 
 @Controller
@@ -21,9 +23,12 @@ public class CommonController {
 	@Resource(name = "commonService")
 	private CommonService commonService;
 	
+	@Resource(name = "reviewService")
+	private ReviewService reviewService;
+	
 	//메인페이지로 이동
 	@GetMapping("/main")
-	public String goMain(Model model, NoticeBoardVO noticeBoardVO) {
+	public String goMain(Model model, NoticeBoardVO noticeBoardVO, ReviewVO reviewVO) {
 		
 		//전체 데이터 수
 		int dataCnt = commonService.selectNoticeBoardCnt(noticeBoardVO);
@@ -34,6 +39,7 @@ public class CommonController {
 		
 		
 		model.addAttribute("noticeBoardList", commonService.selectNoticeBoardList(noticeBoardVO));
+		model.addAttribute("reviewList", reviewService.selectMainImgName());
 		
 		return "common/main_page";
 	}

@@ -330,7 +330,27 @@
 	 	AND REVIEW_BOARD_CODE = #{reviewBoardCode}
 	</select>
 	
-		
+	<!--메인페이지에 대표사진 5장 등록  -->
+	<select id="selectMainImgName" resultMap="reviewBoard">
+	 SELECT REVIEW_BOARD_CODE
+   			, REVIEW_IMG_ATTACHED_NAME
+   			, ROW_NUM
+	 	FROM
+		(	
+			SELECT REVIEW_BOARD_CODE
+	    		 , REVIEW_IMG_ATTACHED_NAME
+	    		 , ROWNUM AS ROW_NUM		
+			FROM
+			(	
+				SELECT B.REVIEW_BOARD_CODE
+		    			, REVIEW_IMG_ATTACHED_NAME
+				FROM REVIEW_BOARD B, REVIEW_IMG I
+				WHERE B.REVIEW_BOARD_CODE = I.REVIEW_BOARD_CODE
+				ORDER BY REVIEW_BOARD_READ_CNT DESC, REVIEW_BOARD_RECOMMEND_CNT DESC
+			)
+		)
+		WHERE ROW_NUM &gt;= 1 AND ROW_NUM &lt;= 5	
+	</select>	
 </mapper>
 
 
