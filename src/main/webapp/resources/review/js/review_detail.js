@@ -75,7 +75,9 @@ $(document).ready(function(){
 	//추천수증가
 	updateRecommend = function() {
 		var reviewBoardCode = $('.reviewBoardCode').val();
-		var memberId = $('.reviewReplyWriter').val();	
+		var memberId = $('.reviewReplyId').val();	
+		alert(reviewBoardCode);
+		alert(memberId);
 		if(memberId != ''){
 			if(!isRecommend){
 				isRecommend = true;
@@ -90,8 +92,6 @@ $(document).ready(function(){
 		            	str +='<img class="recomBtn" src="/resources/images/updateRecommend.PNG">'+ result.reviewBoardRecommendCnt  +'';
 	 	
 		            	$('#appendRecommendCnt').append(str);	
-		            	
-		            	
 		            },
 		            error: function(){
 		               alert('실패');
