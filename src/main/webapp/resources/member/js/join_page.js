@@ -46,16 +46,26 @@ $(document).ready(function(){
 	//PW관련 유효성검사 시작
 	$(document).on('keyup', '#memberPw', function() {
 		//------------------------정규표현식-------------------------//
+		
+		//모든 공백 체크 정규표현식
+		var empJ = /\s/;
 		// 비밀번호 정규표현식
 		var pwJ = /^[A-Za-z0-9]{4,12}$/; // 영어 대소문자 (A~Z or a~z), 숫자 0~9로 시작하는 4~12자리 비밀번호로 생성.
 		
 		//memberPw 변수 생성
 		var memberPw = $('#memberPw').val();
 		
+		//PW입력란 접근시 PW확인란 문구 띄워주기
+		if(okCPw = 1){
+			$('#noticeCpw').text('비밀번호를 확인해주세요');
+			$('#noticeCpw').css('color', 'red');
+		}
+		okCPw = 0;
+		
 		//PW입력란 공백 유효성 검사
-		if(memberPw == ' '){
-			alert('확인');
-			$('#noticePw').text('비밀번호를 입력하세요');
+		if(empJ.test(memberPw)){
+			//alert('확인');
+			$('#noticePw').text('공백은 사용할 수 없습니다.');
 			$('#noticePw').css('color', 'red');
 			$('#memberPw').focus();
 			okPw = 0;
@@ -87,6 +97,8 @@ $(document).ready(function(){
 	
 	//CONFIRM PASSWORD의 PW일치여부 검사
 	$(document).on('keyup', '#confirmPw', function() {
+		//모든 공백 체크 정규표현식
+		var empJ = /\s/;
 		//memberPw 변수 생성
 		var memberPw = $('#memberPw').val();
 		//confirmPw 변수 생성
@@ -94,6 +106,11 @@ $(document).ready(function(){
 
 		if(confirmPw == ''){
 			$('#noticeCpw').text('비밀번호를 확인해주세요.');
+			$('#noticeCpw').css('color', 'red');
+			okCPw = 0;
+		}
+		else if(empJ.test(confirmPw)){
+			$('#noticeCpw').text('공백은 사용할 수 없습니다.');
 			$('#noticeCpw').css('color', 'red');
 			okCPw = 0;
 		}

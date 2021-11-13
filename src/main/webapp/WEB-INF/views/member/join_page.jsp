@@ -232,7 +232,7 @@
 	font-size: 12px;
 }
 </style>
-<script type="text/javascript" src="/resources/member/js/join_page.js?ver=31"></script>
+<script type="text/javascript" src="/resources/member/js/join_page.js?ver=32"></script>
 </head>
 <body>
 <div class="row">

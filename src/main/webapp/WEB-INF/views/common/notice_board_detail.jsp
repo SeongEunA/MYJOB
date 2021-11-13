@@ -124,10 +124,10 @@ table td{
 <body>
 <div class="row">
 	<div class="bodyContainer col-12">
-		<div class="col-6 noticeDetailTitleDiv">
+		<div class="col-7 noticeDetailTitleDiv">
 			<div class="col-12 noticeDetailTitle">공지사항 상세페이지</div>
 		</div>
-		<div class="col-6 noticeContentDiv">
+		<div class="col-7 noticeContentDiv">
 			<div class="col-12 noticeContent">
 				<table>
 				<colgroup>
