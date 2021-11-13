@@ -176,7 +176,7 @@ text-align:center;
 							</tr>
 							<tr>
 								<td class="paddingReg">${reviewVO.reviewBoardRegDate }</td>
-								<td class="paddingTag">#태그1 #태그2 #태그3 #태그4</td>
+								<td class="paddingTag"></td>
 							</tr>
 						</tbody>
 						</table>

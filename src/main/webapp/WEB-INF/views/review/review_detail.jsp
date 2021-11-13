@@ -302,6 +302,25 @@ background-color:#EBF7FF;
 .subTitle{
 	margin-top: 30px;
 }
+.deleteBtnDiv{
+	text-align: right;
+}
+.searchBtn2{											
+	width:5%;
+	height:100%;
+	border: 3px solid #1F50B5;
+	border-radius: 5px;
+	color: #fff;
+	background:#1F50B5;
+	text-transform: uppercase;
+	font-size: 1em;
+	line-height: 1.7em;
+	font-weight: bold;
+	letter-spacing: .1em;
+	font-family: "Roboto Condensed", sans-serif;
+	cursor: pointer;
+	text-align:center;
+}
 
 </style>
 </head>
@@ -439,8 +458,8 @@ background-color:#EBF7FF;
 														<input type="hidden" name="reviewBoardCode" value="${reviewReplyVO.reviewBoardCode}"> 
 														<input type="hidden" class="hiddenReviewReplyCode" name="reviewReplyCode"value="${reviewReplyVO.reviewReplyCode }">
 													</form>
-														<div class="deleteBtn">
-															<input type="button" onclick="deleteReply();" value="삭제">
+														<div class="deleteBtnDiv">
+															<input type="button" onclick="deleteReply();" class="searchBtn2" value="삭제">
 														</div>
 												 </c:if>
 											</div>
