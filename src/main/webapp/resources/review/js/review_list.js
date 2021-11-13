@@ -25,8 +25,17 @@ $(document).ready(function(){
 
 //함수 선언 영역
 (function($){
-	//aaa = function(){
-	//};
+	noticeCod= function(memberId, courseListSize){
+		
+			if(courseListSize == 0){
+				alert('담은 코스가 없습니다');
+				alert('코스를 담은 후에 후기를 작성해주세요');
+				location.href = '/course/courseSearch' 
+			}
+			else{
+				location.href = '/review/regReview?memberId = ' + memberId; 
+			}
+		}
    
 })(jQuery);
 

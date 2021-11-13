@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=5"></script>
+<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=6"></script>
 <style type="text/css">
 
 .regContainer{

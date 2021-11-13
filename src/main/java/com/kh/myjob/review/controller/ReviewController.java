@@ -40,7 +40,7 @@ public class ReviewController {
 	
 	// 리뷰목록화면
 	@RequestMapping("/selectReviewList")
-	public String SelectReviewList(Model model, ReviewVO reviewVO) {
+	public String SelectReviewList(Model model, ReviewVO reviewVO, CourseVO courseVO) {
 		//페이징처리 게시글수 
 		int reviewCnt = reviewService.selectReviewCnt(reviewVO);
 	
@@ -52,6 +52,8 @@ public class ReviewController {
 	
 		
 		model.addAttribute("reviewList", reviewService.selectReviewList(reviewVO));
+		
+		model.addAttribute("courseList", courseService.selectCoursePlaceList(courseVO));
 			
 		return "review/review_list";
 	}
@@ -70,8 +72,9 @@ public class ReviewController {
 			model.addAttribute("courseListBycourseCode", courseService.selectCoursePlaceListByCourseCode(courseVO));
 		}
 		
-		
 		return "review/reg_review";
+		
+		
 	}
 
 	//리뷰등록화면에서 셀렉트값 변경시 출력되는 코스 변경 ajax

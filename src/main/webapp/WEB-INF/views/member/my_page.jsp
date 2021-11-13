@@ -119,6 +119,7 @@ table td{
 	text-align:center;
 	box-shadow:inset 0 0 0 0 gray;
 }
+
 #memberAddr input[type="button"]{
 	width: 100px;
 	height: 30px;
@@ -217,7 +218,7 @@ table td{
 					</div>
 				</div>
 				<div id="detailMyInfo">
-					<table>
+					<table class="myInfoTable">
 						<colgroup>
 							<col width="14%">
 							<col width="36%">

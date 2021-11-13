@@ -120,8 +120,6 @@ $(document).ready(function(){
 	    });
 
 
-	    noticeCod();
-	    
 //textarea 글자수 표시
 $('#test').on('keyup', function() {
     $('#test_cnt').html("("+$(this).val().length+" / 1000)");
@@ -190,18 +188,14 @@ $('#test').on('keyup', function() {
 	}*/
 	//첨부파일 개수를 초과할 경우 알림창
 	noticeCon= function(){
-		var noticeCod = $('"#pr_img').children().length;
-		alert('등록하실 수 있는 이미지 파일의 최대 개수는 3개입니다.');
-	}
-	
-	noticeCod= function(){
-	var noticeCod = $('#selectCourseCode').children().length;
-		if(noticeCod == 0){
-			alert('담은 코스가 없습니다');
-			alert('코스를 담은 후에 후기를 작성해주세요');
-			location.href = '/course/courseSearch' 
+		var noticeCon = $('"#pr_img').children().length;
+		if(noticeCon > 3){
+			
+			alert('등록하실 수 있는 이미지 파일의 최대 개수는 3개입니다.');
 		}
 	}
+	
+	
 	
 	
 })(jQuery);

@@ -98,7 +98,7 @@ a{
 					<li><a href="/common/main">홈</a></li>
 					<li><a href="/course/courseSearch">코스검색</a></li>
 					<li><a href="/course/myCourseList?memberId=${sessionScope.loginInfo.memberId }">내코스보기</a></li>
-					<li><a href="/review/selectReviewList">코스후기</a></li>
+					<li><a href="/review/selectReviewList?memberId=${sessionScope.loginInfo.memberId }">코스후기</a></li>
 					<li><a href="/common/noticeBoard">공지사항</a></li>
 				</ul>
 			</div>

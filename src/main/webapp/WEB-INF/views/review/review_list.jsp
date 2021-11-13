@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/review/js/review_list.js?ver=13"></script>
+<script type="text/javascript" src="/resources/review/js/review_list.js?ver=14"></script>
 <style type="text/css">
 
 .regCourseDiv{
@@ -17,6 +17,7 @@
 	width:100%;
 	height:185px;
 	margin:0 auto;
+	cursor: pointer;
 }
 
 .reviewTitle{
@@ -134,7 +135,7 @@ text-align:center;
 	<div class="col-12 bodyContainer">
 		<div class="col-7 regCourseDiv">
 			<div class="col-12 regCourseImg">
-				<a href="/review/regReview?memberId=${sessionScope.loginInfo.memberId }"><img src="/resources/images/파리지앵 컬렉션 엣시 배너 3333.png" class="regCourseImg"></a>
+				<img src="/resources/images/파리지앵 컬렉션 엣시 배너 3333.png" class="regCourseImg" onclick="noticeCod('${sessionScope.loginInfo.memberId }', '${courseList.size() }');">
 			</div>
 		</div>
 
