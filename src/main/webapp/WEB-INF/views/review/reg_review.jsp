@@ -32,8 +32,7 @@
     box-sizing: border-box;
 }
 .btn_center{
-	border: 1px solid pink;
-	text-align: center;
+		text-align: center;
 	margin-top: 18px;
 }
 .btn_center .reg_btn,.reg_back_btn{
@@ -50,7 +49,7 @@
 	height: 80px;
 }
 .reviewTitleContainer{
-	border-bottom:2px solid black;
+	border-bottom:3px solid #eeeeee;
 	height:50px;
 	margin:0 auto;
 	margin-top:50px;
@@ -129,14 +128,12 @@
 }
 */
 .totalCos{
-	border: 1px solid blue;
 	margin: 0 auto;
 	text-align: center;
 	padding: 15px;	
 }
 
 .selectCourseDiv{
-	border: 1px solid red;
 	font-size: 20px;
 	margin-left: 48px;
 }
@@ -176,7 +173,6 @@ textarea{
 	margin-left: 50px;
 	margin-right: 50px;
 }
-
 
 .searchBtn{
    width:12%; 

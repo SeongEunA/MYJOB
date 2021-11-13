@@ -62,7 +62,7 @@ $(document).ready(function(){
 			}
 		
 	}
-	//관리자만 볼 수 있는 삭제버튼(클릭시 컨펌창)
+	//관리자와 게시글 작성자만 볼 수 있는 삭제버튼(클릭시 컨펌창)
 	deleteReviewBoard = function() {
 		var reviewBoardCode = $('.reviewBoardCode').val();
 		var result = confirm('정말로 삭제하시겠습니까?');

@@ -16,7 +16,7 @@
 
 .reviewTitleContanier {
 	margin: 0 auto;
-
+	margin-top: 45px;
 }
 
 .mainTitle {
@@ -26,7 +26,7 @@
 }
 
 .subTitle {
-	margin-top: 15px;
+	margin-top: 30px;
 	margin: 0 auto;
 	text-align: right;
 }
@@ -55,6 +55,7 @@
 	height:50px;
 	margin:0 auto;
 	margin-top: 15px;
+	margin-top: 35px;
 }
 .regReviewText{
 	text-align: center;	
@@ -128,8 +129,7 @@ mmendLayout{
 .replyWrap{
 	margin: 0 auto;
 }
-.write{
-}
+
 
 .replyWrap .write {
 	height: 150px;
@@ -171,11 +171,22 @@ mmendLayout{
 	text-align: left;
 	border-bottom: 2px solid #eeeeee;
 }
+.reviewEmpTable{
+	width: 100%;
+	text-align: left;
+	border-bottom: 2px solid #eeeeee;
+	text-align: center;
+	padding: 30px;
+}
+.reviewEmpTable trm{
+	padding-bottom: 30px;
+}
 .reviewTable tr, td{
 	padding: 3px;
 }
 .reviewList{
 	padding: 15px;
+	margin-top: 20px;
 }
 .reviewTable tr:nth-child(2) td{
 	font-size: 16px;
@@ -190,22 +201,25 @@ mmendLayout{
 	text-align: right;
 }
 .recommendInnerLayout > div{
-	margin-top: 5px;
+	margin-top: 15px;
 	display: inline-block;
+	margin-left: 30px;
 }
 .writerDiv{
-	margin-left: 678px;
+	text-align: right;
+	margin-bottom: 13px;
 }
 .writer{
 	margin-left: 10px;
 	letter-spacing: 2px;
+	margin-right: 5px;
 }
 .dateDiv{
 	letter-spacing: 2px;
 }
-.searchBtn{											
-	width:100%;
-	height:100%;
+.reviewDeleteBtn{											
+	width:5%;
+	height:80%;
 	border: 3px solid #1F50B5;
 	border-radius: 5px;
 	color: #fff;
@@ -218,7 +232,77 @@ mmendLayout{
 	font-family: "Roboto Condensed", sans-serif;
 	cursor: pointer;
 	text-align:center;
+	margin-right: 15px;
 }
+.DeleteBtnDiv{
+	margin-top: 15px;
+	text-align: right;
+}
+.searchBtn{                                 
+   width:100%;
+   height:100%;
+   border: 3px solid #1F50B5;
+   border-radius: 5px;
+   color: #fff;
+   background:#1F50B5;
+   text-transform: uppercase;
+   font-size: 1em;
+   line-height: 1.7em;
+   font-weight: bold;
+   letter-spacing: .1em;
+   font-family: "Roboto Condensed", sans-serif;
+   cursor: pointer;
+   text-align:center;
+}
+
+.tagContainer{
+border:1px solid white;
+height:160px;
+margin:0 auto;
+margin-top: 20px;
+height: 80px;
+}
+.tagLayout{
+border:1px solid white;
+height:50px;
+margin-top:20px;
+}
+.tagLayout > .tag-li-container >ul >li{
+width:auto;
+border:1px solid #A6A6A6;
+border-radius: 5px;
+padding:10px 20px;
+color:#A6A6A6;
+margin-left:10px;
+margin-right:10px;
+cursor: pointer;
+}
+.tagLayout > .tag-li-container >ul >li:hover{
+width:auto;
+border:1px solid #D5D5D5;
+border-radius: 5px;
+padding:10px 20px;
+color:#D5D5D5;
+margin-left:10px;
+margin-right:10px;
+cursor: pointer;
+}
+.tag-li-container{
+border:1px solid white;
+height:100%;
+margin:0 auto;
+text-align:center;
+}
+.mainReviewContainer{
+border:1px solid #EBF7FF;
+height:400px;
+text-align: center;
+background-color:#EBF7FF;
+}
+.subTitle{
+	margin-top: 30px;
+}
+
 </style>
 </head>
 <body>
@@ -233,7 +317,7 @@ mmendLayout{
 			    <div class="subTitle">				
 					<div class="recommendLayout">
 						<div class="recommendInnerLayout">
-							<div id="appendRecommendCnt" style="width: 4%">
+							<div id="appendRecommendCnt" style="width: 5%">
 								<c:choose>
 									<c:when test="${reviewRecom.isRecommend eq 'Y'}">
 										<img class="recomBtn" src="/resources/images/updateRecommend.PNG">${review.reviewBoardRecommendCnt }
@@ -243,7 +327,7 @@ mmendLayout{
 									</c:otherwise>
 								</c:choose>
 							</div>
-								조회수${review.reviewBoardReadCnt }
+								조회수&nbsp;${review.reviewBoardReadCnt }
 							<div style="width: 7%" id="markerXY">
 								<c:forEach items="${placeLocaList }" var="place">
 									<c:forEach items="${place.coursePlaceList}" var="placeXY">
@@ -252,24 +336,39 @@ mmendLayout{
 									</c:forEach> 
 								</c:forEach>
 							</div>
-							<div class="col-3 writerDiv">
+							
+						</div>
+						<div class="writerDiv">
 								<div class="writer">글쓴이:&nbsp;${review.reviewBoardWriter }</div>														
-							</div>
-							 <c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' || sessionScope.loginInfo.memberId eq reviewVO.reviewBoardWriter}">
-								<div class="adminBtn" style="width: 88%">
-									<input type="button" id="deleteReviewBoardBtn" value="삭제" onclick="deleteReviewBoard();">
-								</div>	
-							</c:if> 
 						</div>
 						<div class="dateDiv">
 							작성일:&nbsp;${review.reviewBoardRegDate }
 						</div>
-					</div>
+					   </div>
 				</div><!-- subtitle -->  
+						<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' || sessionScope.loginInfo.memberId eq review.reviewBoardWriter}">
+							<div class="DeleteBtnDiv" style="width: 100%">
+								<input type="button" value="삭제" class="reviewDeleteBtn" onclick="deleteReviewBoard();">
+							</div>	
+						</c:if> 
 			</div>
 			<!-- 태그시작 -->
-			<div class="regTagContainer col-6">
-				태그좌
+			<div class="row">
+				<div class="col-12">
+					<div class="tagContainer col-8">
+						<div class="col-12 tagLayout">
+							<div class="tag-li-container col-8">
+								<ul>
+									<li>#서울	</li>
+									<li>#등산</li>
+									<li>#100대명산</li>
+									<li>#가을여행</li>
+									<li>#단풍여행</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="regReviewText col-7">
 				${review.reviewBoardContent }
@@ -312,51 +411,55 @@ mmendLayout{
 											<input type="submit" value="등록" class="searchBtn">
 										</div>
 									</div><!-- textAreaLayout -->
-								</div>
-								
-								
+								</div>							
 							</div>
 						</form>	
 				<div class="col-12">
+					<div class="col-12 reviewList">
 					<c:choose>
 						<c:when test="${!empty replyList}">
 							<c:forEach items="${replyList }" var="reviewReplyVO">
-									<div class="col-12 reviewList">
-										<table class="reviewTable">
-											<tr>
-												<td>
-													${reviewReplyVO.reviewReplyContent}												
-												</td>
-											</tr>
-											<tr>
-												<td>
-													${reviewReplyVO.reviewReplyWriter } | ${reviewReplyVO.reviewReplyRegDate }
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<div>
-													 &nbsp;
-														<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' || sessionScope.loginInfo.memberId eq reviewReplyVO.memberId}">
-															<form action="/review/deleteReply" method="get" 	id="deleteReply">
-																<input type="hidden" name="reviewBoardCode" value="${reviewReplyVO.reviewBoardCode}"> 
-																<input type="hidden" class="hiddenReviewReplyCode" name="reviewReplyCode"value="${reviewReplyVO.reviewReplyCode }">
-															</form>
-																<div class="deleteBtn">
-																	<input type="button" onclick="deleteReply();" value="삭제">
-																</div>
-														 </c:if>
-													</div>
-												</td>
-											</tr>
-										</table>
-									</div>
+								<table class="reviewTable">
+									<tr>
+										<td>
+											${reviewReplyVO.reviewReplyContent}												
+										</td>
+									</tr>
+									<tr>
+										<td>
+											${reviewReplyVO.reviewReplyWriter } | ${reviewReplyVO.reviewReplyRegDate }
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div>
+											 &nbsp;
+												<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' || sessionScope.loginInfo.memberId eq reviewReplyVO.memberId}">
+													<form action="/review/deleteReply" method="get" 	id="deleteReply">
+														<input type="hidden" name="reviewBoardCode" value="${reviewReplyVO.reviewBoardCode}"> 
+														<input type="hidden" class="hiddenReviewReplyCode" name="reviewReplyCode"value="${reviewReplyVO.reviewReplyCode }">
+													</form>
+														<div class="deleteBtn">
+															<input type="button" onclick="deleteReply();" value="삭제">
+														</div>
+												 </c:if>
+											</div>
+										</td>
+									</tr>
+								</table>
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
-							등록된 댓글이 없습니다											
+								<table class="reviewEmpTable">
+									<tr>
+										<td>
+											등록된 댓글이 없습니다.													
+										</td>
+									</tr>
+								</table>											
 						</c:otherwise>
 					</c:choose>
+					</div>
 				</div>
 			</div>	
 		</div>

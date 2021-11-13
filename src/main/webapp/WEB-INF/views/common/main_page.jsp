@@ -327,12 +327,11 @@ height:100%;
 						<div class="col-12 tagLayout">
 							<div class="tag-li-container col-8">
 								<ul>
-									<li>#태그1</li>
-									<li>#태그2</li>
-									<li>#태그3</li>
-									<li>#태그4</li>
-									<li>#태그5</li>
-									<li>#태그6</li>
+									<li>#전체</li>
+									<li>#제주도</li>
+									<li>#여행지검색</li>
+									<li>#가을여행</li>
+									<li>#단풍여행</li>
 								</ul>
 							</div>
 						</div>
@@ -340,12 +339,11 @@ height:100%;
 								<div class="col-12 tagLayout">
 									<div class="tag-li-container col-8">
 							<ul>
-								<li>태그1</li>
-								<li>태그2</li>
-								<li>태그3</li>
-								<li>태그4</li>
-								<li>태그5</li>
-								<li>태그6</li>
+								<li>#당일치기여행</li>
+								<li>#충주</li>
+								<li>#부산_여행지_추천</li>
+								<li>#가족여행</li>
+								<li>#우리문화체험</li>
 							</ul>
 								</div>
 							</div>

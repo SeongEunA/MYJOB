@@ -10,7 +10,6 @@
 <style type="text/css">
 
 .regCourseDiv{
-	border:1px solid black;
 	margin:0 auto;
 	margin-top:50px;
 }
@@ -26,7 +25,6 @@
 	margin: 0 auto;
 	font-size: 30px;
 }
-
 
 .reviewMargin{
 	margin: 0 auto;	

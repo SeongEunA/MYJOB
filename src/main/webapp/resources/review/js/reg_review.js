@@ -122,15 +122,15 @@ $(document).ready(function(){
 
 	    noticeCod();
 	    
-	    //textarea 글자수 표시
-	    $('#test').on('keyup', function() {
-            $('#test_cnt').html("("+$(this).val().length+" / 1000)");
+//textarea 글자수 표시
+$('#test').on('keyup', function() {
+    $('#test_cnt').html("("+$(this).val().length+" / 1000)");
  
             if($(this).val().length > 1000) {
                 $(this).val($(this).val().substring(0, 1000));
                 $('#test_cnt').html("(1000 / 1000)");
-            }
-        });
+    }
+});
 	    
 	    
 	    
@@ -190,9 +190,8 @@ $(document).ready(function(){
 	}*/
 	//첨부파일 개수를 초과할 경우 알림창
 	noticeCon= function(){
+		var noticeCod = $('"#pr_img').children().length;
 		alert('등록하실 수 있는 이미지 파일의 최대 개수는 3개입니다.');
-		var noticeCod = $('#pr_img_input').children().length;
-		alert(noticeCode);
 	}
 	
 	noticeCod= function(){
