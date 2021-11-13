@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/review/js/review_list.js?ver=17"></script>
+<script type="text/javascript" src="/resources/review/js/review_list.js?ver=1"></script>
 <style type="text/css">
 
 .regCourseDiv{
@@ -135,7 +135,7 @@ text-align:center;
 	<div class="col-12 bodyContainer">
 		<div class="col-7 regCourseDiv">
 			<div class="col-12 regCourseImg">
-				<img src="/resources/images/파리지앵 컬렉션 엣시 배너 3333.png" class="regCourseImg" onclick="noticeCod('${sessionScope.loginInfo.memberId }', '${courseList.size() }');">
+				<img src="/resources/images/파리지앵 컬렉션 엣시 배너 3333.png" class="regCourseImg" onclick="noticeCod('${sessionScope.loginInfo.memberId }', '${courseList.size() }', '${reviewVO.courseCode}')">
 			</div>
 		</div>
 

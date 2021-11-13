@@ -25,7 +25,7 @@ $(document).ready(function(){
 
 //함수 선언 영역
 (function($){
-	noticeCod= function(memberId, courseListSize){
+	noticeCod= function(memberId, courseListSize, courseCode){
 		
 			if(courseListSize == 0){
 				alert('담은 코스가 없습니다');
@@ -33,7 +33,7 @@ $(document).ready(function(){
 				location.href = '/course/courseSearch' 
 			}
 			else{
-				location.href = '/review/regReview?memberId=' + memberId; 
+				location.href = '/review/regReview?memberId=' + memberId + '&courseCode=' + courseCode; 
 			}
 		}
    
