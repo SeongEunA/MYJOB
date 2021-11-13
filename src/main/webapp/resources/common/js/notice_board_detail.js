@@ -108,7 +108,7 @@ $(document).ready(function(){
 						    str += '			<td colspan="3">내 용</td>';
 						    str += '		</tr>';
 						    str += '		<tr class="contentTr">';
-						    str += '			<td colspan="3" id="boardContent">' + result.boardContent + '</td>';
+						    str += '			<td colspan="3" id="boardContent"><pre>' + result.boardContent + '</pre></td>';
 						    str += '		</tr>';
 						    str += ' 	</table>';
 			  	   			if(memberIsAdmin == 'Y'){

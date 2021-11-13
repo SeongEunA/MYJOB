@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/common/js/notice_board_detail.js?ver=4"></script>
+<script type="text/javascript" src="/resources/common/js/notice_board_detail.js?ver=5"></script>
 <style type="text/css">
 .noticeDetailTitleDiv{
 	margin:0 auto;
@@ -149,7 +149,7 @@ table td{
 						<td colspan="3">내 용</td>
 					</tr>
 					<tr class="contentTr">
-						<td colspan="3" id="boardContent">${detailNoticeBoard.boardContent }</td>
+						<td colspan="3" id="boardContent"><pre>${detailNoticeBoard.boardContent }</pre></td>
 					</tr>
 				</table>
 				<c:if test="${sessionScope.loginInfo.memberIsAdmin eq 'Y' }">
