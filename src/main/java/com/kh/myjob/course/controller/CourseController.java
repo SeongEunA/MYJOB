@@ -27,6 +27,7 @@ import com.kh.myjob.course.vo.PlacePageVO;
 import com.kh.myjob.course.vo.PlaceVO;
 import com.kh.myjob.course.vo.ShortCourseVO;
 import com.kh.myjob.course.vo.TempSaveCourseVO;
+import com.kh.myjob.review.service.ReviewService;
 
 @Controller
 @RequestMapping("/course")
@@ -34,6 +35,9 @@ public class CourseController {
 	
 	@Resource(name = "courseService")
 	private CourseService courseService;
+	
+	@Resource(name = "reviewService")
+	private ReviewService reviewService;
 	
 	//코스 검색페이지 이동(메뉴버튼 클릭)
 	@GetMapping("/courseSearch")
@@ -97,6 +101,8 @@ public class CourseController {
 		model.addAttribute("courseList", courseService.selectCoursePlaceList(courseVO));
 		
 		model.addAttribute("tempSaveCourseList", courseService.selectTempSaveCourse(tempSaveCourseVO));
+		
+		model.addAttribute("reviewCourseCodeList", reviewService.selectReviewListForCourseCode());
 		
 		return "course/mycourse_list";
 	}

@@ -286,6 +286,7 @@ $(document).ready(function(){
 									$('#resInfoList').empty();
 									document.getElementById('submitCourse').style="visibility:hidden";
 									document.getElementById('courseName').value="";
+									scrollToTop();
 								}
 	                        },
 	                        error: function(){
@@ -365,7 +366,13 @@ $(document).ready(function(){
 	    $('#keywordForm').submit();
 	    
 	    //스크롤이동
-	    scrollToWeather();
+	    if(nowPage == 1){
+	    	
+	    	scrollToWeather();
+	    }
+	    else{
+	    	scrollToMap();
+	    }
 		
 		//장소리스트 ajax 보내기
 		$.ajax({
@@ -607,15 +614,25 @@ $(document).ready(function(){
 	};
 
 	//--------스크롤 이동 이벤트 모음--------//
+	//제일 위로 이동
+	scrollToTop = function(){
+		//스크롤이동
+	    var offset = $('#courseContainer').offset(); //선택한 태그의 위치를 반환
+		
+		//animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
+		$('html').animate({scrollTop : offset.top}, 100);
+	};
+	
 	//지도가 위치한 곳 으로 스크롤 이동
 	scrollToMap = function(){
 		//스크롤이동
-	    var offset = $('#map_warp').offset(); //선택한 태그의 위치를 반환
+		var offset = $('#map_warp').offset(); //선택한 태그의 위치를 반환
 		
 		//animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
 		$('html').animate({scrollTop : offset.top}, 100);
 	};
 
+	//날씨 영역으로 스크롤 이동
 	scrollToWeather = function(){
 		//스크롤이동
 		var offset = $('#weatherHowToContainer').offset(); //선택한 태그의 위치를 반환

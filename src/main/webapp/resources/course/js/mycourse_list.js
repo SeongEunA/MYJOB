@@ -291,12 +291,33 @@ $(document).ready(function(){
 		var courseCode = $('input[name=courseCode]:checked').val();
 		var courseName = $('label[for="' + courseCode + '"]').text();
 		var memberId = $('#memberId').val();
-
+		var regCourseCodeArr =[]; 
+		var regCourseCodeLen = $('.regCourseCode').length; 
+		
+		for(var i = 0; i < regCourseCodeLen; i++){
+			regCourseCodeArr[i] = $('.regCourseCode').eq(i).val();
+			console.log(regCourseCodeArr[i]);
+		}
+		
+		for(var i = 0; i < regCourseCodeLen; i++){
+			if(regCourseCodeArr[i] == courseCode){
+				var delResult = confirm('후기가 존재하는 코스입니다.\n그래도 삭제하시겠습니까?')
+				
+				if(delResult){
+					location.href = '/course/deleteCourse?courseCode=' + courseCode + '&memberId=' + memberId;
+				}
+				return;
+			}
+		}	
+		
 		var result = confirm(courseName + ' 코스를 삭제 하시겠습니까?');
 		
 		if(result){
 			location.href = '/course/deleteCourse?courseCode=' + courseCode + '&memberId=' + memberId;
+			return;
 		}
+		
+		
 	};
 	//라디오박스 아무것도 체크안하고 코스추천누르면 .
 	checkCourseCode = function(){

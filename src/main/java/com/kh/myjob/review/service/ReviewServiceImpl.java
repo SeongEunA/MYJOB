@@ -113,6 +113,10 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<ReviewVO> selectMainImgName() {
 		return sqlSession.selectList("reviewMapper.selectMainImgName");
 	}
+	@Override
+	public List<String> selectReviewListForCourseCode() {
+		return sqlSession.selectList("reviewMapper.selectReviewListForCourseCode");
+	}
 	
 	
 	

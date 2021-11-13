@@ -61,6 +61,9 @@ public interface ReviewService {
 	//메인페이지에 대표사진 5장 등록
 	List<ReviewVO> selectMainImgName();
 	
+	//등록된 후기 코스코드 조회
+	List<String> selectReviewListForCourseCode();
+	
 	//---------------아래는 관리자기능----------------//
 	
 	//총 댓글수

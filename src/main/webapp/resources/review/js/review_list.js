@@ -33,7 +33,7 @@ $(document).ready(function(){
 				location.href = '/course/courseSearch' 
 			}
 			else{
-				location.href = '/review/regReview?memberId = ' + memberId; 
+				location.href = '/review/regReview?memberId=' + memberId; 
 			}
 		}
    

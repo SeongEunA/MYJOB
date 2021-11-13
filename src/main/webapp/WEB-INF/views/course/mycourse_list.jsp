@@ -161,7 +161,7 @@ font-size:40px;
 margin-right:30px;
 }
 </style>
-<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=16"></script>
+<script type="text/javascript"src="/resources/course/js/mycourse_list.js?ver=18"></script>
  <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script type="text/javascript">
@@ -236,6 +236,9 @@ $.ajax({
 				<input type="button" value="코스삭제" class="deleteCourseBtn" onclick="deleteCourse();">
 			</div>
 	     </c:if>
+	     <c:forEach items="${reviewCourseCodeList }" var="regCourseCode">
+	     	<input type="hidden" class="regCourseCode" value="${regCourseCode }">
+	     </c:forEach>
 	</form>
 	<!-- 추천코스 출력 DIV -->
 		<c:if test="${resultCourseList ne null}">

@@ -84,6 +84,12 @@
 				
 	</insert>
 	
+	<!-- 전체후기 코스코드 조회 -->
+	<select id="selectReviewListForCourseCode" resultType="String">
+		SELECT COURSE_CODE
+		FROM REVIEW_BOARD
+	</select>
+	
 	<!--후기 리스트 조회 + 페이징처리 + 검색어  -->
 	<select id="selectReviewList" resultMap="reviewBoard">
 		SELECT REVIEW_BOARD_CODE
