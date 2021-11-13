@@ -75,7 +75,7 @@ $(document).ready(function(){
 	//추천수증가
 	updateRecommend = function() {
 		var reviewBoardCode = $('.reviewBoardCode').val();
-		var memberId = $('.reviewReplyId').val();	
+		var memberId = $('.reviewReplyWriter').val();	
 		if(memberId != ''){
 			if(!isRecommend){
 				isRecommend = true;
