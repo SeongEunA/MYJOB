@@ -730,7 +730,7 @@ opacity:0.6;
 <!-- 날씨영역 -->
 <!-- 날씨영역 -->
 <!-- 은아 10/23 테이블 작업 -->
-<div class="weatherHowToContainer col-12">
+<div class="weatherHowToContainer col-12" id="weatherHowToContainer">
 	<div class="weatherContainer" id="weatherArea">
 	<div class="weatherBox" id="weatherBox">
 		<c:forEach items="${weatherList}" var="totalWeatherVO" varStatus="cnt">
@@ -856,7 +856,7 @@ opacity:0.6;
 		</div>
 	
 	<!-- 검색 장소 리스트 영역 -->
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=25"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=1"></script>
 		
 		<div class="col-12 placeListContainer">
 		   <div class="col-11 placeListOrder" id="placeList"><!--장소리스트 나오는곳 -->
