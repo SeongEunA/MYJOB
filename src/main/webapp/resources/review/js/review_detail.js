@@ -76,8 +76,6 @@ $(document).ready(function(){
 	updateRecommend = function() {
 		var reviewBoardCode = $('.reviewBoardCode').val();
 		var memberId = $('.reviewReplyId').val();	
-		alert(reviewBoardCode);
-		alert(memberId);
 		if(memberId != ''){
 			if(!isRecommend){
 				isRecommend = true;

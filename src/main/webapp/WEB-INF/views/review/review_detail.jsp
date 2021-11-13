@@ -378,11 +378,10 @@ background-color:#EBF7FF;
 						<div class="col-12 tagLayout">
 							<div class="tag-li-container col-8">
 								<ul>
-									<li>#서울	</li>
-									<li>#등산</li>
-									<li>#100대명산</li>
-									<li>#가을여행</li>
-									<li>#단풍여행</li>
+								<c:forEach items="${reviewTagList }" var="tag">
+									<li>${tag.tagName }</li>
+								</c:forEach>
+									
 								</ul>
 							</div>
 						</div>

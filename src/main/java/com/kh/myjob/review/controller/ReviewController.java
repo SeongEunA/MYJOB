@@ -28,6 +28,7 @@ import com.kh.myjob.review.vo.ReviewImgVO;
 import com.kh.myjob.review.vo.ReviewRecomVO;
 import com.kh.myjob.review.vo.ReviewReplyVO;
 import com.kh.myjob.review.vo.ReviewVO;
+import com.kh.myjob.review.vo.TagVO;
 
 @Controller
 @RequestMapping("/review")
@@ -62,6 +63,7 @@ public class ReviewController {
 	@GetMapping("/regReview")
 	public String goRegReview(CourseVO courseVO, Model model) {
 		
+		
 		//아이디별 코스리스트 조회
 		model.addAttribute("courseList", courseService.selectCoursePlaceList(courseVO));
 		
@@ -87,13 +89,15 @@ public class ReviewController {
 
 	// 리뷰등록
 	@PostMapping("/regReview")
-	public String regReview(ReviewVO reviewVO, MultipartHttpServletRequest multi, HttpSession session) {
+	public String regReview(ReviewVO reviewVO, MultipartHttpServletRequest multi, HttpSession session,TagVO tagVO) {
+		
 		// name 속성 값으로 첨부파일을 가져온다
 		Iterator<String> inpuNames = multi.getFileNames();
 		// 첨부할 경로
-		String uploadPath = "C:\\Users\\CHOE YUSEUNG\\git\\MYJOB\\src\\main\\webapp\\resources\\images\\";
+		String uploadPath = "C:\\Users\\USER\\git\\MYJOB\\src\\main\\webapp\\resources\\images\\";
 		// 첨부파일의 정보를 받을 통
 		List<ReviewImgVO> imgList = new ArrayList<>();
+		
 		// 다음 리뷰코드조회
 		String reviewBoardCode = reviewService.selectNextReviewBoardCode();
 		// 다음 이미지코드조회
@@ -169,6 +173,17 @@ public class ReviewController {
 			  reviewService.insertReviewImg(reviewVO); 
 		  }
 		
+		  //태그기능
+		  String tagArr = tagVO.getTagArr();
+			String[] tagArrSplit = tagArr.split(",");
+			
+			for(int i=0; i<tagArrSplit.length;i++) {
+				System.out.println(tagArrSplit[i]);
+				tagVO.setTagName(tagArrSplit[i]);
+				tagVO.setReviewBoardCode(reviewBoardCode);
+				reviewService.insertTag(tagVO);
+			}
+			
 		 
 		return "redirect:/review/selectReviewList";
 	}
@@ -190,7 +205,7 @@ public class ReviewController {
 		model.addAttribute("reviewRecom", reviewService.selectRecomMember(reviewRecomVO));
 		model.addAttribute("review", reviewService.selectReviewDetail(reviewVO));
 		model.addAttribute("replyList", reviewService.selectReviewReplyList(reviewReplyVO));
-		
+		model.addAttribute("reviewTagList", reviewService.selectTag(reviewVO));
 		return "review/review_detail";
 	}
 
@@ -229,5 +244,6 @@ public class ReviewController {
 		return "review/delete_review_board_result";
 	}
 	
+
 	
 }

@@ -37,7 +37,12 @@
 		<result column="REVIEW_BOARD_CODE" 	   		 property="reviewBoardCode"/>
 		<result column="IS_RECOMMEND"	 		     property="isRecommend"/>
 	</resultMap>
-
+	<resultMap type="com.kh.myjob.review.vo.TagVO" id="tag">
+		<id column="TAG_CODE"  	     property="tagCode"/>
+		<result column="TAG_NAME" 	   				 property="tagName"/>
+		<result column="REVIEW_BOARD_CODE" 	   		 property="reviewBoardCode"/>
+	</resultMap>
+	
 	
 	<!--후기등록  -->
 	<insert id="insertReview">
@@ -367,6 +372,27 @@
 		)
 		WHERE ROW_NUM &gt;= 1 AND ROW_NUM &lt;= 5	
 	</select>	
+	
+	<!-- 게시물 태그 등록 -->
+	<insert id="insertTag">
+	INSERT INTO REVIEW_TAG 
+	VALUES(
+	(SELECT 'TAG_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(TAG_CODE,5,4))),0)+1,4,0) FROM REVIEW_TAG)
+	,#{tagName}
+	,#{reviewBoardCode}
+	)
+	</insert>
+	<!-- 게시물 태그 조회 -->
+	<select id="selectTag" resultMap="tag">
+	SELECT
+		TAG_CODE
+		,TAG_NAME
+		,REVIEW_BOARD_CODE
+	FROM REVIEW_TAG
+	WHERE REVIEW_BOARD_CODE=#{reviewBoardCode}
+	</select>
+	
+	
 </mapper>
 
 

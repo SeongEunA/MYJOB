@@ -6,6 +6,7 @@ import com.kh.myjob.review.vo.ReviewImgVO;
 import com.kh.myjob.review.vo.ReviewRecomVO;
 import com.kh.myjob.review.vo.ReviewReplyVO;
 import com.kh.myjob.review.vo.ReviewVO;
+import com.kh.myjob.review.vo.TagVO;
 
 public interface ReviewService {
 	
@@ -64,6 +65,11 @@ public interface ReviewService {
 	//등록된 후기 코스코드 조회
 	List<String> selectReviewListForCourseCode();
 	
+	//태그 등록 기능
+	void insertTag(TagVO tagVO);
+	//태그 조회 기능
+	List<TagVO> selectTag(ReviewVO reviewVO); 
+	
 	//---------------아래는 관리자기능----------------//
 	
 	//총 댓글수
@@ -74,5 +80,6 @@ public interface ReviewService {
 	
 	//관리자 댓글 관리 댓글 상세조회
 	ReviewReplyVO manageReplyDetail(String reviewReplyCode);
+	
 	
 }

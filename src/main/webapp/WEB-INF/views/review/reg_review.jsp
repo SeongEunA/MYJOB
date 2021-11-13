@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=6"></script>
+<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=13"></script>
 <style type="text/css">
 
 .regContainer{
@@ -276,7 +276,17 @@ textarea{
 							</div>
 						</div>
 					</div>
-					
+					<!-- 태그추가기능시작 -->
+					<div class="insertTagContainer">
+						
+						태그입력:<input type="text" id="tagName" name="insertTagName"><input type="submit" value="등록" onclick="insertTag(document.getElementById('tagName').value)">
+						
+					</div>
+					<div class="resultTagContainer">
+						
+						<input type="hidden" name="tagArr" id="tagArr">
+					</div>
+					<!--태그추가기능종료 -->
 					<div class="introCourseDiv">
 						<div class="reviewTitle">제목&nbsp;&nbsp;<input type="text" name="reviewBoardTitle" required></div>	
 						<textarea name="reviewBoardContent" id="test" maxlength="2000" class="comment_textarea" title="코스 소개" style="resize: none;"placeholder="코스에 대한 간략한 설명을 기재할 수 있습니다."></textarea>

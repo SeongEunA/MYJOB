@@ -10,6 +10,7 @@ import com.kh.myjob.review.vo.ReviewImgVO;
 import com.kh.myjob.review.vo.ReviewRecomVO;
 import com.kh.myjob.review.vo.ReviewReplyVO;
 import com.kh.myjob.review.vo.ReviewVO;
+import com.kh.myjob.review.vo.TagVO;
 
 @Service("reviewService")
 public class ReviewServiceImpl implements ReviewService {
@@ -116,6 +117,17 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public List<String> selectReviewListForCourseCode() {
 		return sqlSession.selectList("reviewMapper.selectReviewListForCourseCode");
+	}
+	@Override
+	public void insertTag(TagVO tagVO) {
+		
+		sqlSession.insert("reviewMapper.insertTag", tagVO);
+		
+	}
+	@Override
+	public List<TagVO> selectTag(ReviewVO reviewVO) {
+		
+		return sqlSession.selectList("reviewMapper.selectTag",reviewVO);
 	}
 	
 	

@@ -143,6 +143,7 @@ $('#test').on('keyup', function() {
 
 //함수 선언 영역
 (function($){
+	var tagArr = "";
 	deleteImg = function(selectedTag, number){
 		$(selectedTag).parent().parent().remove();
 	
@@ -195,6 +196,14 @@ $('#test').on('keyup', function() {
 		}
 	}
 	
+	//태그 추가하는 함수
+	insertTag = function(tagName){
+		tagArr = tagArr +"#"+tagName+",";
+		$('.resultTagContainer').append('<span class="tagBox">'+tagName+'</span>');
+		$('#tagName').val('');
+		$('#tagArr').val(tagArr);
+		
+	}
 	
 	
 	
