@@ -14,19 +14,18 @@ $(document).ready(function(){
 	
 	
 	
-	$(document).on('click', '.replyContent', function() {
-		var loginInfo = $('.reviewReplyWriter').val();
-		if(loginInfo == ''){
-			 var result = confirm('로그인을 하시겠습니까?');
-			 if(result){
-				 location.href = '/member/login';
-			 }
-		}
-	
-		
-		
-		
-	});
+//	$(document).on('click', '.textAreaDiv', function() {
+//		var loginInfo = $('.reviewReplyWriter').val();
+//		alert('이게맞니?')
+//		if(loginInfo == ''){
+//			 var result = confirm('로그인을 하시겠습니까?');
+//			 if(result){
+//				 location.href = '/member/login';
+//				 return;
+//			 }
+//		}
+//	
+//	});
    
 	//ajax 사용
 //	$.ajax({
@@ -146,7 +145,7 @@ var linePath = [];
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 mapOption = { 
     center: new kakao.maps.LatLng(markerArrX[0], markerArrY[1]), // 지도의 중심좌표
-    level: 10 // 지도의 확대 레벨
+    level: 6 // 지도의 확대 레벨
 };
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다

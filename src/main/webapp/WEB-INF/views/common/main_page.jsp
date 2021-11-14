@@ -246,6 +246,9 @@ border:1px solid #BDBDBD;
 width:100%;
 height:100%;
 font-family: 'Cafe24Oneprettynight';
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
 }
 .noticeTable > thead{
 border:1px solid #F29661;
@@ -312,8 +315,8 @@ height:100%;
 			        </li>
 			        <li>
 				        <div class="photoText1"  id="text2">
-				       	 <h1>실험용</h1>
-				       	 <p> 자연을 벗삼아 힐링~! 나주 구석구석 숨은 여행지로 비대면 여행 떠나보세요!</p>
+				       	 <h1>야경이 이쁜 대교</h1>
+				       	 <p> 도심을 밝게 비추어 주는 울산 멋 태화교</p>
 				       	 </div>
 				        <img src="/resources/images/pexels-photo-2341830.jpeg">
 			        </li>  
@@ -326,7 +329,7 @@ height:100%;
 						<div class="col-12 tagLayout">
 							<div class="tag-li-container col-8">
 								<ul>
-									<c:forEach items="${tagList }" var="tag" begin="0" end="2">
+									<c:forEach items="${tagList }" var="tag" begin="0" end="4">
 								<li>
 									<a href="/review/selectReviewList?tagCode=${tag.tagCode }">${tag.tagName }</a>
 								</li>
@@ -338,8 +341,8 @@ height:100%;
 								<div class="col-12 tagLayout">
 									<div class="tag-li-container col-8">
 							<ul>
-							<c:forEach items="${tagList }" var="tag" begin="2" end="5">
-									<li>${tag.tagName }</li>
+							<c:forEach items="${tagList }" var="tag" begin="5" end="9">
+									<li><a href="/review/selectReviewList?tagCode=${tag.tagCode }">${tag.tagName }</a></li>
 							</c:forEach>
 							</ul>
 								</div>

@@ -290,7 +290,7 @@ $(document).ready(function(){
 								}
 	                        },
 	                        error: function(){
-	                        	alert('실패');
+	                        	alert('코스이름을 입력해주세요!');
 	                        }
 						});
 	            		
@@ -302,7 +302,7 @@ $(document).ready(function(){
 				},
 				error: function(){
 					//ajax 실행 실패 시 실행되는 구간
-					alert('실패');
+					alert('코스이름을 입력해주세요!');
 				}
 				
 			});//코스중복 ajax 검사 end

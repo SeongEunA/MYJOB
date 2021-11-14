@@ -136,9 +136,12 @@
       FROM REVIEW_BOARD R, REVIEW_IMG I
       WHERE IS_MAIN = 'Y'
       AND R.REVIEW_BOARD_CODE = I.REVIEW_BOARD_CODE
+      <!-- <if test="searchKeyword.equals('TAG_CODE')">
+      	AND T.REVIEW_BOARD_CODE = I.REVIEW_BOARD_CODE
+      </if> -->
       <if test="searchValue != null and !searchValue.equals('')">
          AND   ${searchKeyword} LIKE '%'||#{searchValue}||'%'
-      </if>     
+      </if>
         ORDER BY 
          <if test="orderByReadCnt != null and !orderByReadCnt.equals('Y')">
            REVIEW_BOARD_READ_CNT DESC, REVIEW_BOARD_RECOMMEND_CNT DESC,    

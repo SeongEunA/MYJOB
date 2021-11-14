@@ -204,9 +204,9 @@ text-align:center;
 						<div class="col-4">
 							<select class="form-select"  name="searchKeyword">
 								<option value="REVIEW_BOARD_TITLE"
-									<c:if test="${reviewVO.reviewBoardTitle eq REVIEW_BOARD_TITLE}">selected</c:if>>제목</option>
+									<c:if test="${reviewVO.searchKeyword eq 'REVIEW_BOARD_TITLE'}">selected</c:if>>제목</option>
 								<option value="REVIEW_BOARD_WRITER"
-									<c:if test="${reviewVO.reviewBoardWriter eq REVIEW_BOARD_WRITER }">selected</c:if>>작성자</option>
+									<c:if test="${reviewVO.searchKeyword eq 'REVIEW_BOARD_WRITER' }">selected</c:if>>작성자</option>
 							</select>
 						</div>
 						<div class="col-5">

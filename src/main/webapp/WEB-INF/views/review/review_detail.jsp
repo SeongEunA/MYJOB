@@ -321,7 +321,9 @@ background-color:#EBF7FF;
 	cursor: pointer;
 	text-align:center;
 }
-
+.recomBtn{
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -397,7 +399,7 @@ background-color:#EBF7FF;
 				<div></div>
 			</div>
 		</div> 
-		<script type="text/javascript"src="/resources/review/js/review_detail.js?ver=18"></script>
+		<script type="text/javascript"src="/resources/review/js/review_detail.js?ver=9"></script>
 			<!-- 사진3개영역 -->
 			<div class="reviewPhotoContainer col-8">
 				<div class="reviewPhotoLayout col-8">

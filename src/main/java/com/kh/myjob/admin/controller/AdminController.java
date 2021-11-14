@@ -112,7 +112,7 @@ public class AdminController {
 	@GetMapping("/deleteNoticeBoard")
 	public String deleteNoticeBoard(String noticeBoardCode, Model model) {
 		model.addAttribute("deleteNoticeBoardResult", commonService.deleteNoticeBoard(noticeBoardCode));
-		return "admin/delete_notice_board_result";
+		return "common/delete_notice_board_result";
 	}
 	
 	
