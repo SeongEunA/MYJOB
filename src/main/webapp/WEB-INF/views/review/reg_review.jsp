@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=13"></script>
+<script type="text/javascript" src="/resources/review/js/reg_review.js?ver=14"></script>
 <style type="text/css">
 
 .regContainer{
@@ -214,6 +214,33 @@ textarea{
 .textareaInfo{
 	text-align: right;	
 }
+.tagBox{
+	width:80px;
+}
+.tagBtn{
+	border:1px solid white;
+	margin-left:10px;
+	background-color:#1F50B5;
+	color:white;
+	width:50px;
+	height:35px;
+	border-radius:10px;
+}
+.tagBtn:hover{
+	border:2px solid #1F50B5;
+	margin-left:10px;
+	background-color:white;
+	color:#1F50B5;
+	width:50px;
+	height:35px;
+	border-radius:10px;
+}
+.resultTagBox{
+	border:1px solid white;
+	display:inline-block;
+	margin-left:5px;
+	margin-top:10px;
+}
 </style>
 </head>
 <body>
@@ -279,7 +306,7 @@ textarea{
 					<!-- 태그추가기능시작 -->
 					<div class="insertTagContainer">
 						
-						태그입력:<input type="text" id="tagName" name="insertTagName"><input type="submit" value="등록" onclick="insertTag(document.getElementById('tagName').value)">
+						태그입력:<input type="text" id="tagName" name="insertTagName" class="tagBox"><input type="submit" value="등록" class="tagBtn" onclick="insertTag(document.getElementById('tagName').value)">
 						
 					</div>
 					<div class="resultTagContainer">

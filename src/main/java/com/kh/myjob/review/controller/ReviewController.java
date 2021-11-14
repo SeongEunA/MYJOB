@@ -41,16 +41,27 @@ public class ReviewController {
 	
 	// 리뷰목록화면
 	@RequestMapping("/selectReviewList")
-	public String SelectReviewList(Model model, ReviewVO reviewVO, CourseVO courseVO) {
+	public String SelectReviewList(Model model, ReviewVO reviewVO, CourseVO courseVO, TagVO tagVO) {
 		//페이징처리 게시글수 
 		int reviewCnt = reviewService.selectReviewCnt(reviewVO);
-	
+		
 	
 		reviewVO.setTotalCnt(reviewCnt);
+		 String empty ="";
+		 
+		 TagVO tagVO2 = new TagVO();
+//		 tagVO2.setTagCode(tagVO.getTagCode()); 
 		 
 		 //페이징처리 
 		reviewVO.setPageInfo();
-	
+		
+		
+//		 if(!empty.equals(tagVO2.getTagCode())&&tagVO2.getTagCode()!=null) {
+//		 System.out.println("태그가 공백이 아닐때만"); reviewVO.setSearchKeyword("TAG_CODE");
+//		 reviewVO.setSearchValue(tagVO2.getTagCode());
+//		 System.out.println(reviewVO.getSearchKeyword());
+//		 System.out.println("!!!!!!!!!!!!"+tagVO2.getTagCode()); }
+		 
 		
 		model.addAttribute("reviewList", reviewService.selectReviewList(reviewVO));
 		
@@ -58,7 +69,7 @@ public class ReviewController {
 			
 		return "review/review_list";
 	}
-
+	
 	// 리뷰등록화면으로 이동
 	@GetMapping("/regReview")
 	public String goRegReview(CourseVO courseVO, Model model) {

@@ -4,6 +4,7 @@ package com.kh.myjob.common.controller;
 import java.util.Calendar;
 
 import javax.annotation.Resource;
+import javax.swing.text.html.HTML.Tag;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import com.kh.myjob.common.service.CommonService;
 import com.kh.myjob.common.vo.NoticeBoardVO;
 import com.kh.myjob.review.service.ReviewService;
 import com.kh.myjob.review.vo.ReviewVO;
+import com.kh.myjob.review.vo.TagVO;
 
 
 @Controller
@@ -37,7 +39,7 @@ public class CommonController {
 		//페이징 처리
 		noticeBoardVO.setPageInfo();
 		
-		
+		model.addAttribute("tagList", reviewService.selectTag(reviewVO));
 		model.addAttribute("noticeBoardList", commonService.selectNoticeBoardList(noticeBoardVO));
 		model.addAttribute("reviewList", reviewService.selectMainImgName());
 		

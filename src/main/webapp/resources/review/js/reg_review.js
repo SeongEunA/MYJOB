@@ -199,7 +199,8 @@ $('#test').on('keyup', function() {
 	//태그 추가하는 함수
 	insertTag = function(tagName){
 		tagArr = tagArr +"#"+tagName+",";
-		$('.resultTagContainer').append('<span class="tagBox">'+tagName+'</span>');
+		tagName = "#" + tagName;
+		$('.resultTagContainer').append('<span class="resultTagBox">'+tagName+'</span>');
 		$('#tagName').val('');
 		$('#tagArr').val(tagArr);
 		

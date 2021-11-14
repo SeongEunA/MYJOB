@@ -130,7 +130,6 @@ border-bottom-right-radius:10px;
 width:100%;
 height:20%;
 
-
 }
 .mainReviewText > span {
 border:1px solid white;
@@ -139,7 +138,7 @@ width:90%;
 height:30px;
 font-family: 'Mini_handwriting';
 font-weight:bold;
-font-size:18px;
+font-size:28px;
 overflow:hidden;
 text-overflow:ellipsis;
 white-space:nowrap;
@@ -327,11 +326,11 @@ height:100%;
 						<div class="col-12 tagLayout">
 							<div class="tag-li-container col-8">
 								<ul>
-									<li>#전체</li>
-									<li>#제주도</li>
-									<li>#여행지검색</li>
-									<li>#가을여행</li>
-									<li>#단풍여행</li>
+									<c:forEach items="${tagList }" var="tag" begin="0" end="2">
+								<li>
+									<a href="/review/selectReviewList?tagCode=${tag.tagCode }">${tag.tagName }</a>
+								</li>
+									</c:forEach>
 								</ul>
 							</div>
 						</div>
@@ -339,11 +338,9 @@ height:100%;
 								<div class="col-12 tagLayout">
 									<div class="tag-li-container col-8">
 							<ul>
-								<li>#당일치기여행</li>
-								<li>#충주</li>
-								<li>#부산_여행지_추천</li>
-								<li>#가족여행</li>
-								<li>#우리문화체험</li>
+							<c:forEach items="${tagList }" var="tag" begin="2" end="5">
+									<li>${tag.tagName }</li>
+							</c:forEach>
 							</ul>
 								</div>
 							</div>
