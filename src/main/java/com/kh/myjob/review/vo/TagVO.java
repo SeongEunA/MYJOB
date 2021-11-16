@@ -1,6 +1,7 @@
 package com.kh.myjob.review.vo;
 
-public class TagVO {
+
+public class TagVO extends ReviewVO{
 
 
 private String tagCode;

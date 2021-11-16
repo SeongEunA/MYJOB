@@ -27,6 +27,14 @@ $(document).ready(function(){
 (function($){
 	noticeCod= function(memberId, courseListSize, courseCode){
 		
+		
+			if(memberId==null||memberId==""){
+				
+				alert('로그인 해주세요!');
+				location.href='/member/login';
+				return;
+			}
+		
 			if(courseListSize == 0){
 				alert('담은 코스가 없습니다');
 				alert('코스를 담은 후에 후기를 작성해주세요');

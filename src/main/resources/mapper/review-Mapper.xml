@@ -136,9 +136,61 @@
       FROM REVIEW_BOARD R, REVIEW_IMG I
       WHERE IS_MAIN = 'Y'
       AND R.REVIEW_BOARD_CODE = I.REVIEW_BOARD_CODE
-      <!-- <if test="searchKeyword.equals('TAG_CODE')">
-      	AND T.REVIEW_BOARD_CODE = I.REVIEW_BOARD_CODE
-      </if> -->
+      <if test='searchValue != null and !searchValue.equals("")'>
+         AND   ${searchKeyword} LIKE '%'||#{searchValue}||'%'
+      </if>
+        ORDER BY 
+         <if test="orderByReadCnt != null and !orderByReadCnt.equals('Y')">
+           REVIEW_BOARD_READ_CNT DESC, REVIEW_BOARD_RECOMMEND_CNT DESC,    
+        </if>
+           REVIEW_BOARD_CODE DESC    
+      )
+   )
+   WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
+   </select>
+	
+		<!--후기 리스트 조회 + 페이징처리 + 태그로검색어  -->
+   <select id="selectReviewListByTag" resultMap="reviewBoard">
+      SELECT REVIEW_BOARD_CODE
+          , REVIEW_BOARD_TITLE
+          , REVIEW_BOARD_CONTENT
+          , REVIEW_BOARD_WRITER
+          , REVIEW_BOARD_REG_DATE
+          , REVIEW_BOARD_RECOMMEND_CNT
+          , REVIEW_BOARD_READ_CNT
+          , REVIEW_IMG_ATTACHED_NAME
+          , COURSE_CODE
+          , IS_MAIN
+          , ROW_NUM   
+   FROM
+   (   
+      SELECT REVIEW_BOARD_CODE
+          , REVIEW_BOARD_TITLE
+          , REVIEW_BOARD_CONTENT
+          , REVIEW_BOARD_WRITER
+          , REVIEW_BOARD_REG_DATE
+          , REVIEW_BOARD_RECOMMEND_CNT
+          , REVIEW_BOARD_READ_CNT
+          , REVIEW_IMG_ATTACHED_NAME
+          , COURSE_CODE
+          , IS_MAIN
+          , ROWNUM AS ROW_NUM   
+   FROM
+   (   
+      SELECT R.REVIEW_BOARD_CODE
+          , REVIEW_BOARD_TITLE
+          , REVIEW_BOARD_CONTENT
+          , REVIEW_BOARD_WRITER
+          , TO_CHAR(REVIEW_BOARD_REG_DATE, 'YYYY.MM.DD') AS REVIEW_BOARD_REG_DATE
+          , REVIEW_BOARD_RECOMMEND_CNT
+          , REVIEW_BOARD_READ_CNT
+          , REVIEW_IMG_ATTACHED_NAME
+          , COURSE_CODE
+          , IS_MAIN
+      FROM REVIEW_BOARD R, REVIEW_IMG I, REVIEW_TAG T
+      WHERE IS_MAIN = 'Y'
+      AND R.REVIEW_BOARD_CODE = I.REVIEW_BOARD_CODE
+      AND T.REVIEW_BOARD_CODE = I.REVIEW_BOARD_CODE
       <if test="searchValue != null and !searchValue.equals('')">
          AND   ${searchKeyword} LIKE '%'||#{searchValue}||'%'
       </if>
@@ -151,6 +203,9 @@
    )
    WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
    </select>
+	
+	
+	
 		
 	<!--후기 게시판 상세보기  -->
 	<select id="selectReviewDetail" resultMap="reviewBoard">

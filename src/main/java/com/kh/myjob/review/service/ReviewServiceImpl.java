@@ -129,6 +129,10 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return sqlSession.selectList("reviewMapper.selectTag",reviewVO);
 	}
+	@Override
+	public List<ReviewVO> selectReviewListByTag(TagVO tagVO) {
+		return sqlSession.selectList("reviewMapper.selectReviewListByTag", tagVO);
+	}
 	
 	
 	

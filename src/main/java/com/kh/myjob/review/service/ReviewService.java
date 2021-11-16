@@ -26,6 +26,9 @@ public interface ReviewService {
 	//후기게시판 리스트 조회
 	List<ReviewVO> selectReviewList(ReviewVO reviewVO);
 	
+	//후기리스트 태그로 조회 
+	List<ReviewVO> selectReviewListByTag(TagVO tagVO);
+	
 	//후기게시판 상세보기
 	ReviewVO selectReviewDetail(ReviewVO reviewVO);
 	

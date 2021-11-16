@@ -41,34 +41,57 @@ public class ReviewController {
 	
 	// 리뷰목록화면
 	@RequestMapping("/selectReviewList")
-	public String SelectReviewList(Model model, ReviewVO reviewVO, CourseVO courseVO, TagVO tagVO) {
+	public String SelectReviewList(Model model, ReviewVO reviewVO, CourseVO courseVO) {
 		//페이징처리 게시글수 
 		int reviewCnt = reviewService.selectReviewCnt(reviewVO);
-		
 	
 		reviewVO.setTotalCnt(reviewCnt);
-		 String empty ="";
 		 
-		 TagVO tagVO2 = new TagVO();
-//		 tagVO2.setTagCode(tagVO.getTagCode()); 
 		 
 		 //페이징처리 
 		reviewVO.setPageInfo();
-		
-		
-//		 if(!empty.equals(tagVO2.getTagCode())&&tagVO2.getTagCode()!=null) {
-//		 System.out.println("태그가 공백이 아닐때만"); reviewVO.setSearchKeyword("TAG_CODE");
-//		 reviewVO.setSearchValue(tagVO2.getTagCode());
-//		 System.out.println(reviewVO.getSearchKeyword());
-//		 System.out.println("!!!!!!!!!!!!"+tagVO2.getTagCode()); }
-		 
-		
 		model.addAttribute("reviewList", reviewService.selectReviewList(reviewVO));
 		
 		model.addAttribute("courseList", courseService.selectCoursePlaceList(courseVO));
 			
 		return "review/review_list";
 	}
+	
+	//태그로 리뷰 게시판 조회
+	@GetMapping("selectReviewListByTag")
+	public String selectReviewListByTag(Model model, ReviewVO reviewVO,CourseVO courseVO,TagVO tagVO) {
+		//페이징처리 게시글수 
+				int reviewCnt = reviewService.selectReviewCnt(reviewVO);
+				
+				if(tagVO.getTagCode()==null) {
+					System.out.println("test1");
+					tagVO.setTagCode("");
+				}
+			
+				tagVO.setTotalCnt(reviewCnt);
+				 String empty ="";
+				 
+				 
+				 //페이징처리 
+				 tagVO.setPageInfo();
+				String str = tagVO.getTagCode();
+				if(!empty.equals(str)){
+				 System.out.println("태그가 공백이 아닐때만"); 
+				 tagVO.setSearchKeyword("TAG_CODE");
+				 tagVO.setSearchValue(tagVO.getTagCode());
+				 
+				 System.out.println(tagVO.getSearchKeyword());
+				 System.out.println("!!!!!!!!!!!!"+tagVO.getTagCode()); 
+				 
+				}
+				model.addAttribute("reviewList", reviewService.selectReviewListByTag(tagVO));
+				
+				model.addAttribute("courseList", courseService.selectCoursePlaceList(courseVO));
+				return "review/review_list";
+		
+	}
+	
+	
 	
 	// 리뷰등록화면으로 이동
 	@GetMapping("/regReview")
