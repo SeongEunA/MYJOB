@@ -856,7 +856,7 @@ opacity:0.6;
 		</div>
 	
 	<!-- 검색 장소 리스트 영역 -->
-<script type="text/javascript"src="/resources/course/js/course_search.js?ver=4"></script>
+<script type="text/javascript"src="/resources/course/js/course_search.js?ver=9"></script>
 		
 		<div class="col-12 placeListContainer">
 		   <div class="col-11 placeListOrder" id="placeList"><!--장소리스트 나오는곳 -->
@@ -865,11 +865,11 @@ opacity:0.6;
 		</div><!-- placeListContainer -->
 	</div><!-- courseHalfLayout -->
 	<div class="courseHalfLayout">
-		<form id="regCourseForm" method="post">
+		<form id="regCourseForm" method="post" name="regCourse" onsubmit="return false">
 			<div id="resInfoList" class="resInfoList">
 			</div><!-- resInfoList -->
 			<div class="submitCourseBtn"  id="submitCourse">
-				<span>코스이름 입력:<input type="text" name="courseName" id="courseName">
+				<span>코스이름 입력:<input type="text" name="courseName" id="courseName" onkeyup="if(window.event.keyCode==13){document.getElementById('regCourseBtn').click();}">
 				<input type="hidden" id="memberId" value="${sessionScope.loginInfo.memberId }">
 				<input type="button" value="코스등록" id="regCourseBtn" class="regCourseBtn"></span>
 			</div> 

@@ -342,7 +342,7 @@ height:100%;
 									<div class="tag-li-container col-8">
 							<ul>
 							<c:forEach items="${tagList }" var="tag" begin="5" end="9">
-									<li><a href="/review/selectReviewListByTag?tagCode=${tag.tagCode }">${tag.tagName }</a></li>
+									<li><a href="/review/selectReviewListByTag?tagCode=${tag.tagCode }&memberId=${sessionScope.loginInfo.memberId}">${tag.tagName }</a></li>
 							</c:forEach>
 							</ul>
 								</div>
